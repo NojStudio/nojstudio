@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No'j Studio — Imágenes que trabajan para ti</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:  #0a0a0a;
+  --white:  #f4f2ed;
+  --gray:   #777;
+  --dim:    rgba(255,255,255,0.45);
+  --accent: #6fbdaa;   /* teal del logo */
+  --accent2:#c8b89a;   /* arena cálida */
+  --line:   rgba(255,255,255,0.07);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════
+   LOGO SVG
+═══════════════════════════════ */
+.logo-svg { display: block; }
+
+/* ═══════════════════════════════
+   NAV
+═══════════════════════════════ */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+}
+
+.nav-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--accent) !important;
+  color: var(--black) !important;
+  padding: 0.5rem 1.3rem;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+}
+.nav-cta:hover { background: var(--accent2) !important; }
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 3rem 5rem;
+  padding-top: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 35%, rgba(111,189,170,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 20% 75%, rgba(200,184,154,0.04) 0%, transparent 60%);
+}
+
+/* watermark logo */
+.hero-watermark {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52vw;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: 0.015em;
+  max-width: 75vw;
+  animation: fadeUp 0.8s ease 0.35s both;
+}
+.hero-h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  animation: fadeUp 0.8s ease 0.5s both;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 280px;
+}
+.hero-tagline small {
+  display: block;
+  font-size: 0.72rem;
+  font-style: normal;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+}
+.btn-primary {
+  background: var(--white);
+  color: var(--black);
+}
+.btn-primary:hover { background: var(--accent); color: var(--black); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.scroll-bar {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+/* ═══════════════════════════════
+   SECTION BASE
+═══════════════════════════════ */
+section { padding: 7rem 3rem; }
+
+.s-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+.s-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.s-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  letter-spacing: 0.03em;
+  line-height: 0.95;
+  margin-bottom: 3rem;
+}
+
+.divider { width: 100%; height: 1px; background: var(--line); }
+
+/* ═══════════════════════════════
+   SERVICES
+═══════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid var(--line);
+  gap: 1px;
+  background: var(--line);
+  margin-top: 3rem;
+}
+
+.svc {
+  background: var(--black);
+  padding: 2.5rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.svc:hover { background: #111; }
+
+.svc::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.4s;
+}
+.svc:hover::after { width: 100%; }
+
+.svc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.svc-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
+
+.svc-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.7rem;
+}
+
+.svc-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.75; }
+
+/* ═══════════════════════════════
+   BTL
+═══════════════════════════════ */
+.btl-section {
+  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
+}
+
+.btl-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 85% 50%, rgba(111,189,170,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.btl-intro {
+  font-size: 0.95rem;
+  color: var(--dim);
+  line-height: 1.85;
+  max-width: 560px;
+  margin-bottom: 3.5rem;
+}
+
+.btl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--line);
+}
+
+.btl-card {
+  background: #0a0a0a;
+  padding: 2.8rem 2.4rem;
+  transition: background 0.3s;
+  position: relative;
+}
+.btl-card:hover { background: #121212; }
+
+.btl-bar {
+  width: 36px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 1.6rem;
+  transition: width 0.4s;
+}
+.btl-card:hover .btl-bar { width: 72px; }
+
+.btl-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.9rem;
+}
+
+.btl-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.8; }
+
+.btl-tag {
+  display: inline-block;
+  margin-top: 1.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(111,189,170,0.25);
+  padding: 0.28rem 0.7rem;
+}
+
+.btl-highlight {
+  grid-column: span 2;
+  background: #0f0f0f;
+  padding: 3rem 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.btl-hl-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+.btl-hl-title span { color: var(--accent); }
+
+.btl-hl-sub {
+  font-size: 0.8rem;
+  color: var(--gray);
+  max-width: 320px;
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════
+   PORTFOLIO
+═══════════════════════════════ */
+.portfolio-section { background: #070707; }
+
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 230px 230px;
+  gap: 3px;
+  margin-top: 3rem;
+}
+
+.port-item {
+  background: #181818;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.port-item:first-child { grid-row: span 2; }
+
+.port-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.12);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.port-ph-icon { font-size: 1.6rem; opacity: 0.35; }
+
+/* cuando tengas imagen real, reemplaza .port-ph por: */
+/* .port-item img { width:100%; height:100%; object-fit:cover; } */
+
+.port-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.72);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.4rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.port-item:hover .port-overlay { opacity: 1; }
+
+.port-tag {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(111,189,170,0.3);
+  padding: 0.28rem 0.7rem;
+}
+
+/* ═══════════════════════════════
+   ABOUT
+═══════════════════════════════ */
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.about-visual {
+  aspect-ratio: 4/5;
+  background: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-visual-logo {
+  opacity: 0.12;
+  width: 55%;
+}
+
+.about-visual-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.about-body p {
+  font-size: 0.92rem;
+  color: var(--dim);
+  line-height: 1.95;
+  margin-bottom: 1.4rem;
+}
+
+.about-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+}
+.stat-l {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ═══════════════════════════════
+   CONTACT
+═══════════════════════════════ */
+.contact-section {
+  background: var(--white);
+  color: var(--black);
+  text-align: center;
+  padding: 8rem 3rem;
+}
+
+.contact-section .s-label { color: rgba(0,0,0,0.45); justify-content: center; }
+.contact-section .s-label::before { background: rgba(0,0,0,0.3); }
+.contact-section .s-title { color: var(--black); }
+
+.contact-sub {
+  font-size: 0.95rem;
+  color: #666;
+  max-width: 380px;
+  margin: 0 auto 3rem;
+  line-height: 1.75;
+}
+
+.contact-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-dark {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+}
+.btn-dark:hover { background: #222; }
+
+.btn-border-dark {
+  background: transparent;
+  color: var(--black);
+  border: 1px solid rgba(0,0,0,0.25);
+}
+.btn-border-dark:hover { background: var(--black); color: var(--white); }
+
+.social-links {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.social-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.social-links a:hover { color: var(--black); }
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer {
+  background: var(--black);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+.footer-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+}
+.footer-copy {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════
+   ANIMATIONS
+═══════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE básico
+═══════════════════════════════ */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .hero { padding: 0 1.5rem 4rem; padding-top: 5rem; }
+  .hero-h1 { font-size: clamp(3.5rem, 14vw, 6rem); max-width: 100%; }
+  .hero-foot { flex-direction: column; gap: 2rem; align-items: flex-start; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .btl-grid { grid-template-columns: 1fr; }
+  .btl-highlight { flex-direction: column; gap: 1.5rem; }
+  .btl-highlight { grid-column: span 1; }
+  .port-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .port-item:first-child { grid-row: span 1; }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .about-visual { aspect-ratio: 3/2; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#inicio" class="nav-brand">
+    <!-- LOGO SVG — inspirado en la X maya de No'j -->
+    <svg class="logo-svg" width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo exterior -->
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/>
+      <!-- Relleno de cuadrantes en teal suave -->
+      <path d="M50,50 L15,15 A49,49,0,0,1,50,3 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L85,15 A49,49,0,0,1,97,50 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L85,85 A49,49,0,0,1,50,97 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L15,85 A49,49,0,0,1,3,50 Z" fill="#6fbdaa" opacity="0.15"/>
+      <!-- Brazo diagonal TL–BR principal -->
+      <line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <!-- Brazo diagonal TL–BR secundarios -->
+      <line x1="11" y1="19" x2="79" y2="87" stroke="#f4f2ed" stroke-width="1.5" stroke-linecap="square"/>
+      <line x1="19" y1="11" x2="87" y2="79" stroke="#f4f2ed" stroke-width="1.5" stroke-linecap="square"/>
+      <!-- Brazo diagonal TR–BL principal -->
+      <line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <!-- Brazo diagonal TR–BL secundarios -->
+      <line x1="89" y1="19" x2="21" y2="87" stroke="#f4f2ed" stroke-width="1.5" stroke-linecap="square"/>
+      <line x1="81" y1="11" x2="13" y2="79" stroke="#f4f2ed" stroke-width="1.5" stroke-linecap="square"/>
+      <!-- Brazo horizontal principal -->
+      <line x1="4"  y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <!-- Horizontales secundarios -->
+      <line x1="4"  y1="44" x2="96" y2="44" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="4"  y1="56" x2="96" y2="56" stroke="#f4f2ed" stroke-width="1.5"/>
+      <!-- Brazo vertical principal -->
+      <line x1="50" y1="4"  x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <!-- Verticales secundarios -->
+      <line x1="44" y1="4"  x2="44" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="56" y1="4"  x2="56" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+      <!-- Punto central -->
+      <circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="2" fill="#6fbdaa"/>
+    </svg>
+    <span class="nav-wordmark">NO'J STUDIO</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#btl">Experiencias</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+
+  <!-- Watermark del logo en fondo -->
+  <svg class="hero-watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="16" y1="16" x2="84" y2="84" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/>
+    <line x1="11" y1="19" x2="79" y2="87" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="19" y1="11" x2="87" y2="79" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="84" y1="16" x2="16" y2="84" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/>
+    <line x1="89" y1="19" x2="21" y2="87" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="81" y1="11" x2="13" y2="79" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="4"  y1="50" x2="96" y2="50" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/>
+    <line x1="4"  y1="44" x2="96" y2="44" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="4"  y1="56" x2="96" y2="56" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="50" y1="4"  x2="50" y2="96" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/>
+    <line x1="44" y1="4"  x2="44" y2="96" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="56" y1="4"  x2="56" y2="96" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="50" cy="50" r="2" fill="#ffffff"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Foto · Video · Dron · BTL · IA</div>
+    <h1 class="hero-h1">
+      Imágenes<br>que<br><em>trabajan</em><br>para ti.
+    </h1>
+  </div>
+
+  <div class="hero-foot">
+    <p class="hero-tagline">
+      Estudio creativo especializado en contenido audiovisual que convierte.
+      <small>— No'j Studio · Ciudad de México</small>
+    </p>
+    <a href="#contacto" class="btn btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Hablemos de tu proyecto
+    </a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ══ SERVICIOS ══ -->
+<section id="servicios">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Servicios</h2>
+  <div class="services-grid">
+
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">🎬</span>
+      <div class="svc-name">Video & Dron</div>
+      <p class="svc-desc">Producción audiovisual aérea y terrestre. FPV, cinematografía, cortos y contenido de marca.</p>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">📸</span>
+      <div class="svc-name">Fotografía</div>
+      <p class="svc-desc">Foto comercial, retratos, eventos y branding visual para empresas y creadores.</p>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">📱</span>
+      <div class="svc-name">Contenido para Redes</div>
+      <p class="svc-desc">Estrategia y producción de contenido optimizado para Instagram, TikTok y YouTube.</p>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">🤖</span>
+      <div class="svc-name">Marketing con IA</div>
+      <p class="svc-desc">Campañas inteligentes, automatización de contenido y análisis de audiencia potenciados con inteligencia artificial.</p>
+    </div>
+
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">🎪</span>
+      <div class="svc-name">Experiencias BTL</div>
+      <p class="svc-desc">Activaciones de marca, instalaciones inmersivas y experiencias en punto de venta que conectan con las personas.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ BTL ══ -->
+<section id="btl" class="btl-section">
+  <div class="btl-glow"></div>
+  <div class="s-label">Más allá de la pantalla</div>
+  <h2 class="s-title">Experiencias<br>& Activaciones BTL</h2>
+  <p class="btl-intro">Diseñamos y documentamos activaciones que crean momentos reales entre tu marca y tu audiencia. Del concepto a la ejecución — y del evento al contenido que lo inmortaliza.</p>
+
+  <div class="btl-grid">
+    <div class="btl-card">
+      <div class="btl-bar"></div>
+      <div class="btl-name">Activaciones de Marca</div>
+      <p class="btl-desc">Experiencias en punto de venta, lanzamientos de producto y eventos diseñados para sorprender y generar conversación orgánica.</p>
+      <span class="btl-tag">Brand Activation</span>
+    </div>
+    <div class="btl-card">
+      <div class="btl-bar"></div>
+      <div class="btl-name">Instalaciones Inmersivas</div>
+      <p class="btl-desc">Espacios físicos que cuentan historias. Instalaciones visuales e interactivas que convierten cualquier lugar en experiencia memorable.</p>
+      <span class="btl-tag">Inmersivo</span>
+    </div>
+    <div class="btl-card">
+      <div class="btl-bar"></div>
+      <div class="btl-name">Cobertura de Eventos</div>
+      <p class="btl-desc">Documentación audiovisual completa: foto, video, dron y contenido en tiempo real para redes sociales durante el evento.</p>
+      <span class="btl-tag">Cobertura 360°</span>
+    </div>
+    <div class="btl-card">
+      <div class="btl-bar"></div>
+      <div class="btl-name">Pop-ups & Experiencias</div>
+      <p class="btl-desc">Concepto creativo, producción y dirección de eventos efímeros que generan impacto y contenido orgánico de alto alcance.</p>
+      <span class="btl-tag">Producción</span>
+    </div>
+    <div class="btl-highlight">
+      <div class="btl-hl-title">El mejor contenido<br>nace de experiencias <span>reales.</span></div>
+      <p class="btl-hl-sub">Combinamos la producción del evento con su documentación audiovisual en un solo paquete. Tu marca vive en el mundo físico y digital al mismo tiempo.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PORTAFOLIO ══ -->
+<section id="portafolio" class="portfolio-section">
+  <div class="s-label">Nuestro trabajo</div>
+  <h2 class="s-title">Portafolio</h2>
+
+  <div class="port-grid">
+    <div class="port-item">
+      <!-- Reemplaza .port-ph con: <img src="images/tu-foto.jpg" alt=""> -->
+      <div class="port-ph"><span class="port-ph-icon">🎬</span>Video destacado</div>
+      <div class="port-overlay"><span class="port-tag">Video / Dron</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">📸</span>Foto comercial</div>
+      <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🚁</span>Aéreo</div>
+      <div class="port-overlay"><span class="port-tag">Dron</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">📱</span>Redes sociales</div>
+      <div class="port-overlay"><span class="port-tag">Contenido</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🎪</span>BTL / Activación</div>
+      <div class="port-overlay"><span class="port-tag">Experiencia</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ NOSOTROS ══ -->
+<section id="nosotros">
+  <div class="about-inner">
+    <div class="about-visual">
+      <!-- Logo centrado como elemento visual -->
+      <svg class="about-visual-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/>
+        <path d="M50,50 L15,15 A49,49,0,0,1,50,3 Z" fill="#6fbdaa" opacity="0.2"/>
+        <path d="M50,50 L85,15 A49,49,0,0,1,97,50 Z" fill="#6fbdaa" opacity="0.2"/>
+        <path d="M50,50 L85,85 A49,49,0,0,1,50,97 Z" fill="#6fbdaa" opacity="0.2"/>
+        <path d="M50,50 L15,85 A49,49,0,0,1,3,50 Z" fill="#6fbdaa" opacity="0.2"/>
+        <line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+        <line x1="11" y1="19" x2="79" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="19" y1="11" x2="87" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+        <line x1="89" y1="19" x2="21" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="81" y1="11" x2="13" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="4"  y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+        <line x1="4"  y1="44" x2="96" y2="44" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="4"  y1="56" x2="96" y2="56" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="50" y1="4"  x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+        <line x1="44" y1="4"  x2="44" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+        <line x1="56" y1="4"  x2="56" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+        <circle cx="50" cy="50" r="5" fill="#141414" stroke="#6fbdaa" stroke-width="2.5"/>
+        <circle cx="50" cy="50" r="2" fill="#6fbdaa"/>
+      </svg>
+      <span class="about-visual-caption">No'j Studio — CDMX</span>
+    </div>
+
+    <div class="about-body">
+      <div class="s-label">Quiénes somos</div>
+      <h2 class="s-title">Dos miradas.<br>Un estudio.</h2>
+      <p>Somos un estudio creativo especializado en producción audiovisual. Combinamos fotografía y video para construir la identidad visual que tu marca necesita.</p>
+      <p>Con drones, cámaras de acción y herramientas de inteligencia artificial, creamos contenido que no solo se ve bien — <strong style="font-weight:500;color:var(--white)">funciona</strong>.</p>
+      <div class="about-stats">
+        <div><span class="stat-n">4+</span><span class="stat-l">Años de exp.</span></div>
+        <div><span class="stat-n">50+</span><span class="stat-l">Proyectos</span></div>
+        <div><span class="stat-n">2</span><span class="stat-l">Creativos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══ -->
+<section id="contacto" class="contact-section">
+  <div class="s-label">Trabajemos juntos</div>
+  <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem);">¿Tienes un<br>proyecto en mente?</h2>
+  <p class="contact-sub">Cuéntanos qué necesitas y te respondemos en menos de 24 horas.</p>
+  <div class="contact-btns">
+    <a href="https://wa.me/521XXXXXXXXXX" class="btn btn-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:hola@nojstudio.com" class="btn btn-border-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Enviar Email
+    </a>
+  </div>
+  <div class="social-links">
+    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <a href="#inicio" class="footer-brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="3"/>
+      <line x1="16" y1="16" x2="84" y2="84" stroke="#777" stroke-width="6" stroke-linecap="square"/>
+      <line x1="84" y1="16" x2="16" y2="84" stroke="#777" stroke-width="6" stroke-linecap="square"/>
+      <line x1="4"  y1="50" x2="96" y2="50" stroke="#777" stroke-width="6" stroke-linecap="square"/>
+      <line x1="50" y1="4"  x2="50" y2="96" stroke="#777" stroke-width="6" stroke-linecap="square"/>
+      <circle cx="50" cy="50" r="4" fill="#6fbdaa"/>
+    </svg>
+    <span class="footer-wordmark">NO'J STUDIO</span>
+  </a>
+  <span class="footer-copy">© 2025 No'j Studio · Ciudad de México</span>
+</footer>
+
+</body>
+</html>
