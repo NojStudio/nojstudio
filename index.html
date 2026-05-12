@@ -837,6 +837,28 @@ footer {
 
 <div class="divider"></div>
 
+<!-- ══ MODAL ══ -->
+<div id="modal" style="
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(0,0,0,0.92); backdrop-filter:blur(12px);
+  align-items:center; justify-content:center; padding:2rem;
+">
+  <!-- Cerrar -->
+  <button onclick="closeModal()" style="
+    position:absolute; top:1.5rem; right:1.5rem;
+    background:none; border:1px solid rgba(255,255,255,0.2);
+    color:#f4f2ed; width:42px; height:42px; font-size:1.2rem;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:border-color 0.2s;
+  ">✕</button>
+
+  <!-- Contenido del modal -->
+  <div id="modal-content" style="
+    max-width:90vw; max-height:88vh;
+    display:flex; align-items:center; justify-content:center;
+  "></div>
+</div>
+
 <!-- ══ PORTAFOLIO ══ -->
 <section id="portafolio" class="portfolio-section">
   <div class="s-label">Nuestro trabajo</div>
@@ -845,46 +867,67 @@ footer {
   <div class="port-grid">
 
     <!-- CELDA GRANDE — Reel principal -->
-    <div class="port-item" style="position:relative;">
-      <video id="reel-video" src="images/Reel_web.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-      <!-- Botón de sonido -->
-      <button id="sound-btn" onclick="toggleSound()" style="
+    <div class="port-item" style="position:relative; cursor:pointer;" onclick="openVideo()">
+      <video id="reel-video" src="images/Reel_web.mp4" autoplay muted loop playsinline
+        style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+      <!-- Botón sonido -->
+      <button id="sound-btn" onclick="event.stopPropagation(); toggleSound()" style="
         position:absolute; bottom:1rem; right:1rem;
         background:rgba(10,10,10,0.75); border:1px solid rgba(255,255,255,0.2);
-        color:#f4f2ed; padding:0.5rem 0.9rem;
-        font-family:'DM Sans',sans-serif; font-size:0.68rem;
+        color:#f4f2ed; padding:0.45rem 0.85rem;
+        font-family:'DM Sans',sans-serif; font-size:0.66rem;
         letter-spacing:0.12em; text-transform:uppercase;
         cursor:pointer; display:flex; align-items:center; gap:0.5rem;
-        backdrop-filter:blur(8px); transition:background 0.2s; z-index:10;
+        backdrop-filter:blur(8px); z-index:10;
       ">
         <span id="sound-icon">🔇</span>
         <span id="sound-label">Activar sonido</span>
       </button>
+      <!-- Ícono maximizar -->
+      <div style="
+        position:absolute; top:1rem; right:1rem;
+        background:rgba(10,10,10,0.7); border:1px solid rgba(255,255,255,0.15);
+        color:#f4f2ed; width:34px; height:34px;
+        display:flex; align-items:center; justify-content:center;
+        font-size:0.85rem; backdrop-filter:blur(6px); z-index:10;
+      ">⛶</div>
       <div class="port-overlay"><span class="port-tag">Master Reel</span></div>
     </div>
 
     <!-- Foto 1 -->
-    <div class="port-item">
+    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/10072021-Aranxa ph 2-5.png','Aranxa')">
       <img src="images/10072021-Aranxa ph 2-5.png" alt="Aranxa — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
+      <div class="port-overlay" style="justify-content:space-between; align-items:flex-end;">
+        <span class="port-tag">Fotografía</span>
+        <span style="font-size:1rem; opacity:0.7;">⛶</span>
+      </div>
     </div>
 
     <!-- Foto 2 -->
-    <div class="port-item">
+    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/0427.png','Aéreo')">
       <img src="images/0427.png" alt="No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
+      <div class="port-overlay" style="justify-content:space-between; align-items:flex-end;">
+        <span class="port-tag">Fotografía</span>
+        <span style="font-size:1rem; opacity:0.7;">⛶</span>
+      </div>
     </div>
 
     <!-- Foto 3 -->
-    <div class="port-item">
+    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/May (1 de 1).jpg','May')">
       <img src="images/May (1 de 1).jpg" alt="May — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
+      <div class="port-overlay" style="justify-content:space-between; align-items:flex-end;">
+        <span class="port-tag">Fotografía</span>
+        <span style="font-size:1rem; opacity:0.7;">⛶</span>
+      </div>
     </div>
 
     <!-- Foto 4 -->
-    <div class="port-item">
+    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/hd modelos 3-1.jpg','HD Modelos')">
       <img src="images/hd modelos 3-1.jpg" alt="HD Modelos — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
+      <div class="port-overlay" style="justify-content:space-between; align-items:flex-end;">
+        <span class="port-tag">Fotografía</span>
+        <span style="font-size:1rem; opacity:0.7;">⛶</span>
+      </div>
     </div>
 
   </div>
@@ -973,19 +1016,56 @@ footer {
 </footer>
 
 <script>
-function toggleSound() {
-  const video = document.getElementById('reel-video');
-  const icon  = document.getElementById('sound-icon');
-  const label = document.getElementById('sound-label');
-  video.muted = !video.muted;
-  if (video.muted) {
-    icon.textContent  = '🔇';
-    label.textContent = 'Activar sonido';
-  } else {
-    icon.textContent  = '🔊';
-    label.textContent = 'Silenciar';
+  const modal   = document.getElementById('modal');
+  const content = document.getElementById('modal-content');
+
+  // Abre el modal con el video al cargar la página
+  window.addEventListener('load', () => {
+    setTimeout(() => openVideo(), 800);
+  });
+
+  // Cierra con ESC o clic en el fondo
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function openVideo() {
+    content.innerHTML = `
+      <video src="images/Reel_web.mp4" controls autoplay
+        style="max-width:85vw; max-height:82vh; display:block; outline:none;">
+      </video>`;
+    showModal();
   }
-}
+
+  function openImage(src, alt) {
+    content.innerHTML = `
+      <img src="${src}" alt="${alt}"
+        style="max-width:85vw; max-height:82vh; display:block; object-fit:contain;">`;
+    showModal();
+  }
+
+  function showModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    content.innerHTML   = '';
+    document.body.style.overflow = '';
+  }
+
+  // Botón sonido del loop de fondo
+  function toggleSound() {
+    const video = document.getElementById('reel-video');
+    const icon  = document.getElementById('sound-icon');
+    const label = document.getElementById('sound-label');
+    if (!video) return;
+    video.muted = !video.muted;
+    icon.textContent  = video.muted ? '🔇' : '🔊';
+    label.textContent = video.muted ? 'Activar sonido' : 'Silenciar';
+  }
 </script>
 </body>
 </html>
