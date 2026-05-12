@@ -845,20 +845,33 @@ footer {
   <div class="port-grid">
 
     <!-- CELDA GRANDE — Reel principal -->
-    <div class="port-item">
-      <video src="images/Reel_web.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+    <div class="port-item" style="position:relative;">
+      <video id="reel-video" src="images/Reel_web.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+      <!-- Botón de sonido -->
+      <button id="sound-btn" onclick="toggleSound()" style="
+        position:absolute; bottom:1rem; right:1rem;
+        background:rgba(10,10,10,0.75); border:1px solid rgba(255,255,255,0.2);
+        color:#f4f2ed; padding:0.5rem 0.9rem;
+        font-family:'DM Sans',sans-serif; font-size:0.68rem;
+        letter-spacing:0.12em; text-transform:uppercase;
+        cursor:pointer; display:flex; align-items:center; gap:0.5rem;
+        backdrop-filter:blur(8px); transition:background 0.2s; z-index:10;
+      ">
+        <span id="sound-icon">🔇</span>
+        <span id="sound-label">Activar sonido</span>
+      </button>
       <div class="port-overlay"><span class="port-tag">Master Reel</span></div>
     </div>
 
     <!-- Foto 1 -->
     <div class="port-item">
-      <img src="images/10072021-Aranxa ph 2-5.png" alt="Aranxa — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <img src="10072021-Aranxa ph 2-5.png" alt="Aranxa — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
     </div>
 
     <!-- Foto 2 -->
     <div class="port-item">
-      <img src="images/May (1 de 1).jpg" alt="May — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <img src="0427.png" alt="No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="port-overlay"><span class="port-tag">Fotografía</span></div>
     </div>
 
@@ -957,5 +970,20 @@ footer {
   <span class="footer-copy">© 2025 No'j Studio · Ciudad de México</span>
 </footer>
 
+<script>
+function toggleSound() {
+  const video = document.getElementById('reel-video');
+  const icon  = document.getElementById('sound-icon');
+  const label = document.getElementById('sound-label');
+  video.muted = !video.muted;
+  if (video.muted) {
+    icon.textContent  = '🔇';
+    label.textContent = 'Activar sonido';
+  } else {
+    icon.textContent  = '🔊';
+    label.textContent = 'Silenciar';
+  }
+}
+</script>
 </body>
 </html>
