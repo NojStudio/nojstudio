@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No'j BTL — Activaciones, Experiencias & Instalaciones de Marca | No'j Studio</title>
+<meta name="description" content="Activaciones BTL, experiencias inmersivas, instalaciones de marca y pop-ups en Ciudad de México. No'j Studio.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);
+  --accent:#6fbdaa;--v:#d4a5c9;--v2:#9b7fb5;--line:rgba(255,255,255,0.07)
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
+.nav-vertical{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.8rem;margin-left:0.2rem}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
+.nav-cta:hover{opacity:0.85}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:5rem 3rem 5rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 25%,rgba(212,165,201,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 55% at 20% 75%,rgba(155,127,181,0.06) 0%,transparent 55%),
+    radial-gradient(ellipse 30% 40% at 50% 50%,rgba(111,189,170,0.03) 0%,transparent 50%)}
+.hero-watermark{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:50vw;opacity:0.025;pointer-events:none}
+.hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2rem;position:relative}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:1.4rem;animation:fadeUp 0.8s ease 0.2s both}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--v)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,10vw,9.5rem);line-height:0.88;letter-spacing:0.015em;max-width:78vw;animation:fadeUp 0.8s ease 0.35s both}
+.hero-h1 em{font-style:normal;color:var(--v)}
+.hero-foot{display:flex;align-items:flex-end;justify-content:space-between;position:relative;animation:fadeUp 0.8s ease 0.5s both}
+.hero-tagline{font-size:0.95rem;color:var(--dim);font-style:italic;line-height:1.65;max-width:300px}
+.hero-tagline small{display:block;font-size:0.7rem;font-style:normal;color:rgba(255,255,255,0.2);letter-spacing:0.06em;margin-top:0.5rem}
+.hero-scroll{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:pulse 2s ease-in-out infinite}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s}
+.btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}.btn-outline:hover{border-color:var(--v);color:var(--v)}
+
+/* SECTION BASE */
+section{padding:7rem 3rem}
+.s-label{display:flex;align-items:center;gap:1rem;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--v);margin-bottom:0.9rem}
+.s-label::before{content:'';width:2rem;height:1px;background:var(--v)}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5rem);letter-spacing:0.03em;line-height:0.95;margin-bottom:3rem}
+.divider{width:100%;height:1px;background:var(--line)}
+
+/* QUÉ ES BTL */
+.intro-section{background:#0d0d0d;position:relative;overflow:hidden}
+.intro-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 85% 50%,rgba(212,165,201,0.06) 0%,transparent 65%)}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.intro-body p{font-size:0.92rem;color:var(--dim);line-height:1.95;margin-bottom:1.4rem}
+.intro-body strong{color:var(--white);font-weight:500}
+.intro-stat-row{display:flex;gap:3rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--line)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--v);line-height:1;display:block}
+.stat-l{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-top:0.3rem;display:block}
+.intro-visual{background:#141414;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.intro-visual-inner{display:flex;flex-direction:column;align-items:center;gap:1.2rem;color:rgba(255,255,255,0.1);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;text-align:center}
+.intro-visual-icon{font-size:3.5rem;opacity:0.25}
+.intro-visual-corner{position:absolute;bottom:1.2rem;left:1.2rem;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+
+/* SERVICIOS BTL */
+.servicios-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);gap:1px;background:var(--line)}
+.svc{background:var(--black);padding:2.8rem 2.2rem;position:relative;overflow:hidden;transition:background 0.3s}
+.svc:hover{background:#111}
+.svc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--v);transition:width 0.4s}
+.svc:hover::after{width:100%}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(255,255,255,0.04);line-height:1;margin-bottom:1rem}
+.svc-icon{font-size:1.4rem;margin-bottom:1rem;display:block}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;margin-bottom:0.7rem}
+.svc-desc{font-size:0.8rem;color:var(--gray);line-height:1.8}
+.svc-tag{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--v);border:1px solid rgba(212,165,201,0.25);padding:0.28rem 0.7rem}
+
+/* DIFERENCIADOR — franja oscura */
+.diferenciador{background:#0a0a0a;padding:5rem 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.diferenciador::before{content:'BTL';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:18rem;color:rgba(212,165,201,0.025);letter-spacing:0.08em;pointer-events:none;line-height:1}
+.dif-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4rem;align-items:start}
+.dif-item{}
+.dif-bar{width:36px;height:2px;background:var(--v);margin-bottom:1.6rem;transition:width 0.4s}
+.dif-item:hover .dif-bar{width:72px}
+.dif-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;margin-bottom:0.9rem}
+.dif-desc{font-size:0.82rem;color:var(--gray);line-height:1.85}
+
+/* PROCESO */
+.proceso-section{background:#080808}
+.proceso-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
+.step{background:var(--black);padding:2.5rem 1.8rem;position:relative;transition:background 0.3s}.step:hover{background:#0f0f0f}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:1.2rem;right:1.2rem}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.05em;color:var(--v);margin-bottom:0.7rem;margin-top:0.5rem}
+.step-desc{font-size:0.76rem;color:var(--gray);line-height:1.8}
+
+/* PORTAFOLIO */
+.portfolio-section{background:#070707}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:3px;margin-top:3rem}
+.port-item{background:#181818;position:relative;overflow:hidden;cursor:pointer}
+.port-item:first-child{grid-row:span 2}
+.port-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.1);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase}
+.port-ph-icon{font-size:1.8rem;opacity:0.25}
+.port-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.72);display:flex;align-items:flex-end;padding:1.4rem;opacity:0;transition:opacity 0.3s}
+.port-item:hover .port-overlay{opacity:1}
+.port-tag{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--v);border:1px solid rgba(212,165,201,0.3);padding:0.28rem 0.7rem}
+
+/* DOBLE SERVICIO — franja de conexión con fotografía/video */
+.doble-strip{background:#0f0f0f;display:flex;align-items:center;justify-content:space-between;gap:3rem;padding:4.5rem 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.doble-strip::before{content:'360°';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:14rem;color:rgba(111,189,170,0.03);letter-spacing:0.08em;pointer-events:none;line-height:1}
+.doble-left{max-width:560px}
+.doble-eyebrow{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem}
+.doble-eyebrow::before{content:'';width:1.8rem;height:1px;background:var(--accent)}
+.doble-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,3.2rem);letter-spacing:0.02em;line-height:1;margin-bottom:1rem}
+.doble-title span{color:var(--accent)}
+.doble-desc{font-size:0.85rem;color:var(--gray);line-height:1.85}
+.doble-right{flex-shrink:0;display:flex;flex-direction:column;gap:0.8rem}
+.btn-accent-outline{background:transparent;color:var(--accent);border:1px solid rgba(111,189,170,0.3)}
+.btn-accent-outline:hover{background:var(--accent);color:var(--black)}
+
+/* CONTACTO */
+.contact-section{background:var(--white);color:var(--black);text-align:center;padding:8rem 3rem}
+.contact-section .s-label{color:rgba(0,0,0,0.4);justify-content:center}
+.contact-section .s-label::before{background:rgba(0,0,0,0.25)}
+.contact-section .s-title{color:var(--black)}
+.contact-sub{font-size:0.95rem;color:#666;max-width:420px;margin:0 auto 3rem;line-height:1.75}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-dark{background:var(--black);color:var(--white);border:none}.btn-dark:hover{background:#222}
+.btn-border-dark{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,0.25)}.btn-border-dark:hover{background:var(--black);color:var(--white)}
+.social-links{display:flex;gap:2.5rem;justify-content:center;margin-top:3rem}
+.social-links a{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:#999;text-decoration:none;transition:color 0.2s}
+.social-links a:hover{color:var(--black)}
+
+/* FOOTER */
+footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line)}
+.footer-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
+.footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
+.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
+.footer-nav{display:flex;gap:1.5rem}
+.footer-nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}
+.footer-nav a:hover{color:var(--v)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  section{padding:5rem 1.5rem}
+  .hero{padding:5rem 1.5rem 4rem}
+  .hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}
+  .hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}
+  .intro-grid{grid-template-columns:1fr}.intro-visual{display:none}
+  .servicios-grid{grid-template-columns:1fr}
+  .dif-grid{grid-template-columns:1fr}
+  .proceso-steps{grid-template-columns:1fr 1fr}
+  .port-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.port-item:first-child{grid-row:span 1}
+  .doble-strip{flex-direction:column;padding:3rem 1.5rem}
+  .footer-nav{display:none}
+}
+</style>
+
+<!-- js-placeholder --> {
+    var nav = document.querySelector('nav');
+    if (!nav) return;
+    var h = nav.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--nav-h', h + 'px');
+  }
+  setOffset();
+  window.addEventListener('resize', setOffset);
+})();
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg width="36" height="36" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/><line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/><circle cx="50" cy="50" r="2" fill="#6fbdaa"/></svg>
+    <span class="nav-wordmark">NO'J</span><span class="nav-vertical">BTL</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">← Volver al Studio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#contacto" class="nav-cta">Cotizar activación</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <svg class="hero-watermark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#fff" stroke-width="2"/><line x1="16" y1="16" x2="84" y2="84" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#fff" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#fff" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="#fff"/></svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Activaciones · Experiencias · Instalaciones · Pop-ups</div>
+    <h1 class="hero-h1">Tu marca<br>en el mundo<br><em>real.</em></h1>
+  </div>
+  <div class="hero-foot">
+    <p class="hero-tagline">
+      Diseñamos y producimos experiencias BTL que conectan tu marca con personas reales — en espacios reales. Del concepto a la ejecución, y del evento al contenido que lo inmortaliza.
+      <small>— No'j BTL · Ciudad de México</small>
+    </p>
+    <a href="#contacto" class="btn btn-v">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>
+      Cotizar activación
+    </a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
+</section>
+
+<!-- QUÉ ES BTL -->
+<section class="intro-section" id="que-es">
+  <div class="intro-glow"></div>
+  <div class="intro-grid">
+    <div class="intro-body">
+      <div class="s-label">¿Qué es BTL?</div>
+      <h2 class="s-title">Más allá<br>de la pantalla.</h2>
+      <p>BTL (<strong>Below The Line</strong>) es marketing de contacto directo: experiencias físicas que generan una conexión emocional imposible de lograr con un anuncio digital. Es cuando tu marca deja de ser una imagen y se convierte en algo que la gente <strong>vive</strong>.</p>
+      <p>En No'j no solo diseñamos la activación — la documentamos. Cada experiencia que producimos se convierte también en contenido fotográfico y de video de alto impacto para tus redes, campañas y prensa.</p>
+      <p>Un evento bien ejecutado + bien documentado = el mejor contenido orgánico que tu marca puede tener.</p>
+      <div class="intro-stat-row">
+        <div><span class="stat-n">2×</span><span class="stat-l">Más recordación vs. anuncio digital</span></div>
+        <div><span class="stat-n">360°</span><span class="stat-l">Producción + documentación</span></div>
+        <div><span class="stat-n">∞</span><span class="stat-l">Contenido reutilizable</span></div>
+      </div>
+    </div>
+    <div class="intro-visual">
+      <!-- <img src="images/btl-cover.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+      <div class="intro-visual-inner">
+        <span class="intro-visual-icon">✦</span>
+        <span>Tu activación<br>aquí</span>
+      </div>
+      <span class="intro-visual-corner">No'j BTL — Experiencias de marca</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Servicios BTL</h2>
+  <div class="servicios-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">⚡</span>
+      <div class="svc-name">Activaciones de Marca</div>
+      <p class="svc-desc">Experiencias en punto de venta, centros comerciales, plazas y eventos masivos. Diseñamos el concepto, producimos la ejecución y documentamos cada momento para generar conversación orgánica.</p>
+      <span class="svc-tag">Brand Activation</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">🌀</span>
+      <div class="svc-name">Instalaciones Inmersivas</div>
+      <p class="svc-desc">Espacios físicos que cuentan la historia de tu marca. Instalaciones visuales, sensoriales e interactivas que convierten cualquier lugar en una experiencia memorable e irresistible de fotografiar.</p>
+      <span class="svc-tag">Inmersivo</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">🎪</span>
+      <div class="svc-name">Pop-ups & Lanzamientos</div>
+      <p class="svc-desc">Tiendas efímeras, presentaciones de producto y lanzamientos de colección. Concepto creativo, producción escenográfica y cobertura audiovisual completa para maximizar el impacto mediático.</p>
+      <span class="svc-tag">Pop-up</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">🤝</span>
+      <div class="svc-name">Sampling & Street Marketing</div>
+      <p class="svc-desc">Acciones en vía pública, universidades y zonas de alto tráfico. Diseño de materiales, coordinación de equipos en campo y documentación fotográfica de la acción en tiempo real.</p>
+      <span class="svc-tag">Street</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">🎨</span>
+      <div class="svc-name">Producción Escenográfica</div>
+      <p class="svc-desc">Diseño y fabricación de sets, backdrops, props y ambientaciones para eventos, shows, campañas de foto y video. Desde el boceto hasta el montaje.</p>
+      <span class="svc-tag">Escenografía</span>
+    </div>
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <span class="svc-icon">📸</span>
+      <div class="svc-name">Documentación BTL</div>
+      <p class="svc-desc">¿Ya tienes la activación pero necesitas quien la documente? Cubrimos tu evento con fotografía editorial y video cinematográfico para que el contenido tenga la misma calidad que la experiencia.</p>
+      <span class="svc-tag">Cobertura</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIFERENCIADOR -->
+<div class="diferenciador">
+  <div class="dif-grid">
+    <div class="dif-item">
+      <div class="dif-bar"></div>
+      <div class="dif-title">Concepto + Producción</div>
+      <p class="dif-desc">No somos solo un equipo de fotografía que llega al evento. Participamos desde el concepto creativo, la logística de producción y el montaje — garantizando que la activación sea tan visual como experiencial.</p>
+    </div>
+    <div class="dif-item">
+      <div class="dif-bar"></div>
+      <div class="dif-title">El evento ES el contenido</div>
+      <p class="dif-desc">Diseñamos cada activación pensando en cómo se va a ver en cámara. El resultado: experiencias que la gente quiere fotografiar y compartir, más cobertura profesional que amplifica el alcance orgánico.</p>
+    </div>
+    <div class="dif-item">
+      <div class="dif-bar"></div>
+      <div class="dif-title">Una sola conversación</div>
+      <p class="dif-desc">Concepto, producción BTL, fotografía y video en un solo equipo. Sin coordinaciones interminables entre agencias. Todo bajo la dirección creativa de No'j, con una visión visual unificada.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROCESO -->
+<section id="proceso" class="proceso-section">
+  <div class="s-label">Cómo trabajamos</div>
+  <h2 class="s-title">El proceso</h2>
+  <div class="proceso-steps">
+    <div class="step">
+      <span class="step-n">01</span>
+      <div class="step-title">Brief de marca</div>
+      <p class="step-desc">Entendemos tu marca, tu audiencia, el objetivo de la activación y el presupuesto disponible. Definimos qué queremos que la gente sienta.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">02</span>
+      <div class="step-title">Concepto creativo</div>
+      <p class="step-desc">Desarrollamos la propuesta conceptual: nombre de la activación, narrativa visual, paleta, materiales y cómo se integra la documentación audiovisual.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">03</span>
+      <div class="step-title">Producción</div>
+      <p class="step-desc">Diseño y fabricación de escenografía, coordinación de proveedores, logística de locación y preparación del equipo de foto y video.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">04</span>
+      <div class="step-title">Ejecución & Cobertura</div>
+      <p class="step-desc">Montaje, coordinación en sitio y cobertura fotográfica y videográfica completa durante el evento. Contenido en tiempo real para redes si se requiere.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">05</span>
+      <div class="step-title">Entrega de contenido</div>
+      <p class="step-desc">Fotografías editadas, video editado y material listo para publicar en redes, prensa y presentaciones. Tu activación vive mucho más allá del evento.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTAFOLIO -->
+<section id="portafolio" class="portfolio-section">
+  <div class="s-label">Nuestro trabajo</div>
+  <h2 class="s-title">Portafolio</h2>
+  <div class="port-grid">
+    <div class="port-item">
+      <!-- <img src="images/btl-activacion.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+      <div class="port-ph"><span class="port-ph-icon">⚡</span><span>Activación principal</span></div>
+      <div class="port-overlay"><span class="port-tag">Brand Activation</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🌀</span><span>Inmersivo</span></div>
+      <div class="port-overlay"><span class="port-tag">Instalación inmersiva</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🎪</span><span>Pop-up</span></div>
+      <div class="port-overlay"><span class="port-tag">Pop-up & lanzamiento</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🎨</span><span>Escenografía</span></div>
+      <div class="port-overlay"><span class="port-tag">Producción escenográfica</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🤝</span><span>Street</span></div>
+      <div class="port-overlay"><span class="port-tag">Street marketing</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONEXIÓN 360 -->
+<div class="doble-strip">
+  <div class="doble-left">
+    <div class="doble-eyebrow">Paquete integral</div>
+    <h3 class="doble-title">BTL + Foto + Video<br>= Cobertura <span>360°</span></h3>
+    <p class="doble-desc">La activación más impactante pierde valor si no queda bien documentada. En No'j diseñamos la experiencia pensando en el contenido desde el primer día — para que cada ángulo, cada detalle y cada emoción quede capturado con la misma calidad que la experiencia en vivo.</p>
+  </div>
+  <div class="doble-right">
+    <a href="photography.html" class="btn btn-accent-outline">
+      Ver No'j Photography
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+    </a>
+    <a href="films.html" class="btn btn-accent-outline">
+      Ver No'j Films
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact-section">
+  <div class="s-label">Trabajemos juntos</div>
+  <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem)">¿Qué experiencia<br>quieres crear?</h2>
+  <p class="contact-sub">Cuéntanos tu marca, el tipo de activación que tienes en mente y el presupuesto aproximado. Te respondemos con una propuesta en menos de 48 horas.</p>
+  <div class="contact-btns">
+    <a href="https://wa.me/525574582059?text=Hola%2C%20me%20interesa%20cotizar%20una%20activaci%C3%B3n%20BTL" class="btn btn-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:hola@nojstudio.com?subject=Cotización%20BTL" class="btn btn-border-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Enviar Email
+    </a>
+  </div>
+  <div class="social-links">
+    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="3"/><line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/><circle cx="50" cy="50" r="2" fill="#6fbdaa"/></svg>
+    <span class="footer-wordmark">NO'J STUDIO</span>
+  </a>
+  <nav class="footer-nav">
+    <a href="photography.html">Photography</a>
+    <a href="films.html">Films</a>
+    <a href="outdoor.html">Outdoor</a>
+    <a href="product.html">Product</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="sports.html">Sports</a>
+    <a href="marketing.html">Marketing</a>
+  </nav>
+  <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+</footer>
+
+
+</body>
+</html>
