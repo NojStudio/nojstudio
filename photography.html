@@ -30,7 +30,7 @@ body {
 }
 
 /* NAV */
-nav {
+body>nav {
   position: fixed; inset: 0 0 auto 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 3rem;
@@ -208,8 +208,8 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
 .footer-wordmark { font-family:'Bebas Neue',sans-serif; font-size:0.95rem; letter-spacing:0.16em; color:var(--gray); }
 .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.15); letter-spacing:0.08em; }
 .footer-nav { display:flex; gap:1.5rem; }
-.footer-nav a { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.2); text-decoration:none; transition:color 0.2s; }
-.footer-nav a:hover { color:var(--photo); }
+.footer-body>nav a { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.2); text-decoration:none; transition:color 0.2s; }
+.footer-body>nav a:hover { color:var(--photo); }
 
 /* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
@@ -233,6 +233,7 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
   .proceso-steps { grid-template-columns:1fr 1fr; }
   .footer-nav { display:none; }
 }
+.footer-nav{position:static!important;background:none!important;backdrop-filter:none!important;border:none!important;padding:0!important;}
 </style>
 
 <!-- js-placeholder --> {

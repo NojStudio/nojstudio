@@ -16,7 +16,7 @@ html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
 .nav-vertical{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.8rem;margin-left:0.2rem}
@@ -145,8 +145,8 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 .footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
 .footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
 .footer-nav{display:flex;gap:1.5rem}
-.footer-nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}
-.footer-nav a:hover{color:var(--v)}
+.footer-body>nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}
+.footer-body>nav a:hover{color:var(--v)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -167,6 +167,7 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   .doble-strip{flex-direction:column;padding:3rem 1.5rem}
   .footer-nav{display:none}
 }
+.footer-nav{position:static!important;background:none!important;backdrop-filter:none!important;border:none!important;padding:0!important;}
 </style>
 
 <!-- js-placeholder --> {

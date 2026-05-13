@@ -11,7 +11,7 @@
 :root{--black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);--accent:#6fbdaa;--accent2:#c8b89a;--v:#cc7a7a;--line:rgba(255,255,255,0.07)}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
 .nav-vertical{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.8rem;margin-left:0.2rem}
@@ -74,10 +74,11 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 .footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
 .footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
 .footer-nav{display:flex;gap:1.5rem}
-.footer-nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:var(--v)}
+.footer-body>nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}.footer-body>nav a:hover{color:var(--v)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.port-item:first-child{grid-row:span 1}.footer-nav{display:none}}
+.footer-nav{position:static!important;background:none!important;backdrop-filter:none!important;border:none!important;padding:0!important;}
 </style>
 <script>
 (function(){
