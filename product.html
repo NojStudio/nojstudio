@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No'j Product — Foto y Video de Producto | No'j Studio</title>
+<meta name="description" content="Fotografía y video de producto para e-commerce, catálogos y campañas en Ciudad de México.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);--accent:#6fbdaa;--accent2:#c8b89a;--v:#c8b89a;--line:rgba(255,255,255,0.07)}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
+.nav-vertical{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.8rem;margin-left:0.2rem}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-back{display:flex;align-items:center;gap:0.4rem}
+.nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
+.nav-spacer{height:62px}
+.btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s}
+.btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}.btn-outline:hover{border-color:var(--v);color:var(--v)}
+section{padding:7rem 3rem}
+.s-label{display:flex;align-items:center;gap:1rem;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--v);margin-bottom:0.9rem}
+.s-label::before{content:'';width:2rem;height:1px;background:var(--v)}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5rem);letter-spacing:0.03em;line-height:0.95;margin-bottom:3rem}
+.divider{width:100%;height:1px;background:var(--line)}
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:5rem 3rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 72% 28%,rgba(200,184,154,0.09) 0%,transparent 60%),radial-gradient(ellipse 35% 50% at 15% 80%,rgba(111,189,170,0.04) 0%,transparent 55%)}
+.hero-watermark{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:50vw;opacity:0.025;pointer-events:none}
+.hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2rem;position:relative}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:1.4rem;animation:fadeUp 0.8s ease 0.2s both}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--v)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,10vw,9.5rem);line-height:0.88;letter-spacing:0.015em;max-width:78vw;animation:fadeUp 0.8s ease 0.35s both}
+.hero-h1 em{font-style:normal;color:var(--v)}
+.hero-foot{display:flex;align-items:flex-end;justify-content:space-between;position:relative;animation:fadeUp 0.8s ease 0.5s both}
+.hero-tagline{font-size:0.95rem;color:var(--dim);font-style:italic;line-height:1.65;max-width:300px}
+.hero-tagline small{display:block;font-size:0.7rem;font-style:normal;color:rgba(255,255,255,0.2);letter-spacing:0.06em;margin-top:0.5rem}
+.hero-scroll{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:pulse 2s ease-in-out infinite}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);gap:1px;background:var(--line)}
+.spec{background:var(--black);padding:2.8rem 2.2rem;position:relative;overflow:hidden;transition:background 0.3s}.spec:hover{background:#111}
+.spec::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--v);transition:width 0.4s}.spec:hover::after{width:100%}
+.spec-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(255,255,255,0.04);line-height:1;margin-bottom:1rem}
+.spec-icon{font-size:1.4rem;margin-bottom:1rem;display:block}
+.spec-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;margin-bottom:0.7rem}
+.spec-desc{font-size:0.8rem;color:var(--gray);line-height:1.8}
+.spec-tag{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--v);border:1px solid rgba(200,184,154,0.25);padding:0.28rem 0.7rem}
+.proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
+.step{background:var(--black);padding:2.5rem 2rem;position:relative;transition:background 0.3s}.step:hover{background:#0f0f0f}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:1.2rem;right:1.5rem}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;color:var(--v);margin-bottom:0.7rem;margin-top:0.5rem}
+.step-desc{font-size:0.78rem;color:var(--gray);line-height:1.8}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:3px;margin-top:3rem}
+.port-item{background:#181818;position:relative;overflow:hidden;cursor:pointer}.port-item:first-child{grid-row:span 2}
+.port-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.1);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase}
+.port-ph-icon{font-size:1.8rem;opacity:0.25}
+.port-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.72);display:flex;align-items:flex-end;padding:1.4rem;opacity:0;transition:opacity 0.3s}.port-item:hover .port-overlay{opacity:1}
+.port-tag{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--v);border:1px solid rgba(200,184,154,0.3);padding:0.28rem 0.7rem}
+.contact-section{background:var(--white);color:var(--black);text-align:center;padding:8rem 3rem}
+.contact-section .s-label{color:rgba(0,0,0,0.4);justify-content:center}.contact-section .s-label::before{background:rgba(0,0,0,0.25)}.contact-section .s-title{color:var(--black)}
+.contact-sub{font-size:0.95rem;color:#666;max-width:380px;margin:0 auto 3rem;line-height:1.75}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-dark{background:var(--black);color:var(--white);border:none}.btn-dark:hover{background:#222}
+.btn-border-dark{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,0.25)}.btn-border-dark:hover{background:var(--black);color:var(--white)}
+.social-links{display:flex;gap:2.5rem;justify-content:center;margin-top:3rem}
+.social-links a{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:#999;text-decoration:none;transition:color 0.2s}.social-links a:hover{color:var(--black)}
+footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line)}
+.footer-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
+.footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
+.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
+.footer-nav{display:flex;gap:1.5rem}
+.footer-nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:var(--v)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.port-item:first-child{grid-row:span 1}.footer-nav{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand"><svg width="36" height="36" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/><line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/><circle cx="50" cy="50" r="2" fill="#6fbdaa"/></svg>
+    <span class="nav-wordmark">NO'J</span><span class="nav-vertical">Product</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-back">← Volver al Studio</a></li>
+    <li><a href="#especialidades">Especialidades</a></li><li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#contacto" class="nav-cta">Cotizar sesión</a></li>
+  </ul>
+</nav>
+<div class="nav-spacer"></div>
+
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <svg class="hero-watermark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#fff" stroke-width="2"/><line x1="16" y1="16" x2="84" y2="84" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#fff" stroke-width="5" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#fff" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#fff" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="#fff"/></svg>
+  <div class="hero-content">
+    <div class="hero-eyebrow">E-commerce · Catálogo · Still Life · Video</div>
+    <h1 class="hero-h1">Tu producto<br>en su mejor<br><em>versión.</em></h1>
+  </div>
+  <div class="hero-foot">
+    <p class="hero-tagline">Foto y video de producto para e-commerce, catálogos y campañas. Cada objeto merece ser presentado con intención.<small>— No'j Product · Ciudad de México</small></p>
+    <a href="#contacto" class="btn btn-v"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>Cotizar sesión de producto</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
+</section>
+<section id="especialidades">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Especialidades</h2>
+  <div class="spec-grid">    <div class="spec">
+      <div class="spec-num">01</div>
+      <span class="spec-icon">📦</span>
+      <div class="spec-name">E-commerce & Packshot</div>
+      <p class="spec-desc">Fotografía limpia sobre fondo blanco o neutro optimizada para Amazon, MercadoLibre, Shopify y tiendas propias.</p>
+      <span class="spec-tag">E-commerce</span>
+    </div>
+    <div class="spec">
+      <div class="spec-num">02</div>
+      <span class="spec-icon">✨</span>
+      <div class="spec-name">Still Life Creativo</div>
+      <p class="spec-desc">Composiciones artísticas con props, texturas y paletas de color cuidadas. Para marcas que quieren diferenciarse.</p>
+      <span class="spec-tag">Still life</span>
+    </div>
+    <div class="spec">
+      <div class="spec-num">03</div>
+      <span class="spec-icon">🏷️</span>
+      <div class="spec-name">Catálogo & Lookbook</div>
+      <p class="spec-desc">Sesiones estructuradas para cubrir toda la línea de producto con consistencia visual.</p>
+      <span class="spec-tag">Catálogo</span>
+    </div>
+    <div class="spec">
+      <div class="spec-num">04</div>
+      <span class="spec-icon">🎬</span>
+      <div class="spec-name">Video de Producto</div>
+      <p class="spec-desc">Videos cortos para redes, demos y unboxings. Contenido que convierte en Instagram, TikTok y YouTube.</p>
+      <span class="spec-tag">Video</span>
+    </div>
+    <div class="spec">
+      <div class="spec-num">05</div>
+      <span class="spec-icon">🌿</span>
+      <div class="spec-name">Lifestyle de Producto</div>
+      <p class="spec-desc">El producto en su contexto natural de uso. En locación real con modelos o sets ambientados.</p>
+      <span class="spec-tag">Lifestyle</span>
+    </div>
+    <div class="spec">
+      <div class="spec-num">06</div>
+      <span class="spec-icon">💎</span>
+      <div class="spec-name">Joyería & Lujo</div>
+      <p class="spec-desc">Fotografía macro especializada en joyería, relojes y perfumes. Iluminación que resalta materiales premium.</p>
+      <span class="spec-tag">Premium</span>
+    </div></div>
+</section>
+<div class="divider"></div>
+<section id="portafolio" style="background:#070707">
+  <div class="s-label">Nuestro trabajo</div>
+  <h2 class="s-title">Portafolio</h2>
+  <div class="port-grid">    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">📦</span><span>Packshot</span></div>
+      <div class="port-overlay"><span class="port-tag">E-commerce</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">✨</span><span>Still life</span></div>
+      <div class="port-overlay"><span class="port-tag">Still life creativo</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🌿</span><span>Lifestyle</span></div>
+      <div class="port-overlay"><span class="port-tag">Lifestyle</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">🎬</span><span>Video</span></div>
+      <div class="port-overlay"><span class="port-tag">Video producto</span></div>
+    </div>
+    <div class="port-item">
+      <div class="port-ph"><span class="port-ph-icon">💎</span><span>Joyería</span></div>
+      <div class="port-overlay"><span class="port-tag">Premium & lujo</span></div>
+    </div></div>
+</section>
+<section id="contacto" class="contact-section">
+  <div class="s-label">Trabajemos juntos</div>
+  <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem)">¿Qué producto<br>vamos a disparar?</h2>
+  <p class="contact-sub">Cuéntanos tu producto, cantidad de SKUs y el uso de las imágenes. Te cotizamos en menos de 24 horas.</p>
+    <div class="contact-btns">
+    <a href="https://wa.me/525574582059?text=Hola%2C%20me%20interesa%20cotizar%20foto%20de%20producto" class="btn btn-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>WhatsApp
+    </a>
+    <a href="mailto:hola@nojstudio.com?subject=Cotizaci%C3%B3n%20producto" class="btn btn-border-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
+    </a>
+  </div>
+  <div class="social-links">
+    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
+  </div>
+</section>
+<footer>
+  <a href="index.html" class="footer-brand"><svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="3"/><line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/><circle cx="50" cy="50" r="2" fill="#6fbdaa"/></svg><span class="footer-wordmark">NO'J STUDIO</span></a>
+  <nav class="footer-nav"><a href="photography.html">Photography</a>
+    <a href="films.html">Films</a>
+    <a href="outdoor.html">Outdoor</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="sports.html">Sports</a>
+    <a href="marketing.html">Marketing</a>
+    <a href="btl.html">BTL</a></nav>
+  <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+</footer>
+</body>
+</html>
