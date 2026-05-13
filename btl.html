@@ -25,6 +25,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-links a:hover{color:var(--white)}
 .nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
 .nav-cta:hover{opacity:0.85}
+.nav-spacer{height:62px}
 
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:5rem 3rem 5rem;position:relative;overflow:hidden}
@@ -195,6 +196,7 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
     <li><a href="#contacto" class="nav-cta">Cotizar activación</a></li>
   </ul>
 </nav>
+<div class="nav-spacer"></div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -417,7 +419,7 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       WhatsApp
     </a>
-    <a href="mailto:hola@nojstudio.com?subject=Cotización%20BTL" class="btn btn-border-dark">
+    <a href="mailto:nojstudiomx@gmail.com?subject=Cotización%20BTL" class="btn btn-border-dark">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Enviar Email
     </a>
@@ -447,5 +449,17 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 </footer>
 
 
+
+<script>
+(function(){
+  var nav = document.querySelector('nav');
+  var spacer = document.querySelector('.nav-spacer');
+  function setSpacerHeight(){
+    if(nav && spacer) spacer.style.height = nav.offsetHeight + 'px';
+  }
+  setSpacerHeight();
+  window.addEventListener('resize', setSpacerHeight);
+})();
+</script>
 </body>
 </html>
