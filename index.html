@@ -26,16 +26,12 @@ body {
 }
 
 /* ═══════════ NAV ═══════════ */
-#site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(14px);
-}
 nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 3rem;
+  padding: 1.2rem 3rem;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
 .nav-brand { display:flex; align-items:center; gap:0.8rem; text-decoration:none; }
@@ -50,7 +46,7 @@ nav {
 .hero {
   min-height: 100vh;
   display: grid; grid-template-rows: 1fr auto;
-  padding: 0 3rem 5rem; padding-top: 2rem;
+  padding: 0 3rem 5rem; padding-top: 6rem;
   position: relative; overflow: hidden;
 }
 .hero-glow {
@@ -110,12 +106,12 @@ section { padding:7rem 3rem; }
 
 /* ═══════════ VERTICALES NAV ═══════════ */
 .verticals-bar {
+  background: #0d0d0d;
+  border-bottom: 1px solid var(--line);
+  padding: 0 3rem;
   display: flex; align-items: center; gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
-  border-bottom: 1px solid var(--line);
-  background: #0d0d0d;
-  padding: 0 3rem;
 }
 .verticals-bar::-webkit-scrollbar { display:none; }
 .verticals-bar a {
@@ -226,10 +222,10 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
   nav { padding:1rem 1.5rem; }
   .nav-links { display:none; }
   section { padding:5rem 1.5rem; }
-  .hero { padding:0 1.5rem 4rem; padding-top: 2rem; }
+  .hero { padding:0 1.5rem 4rem; padding-top:5rem; }
   .hero-h1 { font-size:clamp(3.5rem,14vw,6rem); max-width:100%; }
   .hero-foot { flex-direction:column; gap:2rem; align-items:flex-start; }
-  .verticals-bar { padding:0 1rem; }
+  .verticals-bar { padding:0 1.5rem; }
   .services-grid { grid-template-columns:1fr 1fr; }
   .btl-grid { grid-template-columns:1fr; }
   .btl-highlight { flex-direction:column; gap:1.5rem; grid-column:span 1; }
@@ -240,27 +236,10 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
   .footer-verticals { display:none; }
 }
 </style>
-
-<script>
-(function() {
-  function setOffsets() {
-    var header = document.getElementById('site-header');
-    var spacer = document.getElementById('header-spacer');
-    if (!header) return;
-    var h = header.getBoundingClientRect().height;
-    if (spacer) spacer.style.height = h + 'px';
-  }
-  setOffsets();
-  window.addEventListener('resize', setOffsets);
-  window.addEventListener('load', setOffsets);
-  setTimeout(setOffsets, 200);
-})();
-</script>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
-<div id="site-header">
+<!-- ══ NAV ══ -->
 <nav>
   <a href="#inicio" class="nav-brand">
     <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -304,9 +283,7 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
   <a href="eventos.html"><span class="v-dot" style="background:#cc9a7a;"></span>Eventos</a>
   <a href="sports.html"><span class="v-dot" style="background:#cc7a7a;"></span>Sports</a>
   <a href="marketing.html"><span class="v-dot" style="background:#6fbdaa;"></span>Marketing</a>
-  <a href="btl.html"><span class="v-dot" style="background:#d4a5c9;"></span>BTL</a>
 </div>
-<div id="header-spacer" style="display:block;"></div>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="inicio">
@@ -556,7 +533,6 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
     <a href="eventos.html">Eventos</a>
     <a href="sports.html">Sports</a>
     <a href="marketing.html">Marketing</a>
-    <a href="btl.html">BTL</a>
   </nav>
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
