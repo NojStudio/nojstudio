@@ -20,7 +20,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-links a:hover{color:var(--white)}
 .nav-back{display:flex;align-items:center;gap:0.4rem}
 .nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
-.nav-spacer{height:62px}
+#header-spacer{height:62px}
 .btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s}
 .btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:var(--accent);transform:translateY(-2px)}
 .btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}.btn-outline:hover{border-color:var(--v);color:var(--v)}
@@ -79,6 +79,20 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.port-item:first-child{grid-row:span 1}.footer-nav{display:none}}
 </style>
+<script>
+(function(){
+  function setOffset(){
+    var nav = document.querySelector('nav');
+    var spacer = document.getElementById('header-spacer');
+    if(!nav || !spacer) return;
+    spacer.style.height = nav.getBoundingClientRect().height + 'px';
+  }
+  setOffset();
+  window.addEventListener('resize', setOffset);
+  window.addEventListener('load', setOffset);
+  setTimeout(setOffset, 200);
+})();
+</script>
 </head>
 <body>
 <nav>
@@ -91,7 +105,7 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
     <li><a href="#contacto" class="nav-cta">Cotizar expedición</a></li>
   </ul>
 </nav>
-<div class="nav-spacer"></div>
+<div id="header-spacer" style="display:block;"></div>
 
 <section class="hero" id="inicio">
   <div class="hero-glow"></div>
@@ -185,7 +199,7 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
     <a href="https://wa.me/525574582059?text=Hola%2C%20me%20interesa%20contenido%20outdoor" class="btn btn-dark">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>WhatsApp
     </a>
-    <a href="mailto:hola@nojstudio.com?subject=Cotizaci%C3%B3n%20outdoor" class="btn btn-border-dark">
+    <a href="mailto:nojstudiomx@gmail.com?subject=Cotizaci%C3%B3n%20outdoor" class="btn btn-border-dark">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
     </a>
   </div>
@@ -205,5 +219,6 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
     <a href="btl.html">BTL</a></nav>
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
+
 </body>
 </html>
