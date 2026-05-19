@@ -83,7 +83,7 @@ select option{background:var(--surface);}
 /* ── STORYBOARD ── */
 .sb-list{display:flex;flex-direction:column;gap:12px;}
 .sc-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:200px 1fr;}
-.sc-visual{background:#080808;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:8px;position:relative;}
+.sc-visual{background:#080808;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:10px 8px 8px;gap:5px;position:relative;}
 .sc-num{position:absolute;top:8px;left:10px;font-size:.65rem;color:rgba(255,255,255,0.25);letter-spacing:.12em;}
 .sc-visual svg{width:100%;height:90px;}
 .sc-badge{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(111,189,170,0.12);color:var(--accent);border:1px solid rgba(111,189,170,0.25);padding:3px 8px;border-radius:4px;}
@@ -160,6 +160,63 @@ select option{background:var(--surface);}
   .pres-body{flex-direction:column;}.pres-visual{width:100%;padding:1rem;max-height:200px;}
   .pres-info{padding:1.5rem;}
 }
+
+/* ── POLISH v4 ── */
+/* Smooth card entrance */
+@keyframes fadeSlideUp {
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.sc-card{animation:fadeSlideUp .25s ease both;}
+.sc-card:nth-child(1){animation-delay:.03s;}
+.sc-card:nth-child(2){animation-delay:.07s;}
+.sc-card:nth-child(3){animation-delay:.11s;}
+.sc-card:nth-child(4){animation-delay:.15s;}
+.sc-card:nth-child(5){animation-delay:.19s;}
+.sc-card:nth-child(6){animation-delay:.23s;}
+.sc-card:nth-child(n+7){animation-delay:.27s;}
+
+/* Hover lift on cards */
+.sc-card{transition:border-color .2s,box-shadow .2s;}
+.sc-card:hover{border-color:rgba(111,189,170,0.25);box-shadow:0 0 0 1px rgba(111,189,170,0.1);}
+
+/* Progress bar during generation */
+.gen-progress{height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-top:8px;display:none;}
+.gen-progress.active{display:block;}
+.gen-progress-bar{height:100%;background:var(--accent);width:0%;transition:width .4s ease;border-radius:1px;}
+
+/* Better api bar */
+.apibar{transition:border-color .2s;}
+.apibar:focus-within{border-color:rgba(111,189,170,0.3);}
+
+/* Scene number badge style */
+.sc-num-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.6);border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:.6rem;letter-spacing:.12em;padding:2px 6px;border-radius:3px;}
+
+/* Template selected checkmark */
+.tmpl-card.sel::after{content:'✓';position:absolute;top:6px;right:8px;font-size:.7rem;color:var(--accent);}
+.tmpl-card{position:relative;}
+
+/* Better empty state */
+.empty{background:var(--surface);border-style:dashed;}
+
+/* Shot list row highlight on hover */
+.sl-table tbody tr{transition:background .15s;}
+
+/* Lighting button pulse */
+@keyframes lightPulse{0%,100%{box-shadow:0 0 0 0 rgba(111,189,170,0.3);}50%{box-shadow:0 0 0 3px rgba(111,189,170,0.1);}}
+.light-btn-new{animation:lightPulse 2s ease-in-out 3;}
+
+/* Version badge */
+.version-badge{font-size:.6rem;color:var(--gray);opacity:.5;letter-spacing:.08em;}
+
+/* Focus ring on inputs */
+input[type=text]:focus,select:focus,textarea:focus{box-shadow:0 0 0 2px rgba(111,189,170,0.15);}
+
+/* Scrollbar style */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2);}
 </style>
 </head>
 <body>
@@ -212,7 +269,8 @@ select option{background:var(--surface);}
         <div class="logo-sub">Storyboard Tool</div>
       </div>
     </div>
-    <div class="topbar-actions">
+    <div class="topbar-actions" style="align-items:center;">
+      <span class="version-badge">v2.0</span>
       <button class="btn btn-accent" onclick="switchTab('projects')">📁 Proyectos</button>
       <button class="btn" onclick="newProject()">+ Nuevo</button>
     </div>
@@ -239,6 +297,7 @@ select option{background:var(--surface);}
     <div class="panel">
       <div class="panel-title">⚡ Templates rápidos</div>
       <div class="tmpl-grid" id="tmpl-grid">
+        <div class="tmpl-card sel" id="tmpl-none" onclick="clearTmpl(this)"><div class="tmpl-icon">✏️</div><div class="tmpl-name">Sin template</div><div class="tmpl-desc">Brief desde cero</div></div>
         <div class="tmpl-card" onclick="applyTmpl('comercial',this)"><div class="tmpl-icon">📺</div><div class="tmpl-name">Comercial</div><div class="tmpl-desc">Spot de marca 30-60s</div></div>
         <div class="tmpl-card" onclick="applyTmpl('reel',this)"><div class="tmpl-icon">📱</div><div class="tmpl-name">Reel / Social</div><div class="tmpl-desc">Contenido 15-30s</div></div>
         <div class="tmpl-card" onclick="applyTmpl('dron',this)"><div class="tmpl-icon">🚁</div><div class="tmpl-name">Aéreo / Dron</div><div class="tmpl-desc">Tomas aéreas cinematic</div></div>
@@ -256,6 +315,7 @@ select option{background:var(--surface);}
           <select id="proj-dur">
             <option value="15s">15s — Reels</option>
             <option value="30s">30 segundos</option>
+            <option value="45s">45 segundos</option>
             <option value="60s" selected>1 minuto</option>
             <option value="2-3min">2-3 minutos</option>
             <option value="5+min">5+ minutos</option>
@@ -273,8 +333,22 @@ select option{background:var(--surface);}
           </select>
         </div>
       </div>
-      <div class="form-group"><label class="form-label">Brief del proyecto</label>
+      <div class="form-group">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <label class="form-label" style="margin-bottom:0;">Brief del proyecto</label>
+          <div style="display:flex;gap:6px;">
+            <button class="btn" id="voice-btn" onclick="toggleVoice()" title="Dictar brief por voz" style="padding:5px 10px;font-size:.72rem;">
+              🎙 Dictar
+            </button>
+            <label class="btn" style="padding:5px 10px;font-size:.72rem;cursor:pointer;" title="Adjuntar documento de referencia">
+              📎 Adjuntar
+              <input type="file" id="doc-input" accept=".pdf,.doc,.docx,.txt" style="display:none;" onchange="attachDoc(this)">
+            </label>
+          </div>
+        </div>
         <textarea id="proj-brief" placeholder="Describe el video: ¿de qué trata? ¿qué transmite? ¿audiencia? ¿locaciones, personajes, mensaje clave, CTA?"></textarea>
+        <div id="doc-status" style="font-size:.72rem;color:var(--accent);margin-top:5px;display:none;"></div>
+        <div id="voice-status" style="font-size:.72rem;color:#f09595;margin-top:4px;display:none;"></div>
       </div>
       <div class="grid3">
         <div class="form-group"><label class="form-label">Número de escenas</label>
@@ -304,6 +378,7 @@ select option{background:var(--surface);}
         </div>
       </div>
       <button class="btn btn-primary btn-full btn-lg" id="gen-btn" onclick="generate()">✨ Generar storyboard con IA</button>
+      <div class="gen-progress" id="gen-progress"><div class="gen-progress-bar" id="gen-bar"></div></div>
       <div class="status" id="status-msg"></div>
     </div>
   </div>
@@ -318,7 +393,7 @@ select option{background:var(--surface);}
     </div>
     <div id="add-form-container"></div>
     <div class="sb-list" id="sb-container">
-      <div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.</div>
+      <div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.<br><span style="font-size:.72rem;opacity:.6;margin-top:4px;display:block;">Tecla 1 → Brief · 2 → Storyboard · 3 → Shot List</span></div>
     </div>
   </div>
 
@@ -328,7 +403,7 @@ select option{background:var(--surface);}
       <table class="sl-table">
         <thead><tr>
           <th>#</th><th>Título</th><th>Plano</th><th>Movimiento</th><th>Dur.</th>
-          <th>Lente</th><th>Locación</th><th>Hora</th><th>Descripción</th><th>Audio</th><th>Notas</th><th>✓</th>
+          <th>Cámara</th><th>Lente</th><th>Locación</th><th>Hora</th><th>Descripción</th><th>Audio</th><th>Iluminación</th><th>Notas</th><th>✓</th>
         </tr></thead>
         <tbody id="sl-body"></tbody>
       </table>
@@ -421,20 +496,194 @@ function newProject() {
   switchTab('brief');
 }
 
-/* ── SKETCHES ── */
+/* ── SKETCHES v2 — Cinematic frame style ── */
+// Each sketch = camera frame (16:9 crop marks) + scene composition
+function skFrame(inner, label, c) {
+  return `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100px;">
+    <!-- letterbox bars -->
+    <rect x="0" y="0" width="200" height="12" fill="#000" opacity="0.6"/>
+    <rect x="0" y="108" width="200" height="12" fill="#000" opacity="0.6"/>
+    <!-- frame border -->
+    <rect x="1" y="1" width="198" height="118" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.4"/>
+    <!-- rule-of-thirds guides -->
+    <line x1="67" y1="12" x2="67" y2="108" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
+    <line x1="133" y1="12" x2="133" y2="108" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
+    <line x1="1" y1="52" x2="199" y2="52" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
+    <line x1="1" y1="78" x2="199" y2="78" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
+    <!-- corner marks -->
+    <polyline points="1,20 1,12 9,12" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="191,12 199,12 199,20" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="1,100 1,108 9,108" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="191,108 199,108 199,100" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    ${inner}
+    <!-- shot label -->
+    <rect x="4" y="94" width="${label.length*5+8}" height="12" fill="${c}" opacity="0.9" rx="2"/>
+    <text x="8" y="103" font-size="7.5" fill="#000" font-family="monospace" font-weight="bold">${label}</text>
+  </svg>`;
+}
+
 const SK = {
-  'Plano general': c=>`<svg viewBox="0 0 160 100"><rect x="20" y="55" width="120" height="2" fill="${c}" opacity="0.3"/><ellipse cx="80" cy="52" rx="12" ry="28" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><ellipse cx="80" cy="42" rx="7" ry="7" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><rect x="10" y="30" width="18" height="22" rx="2" stroke="${c}" stroke-width="1" fill="none" opacity="0.4"/><rect x="132" y="35" width="18" height="18" rx="2" stroke="${c}" stroke-width="1" fill="none" opacity="0.4"/><text x="80" y="82" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">WS</text></svg>`,
-  'Plano medio': c=>`<svg viewBox="0 0 160 100"><line x1="0" y1="68" x2="160" y2="68" stroke="${c}" stroke-width="0.5" opacity="0.3"/><ellipse cx="80" cy="40" rx="8" ry="8" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><path d="M60,68 Q65,52 80,50 Q95,52 100,68" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><line x1="72" y1="50" x2="68" y2="68" stroke="${c}" stroke-width="1" opacity="0.6"/><line x1="88" y1="50" x2="92" y2="68" stroke="${c}" stroke-width="1" opacity="0.6"/><text x="80" y="84" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">MS</text></svg>`,
-  'Primer plano': c=>`<svg viewBox="0 0 160 100"><ellipse cx="80" cy="38" rx="22" ry="22" stroke="${c}" stroke-width="2" fill="none" opacity="0.9"/><circle cx="70" cy="35" r="3" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><circle cx="90" cy="35" r="3" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><path d="M72,44 Q80,49 88,44" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><text x="80" y="80" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">CU</text></svg>`,
-  'Plano detalle': c=>`<svg viewBox="0 0 160 100"><rect x="30" y="20" width="100" height="60" rx="4" stroke="${c}" stroke-width="2" fill="none" opacity="0.9"/><circle cx="80" cy="50" r="18" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="80" cy="50" r="6" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><text x="80" y="91" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">ECU</text></svg>`,
-  'Toma aérea': c=>`<svg viewBox="0 0 160 100"><ellipse cx="80" cy="60" rx="55" ry="28" stroke="${c}" stroke-width="0.5" fill="none" opacity="0.2"/><polygon points="80,28 87,46 97,46 89,56 92,70 80,63 68,70 71,56 63,46 73,46" stroke="${c}" stroke-width="1.2" fill="none" opacity="0.9"/><circle cx="80" cy="49" r="4" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><text x="80" y="87" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">AERIAL</text></svg>`,
-  'Ángulo bajo': c=>`<svg viewBox="0 0 160 100"><line x1="0" y1="85" x2="160" y2="85" stroke="${c}" stroke-width="0.5" opacity="0.3"/><line x1="72" y1="74" x2="54" y2="17" stroke="${c}" stroke-width="1.5" opacity="0.7"/><line x1="88" y1="74" x2="106" y2="17" stroke="${c}" stroke-width="1.5" opacity="0.7"/><ellipse cx="80" cy="17" rx="22" ry="8" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><text x="80" y="96" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">LOW ANGLE</text></svg>`,
-  'Travelling': c=>`<svg viewBox="0 0 160 100"><line x1="10" y1="60" x2="150" y2="60" stroke="${c}" stroke-width="0.5" opacity="0.3" stroke-dasharray="4,3"/><ellipse cx="80" cy="47" rx="8" ry="9" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><path d="M68,56 Q72,48 80,47 Q88,46 92,56" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.9"/><path d="M112,45 L132,50 L112,55" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><text x="80" y="80" font-size="8" fill="${c}" opacity="0.4" text-anchor="middle" font-family="sans-serif">TRACKING</text></svg>`,
-  'default': c=>`<svg viewBox="0 0 160 100"><rect x="25" y="18" width="110" height="68" rx="3" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.6"/><circle cx="80" cy="52" r="18" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.8"/><line x1="80" y1="34" x2="80" y2="70" stroke="${c}" stroke-width="0.8" opacity="0.35"/><line x1="62" y1="52" x2="98" y2="52" stroke="${c}" stroke-width="0.8" opacity="0.35"/></svg>`
+  'Plano general': c => skFrame(`
+    <!-- sky/bg -->
+    <rect x="2" y="13" width="196" height="94" fill="none"/>
+    <!-- horizon line -->
+    <line x1="2" y1="75" x2="198" y2="75" stroke="${c}" stroke-width="0.5" opacity="0.3"/>
+    <!-- background buildings/landscape -->
+    <rect x="10" y="50" width="25" height="25" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.25"/>
+    <rect x="160" y="55" width="30" height="20" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.25"/>
+    <rect x="40" y="58" width="15" height="17" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.2"/>
+    <!-- main subject: full body figure -->
+    <line x1="100" y1="40" x2="100" y2="75" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="100" cy="34" r="7" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <line x1="100" y1="47" x2="88" y2="62" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <line x1="100" y1="47" x2="112" y2="62" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <line x1="100" y1="75" x2="92" y2="94" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <line x1="100" y1="75" x2="108" y2="94" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <!-- camera indicator -->
+    <rect x="178" y="14" width="18" height="12" rx="2" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="187" cy="20" r="3" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
+  `, 'WS', c),
+
+  'Plano medio': c => skFrame(`
+    <!-- horizon -->
+    <line x1="2" y1="80" x2="198" y2="80" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <!-- figure from waist up — centered left of thirds -->
+    <circle cx="100" cy="35" r="12" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.85"/>
+    <!-- shoulders -->
+    <path d="M76,55 Q88,48 100,47 Q112,48 124,55" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <!-- torso -->
+    <line x1="88" y1="55" x2="84" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
+    <line x1="112" y1="55" x2="116" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
+    <line x1="84" y1="82" x2="116" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
+    <!-- arms -->
+    <line x1="84" y1="60" x2="70" y2="72" stroke="${c}" stroke-width="1" opacity="0.6"/>
+    <line x1="116" y1="60" x2="130" y2="72" stroke="${c}" stroke-width="1" opacity="0.6"/>
+    <!-- bg suggestion -->
+    <line x1="2" y1="90" x2="198" y2="90" stroke="${c}" stroke-width="0.4" opacity="0.15"/>
+  `, 'MS', c),
+
+  'Primer plano': c => skFrame(`
+    <!-- close face — fills frame -->
+    <ellipse cx="100" cy="55" rx="38" ry="44" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.7"/>
+    <!-- facial features -->
+    <ellipse cx="87" cy="46" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <ellipse cx="113" cy="46" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="87" cy="46" r="2.5" fill="${c}" opacity="0.5"/>
+    <circle cx="113" cy="46" r="2.5" fill="${c}" opacity="0.5"/>
+    <path d="M84,62 Q100,70 116,62" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <!-- nose bridge -->
+    <line x1="100" y1="50" x2="100" y2="58" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
+    <!-- hair suggestion -->
+    <path d="M62,40 Q80,18 100,16 Q120,18 138,40" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.5"/>
+    <!-- ears -->
+    <path d="M62,50 Q58,55 62,62" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+    <path d="M138,50 Q142,55 138,62" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+  `, 'CU', c),
+
+  'Plano detalle': c => skFrame(`
+    <!-- extreme close up: object detail -->
+    <!-- macro lens circles -->
+    <circle cx="100" cy="60" r="32" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
+    <circle cx="100" cy="60" r="20" fill="none" stroke="${c}" stroke-width="1" opacity="0.75"/>
+    <circle cx="100" cy="60" r="8" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.9"/>
+    <circle cx="100" cy="60" r="2" fill="${c}" opacity="0.8"/>
+    <!-- focus brackets -->
+    <polyline points="60,35 70,35 70,45" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="130,35 140,35 140,45" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="60,85 70,85 70,75" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <polyline points="130,85 140,85 140,75" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <!-- depth-of-field blur suggestion -->
+    <line x1="2" y1="60" x2="60" y2="60" stroke="${c}" stroke-width="0.4" stroke-dasharray="3,3" opacity="0.3"/>
+    <line x1="140" y1="60" x2="198" y2="60" stroke="${c}" stroke-width="0.4" stroke-dasharray="3,3" opacity="0.3"/>
+  `, 'ECU', c),
+
+  'Toma aérea': c => skFrame(`
+    <!-- aerial: bird's eye map view -->
+    <!-- ground grid -->
+    <line x1="40" y1="13" x2="40" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="80" y1="13" x2="80" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="120" y1="13" x2="120" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="160" y1="13" x2="160" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="2" y1="35" x2="198" y2="35" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="2" y1="60" x2="198" y2="60" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="2" y1="85" x2="198" y2="85" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <!-- buildings top-down -->
+    <rect x="20" y="20" width="28" height="18" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+    <rect x="55" y="40" width="35" height="22" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+    <rect x="130" y="18" width="40" height="28" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+    <rect x="145" y="70" width="30" height="20" fill="none" stroke="${c}" stroke-width="1" opacity="0.4"/>
+    <!-- road -->
+    <rect x="95" y="13" width="14" height="94" fill="none" stroke="${c}" stroke-width="0.6" opacity="0.3"/>
+    <!-- drone icon top -->
+    <circle cx="100" cy="60" r="8" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.9"/>
+    <line x1="92" y1="52" x2="88" y2="48" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <line x1="108" y1="52" x2="112" y2="48" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <line x1="92" y1="68" x2="88" y2="72" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <line x1="108" y1="68" x2="112" y2="72" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="88" cy="47" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <circle cx="112" cy="47" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <circle cx="88" cy="73" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <circle cx="112" cy="73" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <circle cx="100" cy="60" r="2" fill="${c}" opacity="0.8"/>
+  `, 'AERIAL', c),
+
+  'Ángulo bajo': c => skFrame(`
+    <!-- low angle: looking up at subject -->
+    <!-- vanishing point perspective lines from bottom -->
+    <line x1="100" y1="107" x2="10" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
+    <line x1="100" y1="107" x2="190" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
+    <line x1="100" y1="107" x2="60" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
+    <line x1="100" y1="107" x2="140" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
+    <!-- ground plane at bottom -->
+    <line x1="2" y1="95" x2="198" y2="95" stroke="${c}" stroke-width="0.5" opacity="0.3"/>
+    <!-- legs/feet at bottom (subject looming above) -->
+    <rect x="85" y="88" width="10" height="8" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <rect x="105" y="88" width="10" height="8" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <!-- torso tapering up (perspective) -->
+    <path d="M80,88 L70,50 L130,50 L120,88 Z" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <!-- head small at top -->
+    <circle cx="100" cy="35" r="14" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <!-- sky/clouds suggestion -->
+    <path d="M20,22 Q35,15 50,22 Q60,14 75,20" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.25"/>
+    <path d="M130,18 Q145,12 160,18 Q170,13 185,18" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.25"/>
+  `, 'LOW', c),
+
+  'Travelling': c => skFrame(`
+    <!-- tracking shot: motion blur + subject in frame -->
+    <!-- motion lines horizontal -->
+    <line x1="2" y1="30" x2="60" y2="30" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.3"/>
+    <line x1="2" y1="45" x2="50" y2="45" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.25"/>
+    <line x1="2" y1="80" x2="55" y2="80" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.3"/>
+    <line x1="2" y1="95" x2="45" y2="95" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.25"/>
+    <!-- subject sharp in right third -->
+    <circle cx="133" cy="42" r="11" fill="none" stroke="${c}" stroke-width="1.4" opacity="0.85"/>
+    <path d="M115,60 Q124,54 133,53 Q142,54 151,60" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <line x1="120" y1="62" x2="117" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
+    <line x1="146" y1="62" x2="149" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
+    <!-- direction arrow -->
+    <line x1="30" y1="60" x2="80" y2="60" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
+    <polyline points="72,54 82,60 72,66" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
+    <!-- ground -->
+    <line x1="2" y1="90" x2="198" y2="90" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+  `, 'TRACK', c),
+
+  'default': c => skFrame(`
+    <!-- generic scene: horizon + subject centered -->
+    <line x1="2" y1="72" x2="198" y2="72" stroke="${c}" stroke-width="0.5" opacity="0.25"/>
+    <circle cx="100" cy="50" r="16" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.8"/>
+    <line x1="100" y1="66" x2="100" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+    <line x1="86" y1="70" x2="114" y2="70" stroke="${c}" stroke-width="1" opacity="0.6"/>
+  `, 'SCENE', c)
 };
-function sk(shot) {
+
+function sk(shot, mode) {
   const key = Object.keys(SK).find(k => shot && shot.toLowerCase().includes(k.toLowerCase()));
-  return (SK[key] || SK['default'])('#6fbdaa');
+  const fn = SK[key] || SK['default'];
+  if (mode === 'color') {
+    // color mode: teal fill tones (premium preview — blurred/locked)
+    return fn('#6fbdaa');
+  }
+  return fn('#6fbdaa');
 }
 
 /* ── GENERATE ── */
@@ -452,16 +701,27 @@ async function generate() {
   const lang   = document.getElementById('proj-lang').value;
 
   if (!brief.trim()) { setStatus('Escribe el brief del proyecto primero.', 'err'); return; }
+  const docRef = window._attachedDocText ? '\n\nDOCUMENTO DE REFERENCIA ADJUNTO:\n' + window._attachedDocText : '';
 
   const btn = document.getElementById('gen-btn');
   btn.disabled = true; btn.textContent = '⏳ Generando escenas...';
   setStatus('La IA está creando tu storyboard...', '');
+  // Animate progress bar
+  const prog = document.getElementById('gen-progress');
+  const bar  = document.getElementById('gen-bar');
+  prog.classList.add('active');
+  bar.style.width = '0%';
+  let pct = 0;
+  const pTimer = setInterval(() => {
+    pct = Math.min(pct + Math.random()*8, 88);
+    bar.style.width = pct + '%';
+  }, 300);
 
   const prompt = `Eres un director de fotografía y storyboard artist experto. Genera storyboard profesional en ${lang}.
 PROYECTO: ${name} | DUR: ${dur} | ESTILO: ${style} | MOOD: ${mood} | ESCENAS: ${nsc}
-BRIEF: ${brief}
+BRIEF: ${brief}${docRef}
 Responde ÚNICAMENTE con JSON válido sin texto ni backticks:
-{"scenes":[{"number":1,"title":"string","shot":"Plano general|Plano medio|Primer plano|Plano detalle|Toma aérea|Ángulo bajo|Travelling","movement":"Estático|Pan izquierda|Pan derecha|Tilt up|Tilt down|Travelling in|Travelling out|Drone ascenso|Drone descenso","duration":"3s","lens":"24mm","location":"string","time_of_day":"Día|Noche|Amanecer|Atardecer|Interior","description":"string","audio":"string","notes":"string"}]}`;
+{"scenes":[{"number":1,"title":"string","shot":"Plano general|Plano medio|Primer plano|Plano detalle|Toma aérea|Ángulo bajo|Travelling","movement":"Estático|Pan izquierda|Pan derecha|Tilt up|Tilt down|Travelling in|Travelling out|Drone ascenso|Drone descenso","duration":"3s","lens":"24mm","camera":"Cámara principal|Dron|Cámara de acción|Segunda cámara","location":"string","time_of_day":"Día|Noche|Amanecer|Atardecer|Interior","description":"string","audio":"string","lighting":"descripción del esquema de iluminación: tipo (natural/artificial/mixta), key light, fill, back, mood","notes":"string"}]}`;
 
   try {
     const res  = await fetch('https://noj-proxy.lscsrzss.workers.dev', {
@@ -480,6 +740,9 @@ Responde ÚNICAMENTE con JSON válido sin texto ni backticks:
     setStatus('Error: ' + (e.message || 'Verifica tu API key y conexión.'), 'err');
   }
 
+  clearInterval(pTimer);
+  bar.style.width = '100%';
+  setTimeout(() => { prog.classList.remove('active'); bar.style.width = '0%'; }, 600);
   btn.disabled = false; btn.innerHTML = '✨ Generar storyboard con IA';
 }
 
@@ -493,12 +756,17 @@ function renderSB() {
   const c = document.getElementById('sb-container');
   c.innerHTML = '';
   scenes.forEach((sc, i) => {
+    const mode = sc._visualMode || 'sketch';
     const card = document.createElement('div');
     card.className = 'sc-card';
     card.innerHTML = `
-      <div class="sc-visual">
-        <span class="sc-num">ESC. ${String(i+1).padStart(2,'0')}</span>
-        ${sk(sc.shot)}
+      <div class="sc-visual" style="position:relative;">
+        <span class="sc-num-badge">ESC. ${String(i+1).padStart(2,'0')}</span>
+        <div id="sketch-${i}" style="width:100%;flex:1;">${sk(sc.shot, mode)}</div>
+        <div style="display:flex;gap:4px;margin-top:4px;">
+          <button onclick="setVisualMode(${i},'sketch')" style="font-size:9px;padding:2px 7px;border-radius:3px;border:0.5px solid ${mode==='sketch'?'#6fbdaa':'rgba(255,255,255,0.15)'};background:${mode==='sketch'?'rgba(111,189,170,0.15)':'transparent'};color:${mode==='sketch'?'#6fbdaa':'rgba(255,255,255,0.4)'};cursor:pointer;">Boceto</button>
+          <button onclick="setVisualMode(${i},'color')" style="font-size:9px;padding:2px 7px;border-radius:3px;border:0.5px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);cursor:default;position:relative;" title="Feature premium — próximamente">Color 🔒</button>
+        </div>
         <span class="sc-badge">${sc.shot || 'Plano'}</span>
       </div>
       <div class="sc-info">
@@ -512,6 +780,7 @@ function renderSB() {
           ${sc.time_of_day?`<span class="pill">☀ ${sc.time_of_day}</span>`:''}
         </div>
         ${sc.audio?`<div class="sc-desc" style="opacity:.65;">🔊 ${sc.audio}</div>`:''}
+        ${sc._lighting?`<div class="sc-desc" style="opacity:.55;">💡 ${sc._lighting.type||''} · K:${sc._lighting.key||'-'}</div>`:''}
         ${sc.notes?`<div class="sc-desc" style="font-style:italic;opacity:.5;">📝 ${sc.notes}</div>`:''}
         <div class="sc-actions">
           <button class="bsm" onclick="editSc(${i})">✏ Editar</button>
@@ -532,6 +801,7 @@ function renderSL() {
   let total = 0;
   scenes.forEach((sc, i) => {
     total += parseDur(sc.duration);
+    const cam = sc.camera || 'Cámara principal';
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="sl-num">${String(i+1).padStart(2,'0')}</span></td>
@@ -539,11 +809,23 @@ function renderSL() {
       <td><span class="sl-shot">${sc.shot||'-'}</span></td>
       <td style="color:var(--gray);white-space:nowrap;">${sc.movement||'-'}</td>
       <td style="font-weight:500;white-space:nowrap;">${sc.duration||'-'}</td>
+      <td style="min-width:110px;">
+        <select onchange="scenes[${i}].camera=this.value" style="font-size:.7rem;padding:3px 6px;background:var(--surface2);border:0.5px solid var(--border);border-radius:4px;color:var(--white);width:100%;">
+          <option ${cam==='Cámara principal'?'selected':''}>Cámara principal</option>
+          <option ${cam==='Dron'?'selected':''}>Dron</option>
+          <option ${cam==='Cámara de acción'?'selected':''}>Cámara de acción</option>
+          <option ${cam==='Segunda cámara'?'selected':''}>Segunda cámara</option>
+          <option ${cam==='Otro'?'selected':''}>Otro</option>
+        </select>
+      </td>
       <td style="color:var(--gray);">${sc.lens||'-'}</td>
       <td style="color:var(--gray);min-width:80px;">${sc.location||'-'}</td>
       <td style="color:var(--gray);white-space:nowrap;">${sc.time_of_day||'-'}</td>
       <td style="color:var(--dim);min-width:140px;">${(sc.description||'').substring(0,80)+((sc.description||'').length>80?'…':'')}</td>
       <td style="color:var(--gray);min-width:80px;">${(sc.audio||'').substring(0,40)+((sc.audio||'').length>40?'…':'')}</td>
+      <td style="min-width:90px;text-align:center;">
+        <button onclick="openLighting(${i})" style="font-size:.68rem;padding:3px 8px;border:0.5px solid rgba(111,189,170,0.3);border-radius:4px;background:rgba(111,189,170,0.08);color:#6fbdaa;cursor:pointer;">💡 Ver</button>
+      </td>
       <td style="color:var(--gray);min-width:100px;">${sc.notes||'-'}</td>
       <td style="text-align:center;"><input type="checkbox" style="accent-color:#6fbdaa;width:15px;height:15px;cursor:pointer;"></td>`;
     body.appendChild(tr);
@@ -552,7 +834,126 @@ function renderSL() {
   document.getElementById('sl-total').textContent = fmtDur(total);
 }
 
+/* ── LIGHTING MODAL ── */
+function openLighting(i) {
+  const sc = scenes[i];
+  const lighting = sc.lighting || '';
+
+  // Parse lighting into key/fill/back if possible
+  const existing = sc._lighting || { type: 'Natural', key: '', fill: '', back: '', notes: lighting };
+
+  const modal = document.createElement('div');
+  modal.id = 'light-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;';
+  modal.innerHTML = `
+    <div style="background:#141414;border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:100%;max-width:560px;overflow:hidden;">
+      <!-- Header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div>
+          <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6fbdaa;margin-bottom:3px;">Escena ${String(i+1).padStart(2,'0')}</div>
+          <div style="font-size:.95rem;font-weight:500;color:#f4f2ed;">${sc.title} — Iluminación</div>
+        </div>
+        <button onclick="closeLighting(${i})" style="background:none;border:0.5px solid rgba(255,255,255,0.15);color:#f4f2ed;width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:1rem;">✕</button>
+      </div>
+
+      <!-- Lighting diagram -->
+      <div style="padding:1.25rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+          <!-- Diagram -->
+          <div style="background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;">
+            <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;">Diagrama de iluminación</div>
+            <svg id="light-svg-${i}" viewBox="0 0 200 160" style="width:100%;max-height:140px;">
+              <!-- Room floor plan -->
+              <rect x="20" y="20" width="160" height="120" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="4"/>
+              <!-- Subject (camera) -->
+              <rect x="88" y="70" width="24" height="20" rx="3" fill="rgba(111,189,170,0.2)" stroke="#6fbdaa" stroke-width="1.5"/>
+              <text x="100" y="84" font-size="7" fill="#6fbdaa" text-anchor="middle" font-family="sans-serif">SUJ</text>
+              <!-- Camera -->
+              <rect x="88" y="130" width="24" height="16" rx="2" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <text x="100" y="141" font-size="6" fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="sans-serif">CAM</text>
+              <line x1="100" y1="90" x2="100" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="3,2"/>
+              <!-- Key light (left 45°) -->
+              <circle id="key-light-${i}" cx="40" cy="50" r="10" fill="rgba(255,220,100,0.25)" stroke="#ffdc64" stroke-width="1.5"/>
+              <text x="40" y="54" font-size="7" fill="#ffdc64" text-anchor="middle" font-family="sans-serif">KEY</text>
+              <line x1="49" y1="57" x2="85" y2="76" stroke="#ffdc64" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+              <!-- Fill light (right) -->
+              <circle id="fill-light-${i}" cx="160" cy="60" r="10" fill="rgba(150,200,255,0.2)" stroke="#96c8ff" stroke-width="1.5"/>
+              <text x="160" y="64" font-size="7" fill="#96c8ff" text-anchor="middle" font-family="sans-serif">FILL</text>
+              <line x1="151" y1="66" x2="116" y2="76" stroke="#96c8ff" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+              <!-- Back light (behind subject) -->
+              <circle id="back-light-${i}" cx="100" cy="28" r="10" fill="rgba(255,150,100,0.2)" stroke="#ff9664" stroke-width="1.5"/>
+              <text x="100" y="32" font-size="7" fill="#ff9664" text-anchor="middle" font-family="sans-serif">BACK</text>
+              <line x1="100" y1="38" x2="100" y2="70" stroke="#ff9664" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+            </svg>
+          </div>
+
+          <!-- Controls -->
+          <div style="display:flex;flex-direction:column;gap:.6rem;">
+            <div>
+              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;display:block;margin-bottom:4px;">Tipo de luz</label>
+              <select id="lt-type-${i}" style="width:100%;font-size:.78rem;padding:6px 8px;background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;color:#f4f2ed;">
+                <option ${existing.type==='Natural'?'selected':''}>Natural</option>
+                <option ${existing.type==='Artificial'?'selected':''}>Artificial</option>
+                <option ${existing.type==='Mixta'?'selected':''}>Mixta</option>
+                <option ${existing.type==='Disponible'?'selected':''}>Disponible</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#ffdc64;display:block;margin-bottom:4px;">● Key light</label>
+              <input type="text" id="lt-key-${i}" value="${existing.key}" placeholder="Ej: Softbox 120cm izq. 45°" style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(255,220,100,0.3);border-radius:5px;color:#f4f2ed;">
+            </div>
+            <div>
+              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#96c8ff;display:block;margin-bottom:4px;">● Fill light</label>
+              <input type="text" id="lt-fill-${i}" value="${existing.fill}" placeholder="Ej: Reflector plata der." style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(150,200,255,0.3);border-radius:5px;color:#f4f2ed;">
+            </div>
+            <div>
+              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#ff9664;display:block;margin-bottom:4px;">● Back light</label>
+              <input type="text" id="lt-back-${i}" value="${existing.back}" placeholder="Ej: LED panel trasero" style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(255,150,100,0.3);border-radius:5px;color:#f4f2ed;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes from AI -->
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;display:block;margin-bottom:4px;">Notas de iluminación</label>
+          <textarea id="lt-notes-${i}" style="width:100%;font-size:.75rem;padding:6px 8px;background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.08);border-radius:6px;color:#f4f2ed;resize:none;height:52px;">${existing.notes}</textarea>
+        </div>
+
+        <div style="display:flex;gap:8px;">
+          <button onclick="saveLighting(${i})" style="flex:1;padding:8px;background:#f4f2ed;color:#0a0a0a;border:none;border-radius:6px;font-size:.78rem;font-weight:500;cursor:pointer;">💾 Guardar</button>
+          <button onclick="closeLighting(${i})" style="padding:8px 16px;background:transparent;color:#777;border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;font-size:.78rem;cursor:pointer;">Cancelar</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if(e.target===modal) closeLighting(i); });
+}
+
+function saveLighting(i) {
+  scenes[i]._lighting = {
+    type: document.getElementById('lt-type-'+i).value,
+    key:  document.getElementById('lt-key-'+i).value,
+    fill: document.getElementById('lt-fill-'+i).value,
+    back: document.getElementById('lt-back-'+i).value,
+    notes:document.getElementById('lt-notes-'+i).value
+  };
+  closeLighting(i);
+  renderSL();
+}
+
+function closeLighting(i) {
+  const m = document.getElementById('light-modal');
+  if (m) m.remove();
+}
+
 /* ── SCENE ACTIONS ── */
+function setVisualMode(i, mode) {
+  if (mode === 'color') return; // premium locked
+  scenes[i]._visualMode = mode;
+  renderSB();
+}
+
 function editSc(i) {
   const d = prompt('Editar descripción:', scenes[i].description);
   if (d !== null) { scenes[i].description = d; renderSB(); renderSL(); }
@@ -623,7 +1024,7 @@ function saveProject() {
   const name = document.getElementById('proj-name').value||'Sin título';
   const projs = JSON.parse(localStorage.getItem('noj_projs')||'[]');
   const idx = projs.findIndex(p=>p.name===name);
-  const proj = { name, date: new Date().toLocaleDateString('es-MX'), scenes, brief: document.getElementById('proj-brief').value };
+  const proj = { name, date: new Date().toLocaleDateString('es-MX'), scenes: scenes.map(s=>({...s})), brief: document.getElementById('proj-brief').value, version: '2.0' };
   if (idx>=0) projs[idx]=proj; else projs.unshift(proj);
   localStorage.setItem('noj_projs', JSON.stringify(projs));
   setStatus(`✓ "${name}" guardado.`, 'ok');
@@ -691,10 +1092,20 @@ function updatePres() {
     ${sc.notes?`<div class="pres-note">📝 ${sc.notes}</div>`:''}`;
 }
 document.addEventListener('keydown',e=>{
-  if (!document.getElementById('pres').classList.contains('open')) return;
-  if (e.key==='ArrowRight') presNav(1);
-  if (e.key==='ArrowLeft') presNav(-1);
-  if (e.key==='Escape') closePres();
+  // Presentation shortcuts
+  if (document.getElementById('pres').classList.contains('open')) {
+    if (e.key==='ArrowRight'||e.key==='ArrowDown') presNav(1);
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp') presNav(-1);
+    if (e.key==='Escape') closePres();
+    return;
+  }
+  // Global shortcuts (only when not typing)
+  const tag = document.activeElement.tagName;
+  if (tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
+  if (e.key==='1') switchTab('brief');
+  if (e.key==='2') switchTab('storyboard');
+  if (e.key==='3') switchTab('shotlist');
+  if (e.key==='4') switchTab('projects');
 });
 
 /* ── EXPORTS ── */
@@ -704,7 +1115,7 @@ function fmtDur(s){return s<60?s+'s':Math.floor(s/60)+'m'+(s%60?' '+s%60+'s':'')
 function exportCSV(){
   const name=document.getElementById('proj-name').value||'storyboard';
   const h=['#','Título','Plano','Movimiento','Duración','Lente','Locación','Hora','Descripción','Audio','Notas'];
-  const rows=scenes.map((sc,i)=>[i+1,sc.title,sc.shot,sc.movement,sc.duration,sc.lens||'',sc.location||'',sc.time_of_day||'',`"${(sc.description||'').replace(/"/g,'""')}"`,`"${(sc.audio||'').replace(/"/g,'""')}"`,`"${(sc.notes||'').replace(/"/g,'""')}"`]);
+  const rows=scenes.map((sc,i)=>{const lt=sc._lighting||{};return[i+1,sc.title,sc.shot,sc.movement,sc.duration,sc.camera||'Cámara principal',sc.lens||'',sc.location||'',sc.time_of_day||'',`"${(sc.description||'').replace(/"/g,'""')}"`,`"${(sc.audio||'').replace(/"/g,'""')}"`,lt.key||'',lt.fill||'',lt.back||'',`"${(sc.notes||'').replace(/"/g,'""')}"`]});
   dl('\uFEFF'+[h.join(','),...rows.map(r=>r.join(','))].join('\n'),'text/csv',name+'-shot-list.csv');
 }
 
@@ -748,6 +1159,135 @@ function dl(content,type,filename){
   a.href=URL.createObjectURL(new Blob([content],{type}));
   a.download=filename.replace(/\s+/g,'-');
   a.click();
+}
+
+/* ── CLEAR TEMPLATE ── */
+function clearTmpl(el) {
+  document.getElementById('proj-name').value = '';
+  document.getElementById('proj-brief').value = '';
+  document.getElementById('proj-dur').value = '60s';
+  document.getElementById('proj-style').value = 'comercial';
+  document.getElementById('proj-mood').value = 'energético';
+  document.getElementById('proj-scenes').value = '6';
+  document.querySelectorAll('.tmpl-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  window._attachedDocText = '';
+  document.getElementById('doc-status').style.display = 'none';
+}
+
+/* ── VOICE DICTATION ── */
+let recognition = null;
+let isRecording = false;
+
+function toggleVoice() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    document.getElementById('voice-status').textContent = 'Tu navegador no soporta dictado. Usa Chrome.';
+    document.getElementById('voice-status').style.display = 'block';
+    return;
+  }
+  if (isRecording) {
+    recognition.stop();
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'es-MX';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  const btn = document.getElementById('voice-btn');
+  const status = document.getElementById('voice-status');
+  const textarea = document.getElementById('proj-brief');
+  const base = textarea.value;
+
+  recognition.onstart = () => {
+    isRecording = true;
+    btn.textContent = '⏹ Detener';
+    btn.style.background = 'rgba(240,149,149,0.15)';
+    btn.style.borderColor = '#f09595';
+    btn.style.color = '#f09595';
+    status.textContent = '● Escuchando...';
+    status.style.color = '#f09595';
+    status.style.display = 'block';
+  };
+
+  recognition.onresult = (e) => {
+    let interim = '';
+    let final = base;
+    for (let i = 0; i < e.results.length; i++) {
+      if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
+      else interim += e.results[i][0].transcript;
+    }
+    textarea.value = final + interim;
+  };
+
+  recognition.onend = () => {
+    isRecording = false;
+    btn.textContent = '🎙 Dictar';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+    status.style.display = 'none';
+  };
+
+  recognition.onerror = (e) => {
+    status.textContent = 'Error de micrófono: ' + e.error;
+    isRecording = false;
+    btn.textContent = '🎙 Dictar';
+  };
+
+  recognition.start();
+}
+
+/* ── ATTACH DOCUMENT ── */
+window._attachedDocText = '';
+
+async function attachDoc(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const status = document.getElementById('doc-status');
+  status.style.display = 'block';
+  status.textContent = '⏳ Leyendo documento...';
+
+  try {
+    if (file.type === 'application/pdf') {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const typedArr = new Uint8Array(e.target.result);
+        try {
+          const pdfjsLib = window.pdfjsLib;
+          if (!pdfjsLib) {
+            window._attachedDocText = '[PDF adjunto: ' + file.name + ' — texto no extraído, sin PDF.js]';
+            status.textContent = '📎 ' + file.name + ' adjunto (sin extracción de texto)';
+            return;
+          }
+          const pdf = await pdfjsLib.getDocument(typedArr).promise;
+          let text = '';
+          for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            text += content.items.map(s => s.str).join(' ') + '
+';
+          }
+          window._attachedDocText = text.substring(0, 3000);
+          status.textContent = '📎 ' + file.name + ' adjunto (' + pdf.numPages + ' páginas)';
+        } catch(err) {
+          window._attachedDocText = '[PDF adjunto: ' + file.name + ']';
+          status.textContent = '📎 ' + file.name + ' adjunto';
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        window._attachedDocText = e.target.result.substring(0, 3000);
+        status.textContent = '📎 ' + file.name + ' adjunto ✓';
+      };
+      reader.readAsText(file);
+    }
+  } catch(e) {
+    status.textContent = 'Error al leer el archivo.';
+  }
+  input.value = '';
 }
 </script>
 </body>
