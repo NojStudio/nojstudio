@@ -438,12 +438,15 @@ let presIdx = 0;
 /* ── API KEY ── */
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('noj_api_key');
-  if (saved) { document.getElementById('api-key').value = saved; updateIndicator(true); }
+  if (saved) {
+    document.getElementById('api-key').value = saved;
+    updateIndicator(saved.length > 20);
+  }
 });
 function saveKey() {
   const k = document.getElementById('api-key').value.trim();
   localStorage.setItem('noj_api_key', k);
-  updateIndicator(k.startsWith('sk-ant-') && k.length > 20);
+  updateIndicator(k.length > 20);
 }
 function updateIndicator(ok) {
   const el = document.getElementById('api-indicator');
@@ -689,7 +692,7 @@ function sk(shot, mode) {
 /* ── GENERATE ── */
 async function generate() {
   const key = getKey();
-  if (!key || !key.startsWith('sk-ant-')) {
+  if (!key || key.length < 20) {
     setStatus('Ingresa tu API key de Anthropic primero.', 'err'); return;
   }
   const name   = document.getElementById('proj-name').value || 'Sin título';
@@ -737,7 +740,11 @@ Responde ÚNICAMENTE con JSON válido sin texto ni backticks:
     setStatus(`✓ ${scenes.length} escenas generadas para "${name}"`, 'ok');
     switchTab('storyboard');
   } catch(e) {
-    setStatus('Error: ' + (e.message || 'Verifica tu API key y conexión.'), 'err');
+    const msg = e.message || '';
+    if (msg.includes('model')) setStatus('Error: modelo no disponible. Verifica tu plan de Anthropic.', 'err');
+    else if (msg.includes('auth') || msg.includes('401')) setStatus('Error: API key inválida. Verifica en console.anthropic.com', 'err');
+    else if (msg.includes('fetch') || msg.includes('network')) setStatus('Error de conexión. Verifica que el Worker esté activo.', 'err');
+    else setStatus('Error: ' + (msg || 'Intenta de nuevo.'), 'err');
   }
 
   clearInterval(pTimer);
@@ -1180,9 +1187,18 @@ let recognition = null;
 let isRecording = false;
 
 function toggleVoice() {
+  const vStatus = document.getElementById('voice-status');
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    document.getElementById('voice-status').textContent = 'Tu navegador no soporta dictado. Usa Chrome.';
-    document.getElementById('voice-status').style.display = 'block';
+    vStatus.textContent = '⚠ Usa Chrome para dictar. Safari/Firefox no soportan esta función.';
+    vStatus.style.color = '#f09595';
+    vStatus.style.display = 'block';
+    return;
+  }
+  // Check if on HTTPS (required for mic)
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+    vStatus.textContent = '⚠ El dictado requiere HTTPS. Funciona en GitHub Pages y localhost.';
+    vStatus.style.color = '#f09595';
+    vStatus.style.display = 'block';
     return;
   }
   if (isRecording) {
