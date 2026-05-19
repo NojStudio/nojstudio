@@ -464,10 +464,10 @@ Responde ÚNICAMENTE con JSON válido sin texto ni backticks:
 {"scenes":[{"number":1,"title":"string","shot":"Plano general|Plano medio|Primer plano|Plano detalle|Toma aérea|Ángulo bajo|Travelling","movement":"Estático|Pan izquierda|Pan derecha|Tilt up|Tilt down|Travelling in|Travelling out|Drone ascenso|Drone descenso","duration":"3s","lens":"24mm","location":"string","time_of_day":"Día|Noche|Amanecer|Atardecer|Interior","description":"string","audio":"string","notes":"string"}]}`;
 
   try {
-    const res  = await fetch('https://api.anthropic.com/v1/messages', {
+    const res  = await fetch('https://noj-proxy.lscsrzss.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-allow-browser': 'true' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 4000, messages: [{ role: 'user', content: prompt }] })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ apiKey: key, model: 'claude-sonnet-4-20250514', max_tokens: 4000, messages: [{ role: 'user', content: prompt }] })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
