@@ -8,771 +8,833 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.5);
-  --accent:#6fbdaa;--accent2:#c8b89a;--line:rgba(255,255,255,0.08);
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#666;--dim:rgba(255,255,255,0.5);
+  --accent:#6fbdaa;--line:rgba(255,255,255,0.08);
   --surface:#141414;--surface2:#1c1c1c;--border:rgba(255,255,255,0.1);
 }
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;}
-
-/* ── LAYOUT ── */
 .app{max-width:1100px;margin:0 auto;padding:2rem;}
+
+/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:1rem;}
 .logo{display:flex;align-items:center;gap:.75rem;}
-.logo-word{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.18em;color:var(--white);}
-.logo-sub{font-size:.72rem;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;}
-.topbar-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.logo-word{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.18em;}
+.logo-sub{font-size:.68rem;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;}
+.topbar-right{display:flex;gap:8px;align-items:center;}
+.v-badge{font-size:.6rem;color:var(--gray);opacity:.5;}
 
-/* ── BUTTONS ── */
-.btn{padding:8px 16px;border-radius:6px;font-size:.78rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:transparent;color:var(--white);transition:all .2s;letter-spacing:.04em;font-family:'DM Sans',sans-serif;}
+/* BUTTONS */
+.btn{padding:8px 16px;border-radius:6px;font-size:.78rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:transparent;color:var(--white);transition:all .18s;font-family:'DM Sans',sans-serif;}
 .btn:hover{background:var(--surface2);border-color:rgba(255,255,255,0.2);}
 .btn:disabled{opacity:.4;cursor:not-allowed;}
 .btn-primary{background:var(--white);color:var(--black);border-color:var(--white);}
 .btn-primary:hover{background:var(--accent);border-color:var(--accent);color:var(--black);}
-.btn-accent{background:rgba(111,189,170,0.15);color:var(--accent);border-color:rgba(111,189,170,0.3);}
-.btn-accent:hover{background:rgba(111,189,170,0.25);}
-.btn-danger{color:#f09595;border-color:rgba(240,149,149,0.25);}
+.btn-accent{background:rgba(111,189,170,0.12);color:var(--accent);border-color:rgba(111,189,170,0.3);}
+.btn-accent:hover{background:rgba(111,189,170,0.22);}
+.btn-full{width:100%;justify-content:center;padding:12px;font-size:.85rem;}
+.btn-sm{font-size:.7rem;padding:4px 10px;}
+.btn-danger{color:#f09595;border-color:rgba(240,149,149,0.2);}
 .btn-danger:hover{background:rgba(240,149,149,0.08);}
-.btn-full{width:100%;justify-content:center;padding:12px;}
-.btn-lg{padding:12px 24px;font-size:.85rem;}
 
-/* ── API KEY BAR ── */
-.apibar{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.apibar-label{font-size:.75rem;color:var(--gray);letter-spacing:.08em;white-space:nowrap;}
-.apibar input{flex:1;min-width:200px;background:#0f0f0f;border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;padding:7px 12px;}
+/* API BAR */
+.apibar{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.2rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.api-dot{width:9px;height:9px;border-radius:50%;background:#f09595;flex-shrink:0;transition:background .3s;}
+.api-dot.ok{background:var(--accent);}
+.apibar label{font-size:.72rem;color:var(--gray);white-space:nowrap;}
+.apibar input{flex:1;min-width:180px;background:#0f0f0f;border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;padding:6px 10px;}
 .apibar input:focus{outline:none;border-color:var(--accent);}
-.apibar-note{font-size:.7rem;color:var(--gray);opacity:.7;}
-.apibar-ok{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-.apibar-bad{width:8px;height:8px;border-radius:50%;background:#f09595;flex-shrink:0;}
+.api-hint{font-size:.68rem;color:var(--gray);opacity:.6;}
 
-/* ── TABS ── */
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:1.5rem;overflow-x:auto;}
-.tab{padding:10px 20px;font-size:.78rem;cursor:pointer;border:none;background:transparent;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:'DM Sans',sans-serif;letter-spacing:.06em;transition:color .2s;}
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:1.5rem;overflow-x:auto;gap:0;}
+.tab{padding:9px 18px;font-size:.76rem;cursor:pointer;border:none;background:transparent;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-family:'DM Sans',sans-serif;letter-spacing:.05em;transition:color .2s;}
 .tab:hover{color:var(--white);}
 .tab.active{color:var(--white);border-bottom-color:var(--accent);}
 .view{display:none;}.view.active{display:block;}
 
-/* ── FORMS ── */
-.form-group{margin-bottom:1rem;}
-.form-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:6px;}
-input[type=text],select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.85rem;padding:10px 12px;transition:border-color .2s;}
-input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+/* FORMS */
+label.form-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:5px;}
+input[type=text],select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.84rem;padding:9px 11px;transition:border-color .2s;}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(111,189,170,0.12);}
 select{cursor:pointer;}
-textarea{resize:vertical;min-height:90px;line-height:1.6;}
-select option{background:var(--surface);}
+select option{background:#1c1c1c;}
+textarea{resize:vertical;min-height:88px;line-height:1.6;}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-group{margin-bottom:1rem;}
+@media(max-width:600px){.grid3,.grid2{grid-template-columns:1fr;}}
 
-/* ── PANEL ── */
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1.2rem;}
-.panel-title{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+/* PANEL */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1.2rem;}
+.panel-title{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 
-/* ── TEMPLATES ── */
-.tmpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
-.tmpl-card{border:1px solid var(--border);border-radius:8px;padding:12px;cursor:pointer;transition:all .2s;background:var(--surface2);}
-.tmpl-card:hover,.tmpl-card.sel{border-color:var(--accent);background:rgba(111,189,170,0.07);}
-.tmpl-card.sel{border-width:1.5px;}
-.tmpl-icon{font-size:1.4rem;margin-bottom:6px;}
-.tmpl-name{font-size:.8rem;font-weight:500;color:var(--white);}
-.tmpl-desc{font-size:.7rem;color:var(--gray);margin-top:3px;}
+/* TEMPLATES */
+.tmpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;}
+.tmpl-card{border:1px solid var(--border);border-radius:8px;padding:11px;cursor:pointer;transition:all .18s;background:var(--surface2);position:relative;user-select:none;}
+.tmpl-card:hover{border-color:rgba(111,189,170,0.4);background:rgba(111,189,170,0.06);}
+.tmpl-card.sel{border-color:var(--accent);border-width:1.5px;background:rgba(111,189,170,0.08);}
+.tmpl-card.sel::after{content:'✓';position:absolute;top:6px;right:8px;font-size:.68rem;color:var(--accent);}
+.tmpl-icon{font-size:1.3rem;margin-bottom:5px;}
+.tmpl-name{font-size:.78rem;font-weight:500;}
+.tmpl-desc{font-size:.67rem;color:var(--gray);margin-top:2px;}
 
-/* ── STATUS ── */
-.status{font-size:.75rem;color:var(--gray);text-align:center;min-height:18px;margin:8px 0;}
+/* STATUS */
+.status{font-size:.74rem;text-align:center;min-height:16px;margin:7px 0;color:var(--gray);}
 .status.ok{color:var(--accent);}
 .status.err{color:#f09595;}
 
-/* ── STORYBOARD ── */
-.sb-list{display:flex;flex-direction:column;gap:12px;}
-.sc-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:200px 1fr;}
-.sc-visual{background:#080808;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:10px 8px 8px;gap:5px;position:relative;}
-.sc-num{position:absolute;top:8px;left:10px;font-size:.65rem;color:rgba(255,255,255,0.25);letter-spacing:.12em;}
-.sc-visual svg{width:100%;height:90px;}
-.sc-badge{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(111,189,170,0.12);color:var(--accent);border:1px solid rgba(111,189,170,0.25);padding:3px 8px;border-radius:4px;}
-.sc-info{padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
-.sc-title{font-size:.9rem;font-weight:500;color:var(--white);}
-.sc-desc{font-size:.78rem;color:var(--dim);line-height:1.7;}
-.pills{display:flex;gap:6px;flex-wrap:wrap;}
-.pill{font-size:.65rem;color:var(--gray);background:var(--surface2);border:1px solid var(--border);padding:3px 8px;border-radius:20px;}
-.sc-actions{display:flex;gap:6px;margin-top:auto;flex-wrap:wrap;}
-.bsm{font-size:.68rem;padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--gray);cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .15s;font-family:'DM Sans',sans-serif;}
+/* PROGRESS */
+.progress{height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-top:6px;opacity:0;transition:opacity .3s;}
+.progress.show{opacity:1;}
+.progress-bar{height:100%;background:var(--accent);width:0%;transition:width .35s;}
+
+/* STORYBOARD */
+.sb-list{display:flex;flex-direction:column;gap:10px;}
+.sc-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:195px 1fr;transition:border-color .2s;}
+.sc-card:hover{border-color:rgba(111,189,170,0.2);}
+.sc-visual{background:#080808;display:flex;flex-direction:column;align-items:center;padding:10px 8px 8px;gap:5px;position:relative;}
+.sc-num{position:absolute;top:7px;left:9px;font-size:.58rem;color:rgba(255,255,255,0.25);letter-spacing:.1em;background:rgba(0,0,0,0.5);padding:1px 5px;border-radius:2px;}
+.sc-badge{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(111,189,170,0.1);color:var(--accent);border:0.5px solid rgba(111,189,170,0.25);padding:2px 7px;border-radius:3px;}
+.sc-mode-btns{display:flex;gap:3px;}
+.sc-mode-btn{font-size:.6rem;padding:2px 7px;border-radius:3px;border:0.5px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.3);cursor:pointer;}
+.sc-mode-btn.active{border-color:var(--accent);background:rgba(111,189,170,0.12);color:var(--accent);}
+.sc-mode-btn.locked{cursor:default;opacity:.4;}
+.sc-info{padding:13px 15px;display:flex;flex-direction:column;gap:7px;}
+.sc-title{font-size:.88rem;font-weight:500;}
+.sc-desc{font-size:.76rem;color:var(--dim);line-height:1.65;}
+.pills{display:flex;gap:5px;flex-wrap:wrap;}
+.pill{font-size:.62rem;color:var(--gray);background:var(--surface2);border:0.5px solid var(--border);padding:2px 7px;border-radius:20px;}
+.sc-actions{display:flex;gap:5px;margin-top:auto;flex-wrap:wrap;}
+.bsm{font-size:.66rem;padding:3px 9px;border:0.5px solid var(--border);border-radius:5px;background:transparent;color:var(--gray);cursor:pointer;display:flex;align-items:center;gap:3px;transition:all .15s;font-family:'DM Sans',sans-serif;}
 .bsm:hover{background:var(--surface2);color:var(--white);}
-.bsm:disabled{opacity:.3;cursor:not-allowed;}
+.bsm:disabled{opacity:.25;cursor:not-allowed;}
 .bsm.danger{color:#f09595;}
-.bsm.danger:hover{background:rgba(240,149,149,0.08);}
+.bsm.danger:hover{background:rgba(240,149,149,0.07);}
 
-/* ── SHOT LIST ── */
+/* SHOT LIST */
 .sl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;}
-.sl-table{width:100%;border-collapse:collapse;font-size:.75rem;min-width:800px;}
-.sl-table th{background:var(--surface2);color:var(--gray);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}
-.sl-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--white);vertical-align:top;line-height:1.5;}
+.sl-table{width:100%;border-collapse:collapse;font-size:.72rem;min-width:900px;}
+.sl-table th{background:var(--surface2);color:var(--gray);font-size:.62rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}
+.sl-table td{padding:9px 11px;border-bottom:0.5px solid rgba(255,255,255,0.04);vertical-align:middle;line-height:1.4;}
 .sl-table tr:last-child td{border-bottom:none;}
-.sl-table tr:hover td{background:rgba(255,255,255,0.02);}
-.sl-num{font-size:.65rem;font-weight:500;color:var(--accent);background:rgba(111,189,170,0.1);border:1px solid rgba(111,189,170,0.2);padding:2px 7px;border-radius:4px;}
-.sl-shot{font-size:.65rem;color:var(--gray);background:var(--surface2);border:1px solid var(--border);padding:2px 7px;border-radius:4px;white-space:nowrap;}
-.sl-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;font-size:.75rem;color:var(--gray);}
+.sl-table tr:hover td{background:rgba(255,255,255,0.015);}
+.sl-num{font-size:.62rem;font-weight:500;color:var(--accent);background:rgba(111,189,170,0.1);border:0.5px solid rgba(111,189,170,0.2);padding:2px 6px;border-radius:3px;}
+.sl-shot{font-size:.62rem;color:var(--gray);background:var(--surface2);border:0.5px solid var(--border);padding:2px 6px;border-radius:3px;white-space:nowrap;}
+.sl-cam-sel{font-size:.68rem;padding:3px 6px;background:var(--surface2);border:0.5px solid var(--border);border-radius:4px;color:var(--white);width:100%;cursor:pointer;}
+.sl-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;font-size:.72rem;color:var(--gray);}
 .sl-footer strong{color:var(--white);}
+.export-bar{display:flex;gap:7px;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line);flex-wrap:wrap;}
+.light-btn{font-size:.66rem;padding:3px 8px;border:0.5px solid rgba(111,189,170,0.3);border-radius:4px;background:rgba(111,189,170,0.07);color:var(--accent);cursor:pointer;white-space:nowrap;}
+.light-btn:hover{background:rgba(111,189,170,0.15);}
 
-/* ── EXPORT BAR ── */
-.export-bar{display:flex;gap:8px;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--line);flex-wrap:wrap;}
-
-/* ── PROJECTS ── */
-.proj-list{display:flex;flex-direction:column;gap:8px;}
-.proj-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);transition:border-color .2s;}
-.proj-item:hover{border-color:rgba(255,255,255,0.2);}
-.proj-name{font-size:.85rem;font-weight:500;color:var(--white);}
-.proj-meta{font-size:.72rem;color:var(--gray);margin-top:2px;}
+/* PROJECTS */
+.proj-list{display:flex;flex-direction:column;gap:7px;}
+.proj-item{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);}
+.proj-name{font-size:.84rem;font-weight:500;}
+.proj-meta{font-size:.68rem;color:var(--gray);margin-top:2px;}
 .proj-actions{display:flex;gap:6px;}
 
-/* ── EMPTY ── */
-.empty{text-align:center;padding:3rem 1rem;color:var(--gray);font-size:.82rem;border:1px dashed var(--border);border-radius:10px;}
-.empty-icon{font-size:2rem;display:block;margin-bottom:12px;opacity:.3;}
+/* EMPTY */
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--gray);font-size:.8rem;border:1px dashed var(--border);border-radius:10px;background:var(--surface);}
+.empty-icon{font-size:1.8rem;display:block;margin-bottom:10px;opacity:.3;}
 
-/* ── ADD FORM ── */
-.add-form{background:var(--surface);border:1px solid var(--accent);border-radius:10px;padding:1.25rem;margin-bottom:1rem;}
-.add-form-title{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+/* ADD FORM */
+.add-form{background:var(--surface);border:1.5px solid var(--accent);border-radius:10px;padding:1.2rem;margin-bottom:1rem;}
+.add-form-title{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 
-/* ── PRESENTATION ── */
+/* BRIEF TOOLBAR */
+.brief-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+.brief-actions{display:flex;gap:6px;}
+.voice-btn{font-size:.7rem;padding:4px 10px;border:0.5px solid var(--border);border-radius:5px;background:transparent;color:var(--gray);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.voice-btn:hover{border-color:rgba(111,189,170,0.4);color:var(--accent);}
+.voice-btn.recording{border-color:#f09595;color:#f09595;background:rgba(240,149,149,0.08);}
+.attach-label{font-size:.7rem;padding:4px 10px;border:0.5px solid var(--border);border-radius:5px;color:var(--gray);cursor:pointer;transition:all .15s;}
+.attach-label:hover{border-color:rgba(111,189,170,0.4);color:var(--accent);}
+.voice-status{font-size:.68rem;margin-top:4px;display:none;}
+.doc-status{font-size:.68rem;color:var(--accent);margin-top:4px;display:none;}
+
+/* PRESENTATION */
 .pres{display:none;position:fixed;inset:0;background:#000;z-index:9999;flex-direction:column;}
 .pres.open{display:flex;}
-.pres-top{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08);}
-.pres-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.18em;color:rgba(255,255,255,0.4);}
-.pres-counter{font-size:.75rem;color:rgba(255,255,255,0.3);letter-spacing:.1em;}
+.pres-top{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,0.07);}
+.pres-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.18em;color:rgba(255,255,255,0.35);}
+.pres-counter{font-size:.72rem;color:rgba(255,255,255,0.3);}
 .pres-body{flex:1;display:flex;overflow:hidden;}
-.pres-visual{width:44%;background:#050505;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;gap:1.2rem;}
+.pres-visual{width:44%;background:#050505;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;gap:1rem;}
 .pres-visual svg{width:100%;max-height:280px;}
-.pres-badge{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(111,189,170,0.3);padding:4px 12px;border-radius:4px;}
-.pres-info{flex:1;padding:3rem;display:flex;flex-direction:column;justify-content:center;gap:1.2rem;overflow-y:auto;}
-.pres-sc-num{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
-.pres-sc-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.04em;color:var(--white);line-height:1.1;}
-.pres-sc-desc{font-size:.9rem;color:rgba(255,255,255,0.6);line-height:1.85;}
-.pres-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.pres-pill{font-size:.68rem;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:4px 10px;border-radius:20px;}
-.pres-note{font-size:.78rem;color:rgba(255,255,255,0.3);font-style:italic;line-height:1.7;border-top:1px solid rgba(255,255,255,0.06);padding-top:.75rem;}
-.pres-bottom{display:flex;align-items:center;justify-content:center;padding:1.2rem 2rem;gap:2rem;border-top:1px solid rgba(255,255,255,0.06);}
-.pres-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:var(--white);padding:8px 22px;border-radius:6px;font-size:.78rem;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s;font-family:'DM Sans',sans-serif;}
-.pres-btn:hover{background:rgba(255,255,255,0.14);}
-.pres-btn:disabled{opacity:.25;cursor:not-allowed;}
-.pres-progress{flex:1;max-width:200px;height:2px;background:rgba(255,255,255,0.08);border-radius:1px;overflow:hidden;}
-.pres-bar{height:100%;background:var(--accent);transition:width .35s;}
+.pres-badge{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(111,189,170,0.3);padding:3px 11px;border-radius:4px;}
+.pres-info{flex:1;padding:3rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem;overflow-y:auto;}
+.pres-sc-num{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.22);}
+.pres-sc-title{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.03em;line-height:1.1;}
+.pres-sc-desc{font-size:.88rem;color:rgba(255,255,255,0.58);line-height:1.85;}
+.pres-pills{display:flex;gap:7px;flex-wrap:wrap;}
+.pres-pill{font-size:.65rem;color:rgba(255,255,255,0.38);background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.1);padding:3px 9px;border-radius:20px;}
+.pres-note{font-size:.75rem;color:rgba(255,255,255,0.28);font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:.7rem;}
+.pres-bottom{display:flex;align-items:center;justify-content:center;padding:1.1rem 2rem;gap:2rem;border-top:1px solid rgba(255,255,255,0.05);}
+.pres-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:7px 20px;border-radius:6px;font-size:.75rem;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .15s;font-family:'DM Sans',sans-serif;}
+.pres-btn:hover{background:rgba(255,255,255,0.12);}
+.pres-btn:disabled{opacity:.2;cursor:not-allowed;}
+.pres-prog{flex:1;max-width:180px;height:2px;background:rgba(255,255,255,0.07);border-radius:1px;overflow:hidden;}
+.pres-bar{height:100%;background:var(--accent);transition:width .3s;}
 
-@media(max-width:700px){
-  .sc-card{grid-template-columns:1fr;}.sc-visual{min-height:120px;}
-  .grid3{grid-template-columns:1fr;}.grid2{grid-template-columns:1fr;}
-  .pres-body{flex-direction:column;}.pres-visual{width:100%;padding:1rem;max-height:200px;}
-  .pres-info{padding:1.5rem;}
-}
+/* LIGHTING MODAL */
+.lt-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:8888;align-items:center;justify-content:center;padding:1rem;}
+.lt-modal.open{display:flex;}
+.lt-box{background:#141414;border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:100%;max-width:540px;overflow:hidden;}
+.lt-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.07);}
+.lt-title{font-size:.88rem;font-weight:500;}
+.lt-sub{font-size:.65rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;}
+.lt-close{background:none;border:0.5px solid rgba(255,255,255,0.12);color:var(--white);width:30px;height:30px;border-radius:5px;cursor:pointer;font-size:.9rem;}
+.lt-body{padding:1.2rem;}
+.lt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.lt-diagram-wrap{background:#080808;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.lt-diagram-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+.lt-fields{display:flex;flex-direction:column;gap:.55rem;}
+.lt-field label{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
+.lt-field input,.lt-field select{font-size:.74rem;padding:5px 8px;}
+.lt-footer{display:flex;gap:8px;margin-top:1rem;}
 
-/* ── POLISH v4 ── */
-/* Smooth card entrance */
-@keyframes fadeSlideUp {
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
-}
-.sc-card{animation:fadeSlideUp .25s ease both;}
-.sc-card:nth-child(1){animation-delay:.03s;}
-.sc-card:nth-child(2){animation-delay:.07s;}
-.sc-card:nth-child(3){animation-delay:.11s;}
-.sc-card:nth-child(4){animation-delay:.15s;}
-.sc-card:nth-child(5){animation-delay:.19s;}
-.sc-card:nth-child(6){animation-delay:.23s;}
-.sc-card:nth-child(n+7){animation-delay:.27s;}
-
-/* Hover lift on cards */
-.sc-card{transition:border-color .2s,box-shadow .2s;}
-.sc-card:hover{border-color:rgba(111,189,170,0.25);box-shadow:0 0 0 1px rgba(111,189,170,0.1);}
-
-/* Progress bar during generation */
-.gen-progress{height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-top:8px;display:none;}
-.gen-progress.active{display:block;}
-.gen-progress-bar{height:100%;background:var(--accent);width:0%;transition:width .4s ease;border-radius:1px;}
-
-/* Better api bar */
-.apibar{transition:border-color .2s;}
-.apibar:focus-within{border-color:rgba(111,189,170,0.3);}
-
-/* Scene number badge style */
-.sc-num-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.6);border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:.6rem;letter-spacing:.12em;padding:2px 6px;border-radius:3px;}
-
-/* Template selected checkmark */
-.tmpl-card.sel::after{content:'✓';position:absolute;top:6px;right:8px;font-size:.7rem;color:var(--accent);}
-.tmpl-card{position:relative;}
-
-/* Better empty state */
-.empty{background:var(--surface);border-style:dashed;}
-
-/* Shot list row highlight on hover */
-.sl-table tbody tr{transition:background .15s;}
-
-/* Lighting button pulse */
-@keyframes lightPulse{0%,100%{box-shadow:0 0 0 0 rgba(111,189,170,0.3);}50%{box-shadow:0 0 0 3px rgba(111,189,170,0.1);}}
-.light-btn-new{animation:lightPulse 2s ease-in-out 3;}
-
-/* Version badge */
-.version-badge{font-size:.6rem;color:var(--gray);opacity:.5;letter-spacing:.08em;}
-
-/* Focus ring on inputs */
-input[type=text]:focus,select:focus,textarea:focus{box-shadow:0 0 0 2px rgba(111,189,170,0.15);}
-
-/* Scrollbar style */
 ::-webkit-scrollbar{width:4px;height:4px;}
-::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2);}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- PRESENTATION MODE -->
-  <div class="pres" id="pres">
-    <div class="pres-top">
-      <span class="pres-logo">NO'J STUDIO</span>
-      <span class="pres-counter" id="pres-counter">1 / 1</span>
-      <button class="pres-btn" onclick="closePres()">✕ Cerrar (ESC)</button>
-    </div>
-    <div class="pres-body">
-      <div class="pres-visual" id="pres-visual"></div>
-      <div class="pres-info" id="pres-info"></div>
-    </div>
-    <div class="pres-bottom">
-      <button class="pres-btn" id="pres-prev" onclick="presNav(-1)">← Anterior</button>
-      <div class="pres-progress"><div class="pres-bar" id="pres-bar"></div></div>
-      <button class="pres-btn" id="pres-next" onclick="presNav(1)">Siguiente →</button>
-    </div>
-  </div>
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="logo">
-      <svg width="36" height="36" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/>
-        <path d="M50,50 L15,15 A49,49,0,0,1,50,3 Z" fill="#6fbdaa" opacity="0.15"/>
-        <path d="M50,50 L85,15 A49,49,0,0,1,97,50 Z" fill="#6fbdaa" opacity="0.15"/>
-        <path d="M50,50 L85,85 A49,49,0,0,1,50,97 Z" fill="#6fbdaa" opacity="0.15"/>
-        <path d="M50,50 L15,85 A49,49,0,0,1,3,50 Z" fill="#6fbdaa" opacity="0.15"/>
-        <line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
-        <line x1="11" y1="19" x2="79" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="19" y1="11" x2="87" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
-        <line x1="89" y1="19" x2="21" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="81" y1="11" x2="13" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
-        <line x1="4" y1="44" x2="96" y2="44" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="4" y1="56" x2="96" y2="56" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
-        <line x1="44" y1="4" x2="44" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
-        <line x1="56" y1="4" x2="56" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
-        <circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/>
-        <circle cx="50" cy="50" r="2" fill="#6fbdaa"/>
-      </svg>
+<!-- LIGHTING MODAL -->
+<div class="lt-modal" id="lt-modal">
+  <div class="lt-box">
+    <div class="lt-head">
       <div>
-        <div class="logo-word">NO'J STUDIO</div>
-        <div class="logo-sub">Storyboard Tool</div>
+        <div class="lt-sub" id="lt-sc-label">Escena 01</div>
+        <div class="lt-title" id="lt-sc-title">Iluminación</div>
       </div>
+      <button class="lt-close" onclick="closeLighting()">✕</button>
     </div>
-    <div class="topbar-actions" style="align-items:center;">
-      <span class="version-badge">v2.0</span>
-      <button class="btn btn-accent" onclick="switchTab('projects')">📁 Proyectos</button>
-      <button class="btn" onclick="newProject()">+ Nuevo</button>
-    </div>
-  </div>
-
-  <!-- API KEY BAR -->
-  <div class="apibar">
-    <div id="api-indicator" class="apibar-bad"></div>
-    <span class="apibar-label">API Key de Anthropic:</span>
-    <input type="password" id="api-key" placeholder="sk-ant-..." oninput="saveKey()" autocomplete="off">
-    <span class="apibar-note">Se guarda solo en tu navegador · <a href="https://console.anthropic.com/keys" target="_blank" style="color:var(--accent)">Obtener key →</a></span>
-  </div>
-
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('brief')" id="tab-brief">📋 Brief</button>
-    <button class="tab" onclick="switchTab('storyboard')" id="tab-storyboard">🎬 Storyboard</button>
-    <button class="tab" onclick="switchTab('shotlist')" id="tab-shotlist">📄 Shot List</button>
-    <button class="tab" onclick="switchTab('projects')" id="tab-projects">📁 Proyectos</button>
-  </div>
-
-  <!-- ══ BRIEF ══ -->
-  <div class="view active" id="view-brief">
-    <div class="panel">
-      <div class="panel-title">⚡ Templates rápidos</div>
-      <div class="tmpl-grid" id="tmpl-grid">
-        <div class="tmpl-card sel" id="tmpl-none" onclick="clearTmpl(this)"><div class="tmpl-icon">✏️</div><div class="tmpl-name">Sin template</div><div class="tmpl-desc">Brief desde cero</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('comercial',this)"><div class="tmpl-icon">📺</div><div class="tmpl-name">Comercial</div><div class="tmpl-desc">Spot de marca 30-60s</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('reel',this)"><div class="tmpl-icon">📱</div><div class="tmpl-name">Reel / Social</div><div class="tmpl-desc">Contenido 15-30s</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('dron',this)"><div class="tmpl-icon">🚁</div><div class="tmpl-name">Aéreo / Dron</div><div class="tmpl-desc">Tomas aéreas cinematic</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('btl',this)"><div class="tmpl-icon">🎪</div><div class="tmpl-name">BTL / Activación</div><div class="tmpl-desc">Cobertura de evento</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('fashion',this)"><div class="tmpl-icon">👗</div><div class="tmpl-name">Fashion / Foto</div><div class="tmpl-desc">Editorial y lookbook</div></div>
-        <div class="tmpl-card" onclick="applyTmpl('documental',this)"><div class="tmpl-icon">🎬</div><div class="tmpl-name">Documental</div><div class="tmpl-desc">Narrativa real</div></div>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title">📋 Datos del proyecto</div>
-      <div class="grid3" style="margin-bottom:12px;">
-        <div class="form-group"><label class="form-label">Nombre del proyecto</label><input type="text" id="proj-name" placeholder="Campaña verano Marca X"></div>
-        <div class="form-group"><label class="form-label">Duración del video</label>
-          <select id="proj-dur">
-            <option value="15s">15s — Reels</option>
-            <option value="30s">30 segundos</option>
-            <option value="45s">45 segundos</option>
-            <option value="60s" selected>1 minuto</option>
-            <option value="2-3min">2-3 minutos</option>
-            <option value="5+min">5+ minutos</option>
-          </select>
+    <div class="lt-body">
+      <div class="lt-grid">
+        <div class="lt-diagram-wrap">
+          <div class="lt-diagram-label">Diagrama</div>
+          <svg viewBox="0 0 180 150" style="width:100%;max-height:130px;">
+            <rect x="15" y="15" width="150" height="120" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" rx="3"/>
+            <rect x="75" y="65" width="30" height="22" rx="3" fill="rgba(111,189,170,0.15)" stroke="#6fbdaa" stroke-width="1.2"/>
+            <text x="90" y="79" font-size="7" fill="#6fbdaa" text-anchor="middle" font-family="sans-serif">SUJ</text>
+            <rect x="75" y="118" width="30" height="14" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <text x="90" y="128" font-size="6" fill="rgba(255,255,255,0.35)" text-anchor="middle" font-family="sans-serif">CAM</text>
+            <line x1="90" y1="87" x2="90" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="3,2"/>
+            <circle cx="35" cy="42" r="10" fill="rgba(255,220,80,0.18)" stroke="#ffdc50" stroke-width="1.3"/>
+            <text x="35" y="46" font-size="6.5" fill="#ffdc50" text-anchor="middle" font-family="sans-serif">KEY</text>
+            <line x1="44" y1="50" x2="73" y2="70" stroke="#ffdc50" stroke-width="0.7" stroke-dasharray="3,2" opacity="0.6"/>
+            <circle cx="145" cy="48" r="10" fill="rgba(130,190,255,0.15)" stroke="#82beff" stroke-width="1.3"/>
+            <text x="145" y="52" font-size="6.5" fill="#82beff" text-anchor="middle" font-family="sans-serif">FILL</text>
+            <line x1="136" y1="55" x2="107" y2="70" stroke="#82beff" stroke-width="0.7" stroke-dasharray="3,2" opacity="0.6"/>
+            <circle cx="90" cy="24" r="10" fill="rgba(255,140,80,0.15)" stroke="#ff8c50" stroke-width="1.3"/>
+            <text x="90" y="28" font-size="6.5" fill="#ff8c50" text-anchor="middle" font-family="sans-serif">BACK</text>
+            <line x1="90" y1="34" x2="90" y2="65" stroke="#ff8c50" stroke-width="0.7" stroke-dasharray="3,2" opacity="0.6"/>
+          </svg>
         </div>
-        <div class="form-group"><label class="form-label">Estilo</label>
-          <select id="proj-style">
-            <option value="comercial">Comercial / marca</option>
-            <option value="documental">Documental</option>
-            <option value="musical">Musical / clip</option>
-            <option value="evento">Evento / BTL</option>
-            <option value="dron">Aéreo / dron</option>
-            <option value="social">Redes sociales</option>
-            <option value="fashion">Fashion / editorial</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-          <label class="form-label" style="margin-bottom:0;">Brief del proyecto</label>
-          <div style="display:flex;gap:6px;">
-            <button class="btn" id="voice-btn" onclick="toggleVoice()" title="Dictar brief por voz" style="padding:5px 10px;font-size:.72rem;">
-              🎙 Dictar
-            </button>
-            <label class="btn" style="padding:5px 10px;font-size:.72rem;cursor:pointer;" title="Adjuntar documento de referencia">
-              📎 Adjuntar
-              <input type="file" id="doc-input" accept=".pdf,.doc,.docx,.txt" style="display:none;" onchange="attachDoc(this)">
-            </label>
+        <div class="lt-fields">
+          <div class="lt-field">
+            <label style="color:var(--gray);">Tipo de luz</label>
+            <select id="lt-type">
+              <option>Natural</option><option>Artificial</option>
+              <option>Mixta</option><option>Disponible</option>
+            </select>
+          </div>
+          <div class="lt-field">
+            <label style="color:#ffdc50;">● Key light</label>
+            <input type="text" id="lt-key" placeholder="Softbox 120cm izq. 45°">
+          </div>
+          <div class="lt-field">
+            <label style="color:#82beff;">● Fill light</label>
+            <input type="text" id="lt-fill" placeholder="Reflector plata der.">
+          </div>
+          <div class="lt-field">
+            <label style="color:#ff8c50;">● Back light</label>
+            <input type="text" id="lt-back" placeholder="LED panel trasero">
           </div>
         </div>
-        <textarea id="proj-brief" placeholder="Describe el video: ¿de qué trata? ¿qué transmite? ¿audiencia? ¿locaciones, personajes, mensaje clave, CTA?"></textarea>
-        <div id="doc-status" style="font-size:.72rem;color:var(--accent);margin-top:5px;display:none;"></div>
-        <div id="voice-status" style="font-size:.72rem;color:#f09595;margin-top:4px;display:none;"></div>
       </div>
-      <div class="grid3">
-        <div class="form-group"><label class="form-label">Número de escenas</label>
-          <select id="proj-scenes">
-            <option value="4">4 escenas</option>
-            <option value="6" selected>6 escenas</option>
-            <option value="8">8 escenas</option>
-            <option value="12">12 escenas</option>
-            <option value="16">16 escenas</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label">Mood / tono</label>
-          <select id="proj-mood">
-            <option value="energético">Energético</option>
-            <option value="emocional">Emocional / inspirador</option>
-            <option value="minimalista">Minimalista / elegante</option>
-            <option value="divertido">Divertido / fresco</option>
-            <option value="dramático">Dramático / cinematográfico</option>
-            <option value="documental">Documental / auténtico</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label">Idioma del storyboard</label>
-          <select id="proj-lang">
-            <option value="español" selected>Español</option>
-            <option value="inglés">Inglés</option>
-          </select>
-        </div>
+      <div class="lt-field" style="margin-bottom:1rem;">
+        <label style="color:var(--gray);">Notas de iluminación</label>
+        <textarea id="lt-notes" style="min-height:52px;font-size:.74rem;" placeholder="Notas adicionales..."></textarea>
       </div>
-      <button class="btn btn-primary btn-full btn-lg" id="gen-btn" onclick="generate()">✨ Generar storyboard con IA</button>
-      <div class="gen-progress" id="gen-progress"><div class="gen-progress-bar" id="gen-bar"></div></div>
-      <div class="status" id="status-msg"></div>
-    </div>
-  </div>
-
-  <!-- ══ STORYBOARD ══ -->
-  <div class="view" id="view-storyboard">
-    <div style="display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;">
-      <button class="btn btn-accent" onclick="openPres()">▶ Modo presentación</button>
-      <button class="btn" onclick="showAddForm()">+ Agregar escena</button>
-      <button class="btn" onclick="saveProject()">💾 Guardar proyecto</button>
-      <button class="btn" onclick="switchTab('brief')">← Editar brief</button>
-    </div>
-    <div id="add-form-container"></div>
-    <div class="sb-list" id="sb-container">
-      <div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.<br><span style="font-size:.72rem;opacity:.6;margin-top:4px;display:block;">Tecla 1 → Brief · 2 → Storyboard · 3 → Shot List</span></div>
-    </div>
-  </div>
-
-  <!-- ══ SHOT LIST ══ -->
-  <div class="view" id="view-shotlist">
-    <div class="sl-wrap">
-      <table class="sl-table">
-        <thead><tr>
-          <th>#</th><th>Título</th><th>Plano</th><th>Movimiento</th><th>Dur.</th>
-          <th>Cámara</th><th>Lente</th><th>Locación</th><th>Hora</th><th>Descripción</th><th>Audio</th><th>Iluminación</th><th>Notas</th><th>✓</th>
-        </tr></thead>
-        <tbody id="sl-body"></tbody>
-      </table>
-    </div>
-    <div class="sl-footer">
-      <span id="sl-count">0 tomas</span>
-      <span>Total estimado: <strong id="sl-total">0s</strong></span>
-    </div>
-    <div class="export-bar">
-      <button class="btn btn-primary" onclick="exportCSV()">📊 Exportar .csv (Excel)</button>
-      <button class="btn" onclick="exportTxt()">📄 Exportar .txt</button>
-      <button class="btn" onclick="exportHTML()">🖨 Imprimir / PDF</button>
-    </div>
-  </div>
-
-  <!-- ══ PROJECTS ══ -->
-  <div class="view" id="view-projects">
-    <div class="panel">
-      <div class="panel-title">📁 Proyectos guardados</div>
-      <div id="proj-list-container">
-        <div class="empty"><span class="empty-icon">📁</span>No hay proyectos guardados.<br>Genera un storyboard y presiona Guardar.</div>
+      <div class="lt-footer">
+        <button class="btn btn-primary" style="flex:1;" onclick="saveLighting()">💾 Guardar</button>
+        <button class="btn" onclick="closeLighting()">Cancelar</button>
       </div>
     </div>
   </div>
-
 </div>
 
+<!-- PRESENTATION -->
+<div class="pres" id="pres">
+  <div class="pres-top">
+    <span class="pres-logo">NO'J STUDIO</span>
+    <span class="pres-counter" id="pres-counter">1 / 1</span>
+    <button class="pres-btn" onclick="closePres()">✕ Cerrar (ESC)</button>
+  </div>
+  <div class="pres-body">
+    <div class="pres-visual" id="pres-visual"></div>
+    <div class="pres-info" id="pres-info"></div>
+  </div>
+  <div class="pres-bottom">
+    <button class="pres-btn" id="pres-prev" onclick="presNav(-1)">← Anterior</button>
+    <div class="pres-prog"><div class="pres-bar" id="pres-bar"></div></div>
+    <button class="pres-btn" id="pres-next" onclick="presNav(1)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <svg width="36" height="36" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#6fbdaa" stroke-width="2.5"/>
+      <path d="M50,50 L15,15 A49,49,0,0,1,50,3 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L85,15 A49,49,0,0,1,97,50 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L85,85 A49,49,0,0,1,50,97 Z" fill="#6fbdaa" opacity="0.15"/>
+      <path d="M50,50 L15,85 A49,49,0,0,1,3,50 Z" fill="#6fbdaa" opacity="0.15"/>
+      <line x1="16" y1="16" x2="84" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <line x1="11" y1="19" x2="79" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="19" y1="11" x2="87" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="84" y1="16" x2="16" y2="84" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <line x1="89" y1="19" x2="21" y2="87" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="81" y1="11" x2="13" y2="79" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="4" y1="50" x2="96" y2="50" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <line x1="4" y1="44" x2="96" y2="44" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="4" y1="56" x2="96" y2="56" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="50" y1="4" x2="50" y2="96" stroke="#f4f2ed" stroke-width="5" stroke-linecap="square"/>
+      <line x1="44" y1="4" x2="44" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+      <line x1="56" y1="4" x2="56" y2="96" stroke="#f4f2ed" stroke-width="1.5"/>
+      <circle cx="50" cy="50" r="5" fill="#0a0a0a" stroke="#6fbdaa" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="2" fill="#6fbdaa"/>
+    </svg>
+    <div><div class="logo-word">NO'J STUDIO</div><div class="logo-sub">Storyboard Tool</div></div>
+  </div>
+  <div class="topbar-right">
+    <span class="v-badge">v2.1</span>
+    <button class="btn btn-accent" onclick="switchTab('projects')">📁 Proyectos</button>
+    <button class="btn" onclick="newProject()">+ Nuevo</button>
+  </div>
+</div>
+
+<!-- API BAR -->
+<div class="apibar">
+  <div class="api-dot" id="api-dot"></div>
+  <label for="api-input">API Key Anthropic:</label>
+  <input type="password" id="api-input" placeholder="sk-ant-..." autocomplete="off">
+  <span class="api-hint">Se guarda en tu navegador · <a href="https://console.anthropic.com/keys" target="_blank" style="color:var(--accent)">Obtener →</a></span>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" id="tab-brief" onclick="switchTab('brief')">📋 Brief</button>
+  <button class="tab" id="tab-storyboard" onclick="switchTab('storyboard')">🎬 Storyboard</button>
+  <button class="tab" id="tab-shotlist" onclick="switchTab('shotlist')">📄 Shot List</button>
+  <button class="tab" id="tab-projects" onclick="switchTab('projects')">📁 Proyectos</button>
+</div>
+
+<!-- BRIEF -->
+<div class="view active" id="view-brief">
+  <div class="panel">
+    <div class="panel-title">⚡ Templates rápidos</div>
+    <div class="tmpl-grid">
+      <div class="tmpl-card sel" id="tmpl-none" onclick="selectTmpl(this,'none')">
+        <div class="tmpl-icon">✏️</div>
+        <div class="tmpl-name">Sin template</div>
+        <div class="tmpl-desc">Brief desde cero</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'comercial')">
+        <div class="tmpl-icon">📺</div>
+        <div class="tmpl-name">Comercial</div>
+        <div class="tmpl-desc">Spot de marca 30-60s</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'reel')">
+        <div class="tmpl-icon">📱</div>
+        <div class="tmpl-name">Reel / Social</div>
+        <div class="tmpl-desc">Contenido 15-30s</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'dron')">
+        <div class="tmpl-icon">🚁</div>
+        <div class="tmpl-name">Aéreo / Dron</div>
+        <div class="tmpl-desc">Tomas aéreas cinematic</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'btl')">
+        <div class="tmpl-icon">🎪</div>
+        <div class="tmpl-name">BTL / Activación</div>
+        <div class="tmpl-desc">Cobertura de evento</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'fashion')">
+        <div class="tmpl-icon">👗</div>
+        <div class="tmpl-name">Fashion / Foto</div>
+        <div class="tmpl-desc">Editorial y lookbook</div>
+      </div>
+      <div class="tmpl-card" onclick="selectTmpl(this,'documental')">
+        <div class="tmpl-icon">🎬</div>
+        <div class="tmpl-name">Documental</div>
+        <div class="tmpl-desc">Narrativa real</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">📋 Datos del proyecto</div>
+    <div class="grid3" style="margin-bottom:1rem;">
+      <div class="form-group">
+        <label class="form-label">Nombre del proyecto</label>
+        <input type="text" id="proj-name" placeholder="Campaña verano Marca X">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Duración del video</label>
+        <select id="proj-dur">
+          <option value="15s">15s — Reels</option>
+          <option value="30s">30 segundos</option>
+          <option value="45s">45 segundos</option>
+          <option value="60s" selected>1 minuto</option>
+          <option value="2-3min">2-3 minutos</option>
+          <option value="5+min">5+ minutos</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Estilo</label>
+        <select id="proj-style">
+          <option value="comercial">Comercial / marca</option>
+          <option value="documental">Documental</option>
+          <option value="musical">Musical / clip</option>
+          <option value="evento">Evento / BTL</option>
+          <option value="dron">Aéreo / dron</option>
+          <option value="social">Redes sociales</option>
+          <option value="fashion">Fashion / editorial</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="brief-toolbar">
+        <label class="form-label" style="margin-bottom:0;">Brief del proyecto</label>
+        <div class="brief-actions">
+          <button class="voice-btn" id="voice-btn" onclick="toggleVoice()">🎙 Dictar</button>
+          <label class="attach-label">📎 Adjuntar<input type="file" id="doc-file" accept=".pdf,.txt,.doc,.docx" style="display:none;" onchange="attachDoc(this)"></label>
+        </div>
+      </div>
+      <textarea id="proj-brief" placeholder="Describe el video: ¿de qué trata? ¿qué transmite? ¿audiencia? ¿locaciones, personajes, mensaje clave, CTA?"></textarea>
+      <div class="voice-status" id="voice-status"></div>
+      <div class="doc-status" id="doc-status"></div>
+    </div>
+
+    <div class="grid3" style="margin-bottom:1rem;">
+      <div class="form-group">
+        <label class="form-label">Número de escenas</label>
+        <select id="proj-scenes">
+          <option value="4">4 escenas</option>
+          <option value="6" selected>6 escenas</option>
+          <option value="8">8 escenas</option>
+          <option value="12">12 escenas</option>
+          <option value="16">16 escenas</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mood / tono</label>
+        <select id="proj-mood">
+          <option value="energético">Energético</option>
+          <option value="emocional">Emocional / inspirador</option>
+          <option value="minimalista">Minimalista / elegante</option>
+          <option value="divertido">Divertido / fresco</option>
+          <option value="dramático">Dramático / cinematográfico</option>
+          <option value="documental">Documental / auténtico</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Idioma del storyboard</label>
+        <select id="proj-lang">
+          <option value="español" selected>Español</option>
+          <option value="inglés">Inglés</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-full" id="gen-btn" onclick="generate()">✨ Generar storyboard con IA</button>
+    <div class="progress" id="gen-progress"><div class="progress-bar" id="gen-bar"></div></div>
+    <div class="status" id="status-msg"></div>
+  </div>
+</div>
+
+<!-- STORYBOARD -->
+<div class="view" id="view-storyboard">
+  <div style="display:flex;gap:7px;margin-bottom:1rem;flex-wrap:wrap;">
+    <button class="btn btn-accent" onclick="openPres()">▶ Presentación</button>
+    <button class="btn" onclick="toggleAddForm()">+ Agregar escena</button>
+    <button class="btn" onclick="saveProject()">💾 Guardar</button>
+    <button class="btn" onclick="switchTab('brief')">← Brief</button>
+  </div>
+  <div id="add-form-wrap"></div>
+  <div class="sb-list" id="sb-list">
+    <div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.</div>
+  </div>
+</div>
+
+<!-- SHOT LIST -->
+<div class="view" id="view-shotlist">
+  <div class="sl-wrap">
+    <table class="sl-table">
+      <thead><tr>
+        <th>#</th><th>Título</th><th>Plano</th><th>Movimiento</th><th>Dur.</th>
+        <th>Cámara</th><th>Lente</th><th>Locación</th><th>Hora</th>
+        <th>Descripción</th><th>Audio</th><th>Ilum.</th><th>Notas</th><th>✓</th>
+      </tr></thead>
+      <tbody id="sl-body"></tbody>
+    </table>
+  </div>
+  <div class="sl-footer">
+    <span id="sl-count">0 tomas</span>
+    <span>Total estimado: <strong id="sl-total">0s</strong></span>
+  </div>
+  <div class="export-bar">
+    <button class="btn btn-primary" onclick="exportCSV()">📊 Exportar .csv</button>
+    <button class="btn" onclick="exportTxt()">📄 Exportar .txt</button>
+    <button class="btn" onclick="exportHTML()">🖨 Imprimir / PDF</button>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="view" id="view-projects">
+  <div class="panel">
+    <div class="panel-title">📁 Proyectos guardados</div>
+    <div id="proj-list-wrap">
+      <div class="empty"><span class="empty-icon">📁</span>No hay proyectos guardados.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .app -->
+
 <script>
+'use strict';
+
+// ── STATE ──
 let scenes = [];
 let presIdx = 0;
+let ltIdx = -1;
+let isRecording = false;
+let recognition = null;
+let docText = '';
+let pTimer = null;
 
-/* ── API KEY ── */
-window.addEventListener('load', () => {
-  const saved = localStorage.getItem('noj_api_key');
-  if (saved) {
-    document.getElementById('api-key').value = saved;
-    updateIndicator(saved.length > 20);
-  }
+// ── API KEY ──
+const apiInput = document.getElementById('api-input');
+const apiDot   = document.getElementById('api-dot');
+
+(function initKey() {
+  const saved = localStorage.getItem('noj_key') || '';
+  if (saved) { apiInput.value = saved; checkDot(saved); }
+})();
+
+apiInput.addEventListener('input', function() {
+  const k = this.value.trim();
+  localStorage.setItem('noj_key', k);
+  checkDot(k);
 });
-function saveKey() {
-  const k = document.getElementById('api-key').value.trim();
-  localStorage.setItem('noj_api_key', k);
-  updateIndicator(k.length > 20);
-}
-function updateIndicator(ok) {
-  const el = document.getElementById('api-indicator');
-  el.className = ok ? 'apibar-ok' : 'apibar-bad';
-}
-function getKey() { return document.getElementById('api-key').value.trim(); }
 
-/* ── TEMPLATES ── */
+function checkDot(k) {
+  apiDot.className = 'api-dot' + (k.length > 20 ? ' ok' : '');
+}
+
+function getKey() { return apiInput.value.trim(); }
+
+// ── TEMPLATES ──
 const TMPLS = {
-  comercial:{name:'Spot Comercial',dur:'30s',style:'comercial',mood:'energético',scenes:'6',brief:'Spot publicitario de 30 segundos para una marca de consumo. Mostrar el producto en uso, transmitir los beneficios con claridad y terminar con un CTA contundente. Audiencia: adultos 25-40 años con poder adquisitivo medio-alto.'},
-  reel:{name:'Reel Social',dur:'15s',style:'social',mood:'divertido',scenes:'4',brief:'Contenido vertical para Instagram Reels y TikTok. Dinámico, con mucha energía visual. Mostrar el producto o servicio de forma creativa y auténtica. El primer frame debe enganchar inmediatamente.'},
-  dron:{name:'Aéreo Cinematic',dur:'60s',style:'dron',mood:'dramático',scenes:'6',brief:'Video aéreo cinematográfico de una locación o propiedad. Comenzar con toma general desde el aire, acercarse progresivamente, mostrar detalles desde ángulos únicos. Mood épico y majestuoso. Luz dorada.'},
-  btl:{name:'BTL Activación',dur:'2-3min',style:'evento',mood:'energético',scenes:'8',brief:'Cobertura de activación de marca en espacio público. Documentar la llegada, el ambiente, las interacciones del público, los momentos clave del evento y el cierre. Estilo documental dinámico con mucha energía.'},
-  fashion:{name:'Fashion Editorial',dur:'60s',style:'fashion',mood:'minimalista',scenes:'6',brief:'Video editorial de moda para lookbook de temporada. Modelos en locación urbana y estudio. Iluminación natural mezclada con artificial. Mood: elegante, moderno, aspiracional. Paleta de colores neutros.'},
-  documental:{name:'Mini Documental',dur:'5+min',style:'documental',mood:'emocional',scenes:'10',brief:'Mini documental sobre una persona o historia real. Incluir entrevistas a cámara, tomas de cobertura b-roll, detalles del entorno y momentos espontáneos. Narración honesta y emotiva que conecte con el espectador.'}
+  none:      { name:'', dur:'60s', style:'comercial', mood:'energético', scenes:'6', brief:'' },
+  comercial: { name:'Spot Comercial', dur:'30s', style:'comercial', mood:'energético', scenes:'6', brief:'Spot publicitario de 30 segundos para una marca de consumo. Mostrar el producto en uso, transmitir los beneficios con claridad y terminar con un CTA contundente. Audiencia: adultos 25-40 años con poder adquisitivo medio-alto.' },
+  reel:      { name:'Reel Social', dur:'15s', style:'social', mood:'divertido', scenes:'4', brief:'Contenido vertical para Instagram Reels y TikTok. Dinámico, con mucha energía. El primer frame debe enganchar inmediatamente. Mostrar el producto de forma creativa y auténtica.' },
+  dron:      { name:'Aéreo Cinematic', dur:'60s', style:'dron', mood:'dramático', scenes:'6', brief:'Video aéreo cinematográfico. Comenzar con toma general desde el aire, acercarse progresivamente, mostrar detalles desde ángulos únicos. Mood épico y majestuoso, luz dorada.' },
+  btl:       { name:'BTL Activación', dur:'2-3min', style:'evento', mood:'energético', scenes:'8', brief:'Cobertura de activación de marca en espacio público. Documentar la llegada, el ambiente, las interacciones del público, los momentos clave y el cierre. Estilo documental dinámico.' },
+  fashion:   { name:'Fashion Editorial', dur:'60s', style:'fashion', mood:'minimalista', scenes:'6', brief:'Video editorial de moda para lookbook de temporada. Modelos en locación urbana y estudio. Iluminación natural mezclada con artificial. Mood: elegante, moderno, aspiracional.' },
+  documental:{ name:'Mini Documental', dur:'5+min', style:'documental', mood:'emocional', scenes:'10', brief:'Mini documental sobre una persona o historia real. Incluir entrevistas a cámara, tomas de cobertura b-roll, detalles del entorno y momentos espontáneos. Narración honesta y emotiva.' }
 };
-function applyTmpl(key, el) {
-  const t = TMPLS[key]; if (!t) return;
-  document.getElementById('proj-name').value = t.name;
-  document.getElementById('proj-dur').value = t.dur;
-  document.getElementById('proj-style').value = t.style;
-  document.getElementById('proj-mood').value = t.mood;
-  document.getElementById('proj-scenes').value = t.scenes;
-  document.getElementById('proj-brief').value = t.brief;
+
+function selectTmpl(el, key) {
   document.querySelectorAll('.tmpl-card').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
+  const t = TMPLS[key];
+  if (!t) return;
+  document.getElementById('proj-name').value    = t.name;
+  document.getElementById('proj-dur').value     = t.dur;
+  document.getElementById('proj-style').value   = t.style;
+  document.getElementById('proj-mood').value    = t.mood;
+  document.getElementById('proj-scenes').value  = t.scenes;
+  document.getElementById('proj-brief').value   = t.brief;
+  docText = '';
+  document.getElementById('doc-status').style.display = 'none';
 }
 
-/* ── TABS ── */
+// ── TABS ──
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const tab = document.getElementById('tab-'+name);
-  const view = document.getElementById('view-'+name);
-  if (tab) tab.classList.add('active');
+  const tab  = document.getElementById('tab-'  + name);
+  const view = document.getElementById('view-' + name);
+  if (tab)  tab.classList.add('active');
   if (view) view.classList.add('active');
-  if (name === 'projects') loadProjList();
+  if (name === 'projects') renderProjects();
 }
 
 function newProject() {
   scenes = [];
-  document.getElementById('proj-name').value = '';
+  document.getElementById('proj-name').value  = '';
   document.getElementById('proj-brief').value = '';
   document.getElementById('status-msg').textContent = '';
-  document.getElementById('sb-container').innerHTML = '<div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.</div>';
-  document.getElementById('sl-body').innerHTML = '';
-  document.getElementById('sl-count').textContent = '0 tomas';
-  document.getElementById('sl-total').textContent = '0s';
+  document.getElementById('status-msg').className = 'status';
   document.querySelectorAll('.tmpl-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById('tmpl-none').classList.add('sel');
+  docText = '';
+  document.getElementById('doc-status').style.display = 'none';
+  renderSB(); renderSL();
   switchTab('brief');
 }
 
-/* ── SKETCHES v2 — Cinematic frame style ── */
-// Each sketch = camera frame (16:9 crop marks) + scene composition
+// ── SKETCHES ──
 function skFrame(inner, label, c) {
-  return `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100px;">
-    <!-- letterbox bars -->
-    <rect x="0" y="0" width="200" height="12" fill="#000" opacity="0.6"/>
-    <rect x="0" y="108" width="200" height="12" fill="#000" opacity="0.6"/>
-    <!-- frame border -->
-    <rect x="1" y="1" width="198" height="118" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.4"/>
-    <!-- rule-of-thirds guides -->
-    <line x1="67" y1="12" x2="67" y2="108" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
-    <line x1="133" y1="12" x2="133" y2="108" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
-    <line x1="1" y1="52" x2="199" y2="52" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
-    <line x1="1" y1="78" x2="199" y2="78" stroke="${c}" stroke-width="0.3" opacity="0.15"/>
-    <!-- corner marks -->
-    <polyline points="1,20 1,12 9,12" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="191,12 199,12 199,20" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="1,100 1,108 9,108" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="191,108 199,108 199,100" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
+  return `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:96px;">
+    <rect x="0" y="0" width="200" height="120" fill="none"/>
+    <rect x="0" y="0" width="200" height="11" fill="#000" opacity="0.55"/>
+    <rect x="0" y="109" width="200" height="11" fill="#000" opacity="0.55"/>
+    <rect x="1" y="1" width="198" height="118" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.35"/>
+    <line x1="67" y1="11" x2="67" y2="109" stroke="${c}" stroke-width="0.25" opacity="0.12"/>
+    <line x1="133" y1="11" x2="133" y2="109" stroke="${c}" stroke-width="0.25" opacity="0.12"/>
+    <line x1="1" y1="51" x2="199" y2="51" stroke="${c}" stroke-width="0.25" opacity="0.12"/>
+    <line x1="1" y1="79" x2="199" y2="79" stroke="${c}" stroke-width="0.25" opacity="0.12"/>
+    <polyline points="1,19 1,11 9,11" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.6"/>
+    <polyline points="191,11 199,11 199,19" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.6"/>
+    <polyline points="1,101 1,109 9,109" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.6"/>
+    <polyline points="191,109 199,109 199,101" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.6"/>
     ${inner}
-    <!-- shot label -->
-    <rect x="4" y="94" width="${label.length*5+8}" height="12" fill="${c}" opacity="0.9" rx="2"/>
-    <text x="8" y="103" font-size="7.5" fill="#000" font-family="monospace" font-weight="bold">${label}</text>
+    <rect x="4" y="95" width="${label.length * 5.5 + 8}" height="11" fill="${c}" opacity="0.85" rx="1.5"/>
+    <text x="8" y="103.5" font-size="7" fill="#000" font-family="monospace" font-weight="bold">${label}</text>
   </svg>`;
 }
 
 const SK = {
   'Plano general': c => skFrame(`
-    <!-- sky/bg -->
-    <rect x="2" y="13" width="196" height="94" fill="none"/>
-    <!-- horizon line -->
-    <line x1="2" y1="75" x2="198" y2="75" stroke="${c}" stroke-width="0.5" opacity="0.3"/>
-    <!-- background buildings/landscape -->
-    <rect x="10" y="50" width="25" height="25" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.25"/>
-    <rect x="160" y="55" width="30" height="20" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.25"/>
-    <rect x="40" y="58" width="15" height="17" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.2"/>
-    <!-- main subject: full body figure -->
-    <line x1="100" y1="40" x2="100" y2="75" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <circle cx="100" cy="34" r="7" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <line x1="100" y1="47" x2="88" y2="62" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <line x1="100" y1="47" x2="112" y2="62" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <line x1="100" y1="75" x2="92" y2="94" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <line x1="100" y1="75" x2="108" y2="94" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <!-- camera indicator -->
-    <rect x="178" y="14" width="18" height="12" rx="2" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
-    <circle cx="187" cy="20" r="3" fill="none" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
+    <line x1="2" y1="76" x2="198" y2="76" stroke="${c}" stroke-width="0.4" opacity="0.25"/>
+    <rect x="12" y="52" width="22" height="24" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.3"/>
+    <rect x="166" y="56" width="22" height="20" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.3"/>
+    <circle cx="100" cy="36" r="8" fill="none" stroke="${c}" stroke-width="1.4" opacity="0.85"/>
+    <line x1="100" y1="44" x2="100" y2="76" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <line x1="100" y1="53" x2="87" y2="68" stroke="${c}" stroke-width="1" opacity="0.65"/>
+    <line x1="100" y1="53" x2="113" y2="68" stroke="${c}" stroke-width="1" opacity="0.65"/>
+    <line x1="100" y1="76" x2="93" y2="95" stroke="${c}" stroke-width="1" opacity="0.65"/>
+    <line x1="100" y1="76" x2="107" y2="95" stroke="${c}" stroke-width="1" opacity="0.65"/>
   `, 'WS', c),
 
   'Plano medio': c => skFrame(`
-    <!-- horizon -->
-    <line x1="2" y1="80" x2="198" y2="80" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <!-- figure from waist up — centered left of thirds -->
-    <circle cx="100" cy="35" r="12" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.85"/>
-    <!-- shoulders -->
-    <path d="M76,55 Q88,48 100,47 Q112,48 124,55" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
-    <!-- torso -->
-    <line x1="88" y1="55" x2="84" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
-    <line x1="112" y1="55" x2="116" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
-    <line x1="84" y1="82" x2="116" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.75"/>
-    <!-- arms -->
-    <line x1="84" y1="60" x2="70" y2="72" stroke="${c}" stroke-width="1" opacity="0.6"/>
-    <line x1="116" y1="60" x2="130" y2="72" stroke="${c}" stroke-width="1" opacity="0.6"/>
-    <!-- bg suggestion -->
-    <line x1="2" y1="90" x2="198" y2="90" stroke="${c}" stroke-width="0.4" opacity="0.15"/>
+    <line x1="0" y1="80" x2="200" y2="80" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <circle cx="100" cy="36" r="12" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.88"/>
+    <path d="M74,56 Q87,50 100,49 Q113,50 126,56" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <line x1="80" y1="58" x2="76" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
+    <line x1="120" y1="58" x2="124" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
+    <line x1="76" y1="82" x2="124" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
+    <line x1="78" y1="63" x2="64" y2="74" stroke="${c}" stroke-width="0.9" opacity="0.55"/>
+    <line x1="122" y1="63" x2="136" y2="74" stroke="${c}" stroke-width="0.9" opacity="0.55"/>
   `, 'MS', c),
 
   'Primer plano': c => skFrame(`
-    <!-- close face — fills frame -->
-    <ellipse cx="100" cy="55" rx="38" ry="44" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.7"/>
-    <!-- facial features -->
-    <ellipse cx="87" cy="46" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <ellipse cx="113" cy="46" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <circle cx="87" cy="46" r="2.5" fill="${c}" opacity="0.5"/>
-    <circle cx="113" cy="46" r="2.5" fill="${c}" opacity="0.5"/>
-    <path d="M84,62 Q100,70 116,62" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <!-- nose bridge -->
-    <line x1="100" y1="50" x2="100" y2="58" stroke="${c}" stroke-width="0.8" opacity="0.5"/>
-    <!-- hair suggestion -->
-    <path d="M62,40 Q80,18 100,16 Q120,18 138,40" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.5"/>
-    <!-- ears -->
-    <path d="M62,50 Q58,55 62,62" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
-    <path d="M138,50 Q142,55 138,62" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
+    <ellipse cx="100" cy="56" rx="40" ry="46" fill="none" stroke="${c}" stroke-width="0.6" opacity="0.3"/>
+    <ellipse cx="100" cy="46" rx="26" ry="26" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.85"/>
+    <ellipse cx="88" cy="42" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.8"/>
+    <ellipse cx="112" cy="42" rx="6" ry="5" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.8"/>
+    <circle cx="88" cy="42" r="2.5" fill="${c}" opacity="0.45"/>
+    <circle cx="112" cy="42" r="2.5" fill="${c}" opacity="0.45"/>
+    <path d="M87,58 Q100,65 113,58" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.78"/>
+    <line x1="100" y1="47" x2="100" y2="56" stroke="${c}" stroke-width="0.7" opacity="0.4"/>
+    <path d="M62,36 Q78,18 100,16 Q122,18 138,36" fill="none" stroke="${c}" stroke-width="1" opacity="0.4"/>
   `, 'CU', c),
 
   'Plano detalle': c => skFrame(`
-    <!-- extreme close up: object detail -->
-    <!-- macro lens circles -->
-    <circle cx="100" cy="60" r="32" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
-    <circle cx="100" cy="60" r="20" fill="none" stroke="${c}" stroke-width="1" opacity="0.75"/>
-    <circle cx="100" cy="60" r="8" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.9"/>
-    <circle cx="100" cy="60" r="2" fill="${c}" opacity="0.8"/>
-    <!-- focus brackets -->
-    <polyline points="60,35 70,35 70,45" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="130,35 140,35 140,45" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="60,85 70,85 70,75" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <polyline points="130,85 140,85 140,75" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <!-- depth-of-field blur suggestion -->
-    <line x1="2" y1="60" x2="60" y2="60" stroke="${c}" stroke-width="0.4" stroke-dasharray="3,3" opacity="0.3"/>
-    <line x1="140" y1="60" x2="198" y2="60" stroke="${c}" stroke-width="0.4" stroke-dasharray="3,3" opacity="0.3"/>
+    <rect x="32" y="18" width="136" height="84" rx="3" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <circle cx="100" cy="60" r="26" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.65"/>
+    <circle cx="100" cy="60" r="14" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="100" cy="60" r="5" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.92"/>
+    <circle cx="100" cy="60" r="1.5" fill="${c}" opacity="0.8"/>
+    <polyline points="48,28 58,28 58,38" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.65"/>
+    <polyline points="142,28 152,28 152,38" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.65"/>
+    <polyline points="48,92 58,92 58,82" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.65"/>
+    <polyline points="142,92 152,92 152,82" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.65"/>
   `, 'ECU', c),
 
   'Toma aérea': c => skFrame(`
-    <!-- aerial: bird's eye map view -->
-    <!-- ground grid -->
-    <line x1="40" y1="13" x2="40" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="80" y1="13" x2="80" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="120" y1="13" x2="120" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="160" y1="13" x2="160" y2="107" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="2" y1="35" x2="198" y2="35" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="2" y1="60" x2="198" y2="60" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <line x1="2" y1="85" x2="198" y2="85" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
-    <!-- buildings top-down -->
-    <rect x="20" y="20" width="28" height="18" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
-    <rect x="55" y="40" width="35" height="22" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
-    <rect x="130" y="18" width="40" height="28" fill="none" stroke="${c}" stroke-width="1" opacity="0.5"/>
-    <rect x="145" y="70" width="30" height="20" fill="none" stroke="${c}" stroke-width="1" opacity="0.4"/>
-    <!-- road -->
-    <rect x="95" y="13" width="14" height="94" fill="none" stroke="${c}" stroke-width="0.6" opacity="0.3"/>
-    <!-- drone icon top -->
-    <circle cx="100" cy="60" r="8" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.9"/>
-    <line x1="92" y1="52" x2="88" y2="48" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <line x1="108" y1="52" x2="112" y2="48" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <line x1="92" y1="68" x2="88" y2="72" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <line x1="108" y1="68" x2="112" y2="72" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <circle cx="88" cy="47" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <circle cx="112" cy="47" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <circle cx="88" cy="73" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <circle cx="112" cy="73" r="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
+    <line x1="50" y1="11" x2="50" y2="109" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
+    <line x1="100" y1="11" x2="100" y2="109" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
+    <line x1="150" y1="11" x2="150" y2="109" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
+    <line x1="2" y1="40" x2="198" y2="40" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
+    <line x1="2" y1="70" x2="198" y2="70" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
+    <rect x="18" y="18" width="28" height="18" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.45"/>
+    <rect x="58" y="44" width="32" height="20" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.45"/>
+    <rect x="130" y="16" width="38" height="26" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.4"/>
+    <rect x="148" y="72" width="28" height="18" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.38"/>
+    <rect x="96" y="11" width="8" height="98" fill="none" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
+    <circle cx="100" cy="60" r="9" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.9"/>
+    <line x1="91" y1="51" x2="87" y2="46" stroke="${c}" stroke-width="1.1" opacity="0.78"/>
+    <line x1="109" y1="51" x2="113" y2="46" stroke="${c}" stroke-width="1.1" opacity="0.78"/>
+    <line x1="91" y1="69" x2="87" y2="74" stroke="${c}" stroke-width="1.1" opacity="0.78"/>
+    <line x1="109" y1="69" x2="113" y2="74" stroke="${c}" stroke-width="1.1" opacity="0.78"/>
+    <circle cx="87" cy="45" r="3.5" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.7"/>
+    <circle cx="113" cy="45" r="3.5" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.7"/>
+    <circle cx="87" cy="75" r="3.5" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.7"/>
+    <circle cx="113" cy="75" r="3.5" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.7"/>
     <circle cx="100" cy="60" r="2" fill="${c}" opacity="0.8"/>
   `, 'AERIAL', c),
 
   'Ángulo bajo': c => skFrame(`
-    <!-- low angle: looking up at subject -->
-    <!-- vanishing point perspective lines from bottom -->
-    <line x1="100" y1="107" x2="10" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
-    <line x1="100" y1="107" x2="190" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
-    <line x1="100" y1="107" x2="60" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
-    <line x1="100" y1="107" x2="140" y2="14" stroke="${c}" stroke-width="0.5" opacity="0.2"/>
-    <!-- ground plane at bottom -->
-    <line x1="2" y1="95" x2="198" y2="95" stroke="${c}" stroke-width="0.5" opacity="0.3"/>
-    <!-- legs/feet at bottom (subject looming above) -->
-    <rect x="85" y="88" width="10" height="8" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <rect x="105" y="88" width="10" height="8" fill="none" stroke="${c}" stroke-width="1" opacity="0.7"/>
-    <!-- torso tapering up (perspective) -->
-    <path d="M80,88 L70,50 L130,50 L120,88 Z" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
-    <!-- head small at top -->
-    <circle cx="100" cy="35" r="14" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
-    <!-- sky/clouds suggestion -->
-    <path d="M20,22 Q35,15 50,22 Q60,14 75,20" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.25"/>
-    <path d="M130,18 Q145,12 160,18 Q170,13 185,18" fill="none" stroke="${c}" stroke-width="0.7" opacity="0.25"/>
+    <line x1="100" y1="109" x2="8" y2="12" stroke="${c}" stroke-width="0.4" opacity="0.18"/>
+    <line x1="100" y1="109" x2="192" y2="12" stroke="${c}" stroke-width="0.4" opacity="0.18"/>
+    <line x1="100" y1="109" x2="55" y2="12" stroke="${c}" stroke-width="0.4" opacity="0.15"/>
+    <line x1="100" y1="109" x2="145" y2="12" stroke="${c}" stroke-width="0.4" opacity="0.15"/>
+    <line x1="2" y1="96" x2="198" y2="96" stroke="${c}" stroke-width="0.45" opacity="0.28"/>
+    <rect x="86" y="88" width="11" height="9" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.65"/>
+    <rect x="103" y="88" width="11" height="9" fill="none" stroke="${c}" stroke-width="0.9" opacity="0.65"/>
+    <path d="M80,88 L69,50 L131,50 L120,88 Z" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.8"/>
+    <circle cx="100" cy="34" r="15" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <path d="M18,20 Q33,13 48,20 Q60,12 76,18" fill="none" stroke="${c}" stroke-width="0.6" opacity="0.22"/>
+    <path d="M128,16 Q144,10 160,16 Q170,11 186,16" fill="none" stroke="${c}" stroke-width="0.6" opacity="0.22"/>
   `, 'LOW', c),
 
   'Travelling': c => skFrame(`
-    <!-- tracking shot: motion blur + subject in frame -->
-    <!-- motion lines horizontal -->
-    <line x1="2" y1="30" x2="60" y2="30" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.3"/>
-    <line x1="2" y1="45" x2="50" y2="45" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.25"/>
-    <line x1="2" y1="80" x2="55" y2="80" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.3"/>
-    <line x1="2" y1="95" x2="45" y2="95" stroke="${c}" stroke-width="0.5" stroke-dasharray="4,3" opacity="0.25"/>
-    <!-- subject sharp in right third -->
-    <circle cx="133" cy="42" r="11" fill="none" stroke="${c}" stroke-width="1.4" opacity="0.85"/>
-    <path d="M115,60 Q124,54 133,53 Q142,54 151,60" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
-    <line x1="120" y1="62" x2="117" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
-    <line x1="146" y1="62" x2="149" y2="82" stroke="${c}" stroke-width="1.1" opacity="0.7"/>
-    <!-- direction arrow -->
-    <line x1="30" y1="60" x2="80" y2="60" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
-    <polyline points="72,54 82,60 72,66" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.6"/>
-    <!-- ground -->
-    <line x1="2" y1="90" x2="198" y2="90" stroke="${c}" stroke-width="0.4" opacity="0.2"/>
+    <line x1="2" y1="28" x2="62" y2="28" stroke="${c}" stroke-width="0.45" stroke-dasharray="4,3" opacity="0.28"/>
+    <line x1="2" y1="43" x2="52" y2="43" stroke="${c}" stroke-width="0.45" stroke-dasharray="4,3" opacity="0.22"/>
+    <line x1="2" y1="78" x2="57" y2="78" stroke="${c}" stroke-width="0.45" stroke-dasharray="4,3" opacity="0.28"/>
+    <line x1="2" y1="93" x2="47" y2="93" stroke="${c}" stroke-width="0.45" stroke-dasharray="4,3" opacity="0.22"/>
+    <circle cx="135" cy="40" r="12" fill="none" stroke="${c}" stroke-width="1.4" opacity="0.85"/>
+    <path d="M116,58 Q126,52 135,51 Q144,52 154,58" fill="none" stroke="${c}" stroke-width="1.3" opacity="0.85"/>
+    <line x1="122" y1="60" x2="119" y2="80" stroke="${c}" stroke-width="1" opacity="0.68"/>
+    <line x1="148" y1="60" x2="151" y2="80" stroke="${c}" stroke-width="1" opacity="0.68"/>
+    <line x1="28" y1="59" x2="82" y2="59" stroke="${c}" stroke-width="1.1" opacity="0.55"/>
+    <polyline points="74,52 84,59 74,66" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.55"/>
+    <line x1="2" y1="90" x2="198" y2="90" stroke="${c}" stroke-width="0.35" opacity="0.18"/>
   `, 'TRACK', c),
 
-  'default': c => skFrame(`
-    <!-- generic scene: horizon + subject centered -->
-    <line x1="2" y1="72" x2="198" y2="72" stroke="${c}" stroke-width="0.5" opacity="0.25"/>
-    <circle cx="100" cy="50" r="16" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.8"/>
-    <line x1="100" y1="66" x2="100" y2="82" stroke="${c}" stroke-width="1.2" opacity="0.7"/>
-    <line x1="86" y1="70" x2="114" y2="70" stroke="${c}" stroke-width="1" opacity="0.6"/>
+  default: c => skFrame(`
+    <line x1="2" y1="74" x2="198" y2="74" stroke="${c}" stroke-width="0.45" opacity="0.22"/>
+    <circle cx="100" cy="52" r="18" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.8"/>
+    <line x1="100" y1="34" x2="100" y2="70" stroke="${c}" stroke-width="0.7" opacity="0.3"/>
+    <line x1="82" y1="52" x2="118" y2="52" stroke="${c}" stroke-width="0.7" opacity="0.3"/>
   `, 'SCENE', c)
 };
 
-function sk(shot, mode) {
+function sk(shot) {
+  const c = '#6fbdaa';
   const key = Object.keys(SK).find(k => shot && shot.toLowerCase().includes(k.toLowerCase()));
-  const fn = SK[key] || SK['default'];
-  if (mode === 'color') {
-    // color mode: teal fill tones (premium preview — blurred/locked)
-    return fn('#6fbdaa');
-  }
-  return fn('#6fbdaa');
+  return (SK[key] || SK.default)(c);
 }
 
-/* ── GENERATE ── */
+// ── GENERATE ──
 async function generate() {
-  const key = getKey();
-  if (!key || key.length < 20) {
-    setStatus('Ingresa tu API key de Anthropic primero.', 'err'); return;
+  const key   = getKey();
+  const brief = document.getElementById('proj-brief').value.trim();
+
+  if (!key || key.length < 10) {
+    showStatus('Ingresa tu API key de Anthropic primero.', 'err'); return;
   }
-  const name   = document.getElementById('proj-name').value || 'Sin título';
+  if (!brief) {
+    showStatus('Escribe el brief del proyecto primero.', 'err'); return;
+  }
+
+  const name   = document.getElementById('proj-name').value   || 'Sin título';
   const dur    = document.getElementById('proj-dur').value;
   const style  = document.getElementById('proj-style').value;
-  const brief  = document.getElementById('proj-brief').value;
   const nsc    = document.getElementById('proj-scenes').value;
   const mood   = document.getElementById('proj-mood').value;
   const lang   = document.getElementById('proj-lang').value;
-
-  if (!brief.trim()) { setStatus('Escribe el brief del proyecto primero.', 'err'); return; }
-  const docRef = window._attachedDocText ? '\n\nDOCUMENTO DE REFERENCIA ADJUNTO:\n' + window._attachedDocText : '';
+  const docRef = docText ? '\n\nDOCUMENTO DE REFERENCIA:\n' + docText : '';
 
   const btn = document.getElementById('gen-btn');
-  btn.disabled = true; btn.textContent = '⏳ Generando escenas...';
-  setStatus('La IA está creando tu storyboard...', '');
-  // Animate progress bar
-  const prog = document.getElementById('gen-progress');
-  const bar  = document.getElementById('gen-bar');
-  prog.classList.add('active');
-  bar.style.width = '0%';
-  let pct = 0;
-  const pTimer = setInterval(() => {
-    pct = Math.min(pct + Math.random()*8, 88);
-    bar.style.width = pct + '%';
-  }, 300);
+  btn.disabled = true;
+  btn.textContent = '⏳ Generando escenas...';
+  showStatus('La IA está creando tu storyboard...', '');
+  startProgress();
 
   const prompt = `Eres un director de fotografía y storyboard artist experto. Genera storyboard profesional en ${lang}.
 PROYECTO: ${name} | DUR: ${dur} | ESTILO: ${style} | MOOD: ${mood} | ESCENAS: ${nsc}
 BRIEF: ${brief}${docRef}
 Responde ÚNICAMENTE con JSON válido sin texto ni backticks:
-{"scenes":[{"number":1,"title":"string","shot":"Plano general|Plano medio|Primer plano|Plano detalle|Toma aérea|Ángulo bajo|Travelling","movement":"Estático|Pan izquierda|Pan derecha|Tilt up|Tilt down|Travelling in|Travelling out|Drone ascenso|Drone descenso","duration":"3s","lens":"24mm","camera":"Cámara principal|Dron|Cámara de acción|Segunda cámara","location":"string","time_of_day":"Día|Noche|Amanecer|Atardecer|Interior","description":"string","audio":"string","lighting":"descripción del esquema de iluminación: tipo (natural/artificial/mixta), key light, fill, back, mood","notes":"string"}]}`;
+{"scenes":[{"number":1,"title":"string","shot":"Plano general|Plano medio|Primer plano|Plano detalle|Toma aérea|Ángulo bajo|Travelling","movement":"Estático|Pan izquierda|Pan derecha|Tilt up|Tilt down|Travelling in|Travelling out|Drone ascenso|Drone descenso","duration":"5s","lens":"35mm","camera":"Cámara principal|Dron|Cámara de acción|Segunda cámara","location":"string","time_of_day":"Día|Noche|Amanecer|Atardecer|Interior","description":"string","audio":"string","lighting":"tipo (natural/artificial/mixta), key light, fill, back, mood de iluminación","notes":"string"}]}`;
 
   try {
-    const res  = await fetch('https://noj-proxy.lscsrzss.workers.dev', {
+    const res = await fetch('https://noj-proxy.lscsrzss.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ apiKey: key, model: 'claude-sonnet-4-5', max_tokens: 4000, messages: [{ role: 'user', content: prompt }] })
+      body: JSON.stringify({
+        apiKey: key,
+        model: 'claude-sonnet-4-5',
+        max_tokens: 4000,
+        messages: [{ role: 'user', content: prompt }]
+      })
     });
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    let text = data.content.map(b => b.text || '').join('').replace(/```json|```/g, '').trim();
+    const text = data.content.map(b => b.text || '').join('').replace(/```json|```/g, '').trim();
     scenes = JSON.parse(text).scenes;
-    renderSB(); renderSL();
-    setStatus(`✓ ${scenes.length} escenas generadas para "${name}"`, 'ok');
+    renderSB();
+    renderSL();
+    showStatus(`✓ ${scenes.length} escenas generadas para "${name}"`, 'ok');
     switchTab('storyboard');
   } catch(e) {
-    const msg = e.message || '';
-    if (msg.includes('model')) setStatus('Error: modelo no disponible. Verifica tu plan de Anthropic.', 'err');
-    else if (msg.includes('auth') || msg.includes('401')) setStatus('Error: API key inválida. Verifica en console.anthropic.com', 'err');
-    else if (msg.includes('fetch') || msg.includes('network')) setStatus('Error de conexión. Verifica que el Worker esté activo.', 'err');
-    else setStatus('Error: ' + (msg || 'Intenta de nuevo.'), 'err');
+    const m = e.message || '';
+    if (m.includes('401') || m.includes('auth'))     showStatus('API key inválida. Verifica en console.anthropic.com', 'err');
+    else if (m.includes('model'))                     showStatus('Error de modelo. Verifica tu plan de Anthropic.', 'err');
+    else if (m.includes('fetch') || m.includes('net')) showStatus('Error de red. Verifica que el Worker esté activo.', 'err');
+    else                                               showStatus('Error: ' + (m || 'Intenta de nuevo.'), 'err');
   }
 
-  clearInterval(pTimer);
-  bar.style.width = '100%';
-  setTimeout(() => { prog.classList.remove('active'); bar.style.width = '0%'; }, 600);
-  btn.disabled = false; btn.innerHTML = '✨ Generar storyboard con IA';
+  stopProgress();
+  btn.disabled = false;
+  btn.innerHTML = '✨ Generar storyboard con IA';
 }
 
-function setStatus(msg, cls) {
+function showStatus(msg, cls) {
   const el = document.getElementById('status-msg');
-  el.textContent = msg; el.className = 'status ' + cls;
+  el.textContent = msg;
+  el.className = 'status' + (cls ? ' ' + cls : '');
 }
 
-/* ── RENDER STORYBOARD ── */
+function startProgress() {
+  const prog = document.getElementById('gen-progress');
+  const bar  = document.getElementById('gen-bar');
+  prog.classList.add('show');
+  bar.style.width = '0%';
+  let pct = 0;
+  pTimer = setInterval(() => {
+    pct = Math.min(pct + Math.random() * 7, 88);
+    bar.style.width = pct + '%';
+  }, 350);
+}
+
+function stopProgress() {
+  clearInterval(pTimer);
+  const prog = document.getElementById('gen-progress');
+  const bar  = document.getElementById('gen-bar');
+  bar.style.width = '100%';
+  setTimeout(() => { prog.classList.remove('show'); bar.style.width = '0%'; }, 700);
+}
+
+// ── RENDER STORYBOARD ──
 function renderSB() {
-  const c = document.getElementById('sb-container');
-  c.innerHTML = '';
+  const container = document.getElementById('sb-list');
+  if (!scenes.length) {
+    container.innerHTML = '<div class="empty"><span class="empty-icon">🎬</span>Genera el storyboard desde el Brief.</div>';
+    return;
+  }
+  container.innerHTML = '';
   scenes.forEach((sc, i) => {
-    const mode = sc._visualMode || 'sketch';
-    const card = document.createElement('div');
-    card.className = 'sc-card';
-    card.innerHTML = `
-      <div class="sc-visual" style="position:relative;">
-        <span class="sc-num-badge">ESC. ${String(i+1).padStart(2,'0')}</span>
-        <div id="sketch-${i}" style="width:100%;flex:1;">${sk(sc.shot, mode)}</div>
-        <div style="display:flex;gap:4px;margin-top:4px;">
-          <button onclick="setVisualMode(${i},'sketch')" style="font-size:9px;padding:2px 7px;border-radius:3px;border:0.5px solid ${mode==='sketch'?'#6fbdaa':'rgba(255,255,255,0.15)'};background:${mode==='sketch'?'rgba(111,189,170,0.15)':'transparent'};color:${mode==='sketch'?'#6fbdaa':'rgba(255,255,255,0.4)'};cursor:pointer;">Boceto</button>
-          <button onclick="setVisualMode(${i},'color')" style="font-size:9px;padding:2px 7px;border-radius:3px;border:0.5px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);cursor:default;position:relative;" title="Feature premium — próximamente">Color 🔒</button>
+    const div = document.createElement('div');
+    div.className = 'sc-card';
+    const lt = sc._lighting;
+    div.innerHTML = `
+      <div class="sc-visual">
+        <span class="sc-num">ESC. ${String(i+1).padStart(2,'0')}</span>
+        ${sk(sc.shot)}
+        <div class="sc-mode-btns">
+          <button class="sc-mode-btn active">Boceto</button>
+          <button class="sc-mode-btn locked" title="Feature premium — próximamente">Color 🔒</button>
         </div>
         <span class="sc-badge">${sc.shot || 'Plano'}</span>
       </div>
@@ -780,28 +842,29 @@ function renderSB() {
         <div class="sc-title">${sc.title}</div>
         <div class="sc-desc">${sc.description}</div>
         <div class="pills">
-          <span class="pill">⏱ ${sc.duration||'3s'}</span>
-          <span class="pill">↔ ${sc.movement||'Estático'}</span>
-          ${sc.lens?`<span class="pill">📷 ${sc.lens}</span>`:''}
-          ${sc.location?`<span class="pill">📍 ${sc.location}</span>`:''}
-          ${sc.time_of_day?`<span class="pill">☀ ${sc.time_of_day}</span>`:''}
+          <span class="pill">⏱ ${sc.duration || '5s'}</span>
+          <span class="pill">↔ ${sc.movement || 'Estático'}</span>
+          ${sc.lens     ? `<span class="pill">📷 ${sc.lens}</span>` : ''}
+          ${sc.camera   ? `<span class="pill">🎥 ${sc.camera}</span>` : ''}
+          ${sc.location ? `<span class="pill">📍 ${sc.location}</span>` : ''}
+          ${sc.time_of_day ? `<span class="pill">☀ ${sc.time_of_day}</span>` : ''}
         </div>
-        ${sc.audio?`<div class="sc-desc" style="opacity:.65;">🔊 ${sc.audio}</div>`:''}
-        ${sc._lighting?`<div class="sc-desc" style="opacity:.55;">💡 ${sc._lighting.type||''} · K:${sc._lighting.key||'-'}</div>`:''}
-        ${sc.notes?`<div class="sc-desc" style="font-style:italic;opacity:.5;">📝 ${sc.notes}</div>`:''}
+        ${sc.audio   ? `<div class="sc-desc" style="opacity:.62;">🔊 ${sc.audio}</div>` : ''}
+        ${lt         ? `<div class="sc-desc" style="opacity:.52;">💡 ${lt.type||''} · Key: ${lt.key||'-'}</div>` : ''}
+        ${sc.notes   ? `<div class="sc-desc" style="font-style:italic;opacity:.48;">📝 ${sc.notes}</div>` : ''}
         <div class="sc-actions">
           <button class="bsm" onclick="editSc(${i})">✏ Editar</button>
           <button class="bsm" onclick="dupSc(${i})">⧉ Duplicar</button>
           <button class="bsm danger" onclick="delSc(${i})">✕ Eliminar</button>
           <button class="bsm" onclick="moveSc(${i},-1)" ${i===0?'disabled':''}>↑</button>
-          <button class="bsm" onclick="moveSc(${i},1)" ${i===scenes.length-1?'disabled':''}>↓</button>
+          <button class="bsm" onclick="moveSc(${i},1)"  ${i===scenes.length-1?'disabled':''}>↓</button>
         </div>
       </div>`;
-    c.appendChild(card);
+    container.appendChild(div);
   });
 }
 
-/* ── RENDER SHOT LIST ── */
+// ── RENDER SHOT LIST ──
 function renderSL() {
   const body = document.getElementById('sl-body');
   body.innerHTML = '';
@@ -816,8 +879,8 @@ function renderSL() {
       <td><span class="sl-shot">${sc.shot||'-'}</span></td>
       <td style="color:var(--gray);white-space:nowrap;">${sc.movement||'-'}</td>
       <td style="font-weight:500;white-space:nowrap;">${sc.duration||'-'}</td>
-      <td style="min-width:110px;">
-        <select onchange="scenes[${i}].camera=this.value" style="font-size:.7rem;padding:3px 6px;background:var(--surface2);border:0.5px solid var(--border);border-radius:4px;color:var(--white);width:100%;">
+      <td style="min-width:120px;">
+        <select class="sl-cam-sel" onchange="scenes[${i}].camera=this.value">
           <option ${cam==='Cámara principal'?'selected':''}>Cámara principal</option>
           <option ${cam==='Dron'?'selected':''}>Dron</option>
           <option ${cam==='Cámara de acción'?'selected':''}>Cámara de acción</option>
@@ -828,152 +891,41 @@ function renderSL() {
       <td style="color:var(--gray);">${sc.lens||'-'}</td>
       <td style="color:var(--gray);min-width:80px;">${sc.location||'-'}</td>
       <td style="color:var(--gray);white-space:nowrap;">${sc.time_of_day||'-'}</td>
-      <td style="color:var(--dim);min-width:140px;">${(sc.description||'').substring(0,80)+((sc.description||'').length>80?'…':'')}</td>
-      <td style="color:var(--gray);min-width:80px;">${(sc.audio||'').substring(0,40)+((sc.audio||'').length>40?'…':'')}</td>
-      <td style="min-width:90px;text-align:center;">
-        <button onclick="openLighting(${i})" style="font-size:.68rem;padding:3px 8px;border:0.5px solid rgba(111,189,170,0.3);border-radius:4px;background:rgba(111,189,170,0.08);color:#6fbdaa;cursor:pointer;">💡 Ver</button>
-      </td>
-      <td style="color:var(--gray);min-width:100px;">${sc.notes||'-'}</td>
-      <td style="text-align:center;"><input type="checkbox" style="accent-color:#6fbdaa;width:15px;height:15px;cursor:pointer;"></td>`;
+      <td style="color:var(--dim);min-width:140px;">${(sc.description||'').substring(0,75)+((sc.description||'').length>75?'…':'')}</td>
+      <td style="color:var(--gray);min-width:80px;">${(sc.audio||'').substring(0,35)+((sc.audio||'').length>35?'…':'')}</td>
+      <td style="text-align:center;"><button class="light-btn" onclick="openLighting(${i})">💡 Ver</button></td>
+      <td style="color:var(--gray);min-width:90px;">${sc.notes||'-'}</td>
+      <td style="text-align:center;"><input type="checkbox" style="accent-color:var(--accent);width:14px;height:14px;cursor:pointer;"></td>`;
     body.appendChild(tr);
   });
-  document.getElementById('sl-count').textContent = `${scenes.length} tomas`;
+  document.getElementById('sl-count').textContent = scenes.length + ' tomas';
   document.getElementById('sl-total').textContent = fmtDur(total);
 }
 
-/* ── LIGHTING MODAL ── */
-function openLighting(i) {
-  const sc = scenes[i];
-  const lighting = sc.lighting || '';
-
-  // Parse lighting into key/fill/back if possible
-  const existing = sc._lighting || { type: 'Natural', key: '', fill: '', back: '', notes: lighting };
-
-  const modal = document.createElement('div');
-  modal.id = 'light-modal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;';
-  modal.innerHTML = `
-    <div style="background:#141414;border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:100%;max-width:560px;overflow:hidden;">
-      <!-- Header -->
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);">
-        <div>
-          <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6fbdaa;margin-bottom:3px;">Escena ${String(i+1).padStart(2,'0')}</div>
-          <div style="font-size:.95rem;font-weight:500;color:#f4f2ed;">${sc.title} — Iluminación</div>
-        </div>
-        <button onclick="closeLighting(${i})" style="background:none;border:0.5px solid rgba(255,255,255,0.15);color:#f4f2ed;width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:1rem;">✕</button>
-      </div>
-
-      <!-- Lighting diagram -->
-      <div style="padding:1.25rem;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-          <!-- Diagram -->
-          <div style="background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.07);border-radius:8px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;">
-            <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;">Diagrama de iluminación</div>
-            <svg id="light-svg-${i}" viewBox="0 0 200 160" style="width:100%;max-height:140px;">
-              <!-- Room floor plan -->
-              <rect x="20" y="20" width="160" height="120" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="4"/>
-              <!-- Subject (camera) -->
-              <rect x="88" y="70" width="24" height="20" rx="3" fill="rgba(111,189,170,0.2)" stroke="#6fbdaa" stroke-width="1.5"/>
-              <text x="100" y="84" font-size="7" fill="#6fbdaa" text-anchor="middle" font-family="sans-serif">SUJ</text>
-              <!-- Camera -->
-              <rect x="88" y="130" width="24" height="16" rx="2" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-              <text x="100" y="141" font-size="6" fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="sans-serif">CAM</text>
-              <line x1="100" y1="90" x2="100" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="3,2"/>
-              <!-- Key light (left 45°) -->
-              <circle id="key-light-${i}" cx="40" cy="50" r="10" fill="rgba(255,220,100,0.25)" stroke="#ffdc64" stroke-width="1.5"/>
-              <text x="40" y="54" font-size="7" fill="#ffdc64" text-anchor="middle" font-family="sans-serif">KEY</text>
-              <line x1="49" y1="57" x2="85" y2="76" stroke="#ffdc64" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
-              <!-- Fill light (right) -->
-              <circle id="fill-light-${i}" cx="160" cy="60" r="10" fill="rgba(150,200,255,0.2)" stroke="#96c8ff" stroke-width="1.5"/>
-              <text x="160" y="64" font-size="7" fill="#96c8ff" text-anchor="middle" font-family="sans-serif">FILL</text>
-              <line x1="151" y1="66" x2="116" y2="76" stroke="#96c8ff" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
-              <!-- Back light (behind subject) -->
-              <circle id="back-light-${i}" cx="100" cy="28" r="10" fill="rgba(255,150,100,0.2)" stroke="#ff9664" stroke-width="1.5"/>
-              <text x="100" y="32" font-size="7" fill="#ff9664" text-anchor="middle" font-family="sans-serif">BACK</text>
-              <line x1="100" y1="38" x2="100" y2="70" stroke="#ff9664" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
-            </svg>
-          </div>
-
-          <!-- Controls -->
-          <div style="display:flex;flex-direction:column;gap:.6rem;">
-            <div>
-              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;display:block;margin-bottom:4px;">Tipo de luz</label>
-              <select id="lt-type-${i}" style="width:100%;font-size:.78rem;padding:6px 8px;background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;color:#f4f2ed;">
-                <option ${existing.type==='Natural'?'selected':''}>Natural</option>
-                <option ${existing.type==='Artificial'?'selected':''}>Artificial</option>
-                <option ${existing.type==='Mixta'?'selected':''}>Mixta</option>
-                <option ${existing.type==='Disponible'?'selected':''}>Disponible</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#ffdc64;display:block;margin-bottom:4px;">● Key light</label>
-              <input type="text" id="lt-key-${i}" value="${existing.key}" placeholder="Ej: Softbox 120cm izq. 45°" style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(255,220,100,0.3);border-radius:5px;color:#f4f2ed;">
-            </div>
-            <div>
-              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#96c8ff;display:block;margin-bottom:4px;">● Fill light</label>
-              <input type="text" id="lt-fill-${i}" value="${existing.fill}" placeholder="Ej: Reflector plata der." style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(150,200,255,0.3);border-radius:5px;color:#f4f2ed;">
-            </div>
-            <div>
-              <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#ff9664;display:block;margin-bottom:4px;">● Back light</label>
-              <input type="text" id="lt-back-${i}" value="${existing.back}" placeholder="Ej: LED panel trasero" style="width:100%;font-size:.75rem;padding:5px 8px;background:#0a0a0a;border:0.5px solid rgba(255,150,100,0.3);border-radius:5px;color:#f4f2ed;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Notes from AI -->
-        <div style="margin-bottom:1rem;">
-          <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#777;display:block;margin-bottom:4px;">Notas de iluminación</label>
-          <textarea id="lt-notes-${i}" style="width:100%;font-size:.75rem;padding:6px 8px;background:#0a0a0a;border:0.5px solid rgba(255,255,255,0.08);border-radius:6px;color:#f4f2ed;resize:none;height:52px;">${existing.notes}</textarea>
-        </div>
-
-        <div style="display:flex;gap:8px;">
-          <button onclick="saveLighting(${i})" style="flex:1;padding:8px;background:#f4f2ed;color:#0a0a0a;border:none;border-radius:6px;font-size:.78rem;font-weight:500;cursor:pointer;">💾 Guardar</button>
-          <button onclick="closeLighting(${i})" style="padding:8px 16px;background:transparent;color:#777;border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;font-size:.78rem;cursor:pointer;">Cancelar</button>
-        </div>
-      </div>
-    </div>`;
-
-  document.body.appendChild(modal);
-  modal.addEventListener('click', e => { if(e.target===modal) closeLighting(i); });
-}
-
-function saveLighting(i) {
-  scenes[i]._lighting = {
-    type: document.getElementById('lt-type-'+i).value,
-    key:  document.getElementById('lt-key-'+i).value,
-    fill: document.getElementById('lt-fill-'+i).value,
-    back: document.getElementById('lt-back-'+i).value,
-    notes:document.getElementById('lt-notes-'+i).value
-  };
-  closeLighting(i);
-  renderSL();
-}
-
-function closeLighting(i) {
-  const m = document.getElementById('light-modal');
-  if (m) m.remove();
-}
-
-/* ── SCENE ACTIONS ── */
-function setVisualMode(i, mode) {
-  if (mode === 'color') return; // premium locked
-  scenes[i]._visualMode = mode;
-  renderSB();
-}
-
+// ── SCENE ACTIONS ──
 function editSc(i) {
   const d = prompt('Editar descripción:', scenes[i].description);
   if (d !== null) { scenes[i].description = d; renderSB(); renderSL(); }
 }
-function dupSc(i) { scenes.splice(i+1,0,{...scenes[i],title:scenes[i].title+' (copia)'}); renderSB(); renderSL(); }
-function delSc(i) { if(confirm('¿Eliminar escena?')){ scenes.splice(i,1); renderSB(); renderSL(); } }
-function moveSc(i,d) { const j=i+d; if(j<0||j>=scenes.length)return; [scenes[i],scenes[j]]=[scenes[j],scenes[i]]; renderSB(); renderSL(); }
+function dupSc(i) {
+  scenes.splice(i+1, 0, Object.assign({}, scenes[i], { title: scenes[i].title + ' (copia)' }));
+  renderSB(); renderSL();
+}
+function delSc(i) {
+  if (confirm('¿Eliminar esta escena?')) { scenes.splice(i,1); renderSB(); renderSL(); }
+}
+function moveSc(i, d) {
+  const j = i + d;
+  if (j < 0 || j >= scenes.length) return;
+  [scenes[i], scenes[j]] = [scenes[j], scenes[i]];
+  renderSB(); renderSL();
+}
 
-/* ── ADD SCENE MANUALLY ── */
-function showAddForm() {
-  const c = document.getElementById('add-form-container');
-  if (c.innerHTML) { c.innerHTML=''; return; }
-  c.innerHTML = `
+// ── ADD FORM ──
+function toggleAddForm() {
+  const wrap = document.getElementById('add-form-wrap');
+  if (wrap.innerHTML) { wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `
     <div class="add-form">
       <div class="add-form-title">+ Agregar escena manualmente</div>
       <div class="grid2" style="margin-bottom:10px;">
@@ -986,7 +938,7 @@ function showAddForm() {
         <div class="form-group"><label class="form-label">Movimiento</label>
           <select id="a-mov"><option>Estático</option><option>Pan izquierda</option><option>Pan derecha</option><option>Tilt up</option><option>Tilt down</option><option>Travelling in</option><option>Travelling out</option><option>Drone ascenso</option><option>Drone descenso</option></select>
         </div>
-        <div class="form-group"><label class="form-label">Duración</label><input type="text" id="a-dur" placeholder="4s"></div>
+        <div class="form-group"><label class="form-label">Duración</label><input type="text" id="a-dur" placeholder="5s"></div>
         <div class="form-group"><label class="form-label">Lente</label><input type="text" id="a-lens" placeholder="35mm"></div>
       </div>
       <div class="grid2" style="margin-bottom:10px;">
@@ -995,118 +947,311 @@ function showAddForm() {
           <select id="a-time"><option>Día</option><option>Noche</option><option>Amanecer</option><option>Atardecer</option><option>Interior</option></select>
         </div>
       </div>
-      <div class="form-group"><label class="form-label">Descripción</label><textarea id="a-desc" placeholder="¿Qué se ve en cámara? Describe la composición y la acción."></textarea></div>
+      <div class="form-group"><label class="form-label">Descripción</label><textarea id="a-desc" placeholder="¿Qué se ve en cámara?"></textarea></div>
       <div class="grid2" style="margin-bottom:12px;">
-        <div class="form-group"><label class="form-label">Audio</label><input type="text" id="a-audio" placeholder="Música, voz en off, ambiente..."></div>
-        <div class="form-group"><label class="form-label">Notas técnicas</label><input type="text" id="a-notes" placeholder="Equipo especial, iluminación..."></div>
+        <div class="form-group"><label class="form-label">Audio</label><input type="text" id="a-audio" placeholder="Música, voz en off..."></div>
+        <div class="form-group"><label class="form-label">Notas</label><input type="text" id="a-notes" placeholder="Equipo especial..."></div>
       </div>
       <div style="display:flex;gap:8px;">
-        <button class="btn btn-primary" onclick="confirmAdd()">+ Agregar escena</button>
-        <button class="btn" onclick="document.getElementById('add-form-container').innerHTML=''">Cancelar</button>
+        <button class="btn btn-primary" onclick="confirmAdd()">+ Agregar</button>
+        <button class="btn" onclick="document.getElementById('add-form-wrap').innerHTML=''">Cancelar</button>
       </div>
     </div>`;
 }
 
 function confirmAdd() {
   scenes.push({
-    number: scenes.length+1,
-    title: document.getElementById('a-title').value||'Nueva escena',
-    shot: document.getElementById('a-shot').value,
-    movement: document.getElementById('a-mov').value,
-    duration: document.getElementById('a-dur').value||'3s',
-    lens: document.getElementById('a-lens').value,
-    location: document.getElementById('a-loc').value,
+    number: scenes.length + 1,
+    title:       document.getElementById('a-title').value || 'Nueva escena',
+    shot:        document.getElementById('a-shot').value,
+    movement:    document.getElementById('a-mov').value,
+    duration:    document.getElementById('a-dur').value || '5s',
+    lens:        document.getElementById('a-lens').value,
+    location:    document.getElementById('a-loc').value,
     time_of_day: document.getElementById('a-time').value,
-    description: document.getElementById('a-desc').value||'Sin descripción.',
-    audio: document.getElementById('a-audio').value,
-    notes: document.getElementById('a-notes').value
+    description: document.getElementById('a-desc').value || 'Sin descripción.',
+    audio:       document.getElementById('a-audio').value,
+    notes:       document.getElementById('a-notes').value,
+    camera:      'Cámara principal'
   });
   renderSB(); renderSL();
-  document.getElementById('add-form-container').innerHTML='';
+  document.getElementById('add-form-wrap').innerHTML = '';
 }
 
-/* ── SAVE / LOAD ── */
+// ── LIGHTING ──
+function openLighting(i) {
+  ltIdx = i;
+  const sc = scenes[i];
+  const lt = sc._lighting || {};
+  document.getElementById('lt-sc-label').textContent = 'Escena ' + String(i+1).padStart(2,'0');
+  document.getElementById('lt-sc-title').textContent = sc.title + ' — Iluminación';
+  document.getElementById('lt-type').value  = lt.type  || 'Natural';
+  document.getElementById('lt-key').value   = lt.key   || '';
+  document.getElementById('lt-fill').value  = lt.fill  || '';
+  document.getElementById('lt-back').value  = lt.back  || '';
+  document.getElementById('lt-notes').value = lt.notes || sc.lighting || '';
+  document.getElementById('lt-modal').classList.add('open');
+}
+
+function saveLighting() {
+  if (ltIdx < 0) return;
+  scenes[ltIdx]._lighting = {
+    type:  document.getElementById('lt-type').value,
+    key:   document.getElementById('lt-key').value,
+    fill:  document.getElementById('lt-fill').value,
+    back:  document.getElementById('lt-back').value,
+    notes: document.getElementById('lt-notes').value
+  };
+  closeLighting();
+  renderSB(); renderSL();
+}
+
+function closeLighting() {
+  document.getElementById('lt-modal').classList.remove('open');
+  ltIdx = -1;
+}
+
+document.getElementById('lt-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeLighting();
+});
+
+// ── PROJECTS ──
 function saveProject() {
   if (!scenes.length) { alert('Genera un storyboard primero.'); return; }
-  const name = document.getElementById('proj-name').value||'Sin título';
-  const projs = JSON.parse(localStorage.getItem('noj_projs')||'[]');
-  const idx = projs.findIndex(p=>p.name===name);
-  const proj = { name, date: new Date().toLocaleDateString('es-MX'), scenes: scenes.map(s=>({...s})), brief: document.getElementById('proj-brief').value, version: '2.0' };
-  if (idx>=0) projs[idx]=proj; else projs.unshift(proj);
-  localStorage.setItem('noj_projs', JSON.stringify(projs));
-  setStatus(`✓ "${name}" guardado.`, 'ok');
+  const name = document.getElementById('proj-name').value || 'Sin título';
+  const list = JSON.parse(localStorage.getItem('noj_projs') || '[]');
+  const idx  = list.findIndex(p => p.name === name);
+  const proj = {
+    name,
+    date:   new Date().toLocaleDateString('es-MX'),
+    scenes: scenes.map(s => Object.assign({}, s)),
+    brief:  document.getElementById('proj-brief').value,
+    ver:    '2.1'
+  };
+  if (idx >= 0) list[idx] = proj; else list.unshift(proj);
+  localStorage.setItem('noj_projs', JSON.stringify(list));
+  showStatus('✓ "' + name + '" guardado.', 'ok');
 }
 
-function loadProjList() {
-  const projs = JSON.parse(localStorage.getItem('noj_projs')||'[]');
-  const c = document.getElementById('proj-list-container');
-  if (!projs.length) { c.innerHTML='<div class="empty"><span class="empty-icon">📁</span>No hay proyectos guardados aún.</div>'; return; }
-  c.innerHTML = '<div class="proj-list">'+projs.map((p,i)=>`
+function renderProjects() {
+  const list = JSON.parse(localStorage.getItem('noj_projs') || '[]');
+  const wrap = document.getElementById('proj-list-wrap');
+  if (!list.length) {
+    wrap.innerHTML = '<div class="empty"><span class="empty-icon">📁</span>No hay proyectos guardados aún.<br>Genera un storyboard y presiona Guardar.</div>';
+    return;
+  }
+  wrap.innerHTML = '<div class="proj-list">' + list.map((p,i) => `
     <div class="proj-item">
-      <div><div class="proj-name">${p.name}</div><div class="proj-meta">${p.scenes.length} escenas · ${p.date}</div></div>
-      <div class="proj-actions">
-        <button class="btn" onclick="loadProj(${i})">📂 Abrir</button>
-        <button class="btn btn-danger" onclick="delProj(${i})">✕</button>
+      <div>
+        <div class="proj-name">${p.name}</div>
+        <div class="proj-meta">${p.scenes.length} escenas · ${p.date}</div>
       </div>
-    </div>`).join('')+'</div>';
+      <div class="proj-actions">
+        <button class="btn btn-sm" onclick="loadProject(${i})">📂 Abrir</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteProject(${i})">✕</button>
+      </div>
+    </div>`).join('') + '</div>';
 }
 
-function loadProj(i) {
-  const projs = JSON.parse(localStorage.getItem('noj_projs')||'[]');
-  const p = projs[i]; if (!p) return;
+function loadProject(i) {
+  const list = JSON.parse(localStorage.getItem('noj_projs') || '[]');
+  const p = list[i]; if (!p) return;
   scenes = p.scenes;
-  document.getElementById('proj-name').value = p.name;
-  document.getElementById('proj-brief').value = p.brief||'';
+  document.getElementById('proj-name').value  = p.name;
+  document.getElementById('proj-brief').value = p.brief || '';
   renderSB(); renderSL();
   switchTab('storyboard');
 }
 
-function delProj(i) {
+function deleteProject(i) {
   if (!confirm('¿Eliminar este proyecto?')) return;
-  const projs = JSON.parse(localStorage.getItem('noj_projs')||'[]');
-  projs.splice(i,1);
-  localStorage.setItem('noj_projs', JSON.stringify(projs));
-  loadProjList();
+  const list = JSON.parse(localStorage.getItem('noj_projs') || '[]');
+  list.splice(i, 1);
+  localStorage.setItem('noj_projs', JSON.stringify(list));
+  renderProjects();
 }
 
-/* ── PRESENTATION ── */
+// ── PRESENTATION ──
 function openPres() {
   if (!scenes.length) { alert('Genera un storyboard primero.'); return; }
-  presIdx=0; updatePres();
+  presIdx = 0; updatePres();
   document.getElementById('pres').classList.add('open');
 }
 function closePres() { document.getElementById('pres').classList.remove('open'); }
-function presNav(d) { presIdx=Math.max(0,Math.min(scenes.length-1,presIdx+d)); updatePres(); }
+function presNav(d) {
+  presIdx = Math.max(0, Math.min(scenes.length - 1, presIdx + d));
+  updatePres();
+}
 function updatePres() {
-  const sc=scenes[presIdx];
-  document.getElementById('pres-counter').textContent=`${presIdx+1} / ${scenes.length}`;
-  document.getElementById('pres-bar').style.width=`${((presIdx+1)/scenes.length)*100}%`;
-  document.getElementById('pres-prev').disabled=presIdx===0;
-  document.getElementById('pres-next').disabled=presIdx===scenes.length-1;
-  document.getElementById('pres-visual').innerHTML=`${sk(sc.shot)}<span class="pres-badge">${sc.shot||'Plano'}</span>`;
-  document.getElementById('pres-info').innerHTML=`
+  const sc = scenes[presIdx];
+  document.getElementById('pres-counter').textContent = (presIdx+1) + ' / ' + scenes.length;
+  document.getElementById('pres-bar').style.width = ((presIdx+1)/scenes.length*100) + '%';
+  document.getElementById('pres-prev').disabled = presIdx === 0;
+  document.getElementById('pres-next').disabled = presIdx === scenes.length - 1;
+  document.getElementById('pres-visual').innerHTML =
+    sk(sc.shot) + `<span class="pres-badge">${sc.shot||'Plano'}</span>`;
+  document.getElementById('pres-info').innerHTML = `
     <div class="pres-sc-num">Escena ${presIdx+1} de ${scenes.length}</div>
     <div class="pres-sc-title">${sc.title}</div>
     <div class="pres-sc-desc">${sc.description}</div>
     <div class="pres-pills">
-      <span class="pres-pill">⏱ ${sc.duration||'3s'}</span>
+      <span class="pres-pill">⏱ ${sc.duration||'5s'}</span>
       <span class="pres-pill">↔ ${sc.movement||'Estático'}</span>
       ${sc.lens?`<span class="pres-pill">📷 ${sc.lens}</span>`:''}
+      ${sc.camera?`<span class="pres-pill">🎥 ${sc.camera}</span>`:''}
       ${sc.location?`<span class="pres-pill">📍 ${sc.location}</span>`:''}
       ${sc.time_of_day?`<span class="pres-pill">☀ ${sc.time_of_day}</span>`:''}
     </div>
     ${sc.audio?`<div class="pres-note">🔊 ${sc.audio}</div>`:''}
     ${sc.notes?`<div class="pres-note">📝 ${sc.notes}</div>`:''}`;
 }
-document.addEventListener('keydown',e=>{
-  // Presentation shortcuts
+
+// ── VOICE ──
+function toggleVoice() {
+  const btn    = document.getElementById('voice-btn');
+  const status = document.getElementById('voice-status');
+
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    status.textContent = '⚠ Usa Chrome — Safari y Firefox no soportan dictado.';
+    status.style.color = '#f09595';
+    status.style.display = 'block';
+    return;
+  }
+
+  if (isRecording) { recognition && recognition.stop(); return; }
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'es-MX';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  const textarea = document.getElementById('proj-brief');
+  const base = textarea.value;
+
+  recognition.onstart = () => {
+    isRecording = true;
+    btn.textContent = '⏹ Detener';
+    btn.classList.add('recording');
+    status.textContent = '● Escuchando...';
+    status.style.color = '#f09595';
+    status.style.display = 'block';
+  };
+  recognition.onresult = (e) => {
+    let final = base, interim = '';
+    for (let i = 0; i < e.results.length; i++) {
+      if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
+      else interim += e.results[i][0].transcript;
+    }
+    textarea.value = final + interim;
+  };
+  recognition.onend = () => {
+    isRecording = false;
+    btn.textContent = '🎙 Dictar';
+    btn.classList.remove('recording');
+    status.style.display = 'none';
+  };
+  recognition.onerror = (e) => {
+    status.textContent = 'Error: ' + e.error + '. Acepta el permiso de micrófono en Chrome.';
+    status.style.color = '#f09595';
+    isRecording = false;
+    btn.textContent = '🎙 Dictar';
+    btn.classList.remove('recording');
+  };
+  recognition.start();
+}
+
+// ── ATTACH DOC ──
+async function attachDoc(input) {
+  const file = input.files[0]; if (!file) return;
+  const status = document.getElementById('doc-status');
+  status.textContent = '⏳ Leyendo...';
+  status.style.display = 'block';
+  try {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      docText = e.target.result.substring(0, 3000);
+      status.textContent = '📎 ' + file.name + ' adjunto ✓';
+    };
+    reader.readAsText(file);
+  } catch(e) {
+    status.textContent = 'Error al leer el archivo.';
+  }
+  input.value = '';
+}
+
+// ── EXPORTS ──
+function parseDur(d) { const m = (d||'').match(/(\d+)/); return m ? parseInt(m[1]) : 5; }
+function fmtDur(s)   { return s < 60 ? s + 's' : Math.floor(s/60) + 'm' + (s%60 ? ' '+s%60+'s' : ''); }
+
+function exportCSV() {
+  const name = document.getElementById('proj-name').value || 'storyboard';
+  const h = ['#','Título','Plano','Movimiento','Duración','Cámara','Lente','Locación','Hora','Descripción','Audio','Key Light','Fill Light','Back Light','Notas'];
+  const rows = scenes.map((sc,i) => {
+    const lt = sc._lighting || {};
+    return [i+1, sc.title, sc.shot, sc.movement, sc.duration,
+      sc.camera||'Cámara principal', sc.lens||'', sc.location||'', sc.time_of_day||'',
+      '"'+(sc.description||'').replace(/"/g,'""')+'"',
+      '"'+(sc.audio||'').replace(/"/g,'""')+'"',
+      lt.key||'', lt.fill||'', lt.back||'',
+      '"'+(sc.notes||'').replace(/"/g,'""')+'"'];
+  });
+  dl('\uFEFF'+[h.join(','),...rows.map(r=>r.join(','))].join('\n'), 'text/csv', name+'-shot-list.csv');
+}
+
+function exportTxt() {
+  const name = document.getElementById('proj-name').value || 'storyboard';
+  let t = 'SHOT LIST — ' + name + '\n' + '='.repeat(50) + '\n\n';
+  scenes.forEach((sc,i) => {
+    t += '['+String(i+1).padStart(2,'0')+'] '+sc.title+'\n';
+    t += 'Plano: '+sc.shot+' | Mov: '+sc.movement+' | Dur: '+sc.duration+'\n';
+    t += 'Cámara: '+(sc.camera||'-')+' | Lente: '+(sc.lens||'-')+'\n';
+    t += 'Locación: '+(sc.location||'-')+' | Hora: '+(sc.time_of_day||'-')+'\n';
+    t += 'Desc: '+sc.description+'\nAudio: '+(sc.audio||'-')+'\nNotas: '+(sc.notes||'-')+'\n';
+    const lt = sc._lighting;
+    if (lt) t += 'Ilum: '+lt.type+' | Key: '+lt.key+' | Fill: '+lt.fill+' | Back: '+lt.back+'\n';
+    t += '-'.repeat(40)+'\n\n';
+  });
+  t += 'TOTAL: '+scenes.length+' tomas | '+fmtDur(scenes.reduce((a,sc)=>a+parseDur(sc.duration),0))+' estimados';
+  dl(t, 'text/plain', name+'-shot-list.txt');
+}
+
+function exportHTML() {
+  const name  = document.getElementById('proj-name').value || 'storyboard';
+  const total = fmtDur(scenes.reduce((a,sc)=>a+parseDur(sc.duration),0));
+  let h = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Shot List — ${name}</title>
+<style>body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:2rem;font-size:11px;}
+h1{font-size:16px;margin-bottom:3px;}.meta{color:#888;font-size:10px;margin-bottom:1.5rem;}
+table{width:100%;border-collapse:collapse;}th{background:#f4f4f4;padding:7px 9px;text-align:left;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #ddd;}
+td{padding:7px 9px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.5;}tr:hover td{background:#fafafa;}
+.num{background:#e8f8f3;color:#0f6e56;padding:1px 7px;border-radius:3px;font-weight:bold;}
+.shot{background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:9px;}
+.foot{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #ddd;display:flex;justify-content:space-between;color:#888;font-size:10px;}
+@media print{tr{break-inside:avoid;}}</style></head><body>
+<h1>Shot List — ${name}</h1>
+<div class="meta">No'j Studio · ${new Date().toLocaleDateString('es-MX')} · ${scenes.length} tomas · ${total}</div>
+<table><thead><tr><th>#</th><th>Título</th><th>Plano</th><th>Mov.</th><th>Dur.</th><th>Cámara</th><th>Lente</th><th>Locación</th><th>Hora</th><th>Descripción</th><th>Audio</th><th>Notas</th><th>✓</th></tr></thead><tbody>`;
+  scenes.forEach((sc,i) => {
+    h += `<tr><td><span class="num">${String(i+1).padStart(2,'0')}</span></td><td><strong>${sc.title}</strong></td><td><span class="shot">${sc.shot||'-'}</span></td><td>${sc.movement||'-'}</td><td><strong>${sc.duration||'-'}</strong></td><td>${sc.camera||'-'}</td><td>${sc.lens||'-'}</td><td>${sc.location||'-'}</td><td>${sc.time_of_day||'-'}</td><td>${sc.description||'-'}</td><td>${sc.audio||'-'}</td><td>${sc.notes||'-'}</td><td style="text-align:center;">☐</td></tr>`;
+  });
+  h += `</tbody></table><div class="foot"><span>${scenes.length} tomas</span><span>Duración: <strong>${total}</strong></span></div></body></html>`;
+  dl(h, 'text/html', name+'-shot-list.html');
+}
+
+function dl(content, type, filename) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content], {type}));
+  a.download = filename.replace(/\s+/g, '-');
+  a.click();
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
   if (document.getElementById('pres').classList.contains('open')) {
     if (e.key==='ArrowRight'||e.key==='ArrowDown') presNav(1);
-    if (e.key==='ArrowLeft'||e.key==='ArrowUp') presNav(-1);
+    if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   presNav(-1);
     if (e.key==='Escape') closePres();
     return;
   }
-  // Global shortcuts (only when not typing)
   const tag = document.activeElement.tagName;
   if (tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
   if (e.key==='1') switchTab('brief');
@@ -1114,197 +1259,6 @@ document.addEventListener('keydown',e=>{
   if (e.key==='3') switchTab('shotlist');
   if (e.key==='4') switchTab('projects');
 });
-
-/* ── EXPORTS ── */
-function parseDur(d){const m=(d||'').match(/(\d+)/);return m?parseInt(m[1]):3;}
-function fmtDur(s){return s<60?s+'s':Math.floor(s/60)+'m'+(s%60?' '+s%60+'s':'');}
-
-function exportCSV(){
-  const name=document.getElementById('proj-name').value||'storyboard';
-  const h=['#','Título','Plano','Movimiento','Duración','Lente','Locación','Hora','Descripción','Audio','Notas'];
-  const rows=scenes.map((sc,i)=>{const lt=sc._lighting||{};return[i+1,sc.title,sc.shot,sc.movement,sc.duration,sc.camera||'Cámara principal',sc.lens||'',sc.location||'',sc.time_of_day||'',`"${(sc.description||'').replace(/"/g,'""')}"`,`"${(sc.audio||'').replace(/"/g,'""')}"`,lt.key||'',lt.fill||'',lt.back||'',`"${(sc.notes||'').replace(/"/g,'""')}"`]});
-  dl('\uFEFF'+[h.join(','),...rows.map(r=>r.join(','))].join('\n'),'text/csv',name+'-shot-list.csv');
-}
-
-function exportTxt(){
-  const name=document.getElementById('proj-name').value||'storyboard';
-  let t=`SHOT LIST — ${name}\n${'='.repeat(50)}\n\n`;
-  scenes.forEach((sc,i)=>{
-    t+=`[${String(i+1).padStart(2,'0')}] ${sc.title}\n`;
-    t+=`Plano: ${sc.shot} | Mov: ${sc.movement} | Dur: ${sc.duration} | Lente: ${sc.lens||'-'}\n`;
-    t+=`Locación: ${sc.location||'-'} | Hora: ${sc.time_of_day||'-'}\n`;
-    t+=`Desc: ${sc.description}\nAudio: ${sc.audio||'-'}\nNotas: ${sc.notes||'-'}\n${'-'.repeat(40)}\n\n`;
-  });
-  t+=`TOTAL: ${scenes.length} tomas | ${fmtDur(scenes.reduce((a,sc)=>a+parseDur(sc.duration),0))} estimados`;
-  dl(t,'text/plain',name+'-shot-list.txt');
-}
-
-function exportHTML(){
-  const name=document.getElementById('proj-name').value||'storyboard';
-  const total=fmtDur(scenes.reduce((a,sc)=>a+parseDur(sc.duration),0));
-  let h=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Shot List — ${name}</title>
-<style>body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:2rem;color:#111;font-size:11px;}
-h1{font-size:16px;margin-bottom:3px;}.meta{color:#888;font-size:10px;margin-bottom:1.5rem;}
-table{width:100%;border-collapse:collapse;}th{background:#f4f4f4;padding:7px 9px;text-align:left;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #ddd;}
-td{padding:7px 9px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.5;}tr:hover td{background:#fafafa;}
-.num{background:#e8f8f3;color:#0f6e56;padding:1px 7px;border-radius:3px;font-weight:bold;font-size:10px;}
-.shot{background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:9px;}
-.foot{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #ddd;display:flex;justify-content:space-between;color:#888;font-size:10px;}
-@media print{tr{break-inside:avoid;}}</style></head><body>
-<h1>Shot List — ${name}</h1>
-<div class="meta">No'j Studio · ${new Date().toLocaleDateString('es-MX')} · ${scenes.length} tomas · ${total} estimados</div>
-<table><thead><tr><th>#</th><th>Título</th><th>Plano</th><th>Mov.</th><th>Dur.</th><th>Lente</th><th>Locación</th><th>Hora</th><th>Descripción</th><th>Audio</th><th>Notas</th><th>✓</th></tr></thead><tbody>`;
-  scenes.forEach((sc,i)=>{
-    h+=`<tr><td><span class="num">${String(i+1).padStart(2,'0')}</span></td><td><strong>${sc.title}</strong></td><td><span class="shot">${sc.shot||'-'}</span></td><td>${sc.movement||'-'}</td><td><strong>${sc.duration||'-'}</strong></td><td>${sc.lens||'-'}</td><td>${sc.location||'-'}</td><td>${sc.time_of_day||'-'}</td><td>${sc.description||'-'}</td><td>${sc.audio||'-'}</td><td>${sc.notes||'-'}</td><td style="text-align:center;">☐</td></tr>`;
-  });
-  h+=`</tbody></table><div class="foot"><span>${scenes.length} tomas en total</span><span>Duración estimada: <strong>${total}</strong></span></div></body></html>`;
-  dl(h,'text/html',name+'-shot-list.html');
-}
-
-function dl(content,type,filename){
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([content],{type}));
-  a.download=filename.replace(/\s+/g,'-');
-  a.click();
-}
-
-/* ── CLEAR TEMPLATE ── */
-function clearTmpl(el) {
-  document.getElementById('proj-name').value = '';
-  document.getElementById('proj-brief').value = '';
-  document.getElementById('proj-dur').value = '60s';
-  document.getElementById('proj-style').value = 'comercial';
-  document.getElementById('proj-mood').value = 'energético';
-  document.getElementById('proj-scenes').value = '6';
-  document.querySelectorAll('.tmpl-card').forEach(c => c.classList.remove('sel'));
-  el.classList.add('sel');
-  window._attachedDocText = '';
-  document.getElementById('doc-status').style.display = 'none';
-}
-
-/* ── VOICE DICTATION ── */
-let recognition = null;
-let isRecording = false;
-
-function toggleVoice() {
-  const vStatus = document.getElementById('voice-status');
-  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    vStatus.textContent = '⚠ Usa Chrome para dictar. Safari/Firefox no soportan esta función.';
-    vStatus.style.color = '#f09595';
-    vStatus.style.display = 'block';
-    return;
-  }
-  // Check if on HTTPS (required for mic)
-  if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-    vStatus.textContent = '⚠ El dictado requiere HTTPS. Funciona en GitHub Pages y localhost.';
-    vStatus.style.color = '#f09595';
-    vStatus.style.display = 'block';
-    return;
-  }
-  if (isRecording) {
-    recognition.stop();
-    return;
-  }
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.lang = 'es-MX';
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  const btn = document.getElementById('voice-btn');
-  const status = document.getElementById('voice-status');
-  const textarea = document.getElementById('proj-brief');
-  const base = textarea.value;
-
-  recognition.onstart = () => {
-    isRecording = true;
-    btn.textContent = '⏹ Detener';
-    btn.style.background = 'rgba(240,149,149,0.15)';
-    btn.style.borderColor = '#f09595';
-    btn.style.color = '#f09595';
-    status.textContent = '● Escuchando...';
-    status.style.color = '#f09595';
-    status.style.display = 'block';
-  };
-
-  recognition.onresult = (e) => {
-    let interim = '';
-    let final = base;
-    for (let i = 0; i < e.results.length; i++) {
-      if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
-      else interim += e.results[i][0].transcript;
-    }
-    textarea.value = final + interim;
-  };
-
-  recognition.onend = () => {
-    isRecording = false;
-    btn.textContent = '🎙 Dictar';
-    btn.style.background = '';
-    btn.style.borderColor = '';
-    btn.style.color = '';
-    status.style.display = 'none';
-  };
-
-  recognition.onerror = (e) => {
-    status.textContent = 'Error de micrófono: ' + e.error;
-    isRecording = false;
-    btn.textContent = '🎙 Dictar';
-  };
-
-  recognition.start();
-}
-
-/* ── ATTACH DOCUMENT ── */
-window._attachedDocText = '';
-
-async function attachDoc(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const status = document.getElementById('doc-status');
-  status.style.display = 'block';
-  status.textContent = '⏳ Leyendo documento...';
-
-  try {
-    if (file.type === 'application/pdf') {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const typedArr = new Uint8Array(e.target.result);
-        try {
-          const pdfjsLib = window.pdfjsLib;
-          if (!pdfjsLib) {
-            window._attachedDocText = '[PDF adjunto: ' + file.name + ' — texto no extraído, sin PDF.js]';
-            status.textContent = '📎 ' + file.name + ' adjunto (sin extracción de texto)';
-            return;
-          }
-          const pdf = await pdfjsLib.getDocument(typedArr).promise;
-          let text = '';
-          for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
-            const page = await pdf.getPage(i);
-            const content = await page.getTextContent();
-            text += content.items.map(s => s.str).join(' ') + '
-';
-          }
-          window._attachedDocText = text.substring(0, 3000);
-          status.textContent = '📎 ' + file.name + ' adjunto (' + pdf.numPages + ' páginas)';
-        } catch(err) {
-          window._attachedDocText = '[PDF adjunto: ' + file.name + ']';
-          status.textContent = '📎 ' + file.name + ' adjunto';
-        }
-      };
-      reader.readAsArrayBuffer(file);
-    } else {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        window._attachedDocText = e.target.result.substring(0, 3000);
-        status.textContent = '📎 ' + file.name + ' adjunto ✓';
-      };
-      reader.readAsText(file);
-    }
-  } catch(e) {
-    status.textContent = 'Error al leer el archivo.';
-  }
-  input.value = '';
-}
 </script>
 </body>
 </html>
