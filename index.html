@@ -209,10 +209,15 @@ section { padding:7rem 3rem; }
 .social-links a:hover { color:var(--black); }
 
 /* ═══════════ FOOTER ═══════════ */
-footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); }
+footer { background:var(--black); padding:2rem 3rem; border-top:1px solid var(--line); }
+.footer-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; margin-top:1.2rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:0.75rem; }
 .footer-brand { display:flex; align-items:center; gap:0.7rem; text-decoration:none; }
 .footer-wordmark { font-family:'Bebas Neue',sans-serif; font-size:0.95rem; letter-spacing:0.16em; color:var(--gray); }
 .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.15); letter-spacing:0.08em; }
+.footer-legal { display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem; }
+.footer-legal a { font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.18); text-decoration:none; transition:color 0.2s; }
+.footer-legal a:hover { color:var(--accent); }
 .footer-verticals { display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; }
 .footer-verticals a { font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.2); text-decoration:none; transition:color 0.2s; }
 .footer-verticals a:hover { color:var(--accent); }
@@ -469,34 +474,44 @@ footer { background:var(--black); padding:2rem 3rem; display:flex; align-items:c
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       WhatsApp
     </a>
-    <a href="/cdn-cgi/l/email-protection#1d7372776e696879747270655d7a707c7471337e7270" class="btn btn-border-dark">
+    <a href="mailto:nojstudiomx@gmail.com" class="btn btn-border-dark">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Enviar Email
     </a>
   </div>
   <div class="social-links">
-    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
+    <a href="https://instagram.com/nojstudiomx" target="_blank">Instagram</a>
     <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <a href="#inicio" class="footer-brand">
-    <svg width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
-    <span class="footer-wordmark">NO'J STUDIO</span>
-  </a>
-  <nav class="footer-verticals">
-    <a href="photography.html">Photography</a>
-    <a href="films.html">Films</a>
-    <a href="outdoor.html">Outdoor</a>
-    <a href="product.html">Product</a>
-    <a href="eventos.html">Eventos</a>
-    <a href="sports.html">Sports</a>
-    <a href="marketing.html">Marketing</a>
-    <a href="btl.html">BTL</a>
-  </nav>
-  <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+  <div class="footer-top">
+    <a href="#inicio" class="footer-brand">
+      <svg width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+      <span class="footer-wordmark">NO'J STUDIO</span>
+    </a>
+    <nav class="footer-verticals">
+      <a href="photography.html">Photography</a>
+      <a href="films.html">Films</a>
+      <a href="outdoor.html">Outdoor</a>
+      <a href="product.html">Product</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="sports.html">Sports</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="btl.html">BTL</a>
+    </nav>
+    <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+  </div>
+  <div class="footer-bottom">
+    <nav class="footer-legal">
+      <a href="avisodeprivacidad.html">Aviso de Privacidad</a>
+      <a href="terminosycondiciones.html">Términos y Condiciones</a>
+      <a href="politicadeimagenes.html">Política de Imágenes</a>
+    </nav>
+    <span class="footer-copy">Ciudad de México · <a href="mailto:nojstudiomx@gmail.com" style="color:rgba(255,255,255,0.18);text-decoration:none;">nojstudiomx@gmail.com</a></span>
+  </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
