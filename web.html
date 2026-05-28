@@ -11,13 +11,13 @@
 :root{
   --black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);
   --accent:#6fbdaa;--accent2:#c8b89a;
-  --v:#84b4c9; /* vertical: web — dusty cyan */
+  --v:#84b4c9;
   --line:rgba(255,255,255,0.07)
 }
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
 
-/* ═══ NAV ═══ */
+/* NAV */
 body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
@@ -25,25 +25,24 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-item
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
 .nav-links a{color:var(--gray);text-decoration:none;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
 .nav-links a:hover{color:var(--white)}
-.nav-back{display:flex;align-items:center;gap:0.4rem}
 .nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
 #header-spacer{height:62px}
 
-/* ═══ BUTTONS ═══ */
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s}
 .btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:#a3c8d8;transform:translateY(-2px)}
 .btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}.btn-outline:hover{border-color:var(--v);color:var(--v)}
-.btn-dark{background:var(--black);color:var(--white);border:none}.btn-dark:hover{background:#222}
+.btn-dark{background:var(--black);color:var(--white)}.btn-dark:hover{background:#222}
 .btn-border-dark{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,0.25)}.btn-border-dark:hover{background:var(--black);color:var(--white)}
 
-/* ═══ SECTIONS ═══ */
+/* SECTIONS */
 section{padding:7rem 3rem}
 .s-label{display:flex;align-items:center;gap:1rem;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--v);margin-bottom:0.9rem}
 .s-label::before{content:'';width:2rem;height:1px;background:var(--v)}
 .s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5rem);letter-spacing:0.03em;line-height:0.95;margin-bottom:3rem}
 .divider{width:100%;height:1px;background:var(--line)}
 
-/* ═══ HERO ═══ */
+/* HERO */
 .hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:5rem 3rem;position:relative;overflow:hidden}
 .hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 72% 28%,rgba(132,180,201,0.09) 0%,transparent 60%),radial-gradient(ellipse 35% 50% at 15% 80%,rgba(132,180,201,0.04) 0%,transparent 55%)}
 .hero-watermark{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:50vw;opacity:0.025;pointer-events:none}
@@ -58,34 +57,68 @@ section{padding:7rem 3rem}
 .hero-scroll{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase}
 .scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:pulse 2s ease-in-out infinite}
 
-/* ═══ META / "ESTA PÁGINA" ═══ */
+/* META */
 .meta{background:#0d0d0d;padding:5rem 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .meta-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:3rem;align-items:center}
 .meta-mark{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--v);line-height:1;letter-spacing:0.02em}
 .meta-text{font-size:1.15rem;line-height:1.55;color:var(--white);max-width:640px}
-.meta-text em{font-style:italic;color:var(--v);font-weight:400}
+.meta-text em{font-style:italic;color:var(--v)}
 .meta-text small{display:block;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);margin-top:0.8rem;font-style:normal}
 .meta-arrow{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--v);letter-spacing:0.04em;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:gap 0.25s}
 .meta-arrow:hover{gap:1.2rem}
 
-/* ═══ SPEC GRID ═══ */
+/* SPEC GRID */
 .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);gap:1px;background:var(--line)}
 .spec{background:var(--black);padding:2.8rem 2.2rem;position:relative;overflow:hidden;transition:background 0.3s}.spec:hover{background:#111}
 .spec::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--v);transition:width 0.4s}.spec:hover::after{width:100%}
 .spec-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(255,255,255,0.04);line-height:1;margin-bottom:1rem}
 .spec-icon{font-size:1.4rem;margin-bottom:1rem;display:block;color:var(--v)}
 .spec-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;margin-bottom:0.7rem}
-.spec-desc{font-size:0.8rem;color:var(--gray);line-height:1.8;max-width:none}
+.spec-desc{font-size:0.8rem;color:var(--gray);line-height:1.8}
 .spec-tag{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--v);border:1px solid rgba(132,180,201,0.3);padding:0.28rem 0.7rem}
 
-/* ═══ PROCESS ═══ */
+/* PROCESS */
 .proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
 .step{background:var(--black);padding:2.5rem 2rem;position:relative;transition:background 0.3s}.step:hover{background:#0f0f0f}
 .step-n{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:1.2rem;right:1.5rem}
 .step-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;color:var(--v);margin-bottom:0.7rem;margin-top:0.5rem}
 .step-desc{font-size:0.78rem;color:var(--gray);line-height:1.8}
 
-/* ═══ PORTAFOLIO / MOCKUPS ═══ */
+/* PRICING */
+.pricing-section{background:#070707;padding:7rem 3rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:1px}
+.plan{background:#0a0a0a;padding:2.8rem 2rem;position:relative;overflow:hidden;transition:background 0.3s;display:flex;flex-direction:column}
+.plan:hover{background:#0f0f0f}
+.plan::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--v);transition:height 0.5s}.plan:hover::after{height:100%}
+.plan.featured{background:#0d1519;border-top:2px solid var(--v)}.plan.featured::after{display:none}
+.plan-badge{display:inline-block;font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--black);background:var(--v);padding:0.28rem 0.7rem;margin-bottom:1.4rem;align-self:flex-start}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.4rem}
+.plan-tagline{font-size:0.75rem;color:var(--gray);margin-bottom:2rem;line-height:1.5}
+.plan-price-mxn{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:0.02em;line-height:1;color:var(--white)}
+.plan-price-mxn sup{font-size:1.1rem;vertical-align:super;color:var(--v);font-family:'DM Sans',sans-serif;font-weight:400}
+.plan-price-usd{font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-top:0.3rem;margin-bottom:2rem}
+.plan-divider{width:100%;height:1px;background:var(--line);margin:1.2rem 0}
+.plan-features{list-style:none;flex:1}
+.plan-features li{font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:0.6rem}
+.plan-features li::before{content:'◆';font-size:0.45rem;color:var(--v);flex-shrink:0;margin-top:0.38rem}
+.plan-features li.dim::before{content:'○';color:rgba(255,255,255,0.15)}
+.plan-features li.dim{color:rgba(255,255,255,0.2)}
+.plan-cta{margin-top:2rem;display:block;padding:0.85rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-align:center;text-decoration:none;border:1px solid rgba(255,255,255,0.12);color:var(--white);transition:all 0.25s;cursor:pointer;background:transparent}
+.plan-cta:hover{border-color:var(--v);color:var(--v)}
+.plan.featured .plan-cta{background:var(--v);color:var(--black);border-color:var(--v)}
+.plan.featured .plan-cta:hover{background:#a3c8d8}
+.maint-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-top:none}
+.maint{background:#0a0a0a;padding:2.2rem 2.4rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;transition:background 0.3s}.maint:hover{background:#0f0f0f}
+.maint-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:0.4rem}
+.maint-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.05em;margin-bottom:0.5rem}
+.maint-desc{font-size:0.75rem;color:var(--gray);line-height:1.65}
+.maint-price{text-align:right;flex-shrink:0}
+.maint-price-mxn{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);line-height:1;white-space:nowrap}
+.maint-price-mxn sup{font-size:0.85rem;vertical-align:super;color:var(--v);font-family:'DM Sans',sans-serif;font-weight:400}
+.maint-price-usd{font-size:0.65rem;color:var(--gray);letter-spacing:0.1em;margin-top:0.2rem}
+.pricing-note{font-size:0.72rem;color:rgba(255,255,255,0.2);margin-top:2rem;text-align:center;letter-spacing:0.06em}
+
+/* PORTAFOLIO */
 .port-section{background:#070707}
 .port-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:140px;gap:3px;margin-top:3rem}
 .mock{background:#111;position:relative;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
@@ -93,30 +126,25 @@ section{padding:7rem 3rem}
 .mock.tall{grid-column:span 2;grid-row:span 4}
 .mock.med{grid-column:span 3;grid-row:span 3}
 .mock.sml{grid-column:span 2;grid-row:span 2}
-
-/* Browser chrome */
 .bc{background:#1a1a1a;display:flex;align-items:center;gap:0.4rem;padding:0.5rem 0.7rem;border-bottom:1px solid rgba(255,255,255,0.05);flex-shrink:0}
 .bc-dot{width:9px;height:9px;border-radius:50%;background:#2a2a2a}
 .bc-url{margin-left:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.35);letter-spacing:0.04em}
 .bc-pad{flex:1}
-
 .mock-body{flex:1;overflow:hidden;position:relative}
 .mock-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,10,10,0.95),transparent);padding:1.2rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;opacity:0;transition:opacity 0.3s;z-index:10}
 .mock:hover .mock-label{opacity:1}
 .mock-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.08em;color:var(--white)}
 .mock-tag{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--v);border:1px solid rgba(132,180,201,0.3);padding:0.24rem 0.55rem;white-space:nowrap}
 
-/* === MOCKUP 1: Casa Mole (restaurante) === */
+/* MOCKUP CSS */
 .m-mole{background:#1b1410;color:#e8dfd0;font-family:'Cormorant Garamond',serif;padding:2rem;display:flex;flex-direction:column;justify-content:space-between;height:100%}
 .m-mole-top{display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#9a8466}
 .m-mole-h{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(2rem,4vw,3.8rem);line-height:0.95;color:#e8dfd0;font-weight:500;margin:0.6rem 0}
-.m-mole-h span{display:block;font-style:normal;color:#b8915c;letter-spacing:-0.01em}
+.m-mole-h span{display:block;font-style:normal;color:#b8915c}
 .m-mole-sub{font-size:0.78rem;color:rgba(232,223,208,0.55);max-width:280px;line-height:1.55;font-family:'DM Sans',sans-serif;font-weight:300}
 .m-mole-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
 .m-mole-btn{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#1b1410;background:#b8915c;padding:0.55rem 1rem;font-family:'DM Sans',sans-serif}
 .m-mole-rule{display:flex;gap:1.2rem;font-size:0.55rem;letter-spacing:0.18em;color:rgba(232,223,208,0.4);font-family:'DM Sans',sans-serif;text-transform:uppercase}
-
-/* === MOCKUP 2: Vértice (inmobiliaria) === */
 .m-vertice{background:#f5f3ee;color:#1a1a1a;padding:1.6rem;display:flex;flex-direction:column;gap:1rem;height:100%;font-family:'DM Sans',sans-serif}
 .m-vertice-top{display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#1a1a1a}
 .m-vertice-top b{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em;font-weight:400}
@@ -125,12 +153,9 @@ section{padding:7rem 3rem}
 .m-vertice-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:0.5rem;flex:1;min-height:60px}
 .m-vertice-img{background:linear-gradient(135deg,#9aa298,#c5b89f);position:relative;overflow:hidden}
 .m-vertice-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(255,255,255,0.3),transparent 60%)}
-.m-vertice-img2{background:linear-gradient(160deg,#3d4a3a,#7a8c75);position:relative}
-.m-vertice-img2::before{content:'';position:absolute;inset:30% 0 0 0;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,0.35))}
+.m-vertice-img2{background:linear-gradient(160deg,#3d4a3a,#7a8c75)}
 .m-vertice-foot{display:flex;justify-content:space-between;align-items:center;font-size:0.6rem;color:#6a6a6a}
 .m-vertice-foot b{color:#1a1a1a;font-weight:500}
-
-/* === MOCKUP 3: Sur Coffee === */
 .m-sur{background:#241910;color:#f0e6d6;padding:1.4rem 1.6rem;height:100%;display:grid;grid-template-rows:auto 1fr auto;font-family:'DM Sans',sans-serif;gap:1rem;position:relative;overflow:hidden}
 .m-sur::before{content:'';position:absolute;right:-20%;top:-10%;width:60%;height:80%;background:radial-gradient(circle,rgba(214,162,99,0.18),transparent 65%);pointer-events:none}
 .m-sur-top{display:flex;justify-content:space-between;align-items:center;font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:#d6a263;position:relative}
@@ -140,8 +165,6 @@ section{padding:7rem 3rem}
 .m-sur-foot{display:flex;gap:0.5rem;position:relative}
 .m-sur-chip{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#f0e6d6;border:1px solid rgba(240,230,214,0.25);padding:0.32rem 0.7rem;border-radius:99px}
 .m-sur-chip.fill{background:#d6a263;color:#241910;border-color:#d6a263}
-
-/* === MOCKUP 4: Lumen (galería arte) === */
 .m-lumen{background:#0a0a0a;color:#f4f2ed;padding:1.4rem;display:grid;grid-template-rows:auto 1fr;gap:1rem;height:100%;font-family:'DM Sans',sans-serif}
 .m-lumen-top{display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(244,242,237,0.4)}
 .m-lumen-top b{color:#f4f2ed;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em;font-weight:400}
@@ -153,8 +176,6 @@ section{padding:7rem 3rem}
 .m-lumen-cell:nth-child(4){background:linear-gradient(160deg,#1a2a3a,#3a4a5a)}
 .m-lumen-cell:nth-child(5){background:linear-gradient(140deg,#3a2a4a,#6a4a6a)}
 .m-lumen-cap{position:absolute;bottom:0.4rem;left:0.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.6rem;color:rgba(255,255,255,0.85)}
-
-/* === MOCKUP 5: Tlali (skincare) === */
 .m-tlali{background:#e8e4dc;color:#2a2a26;padding:1.6rem;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:0.9rem;font-family:'DM Sans',sans-serif}
 .m-tlali-top{display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#7a8068}
 .m-tlali-top b{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;letter-spacing:0;font-weight:500;color:#2a2a26;text-transform:none}
@@ -162,12 +183,10 @@ section{padding:7rem 3rem}
 .m-tlali-bottle{background:linear-gradient(170deg,#a8b09a 0%,#d4c8a8 60%,#b8a888 100%);aspect-ratio:1;position:relative;border-radius:50% 50% 48% 52% / 50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(42,42,38,0.5);font-size:0.7rem;letter-spacing:0.12em}
 .m-tlali-bottle::after{content:'';position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.4),transparent 50%)}
 .m-tlali-copy h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.3rem);line-height:1;font-weight:500;color:#2a2a26;margin-bottom:0.5rem}
-.m-tlali-copy p{font-size:0.66rem;line-height:1.5;color:#5a5a52;max-width:none}
+.m-tlali-copy p{font-size:0.66rem;line-height:1.5;color:#5a5a52}
 .m-tlali-foot{display:flex;justify-content:space-between;align-items:center}
 .m-tlali-price{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:#2a2a26}
 .m-tlali-btn{background:#2a2a26;color:#e8e4dc;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;padding:0.55rem 1rem}
-
-/* === MOCKUP 6: Pivot (SaaS) === */
 .m-pivot{background:#0c1014;color:#e0e6ed;padding:1.4rem 1.6rem;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:0.9rem;font-family:'Space Grotesk',sans-serif;position:relative;overflow:hidden}
 .m-pivot::before{content:'';position:absolute;left:50%;top:60%;width:140%;height:200%;background:radial-gradient(circle,rgba(120,180,255,0.08),transparent 50%);transform:translateX(-50%);pointer-events:none}
 .m-pivot-top{display:flex;justify-content:space-between;align-items:center;position:relative}
@@ -179,12 +198,10 @@ section{padding:7rem 3rem}
 .m-pivot-h{font-weight:600;letter-spacing:-0.035em;font-size:clamp(1.4rem,3.2vw,2.4rem);line-height:0.95;color:#fff}
 .m-pivot-h span{background:linear-gradient(90deg,#78b4ff,#b8d4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .m-pivot-sub{font-size:0.66rem;color:rgba(224,230,237,0.55);max-width:230px;line-height:1.55}
-.m-pivot-foot{display:flex;gap:0.5rem;align-items:center;position:relative}
+.m-pivot-foot{display:flex;gap:0.5rem;align-items:center}
 .m-pivot-btn{background:#fff;color:#0c1014;font-size:0.55rem;letter-spacing:0.04em;font-weight:600;padding:0.55rem 0.9rem;border-radius:6px}
 .m-pivot-btn2{font-size:0.55rem;letter-spacing:0.04em;color:rgba(224,230,237,0.7);padding:0.55rem 0.4rem}
 .m-pivot-btn2::after{content:'→';margin-left:0.25rem}
-
-/* === MOCKUP 7: Vertex Padel (sport club) === */
 .m-vertex{background:#0a1d1a;color:#f0fff8;padding:1.6rem;height:100%;display:flex;flex-direction:column;justify-content:space-between;font-family:'Archivo',sans-serif;position:relative;overflow:hidden}
 .m-vertex::before{content:'';position:absolute;right:-30%;top:-30%;width:120%;height:120%;background:conic-gradient(from 180deg at 50% 50%,transparent,rgba(212,255,84,0.12),transparent 30%);pointer-events:none}
 .m-vertex-top{display:flex;justify-content:space-between;align-items:center;font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:#d4ff54;position:relative}
@@ -192,25 +209,20 @@ section{padding:7rem 3rem}
 .m-vertex-h{font-weight:900;font-size:clamp(1.6rem,4vw,3rem);line-height:0.85;letter-spacing:-0.04em;text-transform:uppercase;font-style:italic;position:relative}
 .m-vertex-h span{color:#d4ff54}
 .m-vertex-foot{display:flex;gap:0.4rem;flex-wrap:wrap;position:relative}
-.m-vertex-stat{font-size:0.55rem;letter-spacing:0.06em;color:#f0fff8;border:1px solid rgba(240,255,248,0.2);padding:0.32rem 0.6rem;font-weight:400}
+.m-vertex-stat{font-size:0.55rem;letter-spacing:0.06em;color:#f0fff8;border:1px solid rgba(240,255,248,0.2);padding:0.32rem 0.6rem}
 .m-vertex-stat b{color:#d4ff54;font-weight:900;margin-right:0.3rem}
 .m-vertex-btn{background:#d4ff54;color:#0a1d1a;padding:0.55rem 0.9rem;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;align-self:flex-start}
-
-/* === MOCKUP 8: Aranxa (photography editorial) === */
 .m-aranxa{background:#1a1612;color:#f4ece0;height:100%;display:grid;grid-template-rows:auto 1fr;font-family:'DM Sans',sans-serif}
 .m-aranxa-top{padding:1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(244,236,224,0.45);border-bottom:1px solid rgba(244,236,224,0.08)}
 .m-aranxa-top b{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.05rem;letter-spacing:0;color:#f4ece0;text-transform:none}
-.m-aranxa-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:0;overflow:hidden}
+.m-aranxa-grid{display:grid;grid-template-columns:1.3fr 1fr;overflow:hidden}
 .m-aranxa-img{background:linear-gradient(165deg,#3d2820 0%,#7a5040 50%,#a8765a 100%);position:relative;overflow:hidden}
 .m-aranxa-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(255,220,180,0.25),transparent 55%)}
-.m-aranxa-img::after{content:'';position:absolute;left:30%;bottom:0;width:50%;height:70%;background:linear-gradient(160deg,transparent 30%,rgba(20,10,5,0.45) 100%)}
 .m-aranxa-side{padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between}
 .m-aranxa-side h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.3rem);line-height:1;font-weight:500;color:#f4ece0;margin-bottom:0.4rem}
 .m-aranxa-side h3 span{display:block;font-style:normal;font-family:'DM Sans',sans-serif;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#a8765a;margin-top:0.6rem;font-weight:300}
-.m-aranxa-side p{font-size:0.66rem;color:rgba(244,236,224,0.55);line-height:1.55;max-width:none}
-.m-aranxa-side small{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,224,0.4);font-style:normal}
-
-/* === MOCKUP 9: Mantra (yoga / wellness) === */
+.m-aranxa-side p{font-size:0.66rem;color:rgba(244,236,224,0.55);line-height:1.55}
+.m-aranxa-side small{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,224,0.4)}
 .m-mantra{background:#f0e8db;color:#3a3328;padding:1.4rem 1.6rem;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:0.8rem;font-family:'DM Sans',sans-serif;position:relative;overflow:hidden}
 .m-mantra::before{content:'';position:absolute;right:-30%;bottom:-30%;width:80%;height:80%;border-radius:50%;background:radial-gradient(circle,rgba(192,128,80,0.12),transparent 65%);pointer-events:none}
 .m-mantra-top{display:flex;justify-content:space-between;align-items:center;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:#8a7458;position:relative}
@@ -219,30 +231,44 @@ section{padding:7rem 3rem}
 .m-mantra-h em{font-style:normal;color:#c08050;font-family:'DM Sans',sans-serif;text-transform:uppercase;font-weight:400;font-size:0.5em;letter-spacing:0.2em;display:block;margin-top:0.5rem}
 .m-mantra-foot{display:flex;justify-content:space-between;align-items:center;position:relative;font-size:0.6rem;color:#6a5f4a}
 .m-mantra-foot b{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;color:#3a3328;font-weight:500}
-
-/* === MOCKUP 10: Code-style / dev portfolio === */
-.m-code{background:#0e0e0e;color:#d4d4d4;padding:1.3rem 1.5rem;height:100%;display:grid;grid-template-rows:auto 1fr;gap:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;line-height:1.65;letter-spacing:0}
-.m-code-top{display:flex;gap:1rem;font-size:0.55rem;color:rgba(212,212,212,0.4);text-transform:lowercase;letter-spacing:0}
+.m-code{background:#0e0e0e;color:#d4d4d4;padding:1.3rem 1.5rem;height:100%;display:grid;grid-template-rows:auto 1fr;gap:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;line-height:1.65}
+.m-code-top{display:flex;gap:1rem;font-size:0.55rem;color:rgba(212,212,212,0.4);text-transform:lowercase}
 .m-code-top b{color:#84b4c9;font-weight:500}
 .m-code-top span.act{color:#fff;border-bottom:1px solid #84b4c9;padding-bottom:0.15rem}
-.m-code-body .kw{color:#c586c0}
-.m-code-body .fn{color:#dcdcaa}
-.m-code-body .str{color:#ce9178}
-.m-code-body .com{color:#6a9955;font-style:italic}
-.m-code-body .var{color:#9cdcfe}
-.m-code-body .num{color:#b5cea8}
+.m-code-body .kw{color:#c586c0}.m-code-body .fn{color:#dcdcaa}.m-code-body .str{color:#ce9178}.m-code-body .com{color:#6a9955;font-style:italic}.m-code-body .var{color:#9cdcfe}.m-code-body .num{color:#b5cea8}
 
-/* ═══ CONTACT ═══ */
-.contact-section{background:var(--white);color:var(--black);text-align:center;padding:8rem 3rem}
-.contact-section .s-label{color:rgba(0,0,0,0.4);justify-content:center}
-.contact-section .s-label::before{background:rgba(0,0,0,0.25)}
-.contact-section .s-title{color:var(--black)}
-.contact-sub{font-size:0.95rem;color:#666;max-width:420px;margin:0 auto 3rem;line-height:1.75}
-.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.social-links{display:flex;gap:2.5rem;justify-content:center;margin-top:3rem}
-.social-links a{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:#999;text-decoration:none;transition:color 0.2s}.social-links a:hover{color:var(--black)}
+/* CONTACT */
+.contact-section{background:var(--white);color:var(--black);padding:8rem 3rem}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:start}
+.contact-left .s-label{color:rgba(0,0,0,0.35)}.contact-left .s-label::before{background:rgba(0,0,0,0.2)}
+.contact-left .s-title{color:var(--black);font-size:clamp(2.2rem,4.5vw,3.8rem);margin-bottom:1.5rem}
+.contact-sub{font-size:0.9rem;color:#666;line-height:1.8;margin-bottom:3rem;max-width:360px}
+.contact-channels{display:flex;flex-direction:column;gap:0}
+.channel{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 0;border-bottom:1px solid rgba(0,0,0,0.08);text-decoration:none;transition:all 0.2s;color:var(--black)}
+.channel:hover{padding-left:0.5rem}
+.channel-icon{width:38px;height:38px;border:1px solid rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.channel:hover .channel-icon{background:var(--black);color:var(--white);border-color:var(--black)}
+.channel-info{flex:1}
+.channel-label{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:#aaa;margin-bottom:0.15rem}
+.channel-val{font-size:0.88rem;font-weight:500}
+.channel-arrow{font-size:0.8rem;color:#aaa;transition:all 0.2s}.channel:hover .channel-arrow{color:var(--black);transform:translateX(4px)}
+.contact-form{background:var(--black);padding:2.8rem;position:relative;overflow:hidden}
+.contact-form::before{content:'';position:absolute;right:-30%;top:-30%;width:80%;height:80%;background:radial-gradient(circle,rgba(132,180,201,0.06),transparent 60%);pointer-events:none}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.4rem}
+.form-sub{font-size:0.73rem;color:var(--gray);margin-bottom:2rem;line-height:1.6}
+.form-row{margin-bottom:1.3rem;position:relative}
+.form-row label{display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:300;padding:0.85rem 1rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;border-radius:0}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--v)}
+.form-row select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-row select option{background:#1a1a1a;color:var(--white)}
+.form-row textarea{resize:none;height:90px;line-height:1.6}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{width:100%;padding:1rem 1.5rem;background:var(--v);color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:0.7rem;margin-top:0.5rem}
+.form-submit:hover{background:#a3c8d8;transform:translateY(-2px)}
+.form-note{font-size:0.65rem;color:rgba(255,255,255,0.2);text-align:center;margin-top:1rem;line-height:1.6}
 
-/* ═══ FOOTER ═══ */
+/* FOOTER */
 footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line)}
 .footer-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
 .footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
@@ -253,61 +279,34 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
-@media(max-width:980px){
-  .port-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:130px}
-  .mock.wide{grid-column:span 4;grid-row:span 4}
-  .mock.tall{grid-column:span 2;grid-row:span 3}
-  .mock.med{grid-column:span 2;grid-row:span 3}
-  .mock.sml{grid-column:span 2;grid-row:span 2}
-  .meta-inner{grid-template-columns:1fr;gap:1.5rem}
-  .meta-mark{font-size:3.5rem}
-}
-@media(max-width:768px){
-  nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}
-  .hero{padding:5rem 1.5rem 4rem}
-  .hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}
-  .hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}
-  .spec-grid{grid-template-columns:1fr}
-  .proceso-steps{grid-template-columns:1fr 1fr}
-  .port-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px}
-  .mock.wide,.mock.tall,.mock.med,.mock.sml{grid-column:span 2;grid-row:span 3}
-  .meta{padding:4rem 1.5rem}
-  .footer-nav{display:none}
-}
+@media(max-width:1100px){.pricing-grid{grid-template-columns:repeat(2,1fr)}.contact-inner{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:980px){.port-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:130px}.mock.wide{grid-column:span 4;grid-row:span 4}.mock.tall{grid-column:span 2;grid-row:span 3}.mock.med{grid-column:span 2;grid-row:span 3}.mock.sml{grid-column:span 2;grid-row:span 2}.meta-inner{grid-template-columns:1fr;gap:1.5rem}.meta-mark{font-size:3.5rem}.maint-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px}.mock.wide,.mock.tall,.mock.med,.mock.sml{grid-column:span 2;grid-row:span 3}.meta{padding:4rem 1.5rem}.footer-nav{display:none}.pricing-grid{grid-template-columns:1fr}.pricing-section{padding:5rem 1.5rem}.form-2col{grid-template-columns:1fr}.contact-section{padding:5rem 1.5rem}}
 </style>
 <script>
 (function(){
-  function setOffset(){
-    var nav = document.querySelector('body>nav');
-    var spacer = document.getElementById('header-spacer');
-    if(!nav || !spacer) return;
-    spacer.style.height = nav.getBoundingClientRect().height + 'px';
-  }
-  setOffset();
-  window.addEventListener('resize', setOffset);
-  window.addEventListener('load', setOffset);
-  setTimeout(setOffset, 200);
+  function setOffset(){var nav=document.querySelector('body>nav');var spacer=document.getElementById('header-spacer');if(!nav||!spacer)return;spacer.style.height=nav.getBoundingClientRect().height+'px';}
+  setOffset();window.addEventListener('resize',setOffset);window.addEventListener('load',setOffset);setTimeout(setOffset,200);
 })();
 </script>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
 <nav>
   <a href="index.html" class="nav-brand">
     <svg width="36" height="36" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
     <span class="nav-wordmark">NO'J</span><span class="nav-vertical">Sitios Web</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-back">← Volver al Studio</a></li>
+    <li><a href="index.html">← Studio</a></li>
     <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#precios">Precios</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#contacto" class="nav-cta">Cotizar sitio</a></li>
   </ul>
 </nav>
-<div id="header-spacer" style="display:block;"></div>
+<div id="header-spacer"></div>
 
-<!-- ══ HERO ══ -->
 <section class="hero" id="inicio">
   <div class="hero-glow"></div>
   <svg class="hero-watermark" viewBox="0 0 100 100"><g stroke="#ffffff" stroke-width="5" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#ffffff"/></svg>
@@ -325,386 +324,286 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
 </section>
 
-<!-- ══ META: ESTA PÁGINA ══ -->
 <section class="meta">
   <div class="meta-inner">
     <div class="meta-mark">/01</div>
-    <p class="meta-text">
-      Esta misma página la <em>diseñamos y desarrollamos nosotros</em> — desde el sistema tipográfico hasta cada microinteracción. Lo que ves es el nivel de cuidado que puedes esperar para tu marca.
-      <small>· No'j Studio · 2025 ·</small>
-    </p>
+    <p class="meta-text">Esta misma página la <em>diseñamos y desarrollamos nosotros</em> — desde el sistema tipográfico hasta cada microinteracción. Lo que ves es el nivel de cuidado que puedes esperar para tu marca.<small>· No'j Studio · 2025 ·</small></p>
     <a href="#portafolio" class="meta-arrow">Ver más →</a>
   </div>
 </section>
 
-<!-- ══ SPECS ══ -->
 <section id="especialidades">
   <div class="s-label">Lo que hacemos</div>
   <h2 class="s-title">Especialidades</h2>
   <div class="spec-grid">
-    <div class="spec">
-      <div class="spec-num">01</div>
-      <span class="spec-icon">◆</span>
-      <div class="spec-name">Sitios Editoriales</div>
-      <p class="spec-desc">Sitios institucionales con tipografía cuidada, jerarquía clara y un tono que comunica autoridad. Para marcas que se toman en serio.</p>
-      <span class="spec-tag">Brand site</span>
-    </div>
-    <div class="spec">
-      <div class="spec-num">02</div>
-      <span class="spec-icon">◎</span>
-      <div class="spec-name">Landing Pages</div>
-      <p class="spec-desc">Páginas de aterrizaje enfocadas en conversión. Una sola idea, un solo objetivo, ejecutadas con foco quirúrgico.</p>
-      <span class="spec-tag">Conversion</span>
-    </div>
-    <div class="spec">
-      <div class="spec-num">03</div>
-      <span class="spec-icon">⬡</span>
-      <div class="spec-name">E-Commerce</div>
-      <p class="spec-desc">Tiendas en Shopify y soluciones a medida. Catálogos pensados para la venta, no para llenar el espacio.</p>
-      <span class="spec-tag">Shopify · Custom</span>
-    </div>
-    <div class="spec">
-      <div class="spec-num">04</div>
-      <span class="spec-icon">⌖</span>
-      <div class="spec-name">Portafolios</div>
-      <p class="spec-desc">Sitios para fotógrafos, artistas, estudios y agencias. Tu trabajo merece un escenario, no un marco genérico.</p>
-      <span class="spec-tag">Portfolio</span>
-    </div>
-    <div class="spec">
-      <div class="spec-num">05</div>
-      <span class="spec-icon">✦</span>
-      <div class="spec-name">Diseño UX/UI</div>
-      <p class="spec-desc">Sistemas de diseño, prototipos clickeables y arquitectura de información. Antes de codear, pensamos.</p>
-      <span class="spec-tag">UX · UI · Systems</span>
-    </div>
-    <div class="spec">
-      <div class="spec-num">06</div>
-      <span class="spec-icon">⊹</span>
-      <div class="spec-name">SEO &amp; Performance</div>
-      <p class="spec-desc">Sitios rápidos, semánticos y optimizados. Que carguen en menos de 2s y que Google los entienda al primer crawl.</p>
-      <span class="spec-tag">SEO · Core Web Vitals</span>
-    </div>
+    <div class="spec"><div class="spec-num">01</div><span class="spec-icon">◆</span><div class="spec-name">Sitios Editoriales</div><p class="spec-desc">Sitios institucionales con tipografía cuidada, jerarquía clara y un tono que comunica autoridad. Para marcas que se toman en serio.</p><span class="spec-tag">Brand site</span></div>
+    <div class="spec"><div class="spec-num">02</div><span class="spec-icon">◎</span><div class="spec-name">Landing Pages</div><p class="spec-desc">Páginas de aterrizaje enfocadas en conversión. Una sola idea, un solo objetivo, ejecutadas con foco quirúrgico.</p><span class="spec-tag">Conversion</span></div>
+    <div class="spec"><div class="spec-num">03</div><span class="spec-icon">⬡</span><div class="spec-name">E-Commerce</div><p class="spec-desc">Tiendas en Shopify y soluciones a medida. Catálogos pensados para la venta, no para llenar el espacio.</p><span class="spec-tag">Shopify · Custom</span></div>
+    <div class="spec"><div class="spec-num">04</div><span class="spec-icon">⌖</span><div class="spec-name">Portafolios</div><p class="spec-desc">Sitios para fotógrafos, artistas, estudios y agencias. Tu trabajo merece un escenario, no un marco genérico.</p><span class="spec-tag">Portfolio</span></div>
+    <div class="spec"><div class="spec-num">05</div><span class="spec-icon">✦</span><div class="spec-name">Diseño UX/UI</div><p class="spec-desc">Sistemas de diseño, prototipos clickeables y arquitectura de información. Antes de codear, pensamos.</p><span class="spec-tag">UX · UI · Systems</span></div>
+    <div class="spec"><div class="spec-num">06</div><span class="spec-icon">⊹</span><div class="spec-name">SEO &amp; Performance</div><p class="spec-desc">Sitios rápidos, semánticos y optimizados. Que carguen en menos de 2s y que Google los entienda al primer crawl.</p><span class="spec-tag">SEO · Core Web Vitals</span></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ PROCESS ══ -->
 <section id="proceso" style="background:#0d0d0d">
   <div class="s-label">Cómo trabajamos</div>
   <h2 class="s-title">El proceso</h2>
   <div class="proceso-steps">
-    <div class="step">
-      <span class="step-n">01</span>
-      <div class="step-title">Brief &amp; Discovery</div>
-      <p class="step-desc">Entendemos tu marca, tu audiencia y los objetivos del sitio. Sin esto, todo lo demás es decoración.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">02</span>
-      <div class="step-title">Diseño &amp; Prototipo</div>
-      <p class="step-desc">Wireframes, sistema visual y prototipo clickeable. Validamos antes de escribir una línea de código.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">03</span>
-      <div class="step-title">Desarrollo</div>
-      <p class="step-desc">Código limpio, semántico y rápido. HTML/CSS/JS a medida o stacks modernos según el proyecto.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">04</span>
-      <div class="step-title">Lanzamiento &amp; Soporte</div>
-      <p class="step-desc">Deploy, configuración de dominio y analytics. Más mantenimiento mensual opcional para mejoras continuas.</p>
-    </div>
+    <div class="step"><span class="step-n">01</span><div class="step-title">Brief &amp; Discovery</div><p class="step-desc">Entendemos tu marca, tu audiencia y los objetivos del sitio. Sin esto, todo lo demás es decoración.</p></div>
+    <div class="step"><span class="step-n">02</span><div class="step-title">Diseño &amp; Prototipo</div><p class="step-desc">Wireframes, sistema visual y prototipo clickeable. Validamos antes de escribir una línea de código.</p></div>
+    <div class="step"><span class="step-n">03</span><div class="step-title">Desarrollo</div><p class="step-desc">Código limpio, semántico y rápido. HTML/CSS/JS a medida o stacks modernos según el proyecto.</p></div>
+    <div class="step"><span class="step-n">04</span><div class="step-title">Lanzamiento &amp; Soporte</div><p class="step-desc">Deploy, configuración de dominio y analytics. Más mantenimiento mensual opcional para mejoras continuas.</p></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ PORTAFOLIO: MOCKUPS ══ -->
+<!-- PRICING -->
+<section id="precios" class="pricing-section">
+  <div class="s-label">Inversión</div>
+  <h2 class="s-title">Precios claros.<br>Sin sorpresas.</h2>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <p class="plan-tagline">Una página, un objetivo. Para negocios que empiezan o quieren validar su presencia online.</p>
+      <div class="plan-price-mxn"><sup>$</sup>5,000</div>
+      <div class="plan-price-usd">~$250 USD · pago único</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>1 página (hero + servicios + contacto)</li>
+        <li>SSL + dominio configurado</li>
+        <li>Adaptado a móvil</li>
+        <li>Formulario de contacto</li>
+        <li>Entrega en 5 días hábiles</li>
+        <li class="dim">SEO avanzado</li>
+        <li class="dim">Blog / galería</li>
+        <li class="dim">E-commerce</li>
+      </ul>
+      <a href="#contacto" class="plan-cta" data-plan="Starter ($5,000 MXN)">Cotizar Starter</a>
+    </div>
+    <div class="plan featured">
+      <span class="plan-badge">Más popular</span>
+      <div class="plan-name">Pro</div>
+      <p class="plan-tagline">Sitio completo para marcas establecidas. Diseño, SEO y analytics incluidos desde el día uno.</p>
+      <div class="plan-price-mxn"><sup>$</sup>11,500</div>
+      <div class="plan-price-usd">~$575 USD · pago único</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>5–7 secciones a medida</li>
+        <li>Formulario de captación</li>
+        <li>SEO básico + Google Analytics</li>
+        <li>SSL + dominio configurado</li>
+        <li>1 ronda de ajustes incluida</li>
+        <li>Adaptado a móvil</li>
+        <li>Entrega en 6–8 días hábiles</li>
+        <li class="dim">Blog / galería</li>
+      </ul>
+      <a href="#contacto" class="plan-cta" data-plan="Pro ($11,500 MXN)">Cotizar Pro</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Business</div>
+      <p class="plan-tagline">Multi-página con contenido dinámico. Para marcas que necesitan escala y posicionamiento serio.</p>
+      <div class="plan-price-mxn"><sup>$</sup>16,500</div>
+      <div class="plan-price-usd">~$825 USD · pago único</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Todo lo del plan Pro</li>
+        <li>Blog o galería de proyectos</li>
+        <li>Páginas internas adicionales</li>
+        <li>SEO avanzado + sitemap</li>
+        <li>2 rondas de ajustes</li>
+        <li>Entrega en 8–12 días hábiles</li>
+        <li class="dim">Tienda / e-commerce</li>
+        <li class="dim">Panel de administración</li>
+      </ul>
+      <a href="#contacto" class="plan-cta" data-plan="Business ($16,500 MXN)">Cotizar Business</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">E-Commerce</div>
+      <p class="plan-tagline">Tienda completa lista para vender. Integración de pagos, panel de productos y diseño editorial.</p>
+      <div class="plan-price-mxn"><sup>$</sup>24,500</div>
+      <div class="plan-price-usd">~$1,225 USD · pago único</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Tienda con hasta 50 productos</li>
+        <li>Stripe + MercadoPago</li>
+        <li>Panel de administración</li>
+        <li>SEO avanzado + Analytics</li>
+        <li>2 rondas de ajustes</li>
+        <li>Diseño editorial a medida</li>
+        <li>Entrega en 12–16 días hábiles</li>
+        <li>Capacitación para gestión</li>
+      </ul>
+      <a href="#contacto" class="plan-cta" data-plan="E-Commerce ($24,500 MXN)">Cotizar E-Commerce</a>
+    </div>
+  </div>
+  <div class="maint-grid">
+    <div class="maint">
+      <div>
+        <div class="maint-label">Mantenimiento mensual</div>
+        <div class="maint-name">Hosting + Soporte</div>
+        <p class="maint-desc">SSL activo, backups semanales, seguridad y soporte por WhatsApp. Tu sitio siempre operando.</p>
+      </div>
+      <div class="maint-price">
+        <div class="maint-price-mxn"><sup>$</sup>499<span style="font-size:1rem;color:var(--gray);font-family:'DM Sans',sans-serif;font-weight:300">/mes</span></div>
+        <div class="maint-price-usd">~$25 USD/mes</div>
+      </div>
+    </div>
+    <div class="maint">
+      <div>
+        <div class="maint-label">Mantenimiento mensual</div>
+        <div class="maint-name">Plan Activo</div>
+        <p class="maint-desc">Todo lo anterior + 2 cambios de contenido/mes, reporte GA mensual, optimización de velocidad y atención prioritaria en 24h.</p>
+      </div>
+      <div class="maint-price">
+        <div class="maint-price-mxn"><sup>$</sup>999<span style="font-size:1rem;color:var(--gray);font-family:'DM Sans',sans-serif;font-weight:300">/mes</span></div>
+        <div class="maint-price-usd">~$50 USD/mes</div>
+      </div>
+    </div>
+  </div>
+  <p class="pricing-note">Precios en MXN · Equivalencias USD aproximadas · IVA no incluido · Proyectos fuera de alcance se cotizan por separado</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTAFOLIO -->
 <section id="portafolio" class="port-section">
   <div class="s-label">Mockups por sector</div>
   <h2 class="s-title">Lo que podemos hacer<br>por tu marca.</h2>
-  <p style="font-size:0.85rem;color:var(--dim);max-width:560px;line-height:1.85;margin-bottom:1rem">
-    Cada sector pide un lenguaje visual distinto. Una galería de arte no se ve igual que un club de pádel. Estos son ejemplos de la dirección que damos a sitios reales — diseñados a medida, sin plantillas.
-  </p>
-
+  <p style="font-size:0.85rem;color:var(--dim);max-width:560px;line-height:1.85;margin-bottom:1rem">Cada sector pide un lenguaje visual distinto. Una galería de arte no se ve igual que un club de pádel. Estos son ejemplos de la dirección que damos a sitios reales — diseñados a medida, sin plantillas.</p>
   <div class="port-grid">
-
-    <!-- 1. Casa Mole — restaurante (wide) -->
-    <div class="mock wide">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">casamole.mx</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-mole">
-          <div class="m-mole-top">
-            <span>Casa Mole · Polanco</span>
-            <span>Menú · Reservas · Historia · ES / EN</span>
-          </div>
-          <div>
-            <div class="m-mole-h"><em>de la milpa</em><span>a la mesa.</span></div>
-            <p class="m-mole-sub">Cocina mexicana de raíz contemporánea. Maíz nixtamalizado en casa, productores locales, fuego vivo. Reservas con tres semanas de anticipación.</p>
-          </div>
-          <div class="m-mole-foot">
-            <span class="m-mole-btn">Reservar mesa</span>
-            <div class="m-mole-rule">
-              <span>Mié — Dom</span>
-              <span>13:00 — 23:00</span>
-              <span>★ ★ ★ ★ ★</span>
-            </div>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Casa Mole — Restaurante</span><span class="mock-tag">Gastronomía · Editorial</span></div>
-      </div>
-    </div>
-
-    <!-- 2. Pivot — SaaS (tall) -->
-    <div class="mock tall">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">pivot.io</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-pivot">
-          <div class="m-pivot-top">
-            <b>pivot</b>
-            <div class="m-pivot-nav"><span>Product</span><span>Pricing</span></div>
-          </div>
-          <div class="m-pivot-mid">
-            <span class="m-pivot-pill">Nuevo · v3.0</span>
-            <h2 class="m-pivot-h">Tu data,<br><span>en tiempo real.</span></h2>
-            <p class="m-pivot-sub">Dashboards conectados a tu stack. Sin SQL, sin ingenieros. Listo en 5 minutos.</p>
-          </div>
-          <div class="m-pivot-foot">
-            <span class="m-pivot-btn">Empezar gratis</span>
-            <span class="m-pivot-btn2">Ver demo</span>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Pivot — Analytics SaaS</span><span class="mock-tag">Tech · Producto</span></div>
-      </div>
-    </div>
-
-    <!-- 3. Vértice — inmobiliaria (med) -->
-    <div class="mock med">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">vertice-propiedades.com</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-vertice">
-          <div class="m-vertice-top">
-            <b>VÉRTICE</b>
-            <span>Propiedades · MX</span>
-          </div>
-          <h2 class="m-vertice-h">Casas con <em>historia</em><br>en la Roma.</h2>
-          <div class="m-vertice-grid">
-            <div class="m-vertice-img"></div>
-            <div class="m-vertice-img2"></div>
-          </div>
-          <div class="m-vertice-foot">
-            <span><b>14 propiedades</b> · actualizado hoy</span>
-            <span>Agendar visita →</span>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Vértice Propiedades</span><span class="mock-tag">Real Estate · Premium</span></div>
-      </div>
-    </div>
-
-    <!-- 4. Sur Coffee (med) -->
-    <div class="mock med">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">sur.coffee</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-sur">
-          <div class="m-sur-top">
-            <b>SUR</b>
-            <span>Coffee Roasters · Oax</span>
-          </div>
-          <h2 class="m-sur-h">Café <em>de origen</em><br>tostado<br>al día.</h2>
-          <div class="m-sur-foot">
-            <span class="m-sur-chip fill">Comprar grano</span>
-            <span class="m-sur-chip">Suscripción</span>
-            <span class="m-sur-chip">Sucursales</span>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Sur Coffee Roasters</span><span class="mock-tag">E-Commerce · Specialty</span></div>
-      </div>
-    </div>
-
-    <!-- 5. Lumen — galería arte (med) -->
-    <div class="mock med">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">lumen-gallery.art</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-lumen">
-          <div class="m-lumen-top">
-            <b>LUMEN</b>
-            <span>Gallery · CDMX</span>
-            <span>Exhibitions / Artists / Visit</span>
-          </div>
-          <div class="m-lumen-grid">
-            <div class="m-lumen-cell"><span class="m-lumen-cap">Solana, 2024</span></div>
-            <div class="m-lumen-cell"><span class="m-lumen-cap">Vértice, 2025</span></div>
-            <div class="m-lumen-cell"><span class="m-lumen-cap">Hueco</span></div>
-            <div class="m-lumen-cell"><span class="m-lumen-cap">Cielo bajo</span></div>
-            <div class="m-lumen-cell"><span class="m-lumen-cap">Cobalto</span></div>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Lumen Gallery</span><span class="mock-tag">Arte · Cultural</span></div>
-      </div>
-    </div>
-
-    <!-- 6. Tlali — skincare (med) -->
-    <div class="mock med">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">tlali.shop</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-tlali">
-          <div class="m-tlali-top">
-            <b>tlali</b>
-            <span>Skincare botánico</span>
-          </div>
-          <div class="m-tlali-mid">
-            <div class="m-tlali-bottle">serum</div>
-            <div class="m-tlali-copy">
-              <h3>Sérum nocturno con cempasúchil.</h3>
-              <p>Aceite frío, prensado en lotes pequeños. Reduce manchas, ilumina al despertar.</p>
-            </div>
-          </div>
-          <div class="m-tlali-foot">
-            <span class="m-tlali-price">$ 740 MXN</span>
-            <span class="m-tlali-btn">Agregar</span>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Tlali Skincare</span><span class="mock-tag">Beauty · DTC</span></div>
-      </div>
-    </div>
-
-    <!-- 7. Vertex Padel (med) -->
-    <div class="mock med">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">vertexpadel.club</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-vertex">
-          <div class="m-vertex-top">
-            <b>VERTEX</b>
-            <span>Padel Club · Lomas</span>
-          </div>
-          <h2 class="m-vertex-h">Reserva.<br>Juega.<br><span>Gana.</span></h2>
-          <div class="m-vertex-foot">
-            <span class="m-vertex-stat"><b>06</b> canchas</span>
-            <span class="m-vertex-stat"><b>24/7</b> reservas</span>
-            <span class="m-vertex-stat"><b>+ 1.2K</b> socios</span>
-          </div>
-          <span class="m-vertex-btn">Reservar hora →</span>
-        </div>
-        <div class="mock-label"><span class="mock-name">Vertex Padel Club</span><span class="mock-tag">Deporte · Booking</span></div>
-      </div>
-    </div>
-
-    <!-- 8. Aranxa Estudio — fotografía (wide) -->
-    <div class="mock wide">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">aranxa.studio</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-aranxa">
-          <div class="m-aranxa-top">
-            <b>Aranxa</b>
-            <span>Estudio</span>
-            <span>Editorial / Retrato / Contacto</span>
-          </div>
-          <div class="m-aranxa-grid">
-            <div class="m-aranxa-img"></div>
-            <div class="m-aranxa-side">
-              <div>
-                <h3>"La luz no se busca, se espera."<span>Serie · Hojas secas, 2025</span></h3>
-                <p>Una conversación entre la modelo y el final de la tarde. Filmado en 6×7, sin retoque digital. Edición disponible.</p>
-              </div>
-              <small>← Anterior · 04 / 12 · Siguiente →</small>
-            </div>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Aranxa Estudio</span><span class="mock-tag">Fotografía · Portafolio</span></div>
-      </div>
-    </div>
-
-    <!-- 9. Mantra (sml) -->
-    <div class="mock sml">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">mantra.mx</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-mantra">
-          <div class="m-mantra-top">
-            <b>mantra</b>
-            <span>Yoga · Méx</span>
-          </div>
-          <h2 class="m-mantra-h">Respira.<em>Clases · Maestros · Retiros</em></h2>
-          <div class="m-mantra-foot">
-            <span>Prueba 7 días</span>
-            <b>$ 290 mxn</b>
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Mantra Yoga</span><span class="mock-tag">Wellness · Membresía</span></div>
-      </div>
-    </div>
-
-    <!-- 10. Code/dev (sml) -->
-    <div class="mock sml">
-      <div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">~ /noj-studio/site</span><span class="bc-pad"></span></div>
-      <div class="mock-body">
-        <div class="m-code">
-          <div class="m-code-top">
-            <span class="act">index.html</span>
-            <span>main.css</span>
-            <span>app.js</span>
-            <b style="margin-left:auto">⏵ build</b>
-          </div>
-          <div class="m-code-body">
-<span class="com">/* No'j Studio · &amp;copy; 2025 */</span><br>
-<span class="kw">const</span> <span class="var">brand</span> = {<br>
-&nbsp;&nbsp;name: <span class="str">'No\'j'</span>,<br>
-&nbsp;&nbsp;tone: <span class="str">'editorial'</span>,<br>
-&nbsp;&nbsp;color: <span class="str">'#84b4c9'</span>,<br>
-&nbsp;&nbsp;speed: <span class="num">98</span><br>
-};<br><br>
-<span class="kw">export</span> <span class="kw">function</span> <span class="fn">launch</span>() {<br>
-&nbsp;&nbsp;<span class="kw">return</span> <span class="var">brand</span>;<br>
-}
-          </div>
-        </div>
-        <div class="mock-label"><span class="mock-name">Código a medida</span><span class="mock-tag">HTML · CSS · JS</span></div>
-      </div>
-    </div>
-
+    <div class="mock wide"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">casamole.mx</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-mole"><div class="m-mole-top"><span>Casa Mole · Polanco</span><span>Menú · Reservas · Historia · ES / EN</span></div><div><div class="m-mole-h"><em>de la milpa</em><span>a la mesa.</span></div><p class="m-mole-sub">Cocina mexicana de raíz contemporánea. Maíz nixtamalizado en casa, productores locales, fuego vivo.</p></div><div class="m-mole-foot"><span class="m-mole-btn">Reservar mesa</span><div class="m-mole-rule"><span>Mié — Dom</span><span>13:00 — 23:00</span><span>★ ★ ★ ★ ★</span></div></div></div><div class="mock-label"><span class="mock-name">Casa Mole — Restaurante</span><span class="mock-tag">Gastronomía · Editorial</span></div></div></div>
+    <div class="mock tall"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">pivot.io</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-pivot"><div class="m-pivot-top"><b>pivot</b><div class="m-pivot-nav"><span>Product</span><span>Pricing</span></div></div><div class="m-pivot-mid"><span class="m-pivot-pill">Nuevo · v3.0</span><h2 class="m-pivot-h">Tu data,<br><span>en tiempo real.</span></h2><p class="m-pivot-sub">Dashboards conectados a tu stack. Sin SQL, sin ingenieros.</p></div><div class="m-pivot-foot"><span class="m-pivot-btn">Empezar gratis</span><span class="m-pivot-btn2">Ver demo</span></div></div><div class="mock-label"><span class="mock-name">Pivot — Analytics SaaS</span><span class="mock-tag">Tech · Producto</span></div></div></div>
+    <div class="mock med"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">vertice-propiedades.com</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-vertice"><div class="m-vertice-top"><b>VÉRTICE</b><span>Propiedades · MX</span></div><h2 class="m-vertice-h">Casas con <em>historia</em><br>en la Roma.</h2><div class="m-vertice-grid"><div class="m-vertice-img"></div><div class="m-vertice-img2"></div></div><div class="m-vertice-foot"><span><b>14 propiedades</b> · actualizado hoy</span><span>Agendar visita →</span></div></div><div class="mock-label"><span class="mock-name">Vértice Propiedades</span><span class="mock-tag">Real Estate · Premium</span></div></div></div>
+    <div class="mock med"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">sur.coffee</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-sur"><div class="m-sur-top"><b>SUR</b><span>Coffee Roasters · Oax</span></div><h2 class="m-sur-h">Café <em>de origen</em><br>tostado<br>al día.</h2><div class="m-sur-foot"><span class="m-sur-chip fill">Comprar grano</span><span class="m-sur-chip">Suscripción</span><span class="m-sur-chip">Sucursales</span></div></div><div class="mock-label"><span class="mock-name">Sur Coffee Roasters</span><span class="mock-tag">E-Commerce · Specialty</span></div></div></div>
+    <div class="mock med"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">lumen-gallery.art</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-lumen"><div class="m-lumen-top"><b>LUMEN</b><span>Gallery · CDMX</span><span>Exhibitions / Artists / Visit</span></div><div class="m-lumen-grid"><div class="m-lumen-cell"><span class="m-lumen-cap">Solana, 2024</span></div><div class="m-lumen-cell"><span class="m-lumen-cap">Vértice, 2025</span></div><div class="m-lumen-cell"><span class="m-lumen-cap">Hueco</span></div><div class="m-lumen-cell"><span class="m-lumen-cap">Cielo bajo</span></div><div class="m-lumen-cell"><span class="m-lumen-cap">Cobalto</span></div></div></div><div class="mock-label"><span class="mock-name">Lumen Gallery</span><span class="mock-tag">Arte · Cultural</span></div></div></div>
+    <div class="mock med"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">tlali.shop</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-tlali"><div class="m-tlali-top"><b>tlali</b><span>Skincare botánico</span></div><div class="m-tlali-mid"><div class="m-tlali-bottle">serum</div><div class="m-tlali-copy"><h3>Sérum nocturno con cempasúchil.</h3><p>Aceite frío, prensado en lotes pequeños. Reduce manchas, ilumina al despertar.</p></div></div><div class="m-tlali-foot"><span class="m-tlali-price">$ 740 MXN</span><span class="m-tlali-btn">Agregar</span></div></div><div class="mock-label"><span class="mock-name">Tlali Skincare</span><span class="mock-tag">Beauty · DTC</span></div></div></div>
+    <div class="mock med"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">vertexpadel.club</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-vertex"><div class="m-vertex-top"><b>VERTEX</b><span>Padel Club · Lomas</span></div><h2 class="m-vertex-h">Reserva.<br>Juega.<br><span>Gana.</span></h2><div class="m-vertex-foot"><span class="m-vertex-stat"><b>06</b> canchas</span><span class="m-vertex-stat"><b>24/7</b> reservas</span><span class="m-vertex-stat"><b>+1.2K</b> socios</span></div><span class="m-vertex-btn">Reservar hora →</span></div><div class="mock-label"><span class="mock-name">Vertex Padel Club</span><span class="mock-tag">Deporte · Booking</span></div></div></div>
+    <div class="mock wide"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">aranxa.studio</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-aranxa"><div class="m-aranxa-top"><b>Aranxa</b><span>Estudio</span><span>Editorial / Retrato / Contacto</span></div><div class="m-aranxa-grid"><div class="m-aranxa-img"></div><div class="m-aranxa-side"><div><h3>"La luz no se busca, se espera."<span>Serie · Hojas secas, 2025</span></h3><p>Una conversación entre la modelo y el final de la tarde. Filmado en 6×7, sin retoque digital.</p></div><small>← Anterior · 04 / 12 · Siguiente →</small></div></div></div><div class="mock-label"><span class="mock-name">Aranxa Estudio</span><span class="mock-tag">Fotografía · Portafolio</span></div></div></div>
+    <div class="mock sml"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">mantra.mx</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-mantra"><div class="m-mantra-top"><b>mantra</b><span>Yoga · Méx</span></div><h2 class="m-mantra-h">Respira.<em>Clases · Maestros · Retiros</em></h2><div class="m-mantra-foot"><span>Prueba 7 días</span><b>$ 290 mxn</b></div></div><div class="mock-label"><span class="mock-name">Mantra Yoga</span><span class="mock-tag">Wellness · Membresía</span></div></div></div>
+    <div class="mock sml"><div class="bc"><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-dot"></span><span class="bc-url">~ /noj-studio/site</span><span class="bc-pad"></span></div><div class="mock-body"><div class="m-code"><div class="m-code-top"><span class="act">index.html</span><span>main.css</span><span>app.js</span><b style="margin-left:auto">⏵ build</b></div><div class="m-code-body"><span class="com">/* No'j Studio · &copy; 2025 */</span><br><span class="kw">const</span> <span class="var">brand</span> = {<br>&nbsp;&nbsp;name: <span class="str">'No\'j'</span>,<br>&nbsp;&nbsp;tone: <span class="str">'editorial'</span>,<br>&nbsp;&nbsp;color: <span class="str">'#84b4c9'</span>,<br>&nbsp;&nbsp;speed: <span class="num">98</span><br>};<br><br><span class="kw">export</span> <span class="kw">function</span> <span class="fn">launch</span>() {<br>&nbsp;&nbsp;<span class="kw">return</span> <span class="var">brand</span>;<br>}</div></div><div class="mock-label"><span class="mock-name">Código a medida</span><span class="mock-tag">HTML · CSS · JS</span></div></div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ CONTACT ══ -->
+<!-- CONTACT -->
 <section id="contacto" class="contact-section">
-  <div class="s-label">Trabajemos juntos</div>
-  <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem)">¿Listo para<br>un sitio que<br>se vea distinto?</h2>
-  <p class="contact-sub">Cuéntanos de tu marca, tu sector y lo que quieres lograr. Te mandamos una propuesta concreta en menos de 48 horas.</p>
-  <div class="contact-btns">
-    <a href="https://wa.me/525574582059?text=Hola%2C%20me%20interesa%20cotizar%20un%20sitio%20web" class="btn btn-dark">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      WhatsApp
-    </a>
-    <a href="/cdn-cgi/l/email-protection#5b353431282f2e3f323436231b3c363a32377538343664282e39313e382f6618342f32213a38327e18687e1968357e696b28322f32347e696b2c3e39" class="btn btn-border-dark">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Email
-    </a>
-  </div>
-  <div class="social-links">
-    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
-    <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="s-label">Trabajemos juntos</div>
+      <h2 class="s-title">¿Listo para<br>un sitio que<br>se vea distinto?</h2>
+      <p class="contact-sub">Cuéntanos de tu marca, tu sector y lo que quieres lograr. Te mandamos una propuesta concreta en menos de 48 horas.</p>
+      <div class="contact-channels">
+        <a href="https://wa.me/525574582059" target="_blank" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="channel-info"><div class="channel-label">WhatsApp</div><div class="channel-val">+52 55 7458 2059</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="mailto:nojstudiomx@gmail.com" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="channel-info"><div class="channel-label">Email</div><div class="channel-val">nojstudiomx@gmail.com</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://instagram.com/nojstudiomx" target="_blank" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <div class="channel-info"><div class="channel-label">Instagram</div><div class="channel-val">@nojstudiomx</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-title">Cuéntanos de tu proyecto</div>
+      <p class="form-sub">Llenamos tu brief en 2 minutos. Te escribimos en menos de 48h.</p>
+      <div class="form-2col">
+        <div class="form-row"><label>Nombre</label><input type="text" id="f-nombre" placeholder="Tu nombre"></div>
+        <div class="form-row"><label>Empresa / Marca</label><input type="text" id="f-empresa" placeholder="Nombre de tu negocio"></div>
+      </div>
+      <div class="form-2col">
+        <div class="form-row"><label>WhatsApp</label><input type="tel" id="f-wa" placeholder="+52 55 0000 0000"></div>
+        <div class="form-row"><label>Email</label><input type="email" id="f-email" placeholder="hola@tumarca.com"></div>
+      </div>
+      <div class="form-row">
+        <label>Paquete de interés</label>
+        <select id="f-paquete">
+          <option value="">Selecciona un paquete</option>
+          <option value="Starter ($5,000 MXN)">Starter — $5,000 MXN · Landing 1 página</option>
+          <option value="Pro ($11,500 MXN)">Pro — $11,500 MXN · Sitio completo 5–7 secciones</option>
+          <option value="Business ($16,500 MXN)">Business — $16,500 MXN · Multi-página + blog</option>
+          <option value="E-Commerce ($24,500 MXN)">E-Commerce — $24,500 MXN · Tienda completa</option>
+          <option value="Mantenimiento mensual">Solo mantenimiento mensual</option>
+          <option value="No lo sé aún">No lo sé aún, necesito orientación</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Sector / Giro</label>
+        <select id="f-sector">
+          <option value="">¿A qué se dedica tu negocio?</option>
+          <option>Restaurante / Gastronomía</option>
+          <option>Moda / Apparel</option>
+          <option>Belleza / Skincare</option>
+          <option>Fotografía / Arte / Estudio creativo</option>
+          <option>Inmobiliaria / Real Estate</option>
+          <option>Deporte / Wellness</option>
+          <option>Tecnología / SaaS</option>
+          <option>Retail / E-commerce</option>
+          <option>Servicios profesionales</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-row"><label>¿Qué necesitas lograr con tu sitio?</label><textarea id="f-desc" placeholder="Cuéntanos brevemente — más ventas, más visibilidad, reemplazar un sitio antiguo…"></textarea></div>
+      <button class="form-submit" id="btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Enviar por WhatsApp
+      </button>
+      <p class="form-note">Te abrirá WhatsApp con tu solicitud ya armada. Sin spam, sin CRM de terceros.</p>
+    </div>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <a href="index.html" class="footer-brand">
     <svg width="24" height="24" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
     <span class="footer-wordmark">NO'J STUDIO</span>
   </a>
   <nav class="footer-nav">
-    <a href="photography.html">Photography</a>
-    <a href="films.html">Films</a>
-    <a href="outdoor.html">Outdoor</a>
-    <a href="product.html">Product</a>
-    <a href="eventos.html">Eventos</a>
-    <a href="sports.html">Sports</a>
-    <a href="marketing.html">Marketing</a>
-    <a href="btl.html">BTL</a>
+    <a href="photography.html">Photography</a><a href="films.html">Films</a><a href="outdoor.html">Outdoor</a><a href="product.html">Product</a><a href="eventos.html">Eventos</a><a href="sports.html">Sports</a><a href="marketing.html">Marketing</a><a href="btl.html">BTL</a>
   </nav>
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+document.querySelectorAll('.plan-cta').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var plan=this.getAttribute('data-plan');
+    var sel=document.getElementById('f-paquete');
+    if(sel&&plan){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===plan){sel.selectedIndex=i;break;}}}
+    document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+    setTimeout(function(){document.getElementById('f-nombre').focus();},600);
+  });
+});
+
+document.getElementById('btn-wa').addEventListener('click',function(){
+  var nombre=document.getElementById('f-nombre').value.trim();
+  var empresa=document.getElementById('f-empresa').value.trim();
+  var wa=document.getElementById('f-wa').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var paquete=document.getElementById('f-paquete').value;
+  var sector=document.getElementById('f-sector').value;
+  var desc=document.getElementById('f-desc').value.trim();
+  var msg='Hola, me interesa cotizar un sitio web con No\'j Studio.\n\n';
+  if(nombre)msg+='👤 Nombre: '+nombre+'\n';
+  if(empresa)msg+='🏢 Empresa: '+empresa+'\n';
+  if(wa)msg+='📱 WhatsApp: '+wa+'\n';
+  if(email)msg+='✉️ Email: '+email+'\n';
+  if(paquete)msg+='📦 Paquete: '+paquete+'\n';
+  if(sector)msg+='🏷 Sector: '+sector+'\n';
+  if(desc)msg+='\n💬 '+desc;
+  window.open('https://wa.me/525574582059?text='+encodeURIComponent(msg),'_blank');
+});
+</script>
+</body>
 </html>

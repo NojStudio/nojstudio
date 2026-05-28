@@ -3,14 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>No'j Marketing — Marketing con IA | No'j Studio</title>
-<meta name="description" content="Marketing digital con inteligencia artificial, automatización y estrategia de marca en Ciudad de México.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<title>No'j Marketing &amp; Branding — Identidad, IA y Estrategia Digital | No'j Studio</title>
+<meta name="description" content="Creamos tu identidad de marca, estrategia de marketing con IA y sitio web. Todo lo que tu negocio necesita para crecer, desde CDMX.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,500;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);--accent:#6fbdaa;--accent2:#c8b89a;--v:#6fbdaa;--line:rgba(255,255,255,0.07)}
+:root{
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#777;--dim:rgba(255,255,255,0.45);
+  --accent:#6fbdaa;
+  --v:#6fbdaa; /* marketing: teal */
+  --line:rgba(255,255,255,0.07)
+}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* NAV */
 body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(10,10,10,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
 .nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.18em;color:var(--white)}
@@ -18,235 +25,763 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-item
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
 .nav-links a{color:var(--gray);text-decoration:none;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
 .nav-links a:hover{color:var(--white)}
-.nav-back{display:flex;align-items:center;gap:0.4rem}
 .nav-cta{background:var(--v)!important;color:var(--black)!important;padding:0.5rem 1.3rem;font-weight:500!important;letter-spacing:0.1em!important}
 #header-spacer{height:62px}
+
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s}
-.btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:var(--accent);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}.btn-outline:hover{border-color:var(--v);color:var(--v)}
+.btn-v{background:var(--v);color:var(--black)}.btn-v:hover{background:#8fd4c0;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.15)}.btn-ghost:hover{border-color:var(--v);color:var(--v)}
+.btn-dark{background:var(--black);color:var(--white)}.btn-dark:hover{background:#1a1a1a}
+.btn-border-dark{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,0.2)}.btn-border-dark:hover{background:var(--black);color:var(--white)}
+
+/* LAYOUT */
 section{padding:7rem 3rem}
 .s-label{display:flex;align-items:center;gap:1rem;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--v);margin-bottom:0.9rem}
 .s-label::before{content:'';width:2rem;height:1px;background:var(--v)}
 .s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5rem);letter-spacing:0.03em;line-height:0.95;margin-bottom:3rem}
 .divider{width:100%;height:1px;background:var(--line)}
+
+/* HERO */
 .hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:5rem 3rem;position:relative;overflow:hidden}
-.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 72% 28%,rgba(111,189,170,0.09) 0%,transparent 60%),radial-gradient(ellipse 35% 50% at 15% 80%,rgba(111,189,170,0.04) 0%,transparent 55%)}
-.hero-watermark{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:50vw;opacity:0.025;pointer-events:none}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 75% 25%,rgba(111,189,170,0.10) 0%,transparent 60%),radial-gradient(ellipse 40% 55% at 10% 85%,rgba(111,189,170,0.05) 0%,transparent 55%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
 .hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2rem;position:relative}
 .hero-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:1.4rem;animation:fadeUp 0.8s ease 0.2s both}
 .hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--v)}
 .hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,10vw,9.5rem);line-height:0.88;letter-spacing:0.015em;max-width:78vw;animation:fadeUp 0.8s ease 0.35s both}
 .hero-h1 em{font-style:normal;color:var(--v)}
-.hero-foot{display:flex;align-items:flex-end;justify-content:space-between;position:relative;animation:fadeUp 0.8s ease 0.5s both}
-.hero-tagline{font-size:0.95rem;color:var(--dim);font-style:italic;line-height:1.65;max-width:300px}
+.hero-foot{display:flex;align-items:flex-end;justify-content:space-between;position:relative;animation:fadeUp 0.8s ease 0.5s both;gap:2rem}
+.hero-tagline{font-size:0.95rem;color:var(--dim);font-style:italic;line-height:1.65;max-width:360px}
 .hero-tagline small{display:block;font-size:0.7rem;font-style:normal;color:rgba(255,255,255,0.2);letter-spacing:0.06em;margin-top:0.5rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
 .hero-scroll{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase}
 .scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:pulse 2s ease-in-out infinite}
-.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);gap:1px;background:var(--line)}
-.spec{background:var(--black);padding:2.8rem 2.2rem;position:relative;overflow:hidden;transition:background 0.3s}.spec:hover{background:#111}
-.spec::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--v);transition:width 0.4s}.spec:hover::after{width:100%}
-.spec-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(255,255,255,0.04);line-height:1;margin-bottom:1rem}
-.spec-icon{font-size:1.4rem;margin-bottom:1rem;display:block}
-.spec-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;margin-bottom:0.7rem}
-.spec-desc{font-size:0.8rem;color:var(--gray);line-height:1.8}
-.spec-tag{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--v);border:1px solid rgba(111,189,170,0.25);padding:0.28rem 0.7rem}
-.proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
+
+/* TRUST BAR */
+.trust-bar{background:#0d0d0d;padding:2rem 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:0.8rem}
+.trust-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--v);line-height:1}
+.trust-label{font-size:0.72rem;color:var(--gray);line-height:1.4;max-width:120px}
+.trust-sep{width:1px;height:2rem;background:var(--line)}
+
+/* SERVICES — 3 pilares */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem}
+.pillar{background:var(--black);padding:3rem 2.4rem;position:relative;overflow:hidden;cursor:default}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background 0.3s}
+.pillar:hover::before{background:var(--v)}
+.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(255,255,255,0.03);line-height:1;position:absolute;top:1.5rem;right:1.5rem;letter-spacing:-0.02em}
+.pillar-icon{font-size:2rem;margin-bottom:1.2rem;display:block}
+.pillar-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;margin-bottom:0.8rem;color:var(--white)}
+.pillar-desc{font-size:0.82rem;color:var(--gray);line-height:1.85;margin-bottom:1.8rem}
+.pillar-items{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.pillar-items li{font-size:0.75rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem}
+.pillar-items li::before{content:'';width:1.2rem;height:1px;background:var(--v);flex-shrink:0}
+.pillar-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.8rem;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--v);text-decoration:none;transition:gap 0.2s}
+.pillar-link:hover{gap:0.9rem}
+
+/* BRANDING VISUAL */
+.brand-section{background:#070707;padding:7rem 3rem}
+.brand-showcase{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
+.brand-card{background:#0a0a0a;padding:3rem;position:relative;overflow:hidden;transition:background 0.3s}.brand-card:hover{background:#0f0f0f}
+.brand-card-wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.brand-card-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:0.8rem}
+.brand-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;margin-bottom:0.8rem}
+.brand-card-desc{font-size:0.8rem;color:var(--gray);line-height:1.8}
+/* Kit visual simulado */
+.kit-demo{display:grid;gap:0.8rem}
+.kit-row{display:flex;gap:0.6rem;align-items:center}
+.kit-swatch{width:28px;height:28px;border-radius:2px;flex-shrink:0}
+.kit-swatch-label{font-size:0.6rem;color:rgba(255,255,255,0.35);letter-spacing:0.1em}
+.kit-type-sample{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.06em;color:var(--white);line-height:1}
+.kit-type-sub{font-size:0.65rem;color:rgba(255,255,255,0.25);letter-spacing:0.18em;text-transform:uppercase;margin-top:0.2rem}
+.kit-logo-area{border:1px solid var(--line);padding:1.4rem;display:flex;align-items:center;justify-content:center;gap:1rem}
+.kit-logo-mark{width:36px;height:36px}
+.kit-logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.2em;color:var(--white)}
+.kit-logo-sub{font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v)}
+/* Social kit preview */
+.social-kit{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem}
+.sk-post{aspect-ratio:1;background:#111;border:1px solid var(--line);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0.6rem}
+.sk-post:nth-child(1){background:linear-gradient(135deg,#0d1f1a,#1a3d32)}
+.sk-post:nth-child(2){background:linear-gradient(160deg,#1a1a1a,#2a2a2a)}
+.sk-post:nth-child(3){background:linear-gradient(145deg,#0f1d1a,#162e26)}
+.sk-post:nth-child(4){background:linear-gradient(135deg,#1a1410,#2a2018);grid-column:span 2}
+.sk-post:nth-child(5){background:linear-gradient(160deg,#0a0a0a,#1a1a2a)}
+.sk-caption{font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+.sk-accent{position:absolute;top:0.6rem;left:0.6rem;width:14px;height:2px;background:var(--v)}
+
+/* PROCESS */
+.proceso-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
 .step{background:var(--black);padding:2.5rem 2rem;position:relative;transition:background 0.3s}.step:hover{background:#0f0f0f}
 .step-n{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,0.04);line-height:1;position:absolute;top:1.2rem;right:1.5rem}
-.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;color:var(--v);margin-bottom:0.7rem;margin-top:0.5rem}
-.step-desc{font-size:0.78rem;color:var(--gray);line-height:1.8}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:3px;margin-top:3rem}
-.port-item{background:#181818;position:relative;overflow:hidden;cursor:pointer}.port-item:first-child{grid-row:span 2}
-.port-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.1);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase}
-.port-ph-icon{font-size:1.8rem;opacity:0.25}
-.port-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.72);display:flex;align-items:flex-end;padding:1.4rem;opacity:0;transition:opacity 0.3s}.port-item:hover .port-overlay{opacity:1}
-.port-tag{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--v);border:1px solid rgba(111,189,170,0.3);padding:0.28rem 0.7rem}
-.contact-section{background:var(--white);color:var(--black);text-align:center;padding:8rem 3rem}
-.contact-section .s-label{color:rgba(0,0,0,0.4);justify-content:center}.contact-section .s-label::before{background:rgba(0,0,0,0.25)}.contact-section .s-title{color:var(--black)}
-.contact-sub{font-size:0.95rem;color:#666;max-width:380px;margin:0 auto 3rem;line-height:1.75}
-.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-dark{background:var(--black);color:var(--white);border:none}.btn-dark:hover{background:#222}
-.btn-border-dark{background:transparent;color:var(--black);border:1px solid rgba(0,0,0,0.25)}.btn-border-dark:hover{background:var(--black);color:var(--white)}
-.social-links{display:flex;gap:2.5rem;justify-content:center;margin-top:3rem}
-.social-links a{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:#999;text-decoration:none;transition:color 0.2s}.social-links a:hover{color:var(--black)}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.05em;color:var(--v);margin-bottom:0.7rem;margin-top:0.5rem}
+.step-desc{font-size:0.75rem;color:var(--gray);line-height:1.8}
+
+/* PRICING */
+.pricing-section{background:#070707;padding:7rem 3rem}
+.pricing-tabs{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-bottom:none;width:fit-content}
+.ptab{padding:0.8rem 2rem;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;background:var(--black);color:var(--gray);transition:all 0.2s;border:none;font-family:'DM Sans',sans-serif}
+.ptab.active{background:#0d0d0d;color:var(--white);border-bottom:2px solid var(--v)}
+.ptab:hover{color:var(--white)}
+.pricing-panel{display:none}.pricing-panel.active{display:block}
+
+/* Branding plans */
+.bplan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.bplan{background:#0a0a0a;padding:2.6rem 2rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background 0.3s}.bplan:hover{background:#0f0f0f}
+.bplan::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--v);transition:height 0.5s}.bplan:hover::after{height:100%}
+.bplan.featured{background:#0d1a15;border-top:2px solid var(--v)}.bplan.featured::after{display:none}
+.plan-badge{display:inline-block;font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--black);background:var(--v);padding:0.28rem 0.7rem;margin-bottom:1.4rem;align-self:flex-start}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.4rem}
+.plan-tagline{font-size:0.75rem;color:var(--gray);margin-bottom:2rem;line-height:1.5}
+.plan-price-mxn{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:0.02em;line-height:1;color:var(--white)}
+.plan-price-mxn sup{font-size:1.1rem;vertical-align:super;color:var(--v);font-family:'DM Sans',sans-serif;font-weight:400}
+.plan-price-usd{font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-top:0.3rem;margin-bottom:2rem}
+.plan-divider{width:100%;height:1px;background:var(--line);margin:1.2rem 0}
+.plan-features{list-style:none;flex:1}
+.plan-features li{font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:0.6rem}
+.plan-features li::before{content:'◆';font-size:0.45rem;color:var(--v);flex-shrink:0;margin-top:0.38rem}
+.plan-features li.dim::before{content:'○';color:rgba(255,255,255,0.15)}
+.plan-features li.dim{color:rgba(255,255,255,0.2)}
+.plan-cta{margin-top:2rem;display:block;padding:0.85rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-align:center;text-decoration:none;border:1px solid rgba(255,255,255,0.12);color:var(--white);transition:all 0.25s;cursor:pointer;background:transparent}
+.plan-cta:hover{border-color:var(--v);color:var(--v)}
+.bplan.featured .plan-cta{background:var(--v);color:var(--black);border-color:var(--v)}
+.bplan.featured .plan-cta:hover{background:#8fd4c0}
+
+/* Marketing plans */
+.mplan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.mplan{background:#0a0a0a;padding:2.6rem 2rem;display:flex;flex-direction:column;transition:background 0.3s;position:relative;overflow:hidden}.mplan:hover{background:#0f0f0f}
+.mplan::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--v);transition:height 0.5s}.mplan:hover::after{height:100%}
+.mplan.featured{background:#0d1a15;border-top:2px solid var(--v)}.mplan.featured::after{display:none}
+
+/* Add-ons */
+.addons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-top:none;margin-top:1px}
+.addon{background:#0a0a0a;padding:1.6rem;transition:background 0.3s}.addon:hover{background:#0f0f0f}
+.addon-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;margin-bottom:0.4rem}
+.addon-desc{font-size:0.72rem;color:var(--gray);line-height:1.6;margin-bottom:0.8rem}
+.addon-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--v)}
+.addon-price sup{font-size:0.7rem;font-family:'DM Sans',sans-serif;font-weight:400;vertical-align:super}
+.addon-usd{font-size:0.6rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;margin-top:0.1rem}
+.pricing-note{font-size:0.72rem;color:rgba(255,255,255,0.2);margin-top:2rem;text-align:center;letter-spacing:0.06em}
+
+/* CONTACT */
+.contact-section{background:var(--white);color:var(--black);padding:8rem 3rem}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:start}
+.contact-left .s-label{color:rgba(0,0,0,0.35)}.contact-left .s-label::before{background:rgba(0,0,0,0.2)}
+.contact-left .s-title{color:var(--black);font-size:clamp(2.2rem,4.5vw,3.8rem);margin-bottom:1.5rem}
+.contact-sub{font-size:0.9rem;color:#666;line-height:1.8;margin-bottom:3rem;max-width:360px}
+.contact-channels{display:flex;flex-direction:column;gap:0}
+.channel{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 0;border-bottom:1px solid rgba(0,0,0,0.08);text-decoration:none;transition:all 0.2s;color:var(--black)}
+.channel:hover{padding-left:0.5rem}
+.channel-icon{width:38px;height:38px;border:1px solid rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.channel:hover .channel-icon{background:var(--black);color:var(--white);border-color:var(--black)}
+.channel-info{flex:1}
+.channel-label{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:#aaa;margin-bottom:0.15rem}
+.channel-val{font-size:0.88rem;font-weight:500}
+.channel-arrow{font-size:0.8rem;color:#aaa;transition:all 0.2s}.channel:hover .channel-arrow{color:var(--black);transform:translateX(4px)}
+.contact-form{background:var(--black);padding:2.8rem;position:relative;overflow:hidden}
+.contact-form::before{content:'';position:absolute;right:-30%;top:-30%;width:80%;height:80%;background:radial-gradient(circle,rgba(111,189,170,0.07),transparent 60%);pointer-events:none}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.4rem}
+.form-sub{font-size:0.73rem;color:var(--gray);margin-bottom:2rem;line-height:1.6}
+.form-row{margin-bottom:1.3rem}
+.form-row label{display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:300;padding:0.85rem 1rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;border-radius:0}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--v)}
+.form-row select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-row select option{background:#1a1a1a;color:var(--white)}
+.form-row textarea{resize:none;height:90px;line-height:1.6}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{width:100%;padding:1rem 1.5rem;background:var(--v);color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:0.7rem;margin-top:0.5rem}
+.form-submit:hover{background:#8fd4c0;transform:translateY(-2px)}
+.form-note{font-size:0.65rem;color:rgba(255,255,255,0.2);text-align:center;margin-top:1rem;line-height:1.6}
+
+/* FOOTER */
 footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line)}
 .footer-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
 .footer-wordmark{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--gray)}
 .footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.15);letter-spacing:0.08em}
 .footer-nav{display:flex;gap:1.5rem}
-.footer-body>nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}.footer-body>nav a:hover{color:var(--v)}
+.footer-nav a{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:var(--v)}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.port-item:first-child{grid-row:span 1}.footer-nav{display:none}}
-.footer-nav{position:static!important;background:none!important;backdrop-filter:none!important;border:none!important;padding:0!important;}
+
+@media(max-width:1100px){.pillars{grid-template-columns:1fr}.brand-showcase{grid-template-columns:1fr}.brand-card-wide{grid-column:span 1;grid-template-columns:1fr}.bplan-grid,.mplan-grid{grid-template-columns:1fr 1fr}.addons-grid{grid-template-columns:1fr 1fr}.contact-inner{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.trust-inner{gap:1.5rem}.trust-sep{display:none}.proceso-steps{grid-template-columns:1fr 1fr}.bplan-grid,.mplan-grid{grid-template-columns:1fr}.addons-grid{grid-template-columns:1fr}.form-2col{grid-template-columns:1fr}.footer-nav{display:none}.pricing-section{padding:5rem 1.5rem}.contact-section{padding:5rem 1.5rem}}
 </style>
 <script>
 (function(){
-  function setOffset(){
-    var nav = document.querySelector('nav');
-    var spacer = document.getElementById('header-spacer');
-    if(!nav || !spacer) return;
-    spacer.style.height = nav.getBoundingClientRect().height + 'px';
-  }
-  setOffset();
-  window.addEventListener('resize', setOffset);
-  window.addEventListener('load', setOffset);
-  setTimeout(setOffset, 200);
+  function setOffset(){var nav=document.querySelector('body>nav');var spacer=document.getElementById('header-spacer');if(!nav||!spacer)return;spacer.style.height=nav.getBoundingClientRect().height+'px';}
+  setOffset();window.addEventListener('resize',setOffset);window.addEventListener('load',setOffset);setTimeout(setOffset,200);
 })();
 </script>
 </head>
 <body>
+
 <nav>
-  <a href="index.html" class="nav-brand"><svg width="36" height="36" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
-    <span class="nav-wordmark">NO'J</span><span class="nav-vertical">Marketing</span>
+  <a href="index.html" class="nav-brand">
+    <svg width="36" height="36" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+    <span class="nav-wordmark">NO'J</span><span class="nav-vertical">Marketing &amp; Branding</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-back">← Volver al Studio</a></li>
-    <li><a href="#especialidades">Especialidades</a></li><li><a href="#portafolio">Portafolio</a></li>
-    <li><a href="#contacto" class="nav-cta">Cotizar estrategia</a></li>
+    <li><a href="index.html">← Studio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#contacto" class="nav-cta">Empezar ahora</a></li>
   </ul>
 </nav>
-<div id="header-spacer" style="display:block;"></div>
+<div id="header-spacer"></div>
 
+<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-glow"></div>
-  <svg class="hero-watermark" viewBox="0 0 100 100"><g stroke="#ffffff" stroke-width="5" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#ffffff" stroke-width="5" stroke-linecap="square"/><circle cx="50" cy="50" r="5" fill="#ffffff"/></svg>
+  <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">IA · Contenido · Automatización · Estrategia</div>
-    <h1 class="hero-h1">Contenido que<br>trabaja por<br><em>ti.</em></h1>
+    <div class="hero-eyebrow">Branding · Marketing con IA · Estrategia · Pauta</div>
+    <h1 class="hero-h1">Tu marca,<br>construida<br>para <em>crecer.</em></h1>
   </div>
   <div class="hero-foot">
-    <p class="hero-tagline">Marketing digital potenciado con inteligencia artificial. Contenido estratégico y automatización para marcas que quieren crecer.<small>— No'j Marketing · Ciudad de México</small></p>
-    <a href="#contacto" class="btn btn-v"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>Cotizar estrategia</a>
+    <p class="hero-tagline">Creamos tu identidad desde cero, activamos tu presencia digital con IA y construimos el sitio web que tu negocio necesita. Todo en un solo lugar.<small>— No'j Studio · Ciudad de México</small></p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn btn-v">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Cotizar ahora
+      </a>
+      <a href="#precios" class="btn btn-ghost">Ver precios</a>
+    </div>
   </div>
   <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
 </section>
-<section id="especialidades">
-  <div class="s-label">Lo que ofrecemos</div>
-  <h2 class="s-title">Especialidades</h2>
-  <div class="spec-grid">    <div class="spec">
-      <div class="spec-num">01</div>
-      <span class="spec-icon">🤖</span>
-      <div class="spec-name">Contenido con IA</div>
-      <p class="spec-desc">Producción de contenido potenciada con IA: guiones, captions y optimización de mensajes para cada plataforma.</p>
-      <span class="spec-tag">AI Content</span>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num">3</div>
+      <div class="trust-label">verticales integradas en un solo equipo</div>
     </div>
-    <div class="spec">
-      <div class="spec-num">02</div>
-      <span class="spec-icon">📊</span>
-      <div class="spec-name">Estrategia Digital</div>
-      <p class="spec-desc">Diagnóstico de marca, definición de audiencias y calendario editorial basado en datos.</p>
-      <span class="spec-tag">Estrategia</span>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">5d</div>
+      <div class="trust-label">entrega del kit de identidad básica</div>
     </div>
-    <div class="spec">
-      <div class="spec-num">03</div>
-      <span class="spec-icon">⚡</span>
-      <div class="spec-name">Automatización</div>
-      <p class="spec-desc">Flujos de contenido automatizados y programación inteligente para mantener tu presencia activa.</p>
-      <span class="spec-tag">Automatización</span>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">IA</div>
+      <div class="trust-label">en producción de contenido y estrategia</div>
     </div>
-    <div class="spec">
-      <div class="spec-num">04</div>
-      <span class="spec-icon">📱</span>
-      <div class="spec-name">Social Media</div>
-      <p class="spec-desc">Gestión y creación para Instagram, TikTok, LinkedIn y YouTube. Contenido visual producido por No'j.</p>
-      <span class="spec-tag">Social</span>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">MX<br>+US</div>
+      <div class="trust-label">trabajamos para LATAM y mercado hispano USA</div>
     </div>
-    <div class="spec">
-      <div class="spec-num">05</div>
-      <span class="spec-icon">🎯</span>
-      <div class="spec-name">Campañas & Ads</div>
-      <p class="spec-desc">Piezas para Meta, Google y YouTube. Creatividades optimizadas para conversión con A/B testing.</p>
-      <span class="spec-tag">Paid media</span>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">48h</div>
+      <div class="trust-label">propuesta concreta tras tu brief</div>
     </div>
-    <div class="spec">
-      <div class="spec-num">06</div>
-      <span class="spec-icon">📈</span>
-      <div class="spec-name">Analítica & Reportes</div>
-      <p class="spec-desc">Medición de resultados y reportes mensuales. Decisiones basadas en datos.</p>
-      <span class="spec-tag">Analytics</span>
-    </div></div>
+  </div>
+</div>
+
+<!-- SERVICIOS / TRES PILARES -->
+<section id="servicios">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Tres pilares.<br>Una sola marca.</h2>
+  <div class="pillars">
+    <!-- Branding -->
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <span class="pillar-icon">◆</span>
+      <div class="pillar-name">Branding &amp; Identidad</div>
+      <p class="pillar-desc">Creamos la identidad visual completa de tu marca o la renovamos desde adentro. No es solo un logo — es el sistema completo que hace que tu negocio se vea profesional en todos lados.</p>
+      <ul class="pillar-items">
+        <li>Logotipo + variantes y usos</li>
+        <li>Paleta de color + tipografías</li>
+        <li>Manual de marca (brandbook)</li>
+        <li>Tarjetas de presentación y firma email</li>
+        <li>Kit para redes sociales (portadas, highlights, stories)</li>
+        <li>Papelería corporativa y material de apoyo</li>
+        <li>Rebranding para marcas existentes</li>
+      </ul>
+    </div>
+    <!-- Marketing -->
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <span class="pillar-icon">⚡</span>
+      <div class="pillar-name">Marketing con IA</div>
+      <p class="pillar-desc">Producción de contenido estratégico potenciada con inteligencia artificial. Publicamos de forma consistente, medimos todo y optimizamos mes a mes. Tú creces, nosotros operamos.</p>
+      <ul class="pillar-items">
+        <li>Estrategia y calendario editorial</li>
+        <li>Contenido visual para Instagram, TikTok y LinkedIn</li>
+        <li>Captions, guiones y copies con IA</li>
+        <li>Programación y automatización de publicaciones</li>
+        <li>Campañas de pauta en Meta y Google Ads</li>
+        <li>Reporte mensual con métricas clave</li>
+      </ul>
+    </div>
+    <!-- Web -->
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <span class="pillar-icon">⊹</span>
+      <div class="pillar-name">Sitio Web</div>
+      <p class="pillar-desc">Tu identidad de marca materializada en un sitio que se ve distinto. Desarrollamos a medida — sin plantillas, sin atajos — para que tu negocio esté a la altura de lo que ya construiste.</p>
+      <ul class="pillar-items">
+        <li>Landing pages de alta conversión</li>
+        <li>Sitios institucionales multi-página</li>
+        <li>E-commerce con Stripe y MercadoPago</li>
+        <li>SEO técnico y velocidad de carga</li>
+        <li>Integrado con tu identidad de marca</li>
+      </ul>
+      <a href="web.html" class="pillar-link">Ver detalles de web →</a>
+    </div>
+  </div>
 </section>
+
 <div class="divider"></div>
-<section id="proceso" style="background:#0a0a0a">
+
+<!-- BRANDING VISUAL DEMO -->
+<section class="brand-section" id="branding">
+  <div class="s-label">Kit de marca</div>
+  <h2 class="s-title">Todo lo que recibe<br>tu marca.</h2>
+  <div class="brand-showcase">
+    <!-- Logotipo + sistema -->
+    <div class="brand-card">
+      <div class="brand-card-label">01 · Identidad primaria</div>
+      <div class="brand-card-title">Logotipo &amp; Sistema Visual</div>
+      <p class="brand-card-desc">Diseñamos tu logotipo desde cero con variantes horizontal, vertical, isotipo e isologo. Incluyendo versiones en color, blanco y negro, y guías de uso correcto.</p>
+      <div class="kit-logo-area" style="margin-top:1.5rem">
+        <svg class="kit-logo-mark" viewBox="0 0 100 100"><g stroke="#6fbdaa" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#6fbdaa" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#6fbdaa" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+        <div>
+          <div class="kit-logo-text">TU MARCA</div>
+          <div class="kit-logo-sub">Tagline aquí</div>
+        </div>
+      </div>
+    </div>
+    <!-- Paleta + tipo -->
+    <div class="brand-card">
+      <div class="brand-card-label">02 · Sistema de diseño</div>
+      <div class="brand-card-title">Color &amp; Tipografía</div>
+      <p class="brand-card-desc">Paleta de color primaria y secundaria con valores HEX, RGB y Pantone. Selección tipográfica con jerarquías definidas para cada uso.</p>
+      <div class="kit-demo" style="margin-top:1.5rem">
+        <div class="kit-row">
+          <div class="kit-swatch" style="background:#6fbdaa"></div>
+          <div class="kit-swatch" style="background:#0a0a0a"></div>
+          <div class="kit-swatch" style="background:#f4f2ed;border:1px solid rgba(255,255,255,0.1)"></div>
+          <div class="kit-swatch" style="background:#777"></div>
+          <div class="kit-swatch-label" style="margin-left:0.4rem">Paleta primaria</div>
+        </div>
+        <div style="margin-top:0.8rem">
+          <div class="kit-type-sample">Bebas Neue</div>
+          <div class="kit-type-sub">Display · Títulos y headings</div>
+        </div>
+        <div style="margin-top:0.6rem">
+          <div style="font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--white);font-weight:300">DM Sans Light 300</div>
+          <div class="kit-type-sub">Body · Cuerpo de texto</div>
+        </div>
+      </div>
+    </div>
+    <!-- Social kit -->
+    <div class="brand-card brand-card-wide">
+      <div>
+        <div class="brand-card-label">03 · Kit de redes sociales</div>
+        <div class="brand-card-title">Branding para Social Media</div>
+        <p class="brand-card-desc" style="max-width:380px">Plantillas de posts, stories, highlights y portadas adaptadas a tu identidad. Listas para usar en Canva o editar con nosotros. Tu feed deja de verse improvisado desde el día uno.</p>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.5rem">
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem"><span style="color:var(--v)">◆</span> Portada de perfil + foto de portada</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem"><span style="color:var(--v)">◆</span> 6 plantillas de posts (feed cuadrado y vertical)</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem"><span style="color:var(--v)">◆</span> 3 plantillas de stories</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem"><span style="color:var(--v)">◆</span> Íconos de highlights</div>
+        </div>
+      </div>
+      <div class="social-kit">
+        <div class="sk-post"><span class="sk-accent"></span><span class="sk-caption">Post 01</span></div>
+        <div class="sk-post"><span class="sk-accent"></span><span class="sk-caption">Post 02</span></div>
+        <div class="sk-post"><span class="sk-accent"></span><span class="sk-caption">Story</span></div>
+        <div class="sk-post"><span class="sk-accent"></span><span class="sk-caption">Post horizontal · Banner</span></div>
+        <div class="sk-post"><span class="sk-accent"></span><span class="sk-caption">Highlight</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESO -->
+<section id="proceso" style="background:#0d0d0d">
   <div class="s-label">Cómo trabajamos</div>
-  <h2 class="s-title">El proceso</h2>
-  <div class="proceso-steps">    <div class="step">
-      <span class="step-n">01</span>
-      <div class="step-title">Diagnóstico</div>
-      <p class="step-desc">Auditamos tu presencia digital y definimos los objetivos de negocio.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">02</span>
-      <div class="step-title">Estrategia</div>
-      <p class="step-desc">Definimos audiencias, plataformas y tipo de contenido en un plan claro.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">03</span>
-      <div class="step-title">Producción & Publicación</div>
-      <p class="step-desc">Producción del contenido visual + publicación con automatización e IA.</p>
-    </div>
-    <div class="step">
-      <span class="step-n">04</span>
-      <div class="step-title">Medición & Optimización</div>
-      <p class="step-desc">Análisis mensual y ajuste de estrategia. Mejora continua basada en datos.</p>
-    </div></div>
+  <h2 class="s-title">Del brief<br>al lanzamiento.</h2>
+  <div class="proceso-steps">
+    <div class="step"><span class="step-n">01</span><div class="step-title">Brief &amp; Diagnóstico</div><p class="step-desc">Entendemos tu negocio, tu competencia y lo que quieres comunicar. Sin esto, nada tiene sentido.</p></div>
+    <div class="step"><span class="step-n">02</span><div class="step-title">Identidad Visual</div><p class="step-desc">Logo, colores, tipografía y manual de marca. Entregas revisables hasta que el sistema quede perfecto.</p></div>
+    <div class="step"><span class="step-n">03</span><div class="step-title">Activos Digitales</div><p class="step-desc">Kit de redes, firma de email, plantillas de presentación, tarjetas y más. Listos para usar desde el día uno.</p></div>
+    <div class="step"><span class="step-n">04</span><div class="step-title">Web + Contenido</div><p class="step-desc">Sitio web diseñado con tu identidad. Y si arrancamos marketing, producción del primer mes de contenido.</p></div>
+    <div class="step"><span class="step-n">05</span><div class="step-title">Activación &amp; Pauta</div><p class="step-desc">Lanzamiento, primeras campañas y medición continua. El motor de crecimiento en marcha.</p></div>
+  </div>
 </section>
+
 <div class="divider"></div>
-<section id="portafolio" style="background:#070707">
-  <div class="s-label">Nuestro trabajo</div>
-  <h2 class="s-title">Portafolio</h2>
-  <div class="port-grid">
-    <div class="port-item">
-      <video src="images/video_marketing_1.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
-      <div class="port-overlay"><span class="port-tag">Estrategia Digital</span></div>
+
+<!-- PRICING -->
+<section id="precios" class="pricing-section">
+  <div class="s-label">Inversión</div>
+  <h2 class="s-title">Precios claros.<br>Sin sorpresas.</h2>
+
+  <!-- Tabs -->
+  <div class="pricing-tabs">
+    <button class="ptab active" data-tab="branding">Branding &amp; Identidad</button>
+    <button class="ptab" data-tab="marketing">Marketing Digital</button>
+    <button class="ptab" data-tab="web">Sitio Web</button>
+  </div>
+
+  <!-- BRANDING PANEL -->
+  <div class="pricing-panel active" id="tab-branding">
+    <div class="bplan-grid">
+      <div class="bplan">
+        <div class="plan-name">Esencial</div>
+        <p class="plan-tagline">Para negocios que necesitan identidad básica profesional lista para usar hoy.</p>
+        <div class="plan-price-mxn"><sup>$</sup>4,900</div>
+        <div class="plan-price-usd">~$245 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Logotipo principal + 1 variante</li>
+          <li>Paleta de color (3 tonos + neutros)</li>
+          <li>1 tipografía seleccionada con usos</li>
+          <li>Usos correctos e incorrectos</li>
+          <li>Entrega en 5 días hábiles</li>
+          <li>Archivos PNG, SVG y PDF</li>
+          <li class="dim">Brandbook completo</li>
+          <li class="dim">Kit de redes sociales</li>
+          <li class="dim">Papelería y material de apoyo</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Branding Esencial ($4,900 MXN)">Cotizar Esencial</a>
+      </div>
+      <div class="bplan featured">
+        <span class="plan-badge">Más completo</span>
+        <div class="plan-name">Identidad Completa</div>
+        <p class="plan-tagline">Sistema de identidad completo con manual de marca y kit de redes listo para activar.</p>
+        <div class="plan-price-mxn"><sup>$</sup>9,800</div>
+        <div class="plan-price-usd">~$490 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Logotipo principal + 3 variantes</li>
+          <li>Paleta completa (primaria + secundaria)</li>
+          <li>Sistema tipográfico (2 fuentes + jerarquías)</li>
+          <li>Brandbook / manual de marca PDF</li>
+          <li>Kit de redes (portadas, posts, stories, highlights)</li>
+          <li>Firma de email corporativa</li>
+          <li>Tarjeta de presentación (diseño)</li>
+          <li>2 rondas de ajustes incluidas</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Branding Identidad Completa ($9,800 MXN)">Cotizar Identidad Completa</a>
+      </div>
+      <div class="bplan">
+        <div class="plan-name">Rebranding</div>
+        <p class="plan-tagline">Para marcas existentes que necesitan una renovación estratégica y visual completa.</p>
+        <div class="plan-price-mxn"><sup>$</sup>14,500</div>
+        <div class="plan-price-usd">~$725 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Auditoría de marca actual</li>
+          <li>Todo lo del plan Identidad Completa</li>
+          <li>Estrategia de posicionamiento</li>
+          <li>Tono de voz y mensajes clave</li>
+          <li>Plantillas para presentaciones</li>
+          <li>Kit de papelería corporativa</li>
+          <li>3 rondas de ajustes incluidas</li>
+          <li>Soporte 30 días post-entrega</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Rebranding ($14,500 MXN)">Cotizar Rebranding</a>
+      </div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_marketing_2.jpg" alt="Contenido con IA" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">IA Content</span></div>
+    <!-- Add-ons branding -->
+    <div class="addons-grid">
+      <div class="addon"><div class="addon-name">Kit de papelería extra</div><div class="addon-desc">Hoja membretada, sobre, folder y credencial.</div><div class="addon-price"><sup>$</sup>2,200</div><div class="addon-usd">~$110 USD</div></div>
+      <div class="addon"><div class="addon-name">Presentación corporativa</div><div class="addon-desc">Plantilla de 20 diapositivas con tu identidad.</div><div class="addon-price"><sup>$</sup>2,800</div><div class="addon-usd">~$140 USD</div></div>
+      <div class="addon"><div class="addon-name">Kit de merch / packaging</div><div class="addon-desc">Diseño de etiquetas, bolsas o cajas.</div><div class="addon-price"><sup>$</sup>3,500</div><div class="addon-usd">~$175 USD</div></div>
+      <div class="addon"><div class="addon-name">Guía de fotografía</div><div class="addon-desc">Estilo visual y moodboard para sesiones de marca.</div><div class="addon-price"><sup>$</sup>1,500</div><div class="addon-usd">~$75 USD</div></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_marketing_3.jpg" alt="Social media" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Social Media</span></div>
+    <p class="pricing-note">Precios en MXN · Equivalencias USD aproximadas · IVA no incluido</p>
+  </div>
+
+  <!-- MARKETING PANEL -->
+  <div class="pricing-panel" id="tab-marketing">
+    <div class="mplan-grid">
+      <div class="mplan">
+        <div class="plan-name">Presencia</div>
+        <p class="plan-tagline">Para marcas que quieren tener actividad consistente en redes sin gestionar nada ellos mismos.</p>
+        <div class="plan-price-mxn"><sup>$</sup>5,500</div>
+        <div class="plan-price-usd">~$275 USD / mes</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>12 posts al mes (feed)</li>
+          <li>Calendario editorial mensual</li>
+          <li>Copies y captions con IA</li>
+          <li>Programación y publicación</li>
+          <li>1 red social (Instagram o LinkedIn)</li>
+          <li>Reporte básico mensual</li>
+          <li class="dim">Stories / Reels</li>
+          <li class="dim">Campañas de pauta</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Marketing Presencia ($5,500 MXN/mes)">Cotizar Presencia</a>
+      </div>
+      <div class="mplan featured">
+        <span class="plan-badge">Recomendado</span>
+        <div class="plan-name">Crecimiento</div>
+        <p class="plan-tagline">Estrategia completa con contenido, pauta y medición. Para marcas listas para escalar.</p>
+        <div class="plan-price-mxn"><sup>$</sup>9,500</div>
+        <div class="plan-price-usd">~$475 USD / mes · sin incluir presupuesto de pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>20 posts al mes (feed + stories)</li>
+          <li>2–4 Reels / TikToks mensuales</li>
+          <li>Estrategia y calendario editorial</li>
+          <li>Copies, guiones y captions con IA</li>
+          <li>2 redes sociales</li>
+          <li>Campañas Meta Ads (gestión)</li>
+          <li>Reporte completo GA + social mensual</li>
+          <li>Atención prioritaria en 24h</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Marketing Crecimiento ($9,500 MXN/mes)">Cotizar Crecimiento</a>
+      </div>
+      <div class="mplan">
+        <div class="plan-name">Agencia</div>
+        <p class="plan-tagline">Operación completa de marketing digital. Para marcas que quieren un equipo dedicado sin contratar uno.</p>
+        <div class="plan-price-mxn"><sup>$</sup>16,000</div>
+        <div class="plan-price-usd">~$800 USD / mes · sin incluir presupuesto de pauta</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Todo lo del plan Crecimiento</li>
+          <li>Hasta 3 redes sociales</li>
+          <li>Google Ads (gestión)</li>
+          <li>Email marketing mensual</li>
+          <li>A/B testing de creatividades</li>
+          <li>Sesión estratégica mensual</li>
+          <li>Reporte ejecutivo con KPIs</li>
+          <li>Cambios ilimitados de contenido</li>
+        </ul>
+        <a href="#contacto" class="plan-cta" data-plan="Marketing Agencia ($16,000 MXN/mes)">Cotizar Agencia</a>
+      </div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_marketing_4.jpg" alt="Campaña paid" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Paid Campaign</span></div>
+    <div class="addons-grid">
+      <div class="addon"><div class="addon-name">Presupuesto de pauta</div><div class="addon-desc">Sugerido mínimo para ver resultados reales.</div><div class="addon-price"><sup>$</sup>3,000</div><div class="addon-usd">~$150 USD/mes mínimo</div></div>
+      <div class="addon"><div class="addon-name">Lanzamiento de marca</div><div class="addon-desc">Campaña de arranque con pauta intensiva el primer mes.</div><div class="addon-price"><sup>$</sup>6,500</div><div class="addon-usd">~$325 USD · único</div></div>
+      <div class="addon"><div class="addon-name">Sesión de fotos</div><div class="addon-desc">Sesión editorial de marca para alimentar el contenido.</div><div class="addon-price">Cotizar</div><div class="addon-usd">Precio según proyecto</div></div>
+      <div class="addon"><div class="addon-name">Video / Reels extra</div><div class="addon-desc">Producción adicional fuera del plan contratado.</div><div class="addon-price"><sup>$</sup>800</div><div class="addon-usd">~$40 USD / pieza</div></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_marketing_5.jpg" alt="Analytics" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay"><span class="port-tag">Analytics</span></div>
+    <p class="pricing-note">Precios en MXN · Equivalencias USD aproximadas · IVA no incluido · Los planes de marketing tienen permanencia mínima de 3 meses</p>
+  </div>
+
+  <!-- WEB PANEL -->
+  <div class="pricing-panel" id="tab-web">
+    <div class="mplan-grid">
+      <div class="mplan">
+        <div class="plan-name">Starter</div>
+        <p class="plan-tagline">Una página, un objetivo. Para negocios que empiezan o quieren validar su presencia online.</p>
+        <div class="plan-price-mxn"><sup>$</sup>5,000</div>
+        <div class="plan-price-usd">~$250 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>1 página (hero + servicios + contacto)</li>
+          <li>SSL + dominio configurado</li>
+          <li>Adaptado a móvil</li>
+          <li>Formulario de contacto</li>
+          <li>Entrega en 5 días hábiles</li>
+          <li class="dim">SEO avanzado</li>
+          <li class="dim">Blog / galería</li>
+        </ul>
+        <a href="web.html" class="plan-cta" data-plan="Web Starter ($5,000 MXN)">Ver detalle web →</a>
+      </div>
+      <div class="mplan featured">
+        <span class="plan-badge">Más popular</span>
+        <div class="plan-name">Pro</div>
+        <p class="plan-tagline">Sitio completo para marcas establecidas. Diseño, SEO y analytics incluidos.</p>
+        <div class="plan-price-mxn"><sup>$</sup>11,500</div>
+        <div class="plan-price-usd">~$575 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>5–7 secciones a medida</li>
+          <li>Formulario de captación</li>
+          <li>SEO básico + Google Analytics</li>
+          <li>SSL + dominio configurado</li>
+          <li>1 ronda de ajustes incluida</li>
+          <li>Adaptado a móvil</li>
+          <li class="dim">Blog / galería</li>
+        </ul>
+        <a href="web.html" class="plan-cta" data-plan="Web Pro ($11,500 MXN)">Ver detalle web →</a>
+      </div>
+      <div class="mplan">
+        <div class="plan-name">E-Commerce</div>
+        <p class="plan-tagline">Tienda completa lista para vender. Stripe, MercadoPago y panel de productos incluidos.</p>
+        <div class="plan-price-mxn"><sup>$</sup>24,500</div>
+        <div class="plan-price-usd">~$1,225 USD · pago único</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Tienda con hasta 50 productos</li>
+          <li>Stripe + MercadoPago</li>
+          <li>Panel de administración</li>
+          <li>SEO avanzado + Analytics</li>
+          <li>2 rondas de ajustes</li>
+          <li>Capacitación incluida</li>
+          <li>Entrega en 12–16 días hábiles</li>
+        </ul>
+        <a href="web.html" class="plan-cta" data-plan="Web E-Commerce ($24,500 MXN)">Ver detalle web →</a>
+      </div>
     </div>
+    <div class="addons-grid">
+      <div class="addon"><div class="addon-name">Hosting + Soporte</div><div class="addon-desc">SSL, backups semanales, seguridad y soporte WhatsApp.</div><div class="addon-price"><sup>$</sup>499</div><div class="addon-usd">~$25 USD/mes</div></div>
+      <div class="addon"><div class="addon-name">Plan Activo</div><div class="addon-desc">Todo lo anterior + 2 cambios/mes, reporte GA y velocidad.</div><div class="addon-price"><sup>$</sup>999</div><div class="addon-usd">~$50 USD/mes</div></div>
+      <div class="addon"><div class="addon-name">Bundle Identidad + Web</div><div class="addon-desc">Branding Identidad Completa + sitio Pro con descuento.</div><div class="addon-price"><sup>$</sup>17,500</div><div class="addon-usd">Ahorra ~$2,000 MXN</div></div>
+      <div class="addon"><div class="addon-name">Bundle Total</div><div class="addon-desc">Branding + Web Pro + 3 meses de Marketing Presencia.</div><div class="addon-price">Cotizar</div><div class="addon-usd">Precio a medida</div></div>
+    </div>
+    <p class="pricing-note">Precios en MXN · Equivalencias USD aproximadas · IVA no incluido · <a href="web.html" style="color:var(--v);text-decoration:none">Ver landing completa de Web →</a></p>
   </div>
 </section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
 <section id="contacto" class="contact-section">
-  <div class="s-label">Trabajemos juntos</div>
-  <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem)">¿Lista para<br>crecer con IA?</h2>
-  <p class="contact-sub">Cuéntanos tu marca y objetivos. Diseñamos una estrategia a tu medida en menos de 24 horas.</p>
-    <div class="contact-btns">
-    <a href="https://wa.me/525574582059?text=Hola%2C%20me%20interesa%20cotizar%20estrategia%20de%20marketing" class="btn btn-dark">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>WhatsApp
-    </a>
-    <a href="mailto:nojstudiomx@gmail.com?subject=Cotizaci%C3%B3n%20marketing" class="btn btn-border-dark">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
-    </a>
-  </div>
-  <div class="social-links">
-    <a href="https://instagram.com/nojstudio" target="_blank">Instagram</a>
-    <a href="https://youtube.com/@nojstudio" target="_blank">YouTube</a>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="s-label">Hablemos</div>
+      <h2 class="s-title">¿Tu marca lista<br>para el siguiente<br>nivel?</h2>
+      <p class="contact-sub">Cuéntanos en qué estás, qué necesitas y qué quieres lograr. Armamos una propuesta concreta en menos de 48 horas.</p>
+      <div class="contact-channels">
+        <a href="https://wa.me/525574582059" target="_blank" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="channel-info"><div class="channel-label">WhatsApp</div><div class="channel-val">+52 55 7458 2059</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="mailto:nojstudiomx@gmail.com" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="channel-info"><div class="channel-label">Email</div><div class="channel-val">nojstudiomx@gmail.com</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://instagram.com/nojstudiomx" target="_blank" class="channel">
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <div class="channel-info"><div class="channel-label">Instagram</div><div class="channel-val">@nojstudiomx</div></div>
+          <span class="channel-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-title">Cuéntanos tu proyecto</div>
+      <p class="form-sub">Brief de 2 minutos. Propuesta en menos de 48h.</p>
+      <div class="form-2col">
+        <div class="form-row"><label>Nombre</label><input type="text" id="f-nombre" placeholder="Tu nombre"></div>
+        <div class="form-row"><label>Empresa / Marca</label><input type="text" id="f-empresa" placeholder="Nombre de tu negocio"></div>
+      </div>
+      <div class="form-2col">
+        <div class="form-row"><label>WhatsApp</label><input type="tel" id="f-wa" placeholder="+52 55 0000 0000"></div>
+        <div class="form-row"><label>Email</label><input type="email" id="f-email" placeholder="hola@tumarca.com"></div>
+      </div>
+      <div class="form-row">
+        <label>¿Qué necesitas?</label>
+        <select id="f-servicio">
+          <option value="">Selecciona el servicio</option>
+          <optgroup label="── Branding ──">
+            <option value="Branding Esencial ($4,900 MXN)">Branding Esencial — $4,900 MXN</option>
+            <option value="Branding Identidad Completa ($9,800 MXN)">Identidad Completa — $9,800 MXN</option>
+            <option value="Rebranding ($14,500 MXN)">Rebranding — $14,500 MXN</option>
+          </optgroup>
+          <optgroup label="── Marketing ──">
+            <option value="Marketing Presencia ($5,500 MXN/mes)">Marketing Presencia — $5,500/mes</option>
+            <option value="Marketing Crecimiento ($9,500 MXN/mes)">Marketing Crecimiento — $9,500/mes</option>
+            <option value="Marketing Agencia ($16,000 MXN/mes)">Marketing Agencia — $16,000/mes</option>
+          </optgroup>
+          <optgroup label="── Web ──">
+            <option value="Web Starter ($5,000 MXN)">Web Starter — $5,000 MXN</option>
+            <option value="Web Pro ($11,500 MXN)">Web Pro — $11,500 MXN</option>
+            <option value="Web E-Commerce ($24,500 MXN)">Web E-Commerce — $24,500 MXN</option>
+          </optgroup>
+          <optgroup label="── Bundles ──">
+            <option value="Bundle Identidad + Web ($17,500 MXN)">Bundle Identidad + Web — $17,500 MXN</option>
+            <option value="Bundle Total (branding + web + marketing)">Bundle Total — Branding + Web + Marketing</option>
+          </optgroup>
+          <option value="No lo sé aún, necesito orientación">No lo sé aún, necesito orientación</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Sector / Giro</label>
+        <select id="f-sector">
+          <option value="">¿A qué se dedica tu negocio?</option>
+          <option>Restaurante / Gastronomía</option>
+          <option>Moda / Apparel</option>
+          <option>Belleza / Skincare</option>
+          <option>Fotografía / Arte / Estudio creativo</option>
+          <option>Inmobiliaria / Real Estate</option>
+          <option>Deporte / Wellness</option>
+          <option>Tecnología / SaaS</option>
+          <option>Retail / E-commerce</option>
+          <option>Servicios profesionales</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-row"><label>¿Qué quieres lograr?</label><textarea id="f-desc" placeholder="Cuéntanos: ¿tienes marca?, ¿ya tienes web?, ¿qué es lo más urgente?"></textarea></div>
+      <button class="form-submit" id="btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Enviar por WhatsApp
+      </button>
+      <p class="form-note">Te abrirá WhatsApp con tu solicitud lista. Sin spam, sin CRM de terceros.</p>
+    </div>
   </div>
 </section>
+
 <footer>
-  <a href="index.html" class="footer-brand"><svg width="24" height="24" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg><span class="footer-wordmark">NO'J STUDIO</span></a>
-  <nav class="footer-nav"><a href="photography.html">Photography</a>
-    <a href="films.html">Films</a>
-    <a href="outdoor.html">Outdoor</a>
-    <a href="product.html">Product</a>
-    <a href="eventos.html">Eventos</a>
-    <a href="sports.html">Sports</a>
-    <a href="btl.html">BTL</a></nav>
+  <a href="index.html" class="footer-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+    <span class="footer-wordmark">NO'J STUDIO</span>
+  </a>
+  <nav class="footer-nav">
+    <a href="photography.html">Photography</a><a href="films.html">Films</a><a href="outdoor.html">Outdoor</a><a href="product.html">Product</a><a href="eventos.html">Eventos</a><a href="sports.html">Sports</a><a href="web.html">Web</a><a href="btl.html">BTL</a>
+  </nav>
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
 
+<script>
+// TABS de pricing
+document.querySelectorAll('.ptab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('active')});
+    document.querySelectorAll('.pricing-panel').forEach(function(p){p.classList.remove('active')});
+    this.classList.add('active');
+    document.getElementById('tab-'+this.getAttribute('data-tab')).classList.add('active');
+  });
+});
+
+// Plan CTA → preseleccionar servicio en formulario
+document.querySelectorAll('.plan-cta[data-plan]').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    if(this.getAttribute('href')==='#contacto'||!this.getAttribute('href')){
+      e.preventDefault();
+      var plan=this.getAttribute('data-plan');
+      var sel=document.getElementById('f-servicio');
+      if(sel&&plan){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===plan){sel.selectedIndex=i;break;}}}
+      document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+      setTimeout(function(){document.getElementById('f-nombre').focus();},600);
+    }
+  });
+});
+
+// WhatsApp
+document.getElementById('btn-wa').addEventListener('click',function(){
+  var nombre=document.getElementById('f-nombre').value.trim();
+  var empresa=document.getElementById('f-empresa').value.trim();
+  var wa=document.getElementById('f-wa').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var servicio=document.getElementById('f-servicio').value;
+  var sector=document.getElementById('f-sector').value;
+  var desc=document.getElementById('f-desc').value.trim();
+  var msg='Hola, me interesa cotizar con No\'j Studio.\n\n';
+  if(nombre)msg+='👤 Nombre: '+nombre+'\n';
+  if(empresa)msg+='🏢 Empresa: '+empresa+'\n';
+  if(wa)msg+='📱 WhatsApp: '+wa+'\n';
+  if(email)msg+='✉️ Email: '+email+'\n';
+  if(servicio)msg+='🎯 Servicio: '+servicio+'\n';
+  if(sector)msg+='🏷 Sector: '+sector+'\n';
+  if(desc)msg+='\n💬 '+desc;
+  window.open('https://wa.me/525574582059?text='+encodeURIComponent(msg),'_blank');
+});
+</script>
 </body>
 </html>

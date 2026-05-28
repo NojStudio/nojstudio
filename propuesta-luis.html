@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta de Proyecto — Luis / Estudio Audiovisual · No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#666;
+  --v:#84b4c9;--line:rgba(255,255,255,0.07);
+  --line-dark:rgba(0,0,0,0.08);
+}
+body{background:var(--white);color:#1a1a1a;font-family:'DM Sans',sans-serif;font-weight:300;font-size:15px;line-height:1.7}
+
+/* PAGE */
+.page{max-width:820px;margin:0 auto;padding:4rem 3rem}
+@media print{.page{padding:2rem}}
+@media(max-width:640px){.page{padding:2.5rem 1.5rem}}
+
+/* HEADER */
+.doc-header{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:3rem;border-bottom:2px solid #1a1a1a;margin-bottom:3rem;gap:2rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:0.8rem}
+.brand-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.2em;color:#1a1a1a}
+.brand-sub{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-top:0.1rem}
+.doc-meta{text-align:right}
+.doc-meta-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;color:var(--v);margin-bottom:0.3rem}
+.doc-meta-info{font-size:0.72rem;color:#999;letter-spacing:0.08em;line-height:1.8}
+
+/* INTRO */
+.intro-block{margin-bottom:3.5rem}
+.saludo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:#1a1a1a;margin-bottom:1.2rem;line-height:1.3}
+.intro-text{font-size:0.88rem;color:#444;line-height:1.85;max-width:640px}
+
+/* SECTION */
+.section{margin-bottom:3rem}
+.section-label{display:flex;align-items:center;gap:1rem;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--v);margin-bottom:1rem}
+.section-label::before{content:'';width:1.5rem;height:1px;background:var(--v)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:#1a1a1a;margin-bottom:1rem}
+
+/* ENTENDEMOS */
+.entendemos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.entendemos-item{padding:1.4rem 1.6rem;background:#f9f8f4;border-left:3px solid var(--v)}
+.entendemos-key{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:0.4rem}
+.entendemos-val{font-size:0.84rem;color:#1a1a1a;line-height:1.5}
+@media(max-width:540px){.entendemos-grid{grid-template-columns:1fr}}
+
+/* ALCANCE */
+.alcance-table{width:100%;border-collapse:collapse;font-size:0.82rem}
+.alcance-table th{text-align:left;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#999;padding:0.6rem 1rem;background:#f9f8f4;border-bottom:1px solid var(--line-dark)}
+.alcance-table td{padding:0.9rem 1rem;border-bottom:1px solid var(--line-dark);vertical-align:top}
+.alcance-table tr:last-child td{border-bottom:none}
+.alcance-table .inc{color:var(--v);font-size:0.7rem;font-weight:500;white-space:nowrap}
+.alcance-table .fase{font-weight:500;color:#1a1a1a}
+.alcance-table .desc{color:#555;font-size:0.78rem;line-height:1.6}
+.inc-badge{display:inline-block;background:rgba(132,180,201,0.12);color:var(--v);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid rgba(132,180,201,0.25);white-space:nowrap}
+.excl-badge{display:inline-block;background:#f5f0e8;color:#999;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid #e0dbd0;white-space:nowrap}
+
+/* RECOMENDACION */
+.rec-box{background:#0a0a0a;color:#f4f2ed;padding:2.5rem;margin-bottom:1.5rem}
+.rec-label{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:0.6rem}
+.rec-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.06em;margin-bottom:0.8rem}
+.rec-desc{font-size:0.82rem;color:rgba(244,242,237,0.6);line-height:1.8;margin-bottom:1.5rem}
+.rec-items{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.rec-items li{font-size:0.8rem;color:rgba(244,242,237,0.75);display:flex;align-items:flex-start;gap:0.7rem;line-height:1.5}
+.rec-items li::before{content:'◆';font-size:0.4rem;color:var(--v);flex-shrink:0;margin-top:0.45rem}
+.rec-note{font-size:0.72rem;color:rgba(244,242,237,0.35);margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.07);line-height:1.6}
+
+/* PRICING */
+.price-main{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);margin-bottom:1px}
+.price-col{padding:2rem;background:#fff}
+.price-col.highlight{background:#f4f8fb}
+.price-col-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:0.4rem}
+.price-col-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:#1a1a1a;margin-bottom:0.3rem}
+.price-col-desc{font-size:0.74rem;color:#777;line-height:1.5;margin-bottom:1.2rem}
+.price-mxn{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:0.02em;line-height:1;color:#1a1a1a}
+.price-mxn sup{font-size:1rem;vertical-align:super;color:var(--v);font-family:'DM Sans',sans-serif;font-weight:400}
+.price-usd{font-size:0.7rem;color:#999;letter-spacing:0.1em;margin-top:0.2rem}
+.price-items{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:0.35rem}
+.price-items li{font-size:0.76rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem;line-height:1.45}
+.price-items li::before{content:'—';color:var(--v);flex-shrink:0}
+@media(max-width:540px){.price-main{grid-template-columns:1fr}}
+
+/* ADD-ONS */
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.2rem;background:#f9f8f4;border-bottom:1px solid var(--line-dark);gap:1rem;flex-wrap:wrap}
+.addon-row:last-child{border-bottom:none}
+.addon-name{font-size:0.8rem;color:#1a1a1a;font-weight:400}
+.addon-desc{font-size:0.7rem;color:#999;line-height:1.4;margin-top:0.15rem}
+.addon-price{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.04em;color:var(--v);white-space:nowrap;flex-shrink:0}
+
+/* PROCESO */
+.proceso-list{display:flex;flex-direction:column;gap:0}
+.proceso-item{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid var(--line-dark);align-items:flex-start}
+.proceso-item:last-child{border-bottom:none}
+.proceso-n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:rgba(0,0,0,0.08);line-height:1;width:2rem;text-align:center;flex-shrink:0}
+.proceso-content{}
+.proceso-title{font-weight:500;font-size:0.86rem;color:#1a1a1a;margin-bottom:0.2rem}
+.proceso-desc{font-size:0.77rem;color:#666;line-height:1.6}
+.proceso-time{display:inline-block;margin-top:0.4rem;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--v);background:rgba(132,180,201,0.1);padding:0.18rem 0.55rem;border:1px solid rgba(132,180,201,0.2)}
+
+/* CONDICIONES */
+.cond-list{display:flex;flex-direction:column;gap:0.7rem}
+.cond-item{display:flex;gap:0.8rem;font-size:0.8rem;color:#555;line-height:1.6}
+.cond-item::before{content:'·';color:var(--v);flex-shrink:0;font-size:1.2rem;line-height:1.3}
+
+/* CTA */
+.cta-block{background:#0a0a0a;color:#f4f2ed;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:3rem}
+.cta-text{}
+.cta-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:0.5rem}
+.cta-h{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;margin-bottom:0.4rem}
+.cta-sub{font-size:0.78rem;color:rgba(244,242,237,0.45);line-height:1.6;max-width:340px}
+.cta-btns{display:flex;flex-direction:column;gap:0.8rem;flex-shrink:0}
+.cta-wa{display:inline-flex;align-items:center;gap:0.6rem;padding:0.9rem 1.8rem;background:var(--v);color:#0a0a0a;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.2s}
+.cta-wa:hover{background:#a3c8d8}
+.cta-email{font-size:0.7rem;color:rgba(244,242,237,0.35);text-align:center;letter-spacing:0.08em}
+
+/* FOOTER */
+.doc-footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line-dark);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:0.18em;color:#ccc}
+.footer-info{font-size:0.65rem;color:#bbb;letter-spacing:0.08em;line-height:1.8;text-align:right}
+
+/* PRINT */
+@media print{
+  body{font-size:13px}
+  .rec-box,.cta-block{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cta-wa{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="brand">
+      <svg width="38" height="38" viewBox="0 0 100 100"><g stroke="#1a1a1a" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#1a1a1a" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#1a1a1a" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#f4f2ed"/><circle cx="50" cy="50" r="3.5" fill="#84b4c9"/></svg>
+      <div>
+        <div class="brand-wordmark">NO'J STUDIO</div>
+        <div class="brand-sub">Diseño · Desarrollo · Branding</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-meta-title">Propuesta de Proyecto Web</div>
+      <div class="doc-meta-info">
+        Para: Luis · Estudio Audiovisual<br>
+        Fecha: Mayo 2025<br>
+        Válida por: 15 días<br>
+        Ref: NOJ-WEB-001
+      </div>
+    </div>
+  </div>
+
+  <!-- SALUDO -->
+  <div class="intro-block">
+    <div class="saludo">"Luis, aquí está tu propuesta."</div>
+    <p class="intro-text">
+      Revisamos tu brief con detalle. Tienes muy claro lo que quieres lograr: un sitio que muestre el nivel de tu trabajo y que al mismo tiempo genere proyectos nuevos. Es exactamente el tipo de sitio que nos gusta hacer — donde el diseño tiene que estar a la altura del contenido.<br><br>
+      Esta propuesta cubre el alcance completo que describiste, con una recomendación de fases para que arranques en el tiempo que necesitas y escales sin re-hacer nada desde cero.
+    </p>
+  </div>
+
+  <!-- LO QUE ENTENDIMOS -->
+  <div class="section">
+    <div class="section-label">Lo que entendimos</div>
+    <div class="section-title">Tu proyecto en resumen</div>
+    <div class="entendemos-grid">
+      <div class="entendemos-item">
+        <div class="entendemos-key">Negocio</div>
+        <div class="entendemos-val">Estudio audiovisual — producción de contenido visual de alto nivel</div>
+      </div>
+      <div class="entendemos-item">
+        <div class="entendemos-key">Objetivo del sitio</div>
+        <div class="entendemos-val">Mostrar el trabajo y convertir visitas en proyectos reales</div>
+      </div>
+      <div class="entendemos-item">
+        <div class="entendemos-key">Situación actual</div>
+        <div class="entendemos-val">Primer sitio — sin presencia web actual</div>
+      </div>
+      <div class="entendemos-item">
+        <div class="entendemos-key">Contenido</div>
+        <div class="entendemos-val">Sin contenido listo — requiere apoyo en textos e imágenes</div>
+      </div>
+      <div class="entendemos-item">
+        <div class="entendemos-key">Tono visual</div>
+        <div class="entendemos-val">Dark mode · editorial · premium — referencia: pepesoho.com</div>
+      </div>
+      <div class="entendemos-item">
+        <div class="entendemos-key">Plazo</div>
+        <div class="entendemos-val">1 mes · con interés en mantenimiento mensual posterior</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMENDACIÓN -->
+  <div class="section">
+    <div class="section-label">Nuestra recomendación</div>
+    <div class="section-title">Dos fases, sin re-hacer nada</div>
+
+    <div class="rec-box">
+      <div class="rec-label">Fase 1 — Lanzamiento (el mes que viene)</div>
+      <div class="rec-title">Sitio Pro a medida</div>
+      <div class="rec-desc">Un sitio completo, diseñado editorialmente, que ya muestre tu trabajo y genere contactos. Arrancamos con lo que da resultados inmediatos y dejamos las funciones avanzadas para cuando tengas volumen de clientes que las justifiquen.</div>
+      <ul class="rec-items">
+        <li>Hero cinematográfico con showreel o imagen de portada de alto impacto</li>
+        <li>Sección de servicios con descripción de cada tipo de producción</li>
+        <li>Portafolio / galería de proyectos con categorías (video, foto, dirección)</li>
+        <li>Nosotros — quiénes son, filosofía y equipo</li>
+        <li>Formulario de contacto conectado a WhatsApp y email</li>
+        <li>SEO básico y Google Analytics desde el día uno</li>
+        <li>Adaptado a móvil · SSL · Dominio configurado</li>
+      </ul>
+      <div class="rec-note">⚠️ Sobre el login, CRM e inglés — te recomendamos dejarlos para Fase 2. El login y CRM sólo tienen sentido cuando ya tienes un flujo de clientes recurrente que lo justifique. El multilenguaje agrega costo y tiempo de contenido que sin el material en inglés listo no aporta. Cuando arranques con el sitio y veas cómo llegan los leads, tomamos esa decisión con datos reales.</div>
+    </div>
+
+    <div style="background:#f4f8fb;border:1px solid rgba(132,180,201,0.2);padding:1.5rem 2rem">
+      <div class="rec-label" style="color:#888">Fase 2 — A 3–6 meses de lanzar</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:#1a1a1a;margin-bottom:0.5rem">Funciones avanzadas cuando tengan sentido</div>
+      <div style="font-size:0.78rem;color:#777;line-height:1.7">Versión en inglés · Área de clientes / login · Integración con CRM · Blog o casos de estudio. Todo se construye sobre el mismo sitio sin tirar nada del trabajo ya hecho.</div>
+    </div>
+  </div>
+
+  <!-- ALCANCE DETALLADO -->
+  <div class="section">
+    <div class="section-label">Alcance del proyecto</div>
+    <div class="section-title">Qué incluye Fase 1</div>
+    <table class="alcance-table">
+      <thead>
+        <tr><th>Entregable</th><th>Detalle</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fase">Diseño visual a medida</td>
+          <td class="desc">Sistema tipográfico, paleta, layout editorial dark mode alineado con el estilo de tu estudio</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Desarrollo web</td>
+          <td class="desc">HTML/CSS/JS limpio, semántico, rápido. Sin WordPress ni plantillas — código propio</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">5–7 secciones</td>
+          <td class="desc">Hero, Servicios, Portafolio, Nosotros, Contacto + secciones adicionales según contenido</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Responsive (móvil + desktop)</td>
+          <td class="desc">Optimizado para todos los dispositivos y tamaños de pantalla</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">SSL + configuración de dominio</td>
+          <td class="desc">Instalación y configuración del certificado de seguridad y DNS</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">SEO básico + Google Analytics</td>
+          <td class="desc">Metadatos, sitemap, velocidad y seguimiento desde el lanzamiento</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">1 ronda de ajustes</td>
+          <td class="desc">Revisión completa después de la entrega del preview con cambios incluidos</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Apoyo con textos (copywriting)</td>
+          <td class="desc">Redacción de textos base para todas las secciones del sitio</td>
+          <td><span class="inc-badge">Incluido</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Multilenguaje (inglés)</td>
+          <td class="desc">Traducción y estructura bilingüe del sitio</td>
+          <td><span class="excl-badge">Fase 2</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Login / Área de clientes</td>
+          <td class="desc">Portal privado para clientes con acceso a archivos o proyectos</td>
+          <td><span class="excl-badge">Fase 2</span></td>
+        </tr>
+        <tr>
+          <td class="fase">Integración CRM</td>
+          <td class="desc">Conexión con HubSpot, Salesforce u otro sistema externo</td>
+          <td><span class="excl-badge">Fase 2</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INVERSIÓN -->
+  <div class="section">
+    <div class="section-label">Inversión</div>
+    <div class="section-title">Precio del proyecto</div>
+
+    <div class="price-main">
+      <div class="price-col highlight">
+        <div class="price-col-label">Opción recomendada · Fase 1</div>
+        <div class="price-col-name">Sitio Pro — Estudio Audiovisual</div>
+        <div class="price-col-desc">Sitio completo a medida con copywriting incluido. Listo para lanzar en 1 mes.</div>
+        <div class="price-mxn"><sup>$</sup>13,500</div>
+        <div class="price-usd">~$675 USD · pago único + IVA</div>
+        <ul class="price-items" style="margin-top:1rem">
+          <li>Diseño editorial dark mode a medida</li>
+          <li>5–7 secciones + portafolio</li>
+          <li>Copywriting de todas las secciones</li>
+          <li>SEO + Analytics + SSL</li>
+          <li>1 ronda de ajustes incluida</li>
+          <li>Entrega en 15–20 días hábiles</li>
+        </ul>
+      </div>
+      <div class="price-col">
+        <div class="price-col-label">Mantenimiento mensual</div>
+        <div class="price-col-name">Plan Activo</div>
+        <div class="price-col-desc">Después del lanzamiento, para que el sitio siempre esté operando y evolucionando.</div>
+        <div class="price-mxn"><sup>$</sup>999</div>
+        <div class="price-usd">~$50 USD / mes + IVA</div>
+        <ul class="price-items" style="margin-top:1rem">
+          <li>SSL activo + backups semanales</li>
+          <li>2 cambios de contenido al mes</li>
+          <li>Reporte GA mensual</li>
+          <li>Optimización de velocidad</li>
+          <li>Soporte WhatsApp prioritario 24h</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ADD-ONS -->
+    <div style="border:1px solid var(--line-dark);border-top:none">
+      <div style="padding:0.7rem 1.2rem;background:#f9f8f4;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#999;border-bottom:1px solid var(--line-dark)">Opcionales para Fase 1</div>
+      <div class="addon-row">
+        <div><div class="addon-name">Sesión de fotos editorial</div><div class="addon-desc">Sesión fotográfica de marca para tener material visual propio y no depender de stock</div></div>
+        <div class="addon-price">Cotizar</div>
+      </div>
+      <div class="addon-row">
+        <div><div class="addon-name">Integración de showreel / video hero</div><div class="addon-desc">Reproducción automática de video de fondo en hero, optimizado para web y móvil</div></div>
+        <div class="addon-price">$1,500</div>
+      </div>
+      <div class="addon-row">
+        <div><div class="addon-name">Dominio .com o .mx (1 año)</div><div class="addon-desc">Registro del dominio de tu estudio si aún no lo tienes</div></div>
+        <div class="addon-price">~$350</div>
+      </div>
+    </div>
+
+    <div style="font-size:0.7rem;color:#999;margin-top:1rem;line-height:1.7">
+      * Precios en MXN sin IVA. El proyecto de Fase 1 incluye copywriting porque indicaste que no tienes contenido listo — esto ya está contemplado en el precio. Si en la llamada resulta que sí tienes textos y fotos propias, el precio puede ajustarse a $11,500 MXN.
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="section">
+    <div class="section-label">Cómo lo hacemos</div>
+    <div class="section-title">Proceso de trabajo</div>
+    <div class="proceso-list">
+      <div class="proceso-item">
+        <div class="proceso-n">01</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Kick-off y brief de contenido</div>
+          <div class="proceso-desc">Llamada de 30 min para definir el tono, revisar referencias, hablar del material visual disponible y alinear expectativas. Después te mandamos un documento de brief de contenido que llenamos juntos.</div>
+          <span class="proceso-time">Día 1</span>
+        </div>
+      </div>
+      <div class="proceso-item">
+        <div class="proceso-n">02</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Diseño y prototipo</div>
+          <div class="proceso-desc">Diseñamos el sistema visual completo — tipografía, color, layout — y te mostramos un prototipo clickeable antes de escribir código. Una revisión incluida en esta etapa.</div>
+          <span class="proceso-time">Días 2–6</span>
+        </div>
+      </div>
+      <div class="proceso-item">
+        <div class="proceso-n">03</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Copywriting</div>
+          <div class="proceso-desc">Redactamos los textos de todas las secciones basados en lo que nos cuentes del estudio. Tú revisas y apruebas antes de que entren al sitio.</div>
+          <span class="proceso-time">Días 5–8</span>
+        </div>
+      </div>
+      <div class="proceso-item">
+        <div class="proceso-n">04</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Desarrollo</div>
+          <div class="proceso-desc">Construcción completa del sitio con el diseño aprobado. HTML/CSS/JS a medida, optimizado para velocidad y SEO desde la base.</div>
+          <span class="proceso-time">Días 8–16</span>
+        </div>
+      </div>
+      <div class="proceso-item">
+        <div class="proceso-n">05</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Preview y ajustes</div>
+          <div class="proceso-desc">Te mandamos el link del sitio en staging para que lo revises. Recibes una ronda de ajustes incluida. Feedback detallado y aplicamos los cambios.</div>
+          <span class="proceso-time">Días 16–19</span>
+        </div>
+      </div>
+      <div class="proceso-item">
+        <div class="proceso-n">06</div>
+        <div class="proceso-content">
+          <div class="proceso-title">Lanzamiento</div>
+          <div class="proceso-desc">Configuración de dominio, SSL, deploy en producción, Analytics y revisión final en vivo. El sitio queda operando.</div>
+          <span class="proceso-time">Día 20</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONDICIONES -->
+  <div class="section">
+    <div class="section-label">Condiciones</div>
+    <div class="section-title">Lo importante</div>
+    <div class="cond-list">
+      <div class="cond-item">Esquema de pago: <strong>50% al arrancar</strong> ($6,750 MXN) y <strong>50% al aprobar el preview</strong> ($6,750 MXN). El mantenimiento se cobra mes a mes una vez lanzado el sitio.</div>
+      <div class="cond-item">Propuesta válida por <strong>15 días naturales</strong> a partir de la fecha de emisión. Después de esa fecha los precios pueden variar según disponibilidad de agenda.</div>
+      <div class="cond-item">El plazo de entrega de <strong>20 días hábiles</strong> corre desde la fecha de pago del anticipo y la entrega del material base (logo, fotos si las hay).</div>
+      <div class="cond-item">Cambios adicionales fuera de la ronda incluida se cobran a <strong>$450 MXN/hora</strong>.</div>
+      <div class="cond-item">El cliente <strong>conserva la propiedad total</strong> del dominio, hosting y código entregado.</div>
+      <div class="cond-item">Necesitamos <strong>respuesta de revisiones en máximo 3 días hábiles</strong> para mantener el calendario de entrega.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-text">
+      <div class="cta-label">¿Listo para arrancar?</div>
+      <div class="cta-h">Agenda la llamada de kick-off</div>
+      <div class="cta-sub">15–20 minutos para alinear los últimos detalles y confirmar el proyecto. Sin compromiso hasta que apruebes el diseño.</div>
+    </div>
+    <div class="cta-btns">
+      <a href="https://wa.me/525574582059?text=Hola%2C%20revisé%20la%20propuesta%20y%20quiero%20agendar%20la%20llamada%20de%20kick-off%20para%20mi%20sitio%20web." class="cta-wa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Agendar por WhatsApp
+      </a>
+      <div class="cta-email">nojstudiomx@gmail.com</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-brand">NO'J STUDIO</div>
+    <div class="footer-info">
+      nojstudiomx@gmail.com · +52 55 7458 2059<br>
+      @nojstudiomx · Ciudad de México<br>
+      Ref: NOJ-WEB-001 · Mayo 2025
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

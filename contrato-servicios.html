@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrato de Servicios Web — No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:#1a1a1a;font-family:'DM Sans',sans-serif;font-weight:300;font-size:14px;line-height:1.75}
+.page{max-width:820px;margin:0 auto;padding:4rem 3rem}
+@media print{.page{padding:1.5rem}.no-print{display:none!important}@page{margin:1.5cm}}
+
+/* HEADER */
+.doc-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2rem;border-bottom:2px solid #1a1a1a;margin-bottom:2.5rem;gap:2rem;flex-wrap:wrap}
+.brand-mark{display:flex;align-items:center;gap:0.7rem}
+.brand-word{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.2em}
+.doc-info{text-align:right;font-size:0.72rem;line-height:1.9;color:#666}
+.doc-info strong{color:#1a1a1a;display:block;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:#84b4c9}
+
+/* TITLE */
+.contract-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.04em;margin-bottom:0.3rem}
+.contract-sub{font-size:0.75rem;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2.5rem}
+
+/* PARTIES */
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem}
+.party{padding:1.5rem;border:1px solid #e8e4dc;background:#faf9f7}
+.party-role{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#84b4c9;margin-bottom:0.6rem}
+.party-name{font-weight:500;font-size:0.95rem;margin-bottom:0.4rem}
+.party-data{font-size:0.78rem;color:#666;line-height:1.8}
+.fill-line{border-bottom:1px solid #ccc;display:inline-block;min-width:200px;margin-left:0.3rem}
+
+/* SECTIONS */
+.section{margin-bottom:2rem}
+.section-num{font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:0.12em;color:#84b4c9;margin-bottom:0.2rem}
+.section-title{font-weight:500;font-size:1rem;margin-bottom:0.8rem;color:#1a1a1a}
+.section p{font-size:0.82rem;color:#444;line-height:1.85;margin-bottom:0.6rem}
+.section ul{list-style:none;margin-bottom:0.6rem}
+.section ul li{font-size:0.82rem;color:#444;line-height:1.7;padding:0.25rem 0;border-bottom:1px solid #f0ede8;display:flex;gap:0.7rem}
+.section ul li::before{content:'—';color:#84b4c9;flex-shrink:0}
+
+/* TABLE */
+.price-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin:0.8rem 0}
+.price-table th{background:#f4f2ed;text-align:left;padding:0.6rem 0.9rem;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#888;border-bottom:1px solid #e0dbd0}
+.price-table td{padding:0.75rem 0.9rem;border-bottom:1px solid #f0ede8;vertical-align:top}
+.price-table tr:last-child td{border-bottom:none}
+.price-table .total td{font-weight:500;background:#f4f2ed;border-top:2px solid #1a1a1a}
+.price-table .hl{color:#1a1a1a;font-weight:500}
+
+/* DIVIDER */
+.divider{width:100%;height:1px;background:#e8e4dc;margin:2rem 0}
+
+/* SIGNATURES */
+.signatures{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:2px solid #1a1a1a}
+.sig-block{}
+.sig-role{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#888;margin-bottom:0.8rem}
+.sig-line{border-bottom:1px solid #1a1a1a;margin-bottom:0.4rem;height:2.5rem}
+.sig-name{font-size:0.75rem;color:#666}
+.sig-date{font-size:0.72rem;color:#888;margin-top:0.3rem}
+
+/* PRINT BTN */
+.print-btn{
+  position:fixed;bottom:2rem;right:2rem;
+  background:#84b4c9;color:#0a0a0a;
+  padding:0.8rem 1.5rem;font-family:'DM Sans',sans-serif;
+  font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  border:none;cursor:pointer;display:flex;align-items:center;gap:0.5rem;
+  box-shadow:0 4px 20px rgba(132,180,201,0.3);transition:background 0.2s;
+}
+.print-btn:hover{background:#a3c8d8}
+
+/* EDITABLE FIELDS */
+[contenteditable]{
+  background:#fffde8;border-bottom:1px dashed #84b4c9;
+  outline:none;min-width:80px;display:inline-block;
+  transition:background 0.2s;padding:0 2px;
+}
+[contenteditable]:focus{background:#fff9d0}
+.edit-hint{font-size:0.62rem;color:#84b4c9;text-align:center;margin-bottom:1.5rem;letter-spacing:0.1em;text-transform:uppercase}
+
+@media(max-width:640px){
+  .parties,.signatures{grid-template-columns:1fr}
+  .page{padding:2rem 1.2rem}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="edit-hint no-print">✏️ Haz clic en los campos amarillos para editar · Después imprime o guarda como PDF</div>
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="brand-mark">
+      <svg width="36" height="36" viewBox="0 0 100 100"><g stroke="#1a1a1a" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#1a1a1a" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#1a1a1a" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#fff"/><circle cx="50" cy="50" r="3.5" fill="#84b4c9"/></svg>
+      <div>
+        <div class="brand-word">NO'J STUDIO</div>
+        <div style="font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:#888">Diseño · Desarrollo · Branding</div>
+      </div>
+    </div>
+    <div class="doc-info">
+      <strong>CONTRATO DE SERVICIOS</strong>
+      No. <span contenteditable>NOJ-WEB-001</span><br>
+      Fecha: <span contenteditable>__/__/2025</span><br>
+      Ciudad de México, CDMX<br>
+      Válido por 30 días
+    </div>
+  </div>
+
+  <div class="contract-title">Contrato de Diseño<br>y Desarrollo Web</div>
+  <div class="contract-sub">Prestación de servicios profesionales</div>
+
+  <!-- PARTES -->
+  <div class="parties">
+    <div class="party">
+      <div class="party-role">Prestador de servicios</div>
+      <div class="party-name">No'j Studio</div>
+      <div class="party-data">
+        Estudio creativo independiente<br>
+        Ciudad de México, CDMX<br>
+        nojstudiomx@gmail.com<br>
+        +52 55 7458 2059<br>
+        @nojstudiomx
+      </div>
+    </div>
+    <div class="party">
+      <div class="party-role">Cliente</div>
+      <div class="party-name" contenteditable>Nombre del cliente</div>
+      <div class="party-data">
+        Empresa: <span contenteditable>Nombre de la empresa</span><br>
+        Email: <span contenteditable>email@cliente.com</span><br>
+        WhatsApp: <span contenteditable>+52 55 0000 0000</span><br>
+        RFC: <span contenteditable>RFC (opcional)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. OBJETO -->
+  <div class="section">
+    <div class="section-num">Cláusula 01</div>
+    <div class="section-title">Objeto del contrato</div>
+    <p>No'j Studio se compromete a prestar los servicios de diseño y desarrollo web descritos a continuación, para el cliente identificado en este documento. Ambas partes acuerdan los términos y condiciones establecidos en este contrato.</p>
+    <p>El proyecto consiste en: <span contenteditable>Diseño y desarrollo de sitio web institucional a medida, incluyendo diseño visual, desarrollo HTML/CSS/JS, configuración de SSL y dominio, SEO básico e integración con Google Analytics.</span></p>
+  </div>
+
+  <!-- 2. ALCANCE -->
+  <div class="section">
+    <div class="section-num">Cláusula 02</div>
+    <div class="section-title">Alcance de los servicios</div>
+    <p>Los servicios incluidos en este contrato son los siguientes:</p>
+    <ul>
+      <li contenteditable>Diseño visual a medida (sistema tipográfico, paleta de color, layout)</li>
+      <li contenteditable>Desarrollo HTML/CSS/JS — código propio, sin plantillas</li>
+      <li contenteditable>Secciones: Hero, Servicios, Portafolio, Nosotros, Contacto</li>
+      <li contenteditable>Diseño responsive (móvil, tablet y escritorio)</li>
+      <li contenteditable>Configuración de SSL y dominio</li>
+      <li contenteditable>SEO básico: metadatos, sitemap, velocidad</li>
+      <li contenteditable>Integración con Google Analytics</li>
+      <li contenteditable>1 ronda de ajustes incluida después del preview</li>
+    </ul>
+    <p style="margin-top:0.8rem"><strong>No incluido en este contrato:</strong> <span contenteditable>Contenido (textos e imágenes provistos por el cliente), hosting posterior al lanzamiento, cambios adicionales fuera de la ronda incluida, funcionalidades no mencionadas en esta cláusula.</span></p>
+  </div>
+
+  <!-- 3. PRECIO -->
+  <div class="section">
+    <div class="section-num">Cláusula 03</div>
+    <div class="section-title">Precio y forma de pago</div>
+    <table class="price-table">
+      <thead><tr><th>Concepto</th><th>Importe</th></tr></thead>
+      <tbody>
+        <tr><td contenteditable>Diseño y desarrollo web — Plan Pro</td><td class="hl" contenteditable>$11,500 MXN</td></tr>
+        <tr><td contenteditable>Anticipo (50%) — al firmar contrato</td><td class="hl" contenteditable>$5,750 MXN</td></tr>
+        <tr><td contenteditable>Liquidación (50%) — al aprobar preview</td><td class="hl" contenteditable>$5,750 MXN</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="total"><td>Total del proyecto (sin IVA)</td><td contenteditable>$11,500 MXN</td></tr>
+      </tfoot>
+    </table>
+    <p>Los pagos se realizarán mediante <span contenteditable>transferencia bancaria o pago en efectivo, a los datos que No'j Studio proporcionará al cliente por WhatsApp</span>. El anticipo deberá liquidarse antes del inicio del proyecto. No se comenzará ningún trabajo sin la recepción del anticipo.</p>
+  </div>
+
+  <!-- 4. TIEMPOS -->
+  <div class="section">
+    <div class="section-num">Cláusula 04</div>
+    <div class="section-title">Tiempos de entrega</div>
+    <p>El plazo estimado de entrega es de <span contenteditable>15 a 20 días hábiles</span> contados a partir de:</p>
+    <ul>
+      <li>La recepción del pago del anticipo acordado</li>
+      <li>La entrega por parte del cliente del material necesario (logo, imágenes, textos si aplica)</li>
+    </ul>
+    <p>El plazo puede verse afectado si el cliente tarda más de <strong>3 días hábiles</strong> en responder revisiones o entregar material solicitado. No'j Studio notificará al cliente cualquier ajuste en el calendario.</p>
+  </div>
+
+  <!-- 5. REVISIONES -->
+  <div class="section">
+    <div class="section-num">Cláusula 05</div>
+    <div class="section-title">Revisiones y cambios</div>
+    <p>Este contrato incluye <strong>1 ronda de revisiones</strong> después de la entrega del preview. Se entiende por ronda de revisiones el conjunto de cambios menores (textos, colores, orden de elementos) que el cliente solicite en una sola comunicación.</p>
+    <p>Los cambios adicionales fuera del alcance definido o después de la ronda incluida se cobrarán a <strong>$450 MXN por hora</strong>, previa aprobación del cliente.</p>
+    <p>Se consideran cambios fuera de alcance: nuevas secciones, cambio de estructura general, funcionalidades no mencionadas en la Cláusula 02, o cambios solicitados después del lanzamiento.</p>
+  </div>
+
+  <!-- 6. PROPIEDAD -->
+  <div class="section">
+    <div class="section-num">Cláusula 06</div>
+    <div class="section-title">Propiedad intelectual y entrega</div>
+    <p>Una vez liquidado el 100% del proyecto, el cliente recibe la propiedad total de:</p>
+    <ul>
+      <li>El código fuente del sitio web (HTML, CSS, JS)</li>
+      <li>Los archivos de diseño en los formatos acordados</li>
+      <li>El dominio (si fue registrado a nombre del cliente)</li>
+    </ul>
+    <p>No'j Studio se reserva el derecho de mostrar el proyecto en su portafolio, redes sociales y materiales de marketing, salvo que el cliente solicite confidencialidad por escrito.</p>
+    <p>El cliente garantiza tener los derechos sobre el material que entregue a No'j Studio (imágenes, logos, textos), eximiendo a No'j Studio de cualquier responsabilidad por uso de material sin licencia.</p>
+  </div>
+
+  <!-- 7. CONFIDENCIALIDAD -->
+  <div class="section">
+    <div class="section-num">Cláusula 07</div>
+    <div class="section-title">Confidencialidad</div>
+    <p>Ambas partes se comprometen a mantener la confidencialidad de la información sensible compartida durante el proyecto (estrategias de negocio, datos de clientes, información financiera). Esta obligación permanece vigente durante y después de la relación contractual.</p>
+  </div>
+
+  <!-- 8. CANCELACIÓN -->
+  <div class="section">
+    <div class="section-num">Cláusula 08</div>
+    <div class="section-title">Cancelación y reembolsos</div>
+    <p>En caso de cancelación por parte del cliente:</p>
+    <ul>
+      <li>Antes de iniciar el diseño: reembolso del 80% del anticipo</li>
+      <li>Durante la fase de diseño: reembolso del 50% del anticipo</li>
+      <li>Durante o después del desarrollo: el anticipo no es reembolsable</li>
+    </ul>
+    <p>No'j Studio puede cancelar el contrato si el cliente no entrega el material necesario en más de 30 días calendario desde la firma. En ese caso, el anticipo no es reembolsable.</p>
+  </div>
+
+  <!-- 9. LIMITACIÓN -->
+  <div class="section">
+    <div class="section-num">Cláusula 09</div>
+    <div class="section-title">Limitación de responsabilidad</div>
+    <p>No'j Studio no se hace responsable por pérdidas de negocio, caídas en ventas u otros daños indirectos derivados del uso o funcionamiento del sitio web. La responsabilidad de No'j Studio se limita al monto total del proyecto contratado.</p>
+    <p>No'j Studio no garantiza posiciones específicas en buscadores (SEO), resultados de campañas de marketing, ni el comportamiento de plataformas de terceros (Google, Meta, etc.).</p>
+  </div>
+
+  <!-- 10. JURISDICCIÓN -->
+  <div class="section">
+    <div class="section-num">Cláusula 10</div>
+    <div class="section-title">Jurisdicción y resolución de conflictos</div>
+    <p>Ambas partes acuerdan resolver cualquier conflicto de manera amigable en primera instancia. En caso de no llegar a un acuerdo, se someten a la jurisdicción de los tribunales competentes de la Ciudad de México.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FIRMAS -->
+  <p style="font-size:0.82rem;color:#444;margin-bottom:2rem">Las partes, habiendo leído y entendido el presente contrato, expresan su conformidad mediante su firma.</p>
+
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-role">No'j Studio — Prestador de servicios</div>
+      <div class="sig-line"></div>
+      <div class="sig-name">No'j Studio · Ciudad de México</div>
+      <div class="sig-date">Fecha: ___________________</div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-role">Cliente</div>
+      <div class="sig-line"></div>
+      <div class="sig-name" contenteditable>Nombre completo del cliente</div>
+      <div class="sig-date">Fecha: ___________________</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;font-size:0.65rem;color:#bbb;letter-spacing:0.1em;text-transform:uppercase">
+    No'j Studio · nojstudiomx@gmail.com · +52 55 7458 2059 · @nojstudiomx · CDMX
+  </div>
+
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Imprimir / Guardar PDF
+</button>
+</body>
+</html>

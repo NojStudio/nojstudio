@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Audiovisual — Mockup · No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,500;1,500&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;--off:#0e0e0e;--white:#f0ede8;--gray:#555;
+  --dim:rgba(240,237,232,0.45);--v:#c8a96e;/* gold accent para audiovisual */
+  --line:rgba(255,255,255,0.06);
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 3.5rem;
+  background:rgba(8,8,8,0);backdrop-filter:blur(0px);
+  border-bottom:1px solid transparent;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);
+  border-bottom-color:var(--line);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.5rem;letter-spacing:0.04em;color:var(--white);
+  text-decoration:none;
+}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(240,237,232,0.45);text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  color:var(--v)!important;
+  border:1px solid rgba(200,169,110,0.3);
+  padding:0.45rem 1.2rem;
+}
+.nav-cta:hover{background:rgba(200,169,110,0.08)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:5rem 3.5rem 5rem;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 40%,rgba(200,169,110,0.04) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 80% at 80% 80%,rgba(200,169,110,0.03) 0%,transparent 50%),
+    linear-gradient(160deg,#0a0a0a 0%,#060606 100%);
+}
+/* Simulated film grain */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.6;pointer-events:none;
+}
+/* Frame decoration */
+.hero-frame{
+  position:absolute;top:2.5rem;left:2.5rem;right:2.5rem;bottom:2.5rem;
+  border:1px solid rgba(200,169,110,0.1);pointer-events:none;
+}
+.hero-frame::before{
+  content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  width:40px;height:1px;background:var(--v);
+}
+.hero-frame::after{
+  content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);
+  width:40px;height:1px;background:var(--v);
+}
+
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:1.2rem;
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--v);margin-bottom:1.8rem;
+  animation:fadeUp 1s ease 0.2s both;
+}
+.hero-eyebrow::before{content:'';width:3rem;height:1px;background:var(--v)}
+.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,12vw,11rem);
+  line-height:0.85;letter-spacing:0.015em;
+  margin-bottom:2rem;
+  animation:fadeUp 1s ease 0.35s both;
+}
+.hero-h1 em{
+  font-style:normal;
+  -webkit-text-stroke:1px rgba(240,237,232,0.3);
+  color:transparent;
+}
+.hero-foot{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:3rem;
+  animation:fadeUp 1s ease 0.5s both;
+}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.15rem;color:rgba(240,237,232,0.45);
+  line-height:1.6;max-width:320px;
+}
+.hero-reel-btn{
+  display:flex;align-items:center;gap:1rem;cursor:pointer;
+  text-decoration:none;
+}
+.hero-play{
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(200,169,110,0.4);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.hero-reel-btn:hover .hero-play{
+  background:rgba(200,169,110,0.1);border-color:var(--v);
+}
+.hero-play svg{margin-left:3px}
+.hero-reel-text{
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(240,237,232,0.35);
+}
+/* Scroll counter */
+.hero-counter{
+  position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl;text-orientation:mixed;
+  font-family:'DM Sans',sans-serif;font-size:0.58rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,237,232,0.15);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:1rem;
+}
+.hero-counter::before{content:'';width:1px;height:60px;background:linear-gradient(to bottom,rgba(200,169,110,0.5),transparent)}
+
+/* ── REEL SECTION ── */
+.reel-section{
+  background:var(--off);
+  padding:0;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.reel-inner{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:1px;background:var(--line);
+}
+.reel-cell{
+  position:relative;overflow:hidden;
+  aspect-ratio:16/9;background:#111;
+  cursor:pointer;
+}
+.reel-cell:first-child{grid-column:span 2;aspect-ratio:auto;min-height:300px}
+.reel-thumb{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.reel-cell:hover .reel-thumb{transform:scale(1.04)}
+/* Simulated video thumbnails */
+.reel-cell:nth-child(1) .reel-thumb{background:linear-gradient(135deg,#0a0e14 0%,#1a2030 40%,#0e1520 100%)}
+.reel-cell:nth-child(2) .reel-thumb{background:linear-gradient(160deg,#1a0e0a 0%,#2a1810 60%,#150c08 100%)}
+.reel-cell:nth-child(3) .reel-thumb{background:linear-gradient(145deg,#0a140e 0%,#0e2014 60%,#081008 100%)}
+.reel-overlay{
+  position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.8),transparent 60%);
+  display:flex;align-items:flex-end;padding:1.5rem;
+  opacity:0;transition:opacity 0.3s;
+}
+.reel-cell:hover .reel-overlay{opacity:1}
+.reel-label{
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--v);border:1px solid rgba(200,169,110,0.3);
+  padding:0.25rem 0.6rem;
+}
+/* Film strip decoration on main cell */
+.reel-cell:first-child::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:20px;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,transparent 12px,
+    rgba(255,255,255,0.03) 12px,rgba(255,255,255,0.03) 18px
+  );z-index:2;pointer-events:none;
+}
+.reel-cell:first-child::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:20px;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,transparent 12px,
+    rgba(255,255,255,0.03) 12px,rgba(255,255,255,0.03) 18px
+  );z-index:2;pointer-events:none;
+}
+.reel-main-label{
+  position:absolute;bottom:2rem;left:3rem;z-index:3;
+}
+.reel-main-label h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;letter-spacing:0.06em;margin-bottom:0.3rem;
+}
+.reel-main-label p{
+  font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(240,237,232,0.4);
+}
+
+/* ── SERVICIOS ── */
+.servicios{padding:8rem 3.5rem}
+.s-label{
+  display:flex;align-items:center;gap:1rem;
+  font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--v);margin-bottom:1rem;
+}
+.s-label::before{content:'';width:2.5rem;height:1px;background:var(--v)}
+.s-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:0.02em;line-height:0.92;
+  margin-bottom:4rem;
+}
+.serv-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.serv-item{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:2.5rem;align-items:center;
+  padding:2rem 0;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:padding 0.3s;
+}
+.serv-item:hover{padding-left:1rem}
+.serv-n{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  color:rgba(255,255,255,0.08);letter-spacing:0.04em;
+  width:2.5rem;
+}
+.serv-content{}
+.serv-name{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  letter-spacing:0.06em;margin-bottom:0.4rem;
+  transition:color 0.2s;
+}
+.serv-item:hover .serv-name{color:var(--v)}
+.serv-desc{font-size:0.78rem;color:rgba(240,237,232,0.4);line-height:1.7;max-width:480px}
+.serv-tag{
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(200,169,110,0.5);border:1px solid rgba(200,169,110,0.15);
+  padding:0.28rem 0.7rem;white-space:nowrap;
+}
+
+/* ── ABOUT ── */
+.about{
+  padding:8rem 3.5rem;
+  background:var(--off);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:center;
+  border-top:1px solid var(--line);
+}
+.about-visual{position:relative}
+.about-img{
+  width:100%;aspect-ratio:3/4;
+  background:linear-gradient(160deg,#1a1410 0%,#2a2018 40%,#1a1814 100%);
+  position:relative;overflow:hidden;
+}
+.about-img::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 30%,rgba(200,169,110,0.08),transparent 60%);
+}
+.about-img-label{
+  position:absolute;bottom:-1px;right:-1px;
+  background:var(--black);padding:0.8rem 1.2rem;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(240,237,232,0.3);border-top:1px solid var(--line);border-left:1px solid var(--line);
+}
+.about-stat{
+  position:absolute;top:2rem;left:-2rem;
+  background:var(--black);border:1px solid var(--line);
+  padding:1.2rem 1.5rem;
+}
+.about-stat-n{
+  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;
+  color:var(--v);line-height:1;
+}
+.about-stat-label{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-top:0.2rem}
+.about-text{}
+.about-h{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.15;
+  margin-bottom:1.5rem;font-weight:400;
+}
+.about-h strong{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:1.2em;letter-spacing:0.04em;color:var(--v)}
+.about-body{font-size:0.84rem;color:rgba(240,237,232,0.5);line-height:1.9;margin-bottom:2rem}
+.about-link{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--v);text-decoration:none;transition:gap 0.2s;
+}
+.about-link:hover{gap:1rem}
+
+/* ── CONTACTO ── */
+.contacto{
+  padding:8rem 3.5rem;
+  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:center;
+}
+.contacto-left .s-title{margin-bottom:1.2rem}
+.contacto-tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.2rem;color:rgba(240,237,232,0.35);
+  line-height:1.65;max-width:320px;margin-bottom:2.5rem;
+}
+.contact-items{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.contact-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 0;border-bottom:1px solid var(--line);
+  text-decoration:none;color:var(--white);
+  transition:padding 0.2s;
+}
+.contact-item:hover{padding-left:0.5rem}
+.contact-item-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-bottom:0.2rem}
+.contact-item-val{font-size:0.88rem;font-weight:400}
+.contact-item-arrow{color:rgba(200,169,110,0.5);transition:transform 0.2s}
+.contact-item:hover .contact-item-arrow{transform:translateX(4px);color:var(--v)}
+
+/* CTA form area */
+.contacto-form{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--line);padding:2.5rem;
+}
+.cf-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:0.6rem}
+.cf-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;margin-bottom:0.4rem}
+.cf-sub{font-size:0.74rem;color:rgba(240,237,232,0.3);line-height:1.6;margin-bottom:2rem}
+.cf-field{margin-bottom:1rem}
+.cf-field input,.cf-field textarea,.cf-field select{
+  width:100%;background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  color:var(--white);font-family:'DM Sans',sans-serif;
+  font-size:0.84rem;font-weight:300;
+  padding:0.85rem 1rem;outline:none;
+  transition:border-color 0.2s;border-radius:0;-webkit-appearance:none;
+}
+.cf-field input:focus,.cf-field textarea:focus{border-color:var(--v)}
+.cf-field textarea{resize:none;height:80px;line-height:1.6}
+.cf-btn{
+  width:100%;padding:1rem;background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.74rem;font-weight:500;
+  letter-spacing:0.16em;text-transform:uppercase;border:none;
+  cursor:pointer;margin-top:0.5rem;transition:background 0.2s;
+}
+.cf-btn:hover{background:#d4b87e}
+
+/* ── FOOTER ── */
+footer{
+  padding:2rem 3.5rem;
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.1rem;color:rgba(240,237,232,0.25);text-decoration:none;
+}
+.footer-copy{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,237,232,0.15)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{
+  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(240,237,232,0.2);text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--v)}
+
+/* ── MOCKUP BADGE ── */
+.mockup-badge{
+  position:fixed;bottom:2rem;right:2rem;z-index:200;
+  background:var(--v);color:#0a0a0a;
+  padding:0.6rem 1.2rem;font-family:'DM Sans',sans-serif;
+  font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.5rem;
+  box-shadow:0 4px 20px rgba(200,169,110,0.3);
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.2}50%{opacity:.6}}
+
+@media(max-width:900px){
+  .about,.contacto{grid-template-columns:1fr;gap:3rem}
+  .reel-inner{grid-template-columns:1fr}
+  .reel-cell:first-child{grid-column:span 1}
+  .hero-counter{display:none}
+  nav{padding:1rem 1.5rem}
+  .hero,.servicios,.about,.contacto{padding-left:1.5rem;padding-right:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- MOCKUP BADGE -->
+<div class="mockup-badge">
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  Mockup — No'j Studio para Luis
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Estudio</a>
+  <ul class="nav-links">
+    <li><a href="#trabajo">Trabajo</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Proyectos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-counter">2025</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Producción audiovisual · Ciudad de México</div>
+    <h1 class="hero-h1">Imagen<br>que <em>mueve.</em></h1>
+    <div class="hero-foot">
+      <p class="hero-tagline">"Creamos piezas audiovisuales que no se olvidan. Dirección, fotografía y producción para marcas que entienden el poder de la imagen."</p>
+      <a href="#trabajo" class="hero-reel-btn">
+        <div class="hero-play">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <span class="hero-reel-text">Ver showreel</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- REEL / TRABAJO -->
+<section id="trabajo">
+  <div class="reel-inner">
+    <!-- Main feature -->
+    <div class="reel-cell">
+      <div class="reel-thumb"></div>
+      <div class="reel-main-label">
+        <h3>Campaña Tlali Skincare</h3>
+        <p>Dirección · Fotografía de producto · 2024</p>
+      </div>
+      <div class="reel-overlay"><span class="reel-label">Ver proyecto</span></div>
+    </div>
+    <!-- Secondary -->
+    <div class="reel-cell">
+      <div class="reel-thumb"></div>
+      <div class="reel-overlay"><span class="reel-label">Casa Mole · Gastronomía</span></div>
+    </div>
+    <div class="reel-cell">
+      <div class="reel-thumb"></div>
+      <div class="reel-overlay"><span class="reel-label">Vertex Padel · Sport</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Producción<br>sin compromisos.</h2>
+  <div class="serv-list">
+    <div class="serv-item">
+      <div class="serv-n">01</div>
+      <div class="serv-content">
+        <div class="serv-name">Dirección y producción</div>
+        <div class="serv-desc">Concepto creativo, preproducción, casting, locaciones y ejecución. Llevamos la visión de tu marca a imágenes que funcionan.</div>
+      </div>
+      <span class="serv-tag">Film · Comercial</span>
+    </div>
+    <div class="serv-item">
+      <div class="serv-n">02</div>
+      <div class="serv-content">
+        <div class="serv-name">Fotografía editorial</div>
+        <div class="serv-desc">Sesiones de producto, moda, gastronomía y marca. Material que no parece stock porque no lo es.</div>
+      </div>
+      <span class="serv-tag">Foto · Editorial</span>
+    </div>
+    <div class="serv-item">
+      <div class="serv-n">03</div>
+      <div class="serv-content">
+        <div class="serv-name">Contenido para redes</div>
+        <div class="serv-desc">Videos cortos, reels y piezas optimizadas para cada plataforma. Contenido consistente que mantiene viva la marca semana a semana.</div>
+      </div>
+      <span class="serv-tag">Social · Content</span>
+    </div>
+    <div class="serv-item">
+      <div class="serv-n">04</div>
+      <div class="serv-content">
+        <div class="serv-name">Postproducción</div>
+        <div class="serv-desc">Edición, colorización, retoque y motion graphics. El acabado que marca la diferencia entre algo bueno y algo memorable.</div>
+      </div>
+      <span class="serv-tag">Post · Motion</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="about-visual">
+    <div class="about-img">
+      <div class="about-img-label">Luis · Director</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-n">+60</div>
+      <div class="about-stat-label">Proyectos producidos</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="s-label">Nosotros</div>
+    <h2 class="about-h">Creamos imágenes<br>que tienen <strong>algo que decir.</strong></h2>
+    <p class="about-body">
+      Somos un estudio audiovisual con base en Ciudad de México. Trabajamos con marcas que entienden que la imagen no es decoración — es comunicación.<br><br>
+      Cada proyecto arranca con una pregunta: ¿qué queremos que sienta quien lo vea? Todo lo demás — la cámara, la luz, el corte — sirve esa respuesta.
+    </p>
+    <a href="#contacto" class="about-link">
+      Hablar de tu proyecto →
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="contacto-left">
+    <div class="s-label">Proyectos</div>
+    <h2 class="s-title">Hablemos<br>de lo que<br>necesitas.</h2>
+    <p class="contacto-tagline">"La mejor producción empieza con una conversación honesta sobre qué quieres lograr."</p>
+    <div class="contact-items">
+      <a href="https://wa.me/525574582059" class="contact-item" target="_blank">
+        <div>
+          <div class="contact-item-label">WhatsApp</div>
+          <div class="contact-item-val">+52 55 0000 0000</div>
+        </div>
+        <span class="contact-item-arrow">→</span>
+      </a>
+      <a href="mailto:hola@estudio.mx" class="contact-item">
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val">hola@estudio.mx</div>
+        </div>
+        <span class="contact-item-arrow">→</span>
+      </a>
+      <a href="https://instagram.com" class="contact-item" target="_blank">
+        <div>
+          <div class="contact-item-label">Instagram</div>
+          <div class="contact-item-val">@estudio</div>
+        </div>
+        <span class="contact-item-arrow">→</span>
+      </a>
+    </div>
+  </div>
+  <div>
+    <div class="contacto-form">
+      <div class="cf-label">Cuéntanos</div>
+      <div class="cf-title">Tu próximo proyecto</div>
+      <p class="cf-sub">Respuesta en menos de 24 horas.</p>
+      <div class="cf-field"><input type="text" placeholder="Nombre / Empresa"></div>
+      <div class="cf-field"><input type="email" placeholder="Email o WhatsApp"></div>
+      <div class="cf-field"><textarea placeholder="¿Qué tipo de producción necesitas? Cuéntanos el contexto..."></textarea></div>
+      <button class="cf-btn">Enviar por WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#inicio" class="footer-logo">Estudio</a>
+  <span class="footer-copy">© 2025 · Ciudad de México</span>
+  <div class="footer-links">
+    <a href="#trabajo">Trabajo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+var nav = document.getElementById('mainNav');
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 60){
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>

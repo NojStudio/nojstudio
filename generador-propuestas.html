@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Propuestas — No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#666;
+  --v:#84b4c9;--v-dim:rgba(132,180,201,0.1);--v-border:rgba(132,180,201,0.25);
+  --line:rgba(255,255,255,0.07);--green:#6fbdaa;--err:#e07070;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
+
+/* ── LAYOUT ── */
+.app{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+@media(max-width:900px){.app{grid-template-columns:1fr}}
+
+/* ── LEFT PANEL ── */
+.left{
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  padding:0;
+  position:sticky;top:0;height:100vh;overflow:hidden;
+}
+@media(max-width:900px){.left{position:relative;height:auto}}
+
+.left-header{
+  padding:1.8rem 2rem;
+  border-bottom:1px solid var(--line);
+  background:rgba(10,10,10,0.95);
+  flex-shrink:0;
+}
+.brand{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
+.brand-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.18em;color:var(--white)}
+.brand-tag{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.7rem;margin-left:0.1rem}
+.left-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;line-height:1;margin-bottom:0.3rem}
+.left-sub{font-size:0.72rem;color:rgba(255,255,255,0.3);line-height:1.5}
+
+.left-body{flex:1;overflow-y:auto;padding:1.5rem 2rem}
+.left-body::-webkit-scrollbar{width:3px}
+.left-body::-webkit-scrollbar-track{background:transparent}
+.left-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+
+/* ── FORM ── */
+.field{margin-bottom:1.4rem}
+.field label{
+  display:block;font-size:0.58rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;
+}
+.field label .req{color:var(--v);margin-left:0.2rem}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--white);font-family:'DM Sans',sans-serif;
+  font-size:0.84rem;font-weight:300;
+  padding:0.8rem 1rem;outline:none;
+  transition:border-color 0.2s,background 0.2s;
+  -webkit-appearance:none;border-radius:0;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--v);background:var(--v-dim);
+}
+.field select{
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2384b4c9' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.5rem;
+}
+.field select option{background:#141414;color:var(--white)}
+.field textarea{resize:vertical;line-height:1.6;min-height:100px}
+.field-hint{font-size:0.65rem;color:rgba(255,255,255,0.18);margin-top:0.4rem;line-height:1.5}
+
+.section-divider{
+  font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--v);padding:1rem 0 0.8rem;
+  border-top:1px solid var(--line);margin-top:0.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.section-divider::after{content:'';flex:1;height:1px;background:var(--line)}
+
+/* BRIEF PASTE AREA */
+.brief-toggle{
+  display:flex;gap:0;border:1px solid var(--line);margin-bottom:1.4rem;
+}
+.brief-tab{
+  flex:1;padding:0.65rem;text-align:center;
+  font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;
+  cursor:pointer;background:transparent;color:rgba(255,255,255,0.3);
+  border:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;
+}
+.brief-tab.active{background:var(--v-dim);color:var(--white);border-bottom:2px solid var(--v)}
+
+/* GENERATE BTN */
+.generate-btn{
+  width:100%;padding:1.1rem;background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;
+  letter-spacing:0.16em;text-transform:uppercase;border:none;
+  cursor:pointer;transition:all 0.25s;
+  display:flex;align-items:center;justify-content:center;gap:0.7rem;
+  margin-top:0.5rem;
+}
+.generate-btn:hover:not(:disabled){background:#a3c8d8}
+.generate-btn:disabled{opacity:0.5;cursor:not-allowed}
+
+/* ── RIGHT PANEL ── */
+.right{
+  display:flex;flex-direction:column;
+  background:#0d0d0d;
+  min-height:100vh;
+}
+.right-header{
+  padding:1.8rem 2rem;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  flex-shrink:0;
+}
+.right-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.1em;color:rgba(255,255,255,0.5)}
+.right-actions{display:flex;gap:0.7rem;flex-wrap:wrap}
+.action-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.55rem 1.1rem;font-family:'DM Sans',sans-serif;
+  font-size:0.65rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;border:none;
+}
+.action-btn.secondary{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border:1px solid var(--line)}
+.action-btn.secondary:hover{background:rgba(255,255,255,0.08);color:var(--white)}
+.action-btn.primary{background:var(--green);color:var(--black)}
+.action-btn.primary:hover{background:#8fd4c0}
+.action-btn:disabled{opacity:0.3;cursor:not-allowed}
+
+.right-body{
+  flex:1;padding:2rem;
+  overflow-y:auto;
+}
+.right-body::-webkit-scrollbar{width:3px}
+.right-body::-webkit-scrollbar-track{background:transparent}
+.right-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+
+/* EMPTY STATE */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;min-height:400px;text-align:center;padding:3rem;
+}
+.empty-icon{
+  width:64px;height:64px;border:1px solid var(--line);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.5rem;color:rgba(255,255,255,0.15);
+}
+.empty-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:rgba(255,255,255,0.2);margin-bottom:0.5rem}
+.empty-sub{font-size:0.75rem;color:rgba(255,255,255,0.15);line-height:1.7;max-width:300px}
+
+/* LOADING */
+.loading-state{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;min-height:400px;text-align:center;padding:3rem;
+}
+.loading-state.show{display:flex}
+.loading-dots{display:flex;gap:0.5rem;margin-bottom:1.5rem}
+.dot{
+  width:8px;height:8px;border-radius:50%;background:var(--v);
+  animation:dotPulse 1.4s ease-in-out infinite;
+}
+.dot:nth-child(2){animation-delay:0.2s}
+.dot:nth-child(3){animation-delay:0.4s}
+@keyframes dotPulse{0%,80%,100%{opacity:0.2;transform:scale(0.8)}40%{opacity:1;transform:scale(1)}}
+.loading-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:rgba(255,255,255,0.4);margin-bottom:0.5rem}
+.loading-sub{font-size:0.72rem;color:rgba(255,255,255,0.2);line-height:1.7}
+
+/* PROPUESTA OUTPUT */
+.propuesta-output{display:none}
+.propuesta-output.show{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* HTML PREVIEW FRAME */
+.preview-frame-wrap{
+  border:1px solid var(--line);
+  background:#fff;
+  margin-bottom:1.5rem;
+  position:relative;
+  overflow:hidden;
+  border-radius:0;
+}
+.preview-frame-bar{
+  background:#1a1a1a;padding:0.5rem 0.8rem;
+  display:flex;align-items:center;gap:0.5rem;
+  border-bottom:1px solid var(--line);
+}
+.pf-dot{width:10px;height:10px;border-radius:50%}
+.pf-dot:nth-child(1){background:#ff5f57}
+.pf-dot:nth-child(2){background:#febc2e}
+.pf-dot:nth-child(3){background:#28c840}
+.pf-url{
+  margin-left:0.5rem;font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:0.04em;
+}
+#previewFrame{
+  width:100%;height:600px;border:none;
+  background:#fff;
+}
+
+/* TABS */
+.output-tabs{display:flex;gap:0;border:1px solid var(--line);border-bottom:none;width:fit-content;margin-bottom:0}
+.out-tab{
+  padding:0.6rem 1.4rem;font-size:0.62rem;letter-spacing:0.16em;
+  text-transform:uppercase;cursor:pointer;background:transparent;
+  color:rgba(255,255,255,0.3);border:none;font-family:'DM Sans',sans-serif;
+  transition:all 0.2s;
+}
+.out-tab.active{background:var(--v-dim);color:var(--white);border-bottom:2px solid var(--v)}
+.out-tab:hover{color:var(--white)}
+
+/* RAW HTML VIEW */
+.raw-view{
+  display:none;border:1px solid var(--line);
+  background:rgba(255,255,255,0.02);padding:1.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;
+  line-height:1.7;color:rgba(255,255,255,0.45);
+  white-space:pre-wrap;word-break:break-all;
+  max-height:600px;overflow-y:auto;
+  margin-bottom:1.5rem;
+}
+.raw-view.show{display:block}
+
+/* WHATSAPP PREVIEW */
+.wa-preview{
+  display:none;border:1px solid var(--line);
+  background:rgba(255,255,255,0.02);padding:1.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  line-height:1.7;color:rgba(255,255,255,0.6);
+  white-space:pre-wrap;max-height:600px;overflow-y:auto;
+  margin-bottom:1.5rem;
+}
+.wa-preview.show{display:block}
+
+/* STATUS BADGE */
+.status-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;
+  padding:0.3rem 0.8rem;border:1px solid;
+}
+.status-badge.success{color:var(--green);border-color:rgba(111,189,170,0.3);background:rgba(111,189,170,0.08)}
+.status-badge.error{color:var(--err);border-color:rgba(224,112,112,0.3);background:rgba(224,112,112,0.08)}
+.status-badge .dot-live{width:6px;height:6px;border-radius:50%;background:currentColor;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* PRICING HIGHLIGHT */
+.pricing-card{
+  border:1px solid var(--v-border);background:var(--v-dim);
+  padding:1.5rem;margin-bottom:1rem;
+}
+.pricing-card-title{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);margin-bottom:0.6rem}
+.pricing-card-price{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:0.02em;line-height:1;color:var(--white)}
+.pricing-card-sub{font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:0.3rem}
+
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ══ LEFT: INPUT ══ -->
+  <div class="left">
+    <div class="left-header">
+      <div class="brand">
+        <svg width="28" height="28" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+        <span class="brand-wordmark">NO'J</span><span class="brand-tag">Generador de propuestas</span>
+      </div>
+      <div class="left-title">Genera propuesta<br>con IA</div>
+      <div class="left-sub">Pega el brief de WhatsApp o llena los campos. La IA genera la propuesta HTML completa en segundos.</div>
+    </div>
+
+    <div class="left-body">
+
+      <!-- MODO: pegar brief o llenar campos -->
+      <div class="brief-toggle" style="margin-top:0.5rem">
+        <button class="brief-tab active" onclick="switchMode('paste')">Pegar brief de WhatsApp</button>
+        <button class="brief-tab" onclick="switchMode('manual')">Llenar manualmente</button>
+      </div>
+
+      <!-- MODO PASTE -->
+      <div id="modePaste">
+        <div class="field">
+          <label>Brief recibido por WhatsApp <span class="req">*</span></label>
+          <textarea id="briefText" rows="14" placeholder="Pega aquí el mensaje completo que te llegó por WhatsApp...
+
+📋 BRIEF DE PROYECTO WEB — No'j Studio
+━━━━━━━━━━━━━━━━━━━━━━
+
+👤 CONTACTO
+• Nombre: ..."></textarea>
+          <div class="field-hint">El sistema lee el brief y extrae toda la información automáticamente.</div>
+        </div>
+      </div>
+
+      <!-- MODO MANUAL (oculto por default) -->
+      <div id="modeManual" style="display:none">
+        <div class="section-divider">Datos del cliente</div>
+        <div class="field"><label>Nombre del cliente <span class="req">*</span></label><input type="text" id="m_nombre" placeholder="Ej: Luis García"></div>
+        <div class="field"><label>Empresa / Marca <span class="req">*</span></label><input type="text" id="m_empresa" placeholder="Ej: Estudio Audiovisual"></div>
+        <div class="field"><label>WhatsApp</label><input type="tel" id="m_wa" placeholder="+52 55 0000 0000"></div>
+        <div class="field"><label>Sector</label><input type="text" id="m_sector" placeholder="Ej: Fotografía / Audiovisual"></div>
+        <div class="section-divider">El proyecto</div>
+        <div class="field"><label>Tipo de sitio</label>
+          <select id="m_tipo">
+            <option value="Landing page (1 página)">Landing page (1 página)</option>
+            <option value="Sitio institucional completo">Sitio institucional completo</option>
+            <option value="Portafolio / Sitio creativo">Portafolio / Sitio creativo</option>
+            <option value="Tienda en línea / E-commerce">Tienda en línea / E-commerce</option>
+            <option value="Sitio con reservaciones">Sitio con reservaciones</option>
+          </select>
+        </div>
+        <div class="field"><label>Objetivo del sitio</label><input type="text" id="m_objetivo" placeholder="Ej: Mostrar trabajo y generar contactos"></div>
+        <div class="field"><label>Qué hace el negocio</label><textarea id="m_negocio" rows="3" placeholder="Describe el negocio brevemente..."></textarea></div>
+        <div class="field"><label>Contenido disponible</label>
+          <select id="m_contenido">
+            <option value="No tiene nada, necesita ayuda con todo">No tiene nada — necesita ayuda con todo</option>
+            <option value="Tiene algo pero necesita apoyo">Tiene algo pero necesita apoyo</option>
+            <option value="Tiene todo listo">Tiene todo listo</option>
+          </select>
+        </div>
+        <div class="section-divider">Presupuesto y tiempos</div>
+        <div class="field"><label>Rango de inversión</label>
+          <select id="m_presupuesto">
+            <option value="Menos de $5,000 MXN">Menos de $5,000 MXN</option>
+            <option value="$5,000 – $12,000 MXN" selected>$5,000 – $12,000 MXN</option>
+            <option value="$12,000 – $20,000 MXN">$12,000 – $20,000 MXN</option>
+            <option value="$20,000 – $30,000 MXN">$20,000 – $30,000 MXN</option>
+            <option value="Más de $30,000 MXN">Más de $30,000 MXN</option>
+            <option value="No definido">No definido</option>
+          </select>
+        </div>
+        <div class="field"><label>Plazo</label>
+          <select id="m_plazo">
+            <option value="Urgente (menos de 2 semanas)">Urgente — menos de 2 semanas</option>
+            <option value="1 mes" selected>1 mes</option>
+            <option value="1–3 meses">1–3 meses</option>
+            <option value="Sin fecha definida">Sin fecha definida</option>
+          </select>
+        </div>
+        <div class="field"><label>Tono visual</label><input type="text" id="m_estilo" placeholder="Ej: Dark mode, editorial, premium"></div>
+        <div class="field"><label>Notas adicionales</label><textarea id="m_notas" rows="3" placeholder="Cualquier detalle relevante..."></textarea></div>
+      </div>
+
+      <!-- OPCIONES ADICIONALES -->
+      <div class="section-divider">Opciones de propuesta</div>
+      <div class="field">
+        <label>Paquete a recomendar</label>
+        <select id="paqueteSelect">
+          <option value="auto">Detectar automáticamente según el brief</option>
+          <option value="starter">Starter — $5,000 MXN</option>
+          <option value="pro">Pro — $11,500 MXN</option>
+          <option value="business">Business — $16,500 MXN</option>
+          <option value="ecommerce">E-Commerce — $24,500 MXN</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Incluir en propuesta</label>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.3rem">
+          <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0">
+            <input type="checkbox" id="opt_fases" checked style="width:14px;height:14px;accent-color:var(--v)"> Recomendar fases (Fase 1 / Fase 2)
+          </label>
+          <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0">
+            <input type="checkbox" id="opt_proceso" checked style="width:14px;height:14px;accent-color:var(--v)"> Incluir proceso paso a paso
+          </label>
+          <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0">
+            <input type="checkbox" id="opt_mantenimiento" checked style="width:14px;height:14px;accent-color:var(--v)"> Incluir mantenimiento mensual
+          </label>
+          <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:none;letter-spacing:0">
+            <input type="checkbox" id="opt_mockup" style="width:14px;height:14px;accent-color:var(--v)"> Mencionar que va a incluir mockup visual
+          </label>
+        </div>
+      </div>
+
+      <button class="generate-btn" id="generateBtn" onclick="generarPropuesta()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Generar propuesta con IA
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ══ RIGHT: OUTPUT ══ -->
+  <div class="right">
+    <div class="right-header">
+      <span class="right-title" id="rightTitle">Propuesta generada</span>
+      <div class="right-actions">
+        <button class="action-btn secondary" id="btnCopyHTML" onclick="copyHTML()" disabled>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar HTML
+        </button>
+        <button class="action-btn secondary" id="btnDownload" onclick="downloadHTML()" disabled>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar
+        </button>
+        <button class="action-btn primary" id="btnWhatsApp" onclick="sendWA()" disabled>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Avisar al cliente
+        </button>
+      </div>
+    </div>
+
+    <div class="right-body" id="rightBody">
+
+      <!-- EMPTY -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="empty-title">Esperando brief</div>
+        <div class="empty-sub">Pega el brief de WhatsApp o llena los campos de la izquierda y presiona "Generar propuesta".</div>
+      </div>
+
+      <!-- LOADING -->
+      <div class="loading-state" id="loadingState">
+        <div class="loading-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="loading-title">Generando propuesta</div>
+        <div class="loading-sub" id="loadingMsg">Analizando el brief del cliente...</div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="propuesta-output" id="propuestaOutput">
+
+        <!-- RESUMEN RÁPIDO -->
+        <div id="resumenCards" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.7rem;margin-bottom:1.5rem"></div>
+
+        <!-- TABS -->
+        <div class="output-tabs">
+          <button class="out-tab active" onclick="switchOutTab('preview')">Vista previa</button>
+          <button class="out-tab" onclick="switchOutTab('wa')">Mensaje WhatsApp</button>
+          <button class="out-tab" onclick="switchOutTab('html')">HTML raw</button>
+        </div>
+
+        <!-- PREVIEW -->
+        <div id="tabPreview">
+          <div class="preview-frame-wrap">
+            <div class="preview-frame-bar">
+              <div class="pf-dot"></div><div class="pf-dot"></div><div class="pf-dot"></div>
+              <span class="pf-url" id="frameUrl">propuesta-cliente.html</span>
+            </div>
+            <iframe id="previewFrame" title="Propuesta generada"></iframe>
+          </div>
+        </div>
+
+        <!-- WHATSAPP MSG -->
+        <div id="tabWA" style="display:none">
+          <div class="wa-preview show" id="waMsgContent"></div>
+        </div>
+
+        <!-- HTML RAW -->
+        <div id="tabHTML" style="display:none">
+          <div class="raw-view show" id="htmlContent"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+var generatedHTML = '';
+var clientData = {};
+var currentMode = 'paste';
+
+function switchMode(mode){
+  currentMode = mode;
+  document.getElementById('modePaste').style.display = mode==='paste' ? 'block' : 'none';
+  document.getElementById('modeManual').style.display = mode==='manual' ? 'block' : 'none';
+  document.querySelectorAll('.brief-tab').forEach(function(t,i){
+    t.classList.toggle('active', (mode==='paste' && i===0)||(mode==='manual' && i===1));
+  });
+}
+
+function switchOutTab(tab){
+  document.querySelectorAll('.out-tab').forEach(function(t,i){
+    t.classList.toggle('active',['preview','wa','html'][i]===tab);
+  });
+  document.getElementById('tabPreview').style.display = tab==='preview' ? 'block' : 'none';
+  document.getElementById('tabWA').style.display = tab==='wa' ? 'block' : 'none';
+  document.getElementById('tabHTML').style.display = tab==='html' ? 'block' : 'none';
+}
+
+async function generarPropuesta(){
+  var btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+
+  // Gather input
+  var brief = '';
+  if(currentMode === 'paste'){
+    brief = document.getElementById('briefText').value.trim();
+    if(!brief){ alert('Pega el brief de WhatsApp primero.'); btn.disabled=false; return; }
+  } else {
+    brief = buildManualBrief();
+  }
+
+  var paquete = document.getElementById('paqueteSelect').value;
+  var optFases = document.getElementById('opt_fases').checked;
+  var optProceso = document.getElementById('opt_proceso').checked;
+  var optMant = document.getElementById('opt_mantenimiento').checked;
+  var optMockup = document.getElementById('opt_mockup').checked;
+
+  // Show loading
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('propuestaOutput').classList.remove('show');
+  var loading = document.getElementById('loadingState');
+  loading.classList.add('show');
+
+  var msgs = [
+    'Analizando el brief del cliente...',
+    'Identificando alcance y paquete ideal...',
+    'Calculando precio y condiciones...',
+    'Escribiendo la propuesta...',
+    'Dando formato HTML profesional...'
+  ];
+  var mi = 0;
+  var msgInterval = setInterval(function(){
+    mi = (mi+1) % msgs.length;
+    document.getElementById('loadingMsg').textContent = msgs[mi];
+  }, 1800);
+
+  // Precios No'j
+  var precios = {
+    starter: {nombre:'Starter', mxn:'$5,000', usd:'~$250 USD'},
+    pro: {nombre:'Pro', mxn:'$11,500', usd:'~$575 USD'},
+    business: {nombre:'Business', mxn:'$16,500', usd:'~$825 USD'},
+    ecommerce: {nombre:'E-Commerce', mxn:'$24,500', usd:'~$1,225 USD'},
+  };
+
+  var systemPrompt = `Eres el generador de propuestas comerciales de No'j Studio, un estudio de diseño y desarrollo web en Ciudad de México. Tu tarea es generar una propuesta comercial completa en HTML basada en el brief del cliente.
+
+PRECIOS ACTUALES DE NO'J STUDIO (usar exactamente estos):
+- Starter: $5,000 MXN (~$250 USD) — 1 página, 5 días
+- Pro: $11,500 MXN (~$575 USD) — 5-7 secciones, 6-8 días
+- Business: $16,500 MXN (~$825 USD) — multi-página + blog, 8-12 días  
+- E-Commerce: $24,500 MXN (~$1,225 USD) — tienda completa, 12-16 días
+- Mantenimiento Hosting+Soporte: $499 MXN/mes (~$25 USD)
+- Mantenimiento Plan Activo: $999 MXN/mes (~$50 USD)
+
+INSTRUCCIONES:
+1. Lee el brief del cliente y extrae: nombre, empresa, sector, objetivo, tipo de sitio, contenido disponible, presupuesto, plazo, estilo
+2. ${paquete==='auto' ? 'Recomienda el paquete más adecuado según el brief' : 'Recomienda el paquete: '+paquete}
+3. Si tiene funciones avanzadas (login, CRM, e-commerce, multilenguaje): recomiéndalo como Fase 2 y explica por qué
+4. Si no tiene contenido listo: menciónalo y ajusta precio si aplica
+5. Escribe en tono profesional pero cálido, en español
+6. ${optFases ? 'Incluye recomendación de Fase 1 y Fase 2' : 'No menciones fases, propuesta directa'}
+7. ${optProceso ? 'Incluye proceso de trabajo paso a paso con días estimados' : 'No incluyas sección de proceso'}
+8. ${optMant ? 'Incluye opciones de mantenimiento mensual' : 'No menciones mantenimiento'}
+9. ${optMockup ? 'Menciona que se incluirá un mockup visual de referencia antes de arrancar' : ''}
+
+FORMATO DE RESPUESTA:
+Genera SOLO el HTML completo de la propuesta. Sin markdown, sin explicaciones, solo el HTML.
+El HTML debe:
+- Usar fondo blanco (#f4f2ed) con texto oscuro (#1a1a1a) — formato documento imprimible
+- Incluir el logo de No'j Studio (usar SVG inline)
+- Tener el nombre del cliente personalizado
+- Mostrar claramente el precio recomendado
+- Incluir condiciones de pago (50% anticipo, 50% al aprobar)
+- Tener un botón de WhatsApp al final que diga "Agendar llamada de kick-off"
+- El link de WhatsApp debe ser: https://wa.me/525574582059
+- Ser autocontenido (fuentes de Google Fonts inline)
+- Verse profesional y alineado con el sistema visual de No'j (Bebas Neue + DM Sans)
+- Número de referencia formato: NOJ-WEB-${String(Date.now()).slice(-4)}`;
+
+  var userMsg = `Brief del cliente:\n\n${brief}\n\n${paquete !== 'auto' ? 'Paquete a recomendar: '+paquete : ''}`;
+
+  try {
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMsg }]
+      })
+    });
+
+    var data = await response.json();
+    clearInterval(msgInterval);
+
+    if(data.content && data.content[0]){
+      var raw = data.content.map(function(b){ return b.text||''; }).join('');
+      // Strip markdown code fences if present
+      generatedHTML = raw.replace(/^```html?\n?/i,'').replace(/\n?```$/,'').trim();
+
+      // Extract client name for display
+      var nameMatch = brief.match(/Nombre:\s*(.+)/i) || brief.match(/nombre[:\s]+(.+)/i);
+      var clientName = nameMatch ? nameMatch[1].trim().split('\n')[0] : 'Cliente';
+      var empMatch = brief.match(/Empresa:\s*(.+)/i) || brief.match(/empresa[:\s]+(.+)/i);
+      var clientEmp = empMatch ? empMatch[1].trim().split('\n')[0] : '';
+
+      showOutput(clientName, clientEmp, brief);
+    } else {
+      throw new Error(data.error ? data.error.message : 'Respuesta vacía de la API');
+    }
+  } catch(err){
+    clearInterval(msgInterval);
+    loading.classList.remove('show');
+    document.getElementById('emptyState').style.display = 'flex';
+    alert('Error al generar: ' + err.message + '\n\nVerifica que la API de Anthropic esté disponible.');
+    console.error(err);
+  }
+
+  btn.disabled = false;
+}
+
+function showOutput(clientName, clientEmp, brief){
+  var loading = document.getElementById('loadingState');
+  loading.classList.remove('show');
+
+  // Summary cards
+  var paqueteEl = document.getElementById('paqueteSelect');
+  var paqueteText = paqueteEl.options[paqueteEl.selectedIndex].text;
+  document.getElementById('resumenCards').innerHTML = `
+    <div style="background:rgba(132,180,201,0.08);border:1px solid rgba(132,180,201,0.2);padding:1rem">
+      <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);margin-bottom:0.4rem">Cliente</div>
+      <div style="font-size:0.88rem;font-weight:400">${clientName}</div>
+      <div style="font-size:0.72rem;color:rgba(255,255,255,0.3)">${clientEmp}</div>
+    </div>
+    <div style="background:rgba(111,189,170,0.08);border:1px solid rgba(111,189,170,0.2);padding:1rem">
+      <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.4rem">Paquete</div>
+      <div style="font-size:0.88rem;font-weight:400">${paqueteText.replace('Detectar automáticamente según el brief','Auto-detectado')}</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:1rem">
+      <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.4rem">Estado</div>
+      <div style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--green)"><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>Lista para enviar</div>
+    </div>
+  `;
+
+  // Preview iframe
+  var iframe = document.getElementById('previewFrame');
+  iframe.srcdoc = generatedHTML;
+  document.getElementById('frameUrl').textContent = 'propuesta-' + clientName.toLowerCase().replace(/\s+/g,'-') + '.html';
+
+  // Raw HTML
+  document.getElementById('htmlContent').textContent = generatedHTML;
+
+  // WhatsApp message
+  var nameMatch = brief.match(/Nombre:\s*(.+)/i);
+  var nombre = nameMatch ? nameMatch[1].trim().split('\n')[0] : 'nombre';
+  var waMsg = `Hola ${nombre} 👋\n\nYa revisé tu brief con detalle — gracias por la info, está muy completo.\n\nPreparé tu propuesta personalizada. La puedes ver aquí:\n👉 [LINK DE LA PROPUESTA]\n\nEn resumen:\n• Revisé todo lo que necesitas\n• Te recomiendo el alcance ideal para tu etapa actual\n• Los precios y tiempos están detallados en el documento\n\nCuando la revises me dices qué te parece. Si quieres, agendamos una llamada rápida de 15 min para resolver cualquier duda antes de arrancar.\n\n— No'j Studio`;
+  document.getElementById('waMsgContent').textContent = waMsg;
+
+  // Show output
+  document.getElementById('propuestaOutput').classList.add('show');
+  switchOutTab('preview');
+
+  // Enable buttons
+  ['btnCopyHTML','btnDownload','btnWhatsApp'].forEach(function(id){
+    document.getElementById(id).disabled = false;
+  });
+}
+
+function buildManualBrief(){
+  return `📋 BRIEF DE PROYECTO WEB — No'j Studio
+
+👤 CONTACTO
+• Nombre: ${document.getElementById('m_nombre').value||'—'}
+• Empresa: ${document.getElementById('m_empresa').value||'—'}
+• WhatsApp: ${document.getElementById('m_wa').value||'—'}
+• Sector: ${document.getElementById('m_sector').value||'—'}
+
+🏢 EL NEGOCIO
+• Qué hace: ${document.getElementById('m_negocio').value||'—'}
+
+🌐 EL SITIO
+• Tipo: ${document.getElementById('m_tipo').value}
+• Objetivo: ${document.getElementById('m_objetivo').value||'—'}
+
+⚙️ CONTENIDO
+• Contenido listo: ${document.getElementById('m_contenido').value}
+
+💰 PRESUPUESTO Y TIEMPOS
+• Inversión: ${document.getElementById('m_presupuesto').value}
+• Plazo: ${document.getElementById('m_plazo').value}
+
+🎨 ESTILO
+• Tono visual: ${document.getElementById('m_estilo').value||'—'}
+
+💬 NOTAS
+${document.getElementById('m_notas').value||'Sin notas adicionales'}`;
+}
+
+function copyHTML(){
+  if(!generatedHTML) return;
+  navigator.clipboard.writeText(generatedHTML).then(function(){
+    var btn = document.getElementById('btnCopyHTML');
+    var orig = btn.innerHTML;
+    btn.innerHTML = '✓ Copiado';
+    setTimeout(function(){ btn.innerHTML = orig; }, 2000);
+  });
+}
+
+function downloadHTML(){
+  if(!generatedHTML) return;
+  var nameMatch = document.getElementById('briefText').value.match(/Nombre:\s*(.+)/i);
+  var fname = nameMatch ? 'propuesta-'+nameMatch[1].trim().toLowerCase().replace(/\s+/g,'-')+'.html' : 'propuesta-nojstudio.html';
+  var blob = new Blob([generatedHTML], {type:'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname;
+  a.click();
+}
+
+function sendWA(){
+  var wa = document.getElementById('waMsgContent').textContent;
+  window.open('https://wa.me/?text='+encodeURIComponent(wa),'_blank');
+}
+</script>
+</body>
+</html>

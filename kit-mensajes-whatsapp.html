@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit de Mensajes WhatsApp — No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f4f2ed;--v:#84b4c9;--green:#6fbdaa;--line:rgba(255,255,255,0.07);--dim:rgba(255,255,255,0.35)}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
+
+.top{padding:1.4rem 2rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:rgba(10,10,10,0.98);position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:0.7rem}
+.brand-word{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em}
+.brand-tag{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.7rem}
+.search{background:rgba(255,255,255,0.04);border:1px solid var(--line);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:300;padding:0.5rem 0.9rem;outline:none;min-width:220px;border-radius:0;transition:border-color 0.2s}
+.search:focus{border-color:var(--v)}
+.search::placeholder{color:rgba(255,255,255,0.2)}
+
+.content{max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+
+/* STAGE SECTION */
+.stage{margin-bottom:3rem}
+.stage-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.stage-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(255,255,255,0.06);line-height:1;width:2.5rem}
+.stage-info{}
+.stage-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;margin-bottom:0.2rem}
+.stage-desc{font-size:0.75rem;color:rgba(255,255,255,0.35);line-height:1.5}
+.stage-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* MESSAGE CARD */
+.msg-card{background:#0d0d0d;border:1px solid var(--line);margin-bottom:1rem;overflow:hidden;transition:border-color 0.2s}
+.msg-card:hover{border-color:rgba(132,180,201,0.2)}
+.msg-header{padding:1rem 1.2rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer}
+.msg-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v)}
+.msg-title{font-weight:400;font-size:0.86rem;margin-top:0.2rem}
+.msg-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tag{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.18rem 0.5rem;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
+.msg-body{padding:1.2rem}
+.msg-text{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  line-height:1.9;color:rgba(255,255,255,0.65);
+  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
+  padding:1.2rem;margin-bottom:1rem;white-space:pre-wrap;
+  position:relative;
+}
+.msg-note{font-size:0.72rem;color:rgba(255,255,255,0.3);line-height:1.6;padding-top:0.8rem;border-top:1px solid rgba(255,255,255,0.05);font-style:italic}
+.copy-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.55rem 1rem;background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;
+  transition:all 0.2s;
+}
+.copy-btn:hover{background:#a3c8d8}
+.copy-btn.copied{background:var(--green);color:var(--black)}
+
+/* VARIABLES */
+.vars{margin-bottom:1rem}
+.vars-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:0.5rem}
+.vars-list{display:flex;gap:0.4rem;flex-wrap:wrap}
+.var-chip{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  background:rgba(132,180,201,0.08);border:1px solid rgba(132,180,201,0.2);
+  color:var(--v);padding:0.2rem 0.55rem;
+}
+
+/* PROGRESS BAR VISUAL */
+.funnel{display:flex;gap:0;margin-bottom:2.5rem;overflow-x:auto}
+.funnel-step{
+  flex:1;padding:0.8rem 0.5rem;text-align:center;
+  background:rgba(255,255,255,0.02);border:1px solid var(--line);border-right:none;
+  min-width:80px;cursor:pointer;transition:all 0.2s;position:relative;
+}
+.funnel-step:last-child{border-right:1px solid var(--line)}
+.funnel-step.active{background:rgba(132,180,201,0.08);border-color:rgba(132,180,201,0.25)}
+.funnel-step:hover{background:rgba(255,255,255,0.04)}
+.funnel-n{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:1;color:rgba(255,255,255,0.15)}
+.funnel-step.active .funnel-n{color:var(--v)}
+.funnel-label{font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-top:0.2rem;line-height:1.3}
+.funnel-step.active .funnel-label{color:rgba(255,255,255,0.5)}
+
+@media(max-width:640px){.content{padding:2rem 1.2rem}.top{padding:1rem 1.2rem}.search{min-width:160px}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+    <span class="brand-word">NO'J</span><span class="brand-tag">Kit de mensajes WhatsApp</span>
+  </div>
+  <input class="search" type="text" id="searchInput" placeholder="Buscar mensaje..." oninput="filterMessages()">
+</div>
+
+<div class="content">
+
+  <p style="font-size:0.8rem;color:rgba(255,255,255,0.3);margin-bottom:2rem;line-height:1.7">Respuestas rápidas para cada etapa del proceso de ventas. Reemplaza las variables <span style="color:var(--v);font-family:'JetBrains Mono',monospace">[entre corchetes]</span> con los datos del cliente antes de enviar.</p>
+
+  <!-- FUNNEL VISUAL -->
+  <div class="funnel">
+    <div class="funnel-step active"><div class="funnel-n">01</div><div class="funnel-label">Primer contacto</div></div>
+    <div class="funnel-step"><div class="funnel-n">02</div><div class="funnel-label">Enviar brief</div></div>
+    <div class="funnel-step"><div class="funnel-n">03</div><div class="funnel-label">Propuesta</div></div>
+    <div class="funnel-step"><div class="funnel-n">04</div><div class="funnel-label">Seguimiento</div></div>
+    <div class="funnel-step"><div class="funnel-n">05</div><div class="funnel-label">Cierre</div></div>
+    <div class="funnel-step"><div class="funnel-n">06</div><div class="funnel-label">Proyecto</div></div>
+  </div>
+
+  <!-- ── ETAPA 1: PRIMER CONTACTO ── -->
+  <div class="stage" id="stage1">
+    <div class="stage-header">
+      <div class="stage-num">01</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--v);flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Primer contacto</div>
+        <div class="stage-desc">El lead acaba de escribir. Responde en menos de 15 minutos. Este mensaje determina si el lead sigue o se va.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Respuesta inmediata · &lt;15 min</div><div class="msg-title">Bienvenida estándar (sin contexto previo)</div></div>
+        <div class="msg-tags"><span class="tag">Universal</span><span class="tag">Rápido</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">Hola [nombre] 👋 Gracias por escribir a No'j Studio.
+
+Me da gusto que nos hayas contactado. Para prepararte una propuesta que realmente tenga sentido para tu negocio, necesito entender un poco más de lo que buscas.
+
+¿Me puedes contar en dos líneas de qué se trata tu negocio y qué tipo de sitio tienes en mente?
+
+— No'j Studio</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+        <div class="msg-note">💡 Si ya saben qué quieren, skip directo al mensaje de brief.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Respuesta automática · WhatsApp Business</div><div class="msg-title">Mensaje fuera de horario / primer auto-reply</div></div>
+        <div class="msg-tags"><span class="tag">Automático</span><span class="tag">WhatsApp Business</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="msg-text">Hola 👋 Gracias por contactar a No'j Studio.
+
+Recibimos tu mensaje. Nuestro horario de atención es Lun–Vie 9:00–19:00 y te respondemos en menos de 3 horas.
+
+Mientras tanto, puedes conocer nuestros servicios y precios aquí:
+👉 https://nojstudio.github.io/nojstudio/web.html
+
+— No'j Studio · nojstudiomx@gmail.com</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+        <div class="msg-note">💡 Configura este como respuesta automática en WhatsApp Business → Herramientas de negocio → Mensaje de ausencia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETAPA 2: ENVIAR BRIEF ── -->
+  <div class="stage" id="stage2">
+    <div class="stage-header">
+      <div class="stage-num">02</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#c8a96e;flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Enviar brief</div>
+        <div class="stage-desc">Ya tienes contexto básico. Ahora necesitas el brief completo para hacer una propuesta exacta.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Envío de brief · Estándar</div><div class="msg-title">Pedir que llene el brief de 6 minutos</div></div>
+        <div class="msg-tags"><span class="tag">Brief</span><span class="tag">Más usado</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">Perfecto [nombre], ya me hice una idea general.
+
+Para prepararte una propuesta que tenga exactamente lo que necesitas (sin cobrar de más ni quedarte corto), te mando un formulario que tarda menos de 6 minutos en llenar:
+
+👉 https://nojstudio.github.io/nojstudio/brief.html
+
+Ahí te pregunto sobre tu negocio, el tipo de sitio que buscas, el contenido que tienes disponible y el presupuesto aproximado.
+
+Una vez que lo tengas, te mando la propuesta en menos de 48 horas. 🙌</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Follow-up · 48h sin respuesta</div><div class="msg-title">Recordatorio si no llenó el brief</div></div>
+        <div class="msg-tags"><span class="tag">Follow-up</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">Hola [nombre] 👋 Solo quería asegurarme de que llegó el link del brief.
+
+Si ya lo tienes listo, lo recibí y estaré preparando tu propuesta. Si tuviste algún problema con el formulario o prefieres contarme directamente aquí, también podemos hacer eso.
+
+¿Cómo vamos?</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETAPA 3: PROPUESTA ── -->
+  <div class="stage" id="stage3">
+    <div class="stage-header">
+      <div class="stage-num">03</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#ff9f6a;flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Envío de propuesta</div>
+        <div class="stage-desc">Ya generaste la propuesta con el generador. Hora de mandársela al cliente con el contexto correcto.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Propuesta lista</div><div class="msg-title">Envío de propuesta con link</div></div>
+        <div class="msg-tags"><span class="tag">Propuesta</span><span class="tag">Con link</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[link-propuesta]</span><span class="var-chip">[paquete]</span><span class="var-chip">[precio]</span></div></div>
+        <div class="msg-text">Hola [nombre] 👋
+
+Revisé tu brief con detalle y ya tengo tu propuesta lista. Aquí la puedes ver:
+
+📄 [link-propuesta]
+
+En resumen: te recomiendo el paquete [paquete] a [precio] MXN. Dentro del doc te explico exactamente qué incluye, qué dejamos para una segunda fase y cómo sería el proceso.
+
+Cuando la revises me dices qué te parece. Si tienes dudas sobre algún punto o quieres platicar 15 min, dime y agendamos. 🙌</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+        <div class="msg-note">💡 Recuerda subir el HTML de la propuesta al repo de GitHub y usar ese link. O puedes mandar el archivo directo por WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETAPA 4: SEGUIMIENTO ── -->
+  <div class="stage" id="stage4">
+    <div class="stage-header">
+      <div class="stage-num">04</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--v);flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Seguimiento</div>
+        <div class="stage-desc">El cliente vio la propuesta pero no ha respondido. La mayoría de ventas se cierran en el seguimiento, no en la propuesta.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Follow-up · 3 días</div><div class="msg-title">Primer seguimiento post-propuesta</div></div>
+        <div class="msg-tags"><span class="tag">Seguimiento</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">Hola [nombre], ¿cómo vas con la propuesta?
+
+Si tienes alguna pregunta o algo no quedó claro, con gusto lo platicamos. También puedo ajustar el alcance si el presupuesto necesita moverse.
+
+¿Hay algo que te esté frenando para tomar la decisión?</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Follow-up · 7 días · Urgencia</div><div class="msg-title">Segundo seguimiento — agenda disponible</div></div>
+        <div class="msg-tags"><span class="tag">Urgencia real</span><span class="tag">Cierre</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[fecha]</span></div></div>
+        <div class="msg-text">Hola [nombre], quería avisarte que tenemos un lugar disponible en agenda para arrancar esta semana o la siguiente.
+
+Nuestra agenda para [fecha] está casi llena y normalmente tomamos 1–2 proyectos nuevos por mes para poder mantener el nivel de atención que cada cliente merece.
+
+¿Quieres que reservemos tu lugar? Solo necesitamos confirmar y arrancar con el anticipo.</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+        <div class="msg-note">💡 Solo usar cuando sea real. La urgencia falsa destruye la confianza.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Objeción · Precio alto</div><div class="msg-title">Respuesta cuando dice "está muy caro"</div></div>
+        <div class="msg-tags"><span class="tag">Objeción</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="msg-text">Entiendo perfectamente. El precio puede sorprender si no se tiene claro todo lo que incluye.
+
+Déjame decirte una cosa: un freelancer de $3,000 te puede hacer algo rápido, pero normalmente entrega una plantilla de Wix o WordPress con tu logo encima. Lo que nosotros entregamos es código a medida que dura, carga rápido y se ve exactamente como tu marca.
+
+Dicho eso, puedo ajustar el alcance si el presupuesto es la limitante real. Cuéntame cuánto tienes disponible y vemos qué podemos armar que tenga sentido para los dos.</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Objeción · "Lo estoy pensando"</div><div class="msg-title">Respuesta cuando está indeciso</div></div>
+        <div class="msg-tags"><span class="tag">Objeción</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="msg-text">Con calma, es una decisión importante y tiene todo el sentido tomarse el tiempo.
+
+¿Hay algo específico que te está generando duda? A veces hay algo en la propuesta que no quedó claro o una preocupación que no dijiste, y platicándolo 10 minutos se resuelve.
+
+Sin presión — si decides que no es el momento, también está bien. Pero si hay algo que te frena, con gusto lo conversamos.</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETAPA 5: CIERRE ── -->
+  <div class="stage" id="stage5">
+    <div class="stage-header">
+      <div class="stage-num">05</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Cierre del trato</div>
+        <div class="stage-desc">El cliente dijo que sí. Ahora hay que confirmar rápido y arrancar sin fricción.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Confirmación de proyecto</div><div class="msg-title">Cliente aprobó — instrucciones de anticipo</div></div>
+        <div class="msg-tags"><span class="tag">Cierre</span><span class="tag">Importante</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[anticipo]</span><span class="var-chip">[banco]</span><span class="var-chip">[clabe]</span><span class="var-chip">[titular]</span></div></div>
+        <div class="msg-text">¡Excelente [nombre]! Muy bien. Vamos a arrancar. 🙌
+
+Para confirmar el proyecto y reservar tu lugar en agenda, el siguiente paso es el anticipo del 50%:
+
+💰 Monto: $[anticipo] MXN
+🏦 Banco: [banco]
+🔢 CLABE: [clabe]
+👤 Titular: [titular]
+
+Una vez que me confirmes la transferencia (puedes mandarme el comprobante aquí), te mando el contrato para revisar y firmamos. Después agendamos el kick-off y arrancamos.
+
+¿Tienes alguna pregunta antes de transferir?</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Recepción de anticipo</div><div class="msg-title">Confirmación de pago recibido</div></div>
+        <div class="msg-tags"><span class="tag">Pago</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">¡Perfecto [nombre]! Recibí el pago, muchas gracias. ✅
+
+Ya quedó registrado tu proyecto y estás en agenda. En los próximos días te mando:
+
+1. El contrato de servicios para revisar y firmar
+2. El brief de contenido (lo que necesitamos de tu parte para arrancar)
+3. La fecha de kick-off confirmada
+
+¡Vamos a hacer algo muy bueno! 🚀</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ETAPA 6: DURANTE EL PROYECTO ── -->
+  <div class="stage" id="stage6">
+    <div class="stage-header">
+      <div class="stage-num">06</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#c8a0ff;flex-shrink:0"></div>
+      <div class="stage-info">
+        <div class="stage-name">Durante el proyecto</div>
+        <div class="stage-desc">Mensajes de actualización, entrega de preview y solicitud de saldo final.</div>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Preview listo</div><div class="msg-title">Entrega del sitio para revisión</div></div>
+        <div class="msg-tags"><span class="tag">Entrega</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[link-preview]</span></div></div>
+        <div class="msg-text">Hola [nombre] 👋 ¡Ya está listo el preview de tu sitio!
+
+Puedes verlo aquí:
+🔗 [link-preview]
+
+Tómate tu tiempo para revisarlo con calma. Recuerda que tienes una ronda de ajustes incluida — anota todo lo que quieras cambiar y mándame la lista de una sola vez para que sea más eficiente.
+
+Para que te agilice: revisa en desktop y en tu celular, checa que todos los textos estén correctos, y cualquier cosa visual que quieras ajustar.
+
+¿Qué te parece? 🙌</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Solicitud de saldo</div><div class="msg-title">Preview aprobado — cobro del 50% restante</div></div>
+        <div class="msg-tags"><span class="tag">Cobro</span><span class="tag">Liquidación</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[saldo]</span></div></div>
+        <div class="msg-text">¡Excelente [nombre]! Me alegra que todo quedó bien. 🙌
+
+Para proceder con el lanzamiento oficial, el siguiente paso es la liquidación del 50% restante:
+
+💰 Monto: $[saldo] MXN
+(mismos datos bancarios de antes)
+
+Una vez que reciba el comprobante, configuramos el dominio definitivo y lo dejamos en vivo. Normalmente tarda entre 24–48 horas para que propague el DNS y quede visible para todos.</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Lanzamiento</div><div class="msg-title">Sitio en vivo — mensaje de entrega final</div></div>
+        <div class="msg-tags"><span class="tag">Entrega final</span><span class="tag">🚀</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span><span class="var-chip">[dominio]</span></div></div>
+        <div class="msg-text">¡[nombre], ya está en vivo! 🚀
+
+Tu sitio ya está disponible en:
+🌐 [dominio]
+
+Fue un gusto trabajar en esto contigo. Aquí te dejo un par de cosas importantes:
+
+✅ El código y dominio son 100% tuyos
+✅ Queda activo Google Analytics desde hoy
+✅ Si necesitas ajustes o mantenimiento futuro, aquí estamos
+
+¿Me harías el favor de revisar que todo se vea bien desde tu cel y tu computadora? Y si te gustó el resultado, cualquier recomendación siempre es bienvenida. 🙏
+
+¡Mucho éxito con tu sitio!</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+
+    <div class="msg-card">
+      <div class="msg-header">
+        <div><div class="msg-label">Post-lanzamiento · 2 semanas después</div><div class="msg-title">Seguimiento y oferta de mantenimiento</div></div>
+        <div class="msg-tags"><span class="tag">Upsell</span><span class="tag">Mantenimiento</span></div>
+      </div>
+      <div class="msg-body">
+        <div class="vars"><div class="vars-label">Variables</div><div class="vars-list"><span class="var-chip">[nombre]</span></div></div>
+        <div class="msg-text">Hola [nombre], ¿cómo va todo con el sitio?
+
+Ya llevan un par de semanas en vivo — quería saber si están viendo tráfico, si recibieron algún contacto por el formulario y si hay algo que quieran ajustar.
+
+También aprovechar para comentarte que tenemos el Plan de Mantenimiento Activo ($999 MXN/mes) que incluye cambios de contenido, respaldo semanal y reporte mensual de analíticas. Por si quieren que el sitio siga evolucionando sin preocuparse por la parte técnica.
+
+¿Cómo han ido las cosas? 🙌</div>
+        <button class="copy-btn" onclick="copyMsg(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar mensaje
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function copyMsg(btn){
+  var text = btn.closest('.msg-body').querySelector('.msg-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    var orig = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ¡Copiado!';
+    setTimeout(function(){ btn.classList.remove('copied'); btn.innerHTML = orig; }, 2200);
+  });
+}
+
+function filterMessages(){
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.msg-card').forEach(function(card){
+    var text = card.textContent.toLowerCase();
+    card.style.display = text.includes(q) ? '' : 'none';
+  });
+  document.querySelectorAll('.stage').forEach(function(stage){
+    var visible = Array.from(stage.querySelectorAll('.msg-card')).some(function(c){ return c.style.display !== 'none'; });
+    stage.style.display = visible ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

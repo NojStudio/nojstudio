@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief de Proyecto — No'j Web</title>
+<meta name="description" content="Cuéntanos todo sobre tu proyecto web. Brief de 6 minutos para que podamos darte una propuesta exacta.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#f4f2ed;--gray:#666;--dim:rgba(255,255,255,0.4);
+  --v:#84b4c9;--v-dim:rgba(132,180,201,0.12);--v-border:rgba(132,180,201,0.25);
+  --line:rgba(255,255,255,0.07);--line-light:rgba(255,255,255,0.04);
+  --err:#e07070;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  overflow-x:hidden;min-height:100vh;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:2px;background:rgba(255,255,255,0.06);
+}
+.progress-fill{
+  height:100%;background:var(--v);
+  transition:width 0.5s cubic-bezier(0.4,0,0.2,1);
+  width:0%;
+}
+
+/* ── NAV ── */
+.top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.18em;color:var(--white)}
+.nav-tag{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.8rem;margin-left:0.2rem}
+.nav-step{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);font-family:'JetBrains Mono',monospace}
+
+/* ── LAYOUT ── */
+.spacer{height:62px}
+.brief-wrap{
+  max-width:760px;margin:0 auto;
+  padding:4rem 2rem 8rem;
+}
+
+/* ── INTRO ── */
+.intro{
+  padding:5rem 0 4rem;
+  border-bottom:1px solid var(--line);
+  margin-bottom:0;
+}
+.intro-label{
+  display:flex;align-items:center;gap:1rem;
+  font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--v);margin-bottom:1.2rem;
+}
+.intro-label::before{content:'';width:2rem;height:1px;background:var(--v)}
+.intro-h{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,8vw,6rem);
+  line-height:0.88;letter-spacing:0.02em;
+  margin-bottom:1.8rem;
+}
+.intro-h em{font-style:normal;color:var(--v)}
+.intro-sub{
+  font-size:0.9rem;color:rgba(255,255,255,0.5);
+  line-height:1.8;max-width:520px;margin-bottom:2.5rem;
+}
+.intro-meta{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+}
+.intro-meta-item{
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+}
+.intro-meta-item span{color:var(--v)}
+.intro-btn{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  padding:1rem 2rem;background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;
+  font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  cursor:pointer;border:none;margin-top:2rem;
+  transition:all 0.25s;
+}
+.intro-btn:hover{background:#a3c8d8;transform:translateY(-2px)}
+
+/* ── STEPS ── */
+.steps-container{display:none}
+.steps-container.visible{display:block}
+
+/* ── STEP ── */
+.step-block{
+  padding:4rem 0;
+  border-bottom:1px solid var(--line);
+  animation:fadeUp 0.45s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.step-header{margin-bottom:2.5rem}
+.step-num{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.2em;color:var(--v);margin-bottom:0.7rem;
+}
+.step-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  letter-spacing:0.03em;line-height:0.95;
+  margin-bottom:0.6rem;
+}
+.step-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7}
+
+/* ── FIELDS ── */
+.field{margin-bottom:1.6rem}
+.field label{
+  display:block;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-bottom:0.6rem;
+}
+.field label .req{color:var(--v);margin-left:0.2rem}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--white);font-family:'DM Sans',sans-serif;
+  font-size:0.92rem;font-weight:300;
+  padding:0.95rem 1.1rem;outline:none;
+  transition:border-color 0.2s,background 0.2s;
+  -webkit-appearance:none;appearance:none;border-radius:0;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--v);background:var(--v-dim);
+}
+.field input.err,.field select.err,.field textarea.err{border-color:var(--err)}
+.field select{
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2384b4c9' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.5rem;
+}
+.field select option{background:#141414;color:var(--white)}
+.field textarea{resize:none;line-height:1.65}
+.field-hint{font-size:0.68rem;color:rgba(255,255,255,0.2);margin-top:0.5rem;line-height:1.5}
+.field-err{font-size:0.65rem;color:var(--err);margin-top:0.4rem;display:none}
+.field-err.show{display:block}
+
+/* FIELD 2-COL */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+
+/* RADIO / CHECKBOX CARDS */
+.option-grid{display:grid;gap:0.7rem}
+.option-grid.cols-2{grid-template-columns:1fr 1fr}
+.option-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.opt-card{
+  position:relative;cursor:pointer;
+}
+.opt-card input{position:absolute;opacity:0;width:0;height:0}
+.opt-label{
+  display:flex;align-items:flex-start;gap:0.9rem;
+  padding:1rem 1.2rem;
+  border:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.02);
+  transition:all 0.2s;cursor:pointer;
+}
+.opt-card input:checked + .opt-label{
+  border-color:var(--v);background:var(--v-dim);
+}
+.opt-label:hover{border-color:rgba(132,180,201,0.3);background:rgba(255,255,255,0.04)}
+.opt-check{
+  width:16px;height:16px;flex-shrink:0;margin-top:2px;
+  border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;border-radius:0;
+}
+.opt-card input:checked + .opt-label .opt-check{
+  background:var(--v);border-color:var(--v);
+}
+.opt-check::after{
+  content:'';width:8px;height:5px;
+  border-left:2px solid var(--black);border-bottom:2px solid var(--black);
+  transform:rotate(-45deg) translate(0,-1px);
+  opacity:0;transition:opacity 0.15s;
+}
+.opt-card input:checked + .opt-label .opt-check::after{opacity:1}
+.opt-text{flex:1}
+.opt-name{font-size:0.82rem;font-weight:400;margin-bottom:0.15rem}
+.opt-sub{font-size:0.68rem;color:rgba(255,255,255,0.3);line-height:1.4}
+
+/* RADIO variant (single select) */
+.opt-card.radio .opt-check{border-radius:50%}
+.opt-card.radio input:checked + .opt-label .opt-check{background:transparent;border-color:var(--v)}
+.opt-card.radio input:checked + .opt-label .opt-check::after{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--v);border:none;
+  transform:none;opacity:1;
+}
+
+/* SCALE */
+.scale-wrap{display:flex;gap:0.5rem;align-items:center}
+.scale-btn{
+  flex:1;padding:0.8rem 0.5rem;text-align:center;
+  border:1px solid rgba(255,255,255,0.07);
+  font-size:0.75rem;cursor:pointer;
+  background:transparent;color:rgba(255,255,255,0.4);
+  transition:all 0.2s;font-family:'DM Sans',sans-serif;
+}
+.scale-btn:hover{border-color:rgba(132,180,201,0.3);color:var(--white)}
+.scale-btn.active{border-color:var(--v);background:var(--v-dim);color:var(--white)}
+.scale-labels{display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.6rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em}
+
+/* NAV BUTTONS */
+.step-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:2.5rem;padding-top:2rem;
+  border-top:1px solid var(--line-light);
+}
+.btn-next{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  padding:0.95rem 2rem;background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;
+  font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  cursor:pointer;border:none;transition:all 0.25s;
+}
+.btn-next:hover{background:#a3c8d8;transform:translateY(-2px)}
+.btn-prev{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.95rem 1.5rem;
+  background:transparent;color:rgba(255,255,255,0.3);
+  font-family:'DM Sans',sans-serif;font-size:0.75rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;border:1px solid rgba(255,255,255,0.08);
+  transition:all 0.2s;
+}
+.btn-prev:hover{color:var(--white);border-color:rgba(255,255,255,0.2)}
+.btn-hidden{visibility:hidden}
+
+/* SUMMARY / STEP FINAL */
+.summary-block{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--line);
+  padding:2rem;margin-bottom:1.5rem;
+}
+.summary-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;
+  letter-spacing:0.1em;color:var(--v);margin-bottom:1rem;
+}
+.summary-row{
+  display:flex;gap:1rem;padding:0.6rem 0;
+  border-bottom:1px solid var(--line-light);font-size:0.82rem;
+}
+.summary-row:last-child{border-bottom:none}
+.summary-key{color:rgba(255,255,255,0.3);min-width:160px;flex-shrink:0;font-size:0.72rem;letter-spacing:0.08em}
+.summary-val{color:var(--white);line-height:1.5}
+
+/* SUBMIT */
+.submit-btn{
+  width:100%;padding:1.2rem 2rem;
+  background:var(--v);color:var(--black);
+  font-family:'DM Sans',sans-serif;font-size:0.82rem;
+  font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  cursor:pointer;border:none;
+  display:flex;align-items:center;justify-content:center;gap:0.8rem;
+  transition:all 0.25s;margin-top:2rem;
+}
+.submit-btn:hover{background:#a3c8d8;transform:translateY(-2px)}
+.submit-note{
+  font-size:0.65rem;color:rgba(255,255,255,0.2);
+  text-align:center;margin-top:1rem;line-height:1.6;
+}
+
+/* THANK YOU */
+.thankyou{
+  display:none;text-align:center;
+  padding:6rem 0;
+}
+.thankyou.show{display:block;animation:fadeUp 0.5s ease both}
+.ty-icon{font-size:3rem;margin-bottom:1.5rem}
+.ty-h{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  letter-spacing:0.03em;line-height:0.95;
+  margin-bottom:1rem;
+}
+.ty-h em{font-style:normal;color:var(--v)}
+.ty-sub{font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.8;max-width:420px;margin:0 auto 2.5rem}
+.ty-back{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--v);text-decoration:none;transition:gap 0.2s;
+}
+.ty-back:hover{gap:1rem}
+
+/* FOOTER minimal */
+.brief-footer{
+  text-align:center;padding:2rem;
+  font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.12);border-top:1px solid var(--line);
+  margin-top:4rem;
+}
+
+@media(max-width:640px){
+  .top-nav{padding:1rem 1.2rem}
+  .brief-wrap{padding:3rem 1.2rem 6rem}
+  .field-row{grid-template-columns:1fr}
+  .option-grid.cols-2,.option-grid.cols-3{grid-template-columns:1fr}
+  .intro-h{font-size:clamp(2.8rem,12vw,4rem)}
+  .nav-step{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Progress -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- Nav -->
+<nav class="top-nav">
+  <a href="web.html" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+    <span class="nav-wordmark">NO'J</span><span class="nav-tag">Brief de proyecto</span>
+  </a>
+  <span class="nav-step" id="navStep">Paso 1 de 6</span>
+</nav>
+<div class="spacer"></div>
+
+<div class="brief-wrap">
+
+  <!-- ══ INTRO ══ -->
+  <div class="intro" id="introBlock">
+    <div class="intro-label">Brief de proyecto web</div>
+    <h1 class="intro-h">Cuéntanos<br>todo sobre<br>tu <em>marca.</em></h1>
+    <p class="intro-sub">Este formulario nos ayuda a entender exactamente qué necesitas para prepararte una propuesta concreta — no una cotización genérica. Tarda menos de 6 minutos.</p>
+    <div class="intro-meta">
+      <div class="intro-meta-item"><span>06</span> bloques</div>
+      <div class="intro-meta-item"><span>~6</span> minutos</div>
+      <div class="intro-meta-item"><span>→</span> Propuesta en 48h</div>
+    </div>
+    <button class="intro-btn" onclick="startBrief()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      Comenzar brief
+    </button>
+  </div>
+
+  <!-- ══ STEPS ══ -->
+  <div class="steps-container" id="stepsContainer">
+
+    <!-- STEP 1: Datos de contacto -->
+    <div class="step-block" id="step1">
+      <div class="step-header">
+        <div class="step-num">01 / 06 — Datos de contacto</div>
+        <h2 class="step-title">¿Quién está<br>detrás del proyecto?</h2>
+        <p class="step-desc">Información básica para poder enviarte la propuesta y mantenernos en contacto durante el proceso.</p>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Nombre completo <span class="req">*</span></label>
+          <input type="text" id="s1_nombre" placeholder="Tu nombre">
+          <div class="field-err" id="err_s1_nombre">Este campo es requerido</div>
+        </div>
+        <div class="field">
+          <label>Nombre de la empresa / marca <span class="req">*</span></label>
+          <input type="text" id="s1_empresa" placeholder="¿Cómo se llama tu negocio?">
+          <div class="field-err" id="err_s1_empresa">Este campo es requerido</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="s1_wa" placeholder="+52 55 0000 0000">
+          <div class="field-err" id="err_s1_wa">Este campo es requerido</div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="s1_email" placeholder="hola@tumarca.com">
+        </div>
+      </div>
+      <div class="field">
+        <label>Sector / Giro del negocio <span class="req">*</span></label>
+        <select id="s1_sector">
+          <option value="">Selecciona tu sector</option>
+          <option>Restaurante / Gastronomía / Bar</option>
+          <option>Moda / Ropa / Accesorios</option>
+          <option>Belleza / Skincare / Salud</option>
+          <option>Fotografía / Arte / Estudio creativo</option>
+          <option>Inmobiliaria / Real Estate / Arquitectura</option>
+          <option>Deporte / Fitness / Wellness / Yoga</option>
+          <option>Tecnología / SaaS / App</option>
+          <option>Retail / Tienda física o en línea</option>
+          <option>Servicios profesionales (consultoría, legal, financiero)</option>
+          <option>Educación / Cursos / Capacitación</option>
+          <option>Entretenimiento / Música / Eventos</option>
+          <option>Otro</option>
+        </select>
+        <div class="field-err" id="err_s1_sector">Selecciona un sector</div>
+      </div>
+      <div class="field">
+        <label>Ciudad / País donde opera tu negocio</label>
+        <input type="text" id="s1_ciudad" placeholder="Ej: Ciudad de México, Guadalajara, Miami...">
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev btn-hidden">← Anterior</button>
+        <button class="btn-next" onclick="goNext(1)">Siguiente <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: El negocio -->
+    <div class="step-block" id="step2" style="display:none">
+      <div class="step-header">
+        <div class="step-num">02 / 06 — El negocio</div>
+        <h2 class="step-title">¿Qué hace<br>tu marca?</h2>
+        <p class="step-desc">Cuéntanos cómo funciona tu negocio, a quién le vendes y cuál es tu diferencial. Esto es lo que hace que tu sitio tenga el tono correcto.</p>
+      </div>
+      <div class="field">
+        <label>¿Qué hace tu empresa o negocio? <span class="req">*</span></label>
+        <textarea id="s2_que" rows="3" placeholder="Describe en 2-3 oraciones a qué se dedica tu negocio y qué ofrece."></textarea>
+        <div class="field-err" id="err_s2_que">Cuéntanos sobre tu negocio</div>
+      </div>
+      <div class="field">
+        <label>¿Quién es tu cliente ideal? <span class="req">*</span></label>
+        <textarea id="s2_cliente" rows="3" placeholder="Edad, perfil, dónde está, qué necesita. Ej: mujeres de 25-40 en CDMX que buscan skincare natural..."></textarea>
+        <div class="field-err" id="err_s2_cliente">Describe a tu cliente ideal</div>
+      </div>
+      <div class="field">
+        <label>¿Cuál es tu diferencial frente a la competencia?</label>
+        <textarea id="s2_diferencial" rows="3" placeholder="¿Por qué alguien debería elegirte a ti y no a otro? ¿Qué tienes que los demás no?"></textarea>
+      </div>
+      <div class="field">
+        <label>¿Tienes competidores o referencias de marcas que admiras?</label>
+        <input type="text" id="s2_competencia" placeholder="URLs o nombres de marcas — no necesariamente del mismo giro">
+        <div class="field-hint">Sirve para entender el nivel visual y tono que buscas, no para copiar.</div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" onclick="goPrev(2)">← Anterior</button>
+        <button class="btn-next" onclick="goNext(2)">Siguiente <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: El sitio -->
+    <div class="step-block" id="step3" style="display:none">
+      <div class="step-header">
+        <div class="step-num">03 / 06 — El sitio web</div>
+        <h2 class="step-title">¿Qué necesita<br>hacer tu sitio?</h2>
+        <p class="step-desc">El tipo de sitio determina el alcance del proyecto. Sé lo más específico que puedas — sin compromiso todavía.</p>
+      </div>
+      <div class="field">
+        <label>¿Qué tipo de sitio necesitas? <span class="req">*</span></label>
+        <div class="option-grid" id="err_s3_tipo_wrap">
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Landing page (1 página de presentación o conversión)">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Landing page</div><div class="opt-sub">1 página enfocada en un solo objetivo — captar leads, presentar un servicio, validar una idea</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Sitio institucional / corporativo (varias secciones o páginas)">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Sitio institucional</div><div class="opt-sub">Varias secciones: Inicio, Servicios, Nosotros, Blog, Contacto</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Portafolio / Sitio de creativo">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Portafolio / Creativo</div><div class="opt-sub">Para fotógrafos, artistas, diseñadores, estudios — el trabajo es el protagonista</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Tienda en línea / E-commerce">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Tienda en línea</div><div class="opt-sub">Catálogo de productos con carrito de compras, pagos en línea y gestión de inventario</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Sitio con reservaciones / booking">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Reservaciones / Booking</div><div class="opt-sub">Restaurantes, clínicas, estudios, canchas — el usuario agenda directo en el sitio</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tipo_sitio" value="Aún no lo tengo claro — necesito orientación">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">No lo tengo claro aún</div><div class="opt-sub">Nos cuentas tu situación y nosotros recomendamos</div></div></div>
+          </label>
+        </div>
+        <div class="field-err" id="err_s3_tipo">Selecciona el tipo de sitio</div>
+      </div>
+      <div class="field" style="margin-top:1.5rem">
+        <label>¿Ya tienes un sitio web actual?</label>
+        <div class="option-grid cols-3">
+          <label class="opt-card radio">
+            <input type="radio" name="tiene_sitio" value="No, es mi primer sitio">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">No tengo</div><div class="opt-sub">Primer sitio</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tiene_sitio" value="Sí, quiero rediseñarlo">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Sí, rediseño</div><div class="opt-sub">Ya existe pero necesita cambio</div></div></div>
+          </label>
+          <label class="opt-card radio">
+            <input type="radio" name="tiene_sitio" value="Sí, quiero uno adicional / nuevo">
+            <div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Adicional</div><div class="opt-sub">Tengo uno y quiero otro</div></div></div>
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label>URL de tu sitio actual (si tienes)</label>
+        <input type="url" id="s3_url_actual" placeholder="https://tusitio.com">
+      </div>
+      <div class="field">
+        <label>¿Cuál es el objetivo principal del sitio? <span class="req">*</span></label>
+        <textarea id="s3_objetivo" rows="3" placeholder="¿Qué quieres que haga el visitante cuando llegue? ¿Agendar? ¿Comprar? ¿Contactarte? ¿Conocer tu trabajo?"></textarea>
+        <div class="field-err" id="err_s3_objetivo">Cuéntanos el objetivo del sitio</div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" onclick="goPrev(3)">← Anterior</button>
+        <button class="btn-next" onclick="goNext(3)">Siguiente <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Contenido y funcionalidades -->
+    <div class="step-block" id="step4" style="display:none">
+      <div class="step-header">
+        <div class="step-num">04 / 06 — Contenido y funcionalidades</div>
+        <h2 class="step-title">¿Qué va<br>adentro?</h2>
+        <p class="step-desc">El contenido y las funciones específicas determinan el alcance real del proyecto. Marca todo lo que aplique.</p>
+      </div>
+      <div class="field">
+        <label>¿Qué secciones necesitas? (selecciona todas las que apliquen)</label>
+        <div class="option-grid cols-2">
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Hero / Portada principal"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Hero / Portada</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Servicios o productos"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Servicios / Productos</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Nosotros / Quiénes somos"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Nosotros / About</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Portafolio / Casos de éxito / Galería"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Portafolio / Galería</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Testimonios / Reseñas"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Testimonios</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Blog o artículos"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Blog / Artículos</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Preguntas frecuentes (FAQ)"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">FAQ</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Formulario de contacto"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Formulario de contacto</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Menú / Carta (restaurantes)"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Menú / Carta</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="secciones" value="Mapa / Ubicación"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Mapa / Ubicación</div></div></div></label>
+        </div>
+      </div>
+      <div class="field" style="margin-top:1.5rem">
+        <label>Funcionalidades especiales requeridas</label>
+        <div class="option-grid cols-2">
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Sistema de reservaciones / booking online"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Reservaciones online</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Tienda con carrito y pagos en línea"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Pagos en línea / Carrito</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Área de clientes / Login"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Área privada / Login</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Multilenguaje (español + inglés)"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Multilenguaje ES + EN</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Chat en vivo o bot de WhatsApp"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Chat / Bot WhatsApp</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Integración con CRM o sistema externo"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">CRM / Integración externa</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="SEO avanzado y posicionamiento en Google"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">SEO avanzado</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="funciones" value="Panel de administración para editar contenido"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Panel de admin / CMS</div></div></div></label>
+        </div>
+      </div>
+      <div class="field" style="margin-top:1.5rem">
+        <label>¿Tienes el contenido listo? (textos, fotos, logo)</label>
+        <div class="option-grid cols-2">
+          <label class="opt-card radio"><input type="radio" name="contenido" value="Sí, tengo todo listo para entregar"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Sí, tengo todo</div><div class="opt-sub">Textos, imágenes y logo listos</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="contenido" value="Tengo parte del contenido, pero necesito ayuda con algo"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Tengo algo</div><div class="opt-sub">Necesito apoyo en alguna parte</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="contenido" value="No tengo nada, necesito ayuda con todo el contenido"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">No tengo nada</div><div class="opt-sub">Necesito ayuda con textos e imágenes</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="contenido" value="Tengo logo e imágenes pero necesito los textos"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Solo faltan textos</div><div class="opt-sub">Imágenes y logo sí tengo</div></div></div></label>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" onclick="goPrev(4)">← Anterior</button>
+        <button class="btn-next" onclick="goNext(4)">Siguiente <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Presupuesto y tiempos -->
+    <div class="step-block" id="step5" style="display:none">
+      <div class="step-header">
+        <div class="step-num">05 / 06 — Presupuesto y tiempos</div>
+        <h2 class="step-title">¿Cuánto y<br>para cuándo?</h2>
+        <p class="step-desc">Esta información nos permite ajustar la propuesta a tu realidad. No hay respuesta incorrecta — la honestidad aquí nos ahorra tiempo a los dos.</p>
+      </div>
+      <div class="field">
+        <label>Rango de inversión que tienes en mente <span class="req">*</span></label>
+        <div class="option-grid">
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="Menos de $5,000 MXN"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Menos de $5,000 MXN</div><div class="opt-sub">Starter / Presencia básica</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="$5,000 – $12,000 MXN"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">$5,000 – $12,000 MXN</div><div class="opt-sub">Sitio completo con diseño a medida</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="$12,000 – $20,000 MXN"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">$12,000 – $20,000 MXN</div><div class="opt-sub">Sitio robusto o con funciones especiales</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="$20,000 – $30,000 MXN"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">$20,000 – $30,000 MXN</div><div class="opt-sub">E-commerce o proyecto con integraciones</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="Más de $30,000 MXN"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Más de $30,000 MXN</div><div class="opt-sub">Proyecto a medida sin límite de alcance</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="presupuesto" value="No lo sé aún — necesito orientación"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">No lo sé aún</div><div class="opt-sub">Me ayudan a definirlo</div></div></div></label>
+        </div>
+        <div class="field-err" id="err_s5_presupuesto">Selecciona un rango de inversión</div>
+      </div>
+      <div class="field" style="margin-top:1.5rem">
+        <label>¿Para cuándo necesitas el sitio? <span class="req">*</span></label>
+        <div class="option-grid cols-2">
+          <label class="opt-card radio"><input type="radio" name="urgencia" value="Urgente — en menos de 2 semanas"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Urgente</div><div class="opt-sub">Menos de 2 semanas</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="urgencia" value="En 1 mes"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">1 mes</div><div class="opt-sub">Tiempo normal</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="urgencia" value="En 1–3 meses"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">1 a 3 meses</div><div class="opt-sub">Sin prisa, hacerlo bien</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="urgencia" value="Sin fecha definida — estoy explorando"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Sin fecha</div><div class="opt-sub">Estoy explorando opciones</div></div></div></label>
+        </div>
+        <div class="field-err" id="err_s5_urgencia">Selecciona un plazo</div>
+      </div>
+      <div class="field">
+        <label>¿Te interesa el mantenimiento mensual posterior al lanzamiento?</label>
+        <div class="option-grid cols-3">
+          <label class="opt-card radio"><input type="radio" name="mantenimiento" value="Sí, me interesa el mantenimiento mensual"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Sí</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="mantenimiento" value="No por ahora"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">No por ahora</div></div></div></label>
+          <label class="opt-card radio"><input type="radio" name="mantenimiento" value="Cuéntame más sobre el mantenimiento"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Cuéntenme más</div></div></div></label>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" onclick="goPrev(5)">← Anterior</button>
+        <button class="btn-next" onclick="goNext(5)">Siguiente <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Estilo y extras -->
+    <div class="step-block" id="step6" style="display:none">
+      <div class="step-header">
+        <div class="step-num">06 / 06 — Estilo y últimas notas</div>
+        <h2 class="step-title">¿Cómo quieres<br>que se vea?</h2>
+        <p class="step-desc">El último bloque. Aquí nos ayudas a entender la dirección visual y si hay algo más que debamos saber.</p>
+      </div>
+      <div class="field">
+        <label>¿Qué tono visual buscas para tu sitio?</label>
+        <div class="option-grid cols-2">
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Minimalista y elegante"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Minimalista y elegante</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Oscuro y premium (dark mode)"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Oscuro y premium</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Claro, limpio y moderno"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Claro y moderno</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Atrevido, colorido y llamativo"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Atrevido y colorido</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Editorial y tipográfico"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Editorial / tipográfico</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Cálido, orgánico y natural"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Cálido y natural</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="Tecnológico y futurista"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Tecnológico y futurista</div></div></div></label>
+          <label class="opt-card"><input type="checkbox" name="estilo" value="No lo sé — confío en el criterio de No'j"><div class="opt-label"><div class="opt-check"></div><div class="opt-text"><div class="opt-name">Confío en No'j</div></div></div></label>
+        </div>
+      </div>
+      <div class="field" style="margin-top:1.5rem">
+        <label>URLs de sitios que te gustan visualmente</label>
+        <textarea id="s6_referencias" rows="3" placeholder="Pueden ser de cualquier industria — solo nos interesa el estilo visual. Ej: https://sitio1.com, https://sitio2.com"></textarea>
+        <div class="field-hint">No tienen que ser de tu competencia. A veces la mejor referencia es una marca de ropa, una galería de arte o una app.</div>
+      </div>
+      <div class="field">
+        <label>¿Cómo conociste a No'j Studio?</label>
+        <select id="s6_como">
+          <option value="">Selecciona</option>
+          <option>Instagram</option>
+          <option>Google</option>
+          <option>Recomendación de alguien</option>
+          <option>Anuncio en redes sociales</option>
+          <option>Ya era cliente de No'j</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Algo más que debamos saber? Comentarios adicionales</label>
+        <textarea id="s6_extras" rows="4" placeholder="Contexto adicional, situaciones especiales, preguntas que tengas, lo que sea que no hayamos preguntado y creas que es relevante..."></textarea>
+      </div>
+
+      <!-- RESUMEN -->
+      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line)">
+        <div style="font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--v);margin-bottom:1.2rem">Resumen de tu brief</div>
+        <div id="summaryBlock"></div>
+        <button class="submit-btn" onclick="sendToWhatsApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Enviar brief por WhatsApp
+        </button>
+        <p class="submit-note">Te abrirá WhatsApp con todo el brief organizado listo para enviarnos.<br>Nos pondremos en contacto en menos de 48 horas con tu propuesta.</p>
+      </div>
+
+      <div class="step-nav" style="border-top:none;padding-top:0;margin-top:1rem">
+        <button class="btn-prev" onclick="goPrev(6)">← Anterior</button>
+        <div></div>
+      </div>
+    </div>
+
+  </div><!-- /steps-container -->
+
+  <!-- THANK YOU -->
+  <div class="thankyou" id="thankYou">
+    <div class="ty-icon">✦</div>
+    <h2 class="ty-h">Brief<br><em>enviado.</em></h2>
+    <p class="ty-sub">Recibimos toda la información. Nuestro equipo la revisará y te contactará con una propuesta concreta en menos de 48 horas.</p>
+    <a href="web.html" class="ty-back">← Volver a No'j Web</a>
+  </div>
+
+</div><!-- /brief-wrap -->
+
+<div class="brief-footer">© 2025 No'j Studio · CDMX · nojstudiomx@gmail.com</div>
+
+<script>
+var currentStep = 0;
+var totalSteps = 6;
+
+function startBrief(){
+  document.getElementById('introBlock').style.display = 'none';
+  document.getElementById('stepsContainer').classList.add('visible');
+  showStep(1);
+  updateProgress(1);
+}
+
+function showStep(n){
+  for(var i=1;i<=totalSteps;i++){
+    var el = document.getElementById('step'+i);
+    if(el) el.style.display = (i===n) ? 'block' : 'none';
+  }
+  currentStep = n;
+  document.getElementById('navStep').textContent = 'Paso '+n+' de '+totalSteps;
+  updateProgress(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Build summary on step 6
+  if(n===6) buildSummary();
+}
+
+function updateProgress(n){
+  var pct = ((n-1)/totalSteps)*100;
+  document.getElementById('progressFill').style.width = pct+'%';
+}
+
+function goNext(stepNum){
+  if(!validateStep(stepNum)) return;
+  if(stepNum < totalSteps){
+    showStep(stepNum+1);
+  }
+}
+
+function goPrev(stepNum){
+  if(stepNum > 1) showStep(stepNum-1);
+}
+
+/* ── VALIDATION ── */
+function validateStep(n){
+  var ok = true;
+  clearErrors();
+
+  if(n===1){
+    ok = requireField('s1_nombre','err_s1_nombre') && ok;
+    ok = requireField('s1_empresa','err_s1_empresa') && ok;
+    ok = requireField('s1_wa','err_s1_wa') && ok;
+    ok = requireSelect('s1_sector','err_s1_sector') && ok;
+  }
+  if(n===2){
+    ok = requireTextarea('s2_que','err_s2_que') && ok;
+    ok = requireTextarea('s2_cliente','err_s2_cliente') && ok;
+  }
+  if(n===3){
+    ok = requireRadio('tipo_sitio','err_s3_tipo') && ok;
+    ok = requireTextarea('s3_objetivo','err_s3_objetivo') && ok;
+  }
+  if(n===5){
+    ok = requireRadio('presupuesto','err_s5_presupuesto') && ok;
+    ok = requireRadio('urgencia','err_s5_urgencia') && ok;
+  }
+  return ok;
+}
+
+function clearErrors(){
+  document.querySelectorAll('.field-err').forEach(function(el){el.classList.remove('show')});
+  document.querySelectorAll('.err').forEach(function(el){el.classList.remove('err')});
+}
+
+function requireField(id, errId){
+  var el = document.getElementById(id);
+  if(!el || !el.value.trim()){
+    if(el) el.classList.add('err');
+    var err = document.getElementById(errId);
+    if(err) err.classList.add('show');
+    return false;
+  }
+  return true;
+}
+
+function requireSelect(id, errId){
+  var el = document.getElementById(id);
+  if(!el || !el.value){
+    if(el) el.classList.add('err');
+    var err = document.getElementById(errId);
+    if(err) err.classList.add('show');
+    return false;
+  }
+  return true;
+}
+
+function requireTextarea(id, errId){
+  var el = document.getElementById(id);
+  if(!el || !el.value.trim()){
+    if(el) el.classList.add('err');
+    var err = document.getElementById(errId);
+    if(err) err.classList.add('show');
+    return false;
+  }
+  return true;
+}
+
+function requireRadio(name, errId){
+  var checked = document.querySelector('input[name="'+name+'"]:checked');
+  if(!checked){
+    var err = document.getElementById(errId);
+    if(err) err.classList.add('show');
+    return false;
+  }
+  return true;
+}
+
+/* ── COLLECT DATA ── */
+function getVal(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+function getRadio(name){ var el=document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : '—'; }
+function getCheckboxes(name){
+  var vals=[];
+  document.querySelectorAll('input[name="'+name+'"]:checked').forEach(function(el){vals.push(el.value)});
+  return vals.length ? vals.join(', ') : '—';
+}
+
+/* ── SUMMARY ── */
+function buildSummary(){
+  var html = '';
+  var blocks = [
+    {title:'Contacto', rows:[
+      ['Nombre', getVal('s1_nombre')],
+      ['Empresa', getVal('s1_empresa')],
+      ['WhatsApp', getVal('s1_wa')],
+      ['Email', getVal('s1_email')||'—'],
+      ['Sector', getVal('s1_sector')],
+      ['Ciudad', getVal('s1_ciudad')||'—'],
+    ]},
+    {title:'El negocio', rows:[
+      ['Qué hace', getVal('s2_que')],
+      ['Cliente ideal', getVal('s2_cliente')],
+      ['Diferencial', getVal('s2_diferencial')||'—'],
+      ['Referencias', getVal('s2_competencia')||'—'],
+    ]},
+    {title:'El sitio', rows:[
+      ['Tipo', getRadio('tipo_sitio')],
+      ['Situación actual', getRadio('tiene_sitio')],
+      ['URL actual', getVal('s3_url_actual')||'—'],
+      ['Objetivo', getVal('s3_objetivo')],
+    ]},
+    {title:'Contenido y funciones', rows:[
+      ['Secciones', getCheckboxes('secciones')],
+      ['Funcionalidades', getCheckboxes('funciones')],
+      ['Contenido', getRadio('contenido')],
+    ]},
+    {title:'Presupuesto y tiempos', rows:[
+      ['Inversión', getRadio('presupuesto')],
+      ['Plazo', getRadio('urgencia')],
+      ['Mantenimiento', getRadio('mantenimiento')],
+    ]},
+    {title:'Estilo', rows:[
+      ['Tono visual', getCheckboxes('estilo')],
+      ['Referencias web', getVal('s6_referencias')||'—'],
+      ['Cómo nos conoció', getVal('s6_como')||'—'],
+      ['Notas adicionales', getVal('s6_extras')||'—'],
+    ]},
+  ];
+  blocks.forEach(function(b){
+    html += '<div class="summary-block"><div class="summary-title">'+b.title+'</div>';
+    b.rows.forEach(function(r){
+      html += '<div class="summary-row"><div class="summary-key">'+r[0]+'</div><div class="summary-val">'+r[1]+'</div></div>';
+    });
+    html += '</div>';
+  });
+  document.getElementById('summaryBlock').innerHTML = html;
+}
+
+/* ── WHATSAPP ── */
+function sendToWhatsApp(){
+  var msg = '📋 BRIEF DE PROYECTO WEB — No\'j Studio\n';
+  msg += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+  msg += '👤 CONTACTO\n';
+  msg += '• Nombre: ' + getVal('s1_nombre') + '\n';
+  msg += '• Empresa: ' + getVal('s1_empresa') + '\n';
+  msg += '• WhatsApp: ' + getVal('s1_wa') + '\n';
+  if(getVal('s1_email')) msg += '• Email: ' + getVal('s1_email') + '\n';
+  msg += '• Sector: ' + getVal('s1_sector') + '\n';
+  if(getVal('s1_ciudad')) msg += '• Ciudad: ' + getVal('s1_ciudad') + '\n';
+
+  msg += '\n🏢 EL NEGOCIO\n';
+  msg += '• Qué hace: ' + getVal('s2_que') + '\n';
+  msg += '• Cliente ideal: ' + getVal('s2_cliente') + '\n';
+  if(getVal('s2_diferencial')) msg += '• Diferencial: ' + getVal('s2_diferencial') + '\n';
+  if(getVal('s2_competencia')) msg += '• Referencias: ' + getVal('s2_competencia') + '\n';
+
+  msg += '\n🌐 EL SITIO\n';
+  msg += '• Tipo: ' + getRadio('tipo_sitio') + '\n';
+  msg += '• Situación: ' + getRadio('tiene_sitio') + '\n';
+  if(getVal('s3_url_actual')) msg += '• URL actual: ' + getVal('s3_url_actual') + '\n';
+  msg += '• Objetivo: ' + getVal('s3_objetivo') + '\n';
+
+  msg += '\n⚙️ CONTENIDO Y FUNCIONES\n';
+  msg += '• Secciones: ' + getCheckboxes('secciones') + '\n';
+  msg += '• Funcionalidades: ' + getCheckboxes('funciones') + '\n';
+  msg += '• Contenido listo: ' + getRadio('contenido') + '\n';
+
+  msg += '\n💰 PRESUPUESTO Y TIEMPOS\n';
+  msg += '• Inversión: ' + getRadio('presupuesto') + '\n';
+  msg += '• Plazo: ' + getRadio('urgencia') + '\n';
+  msg += '• Mantenimiento: ' + getRadio('mantenimiento') + '\n';
+
+  msg += '\n🎨 ESTILO\n';
+  msg += '• Tono visual: ' + getCheckboxes('estilo') + '\n';
+  if(getVal('s6_referencias')) msg += '• Referencias: ' + getVal('s6_referencias') + '\n';
+  if(getVal('s6_como')) msg += '• Cómo nos conoció: ' + getVal('s6_como') + '\n';
+  if(getVal('s6_extras')) msg += '\n💬 NOTAS ADICIONALES\n' + getVal('s6_extras') + '\n';
+
+  msg += '\n━━━━━━━━━━━━━━━━━━━━━━\nBrief generado desde nojstudio.github.io/nojstudio/brief.html';
+
+  window.open('https://wa.me/525574582059?text=' + encodeURIComponent(msg), '_blank');
+
+  // Show thank you
+  setTimeout(function(){
+    document.getElementById('stepsContainer').style.display = 'none';
+    document.getElementById('thankYou').classList.add('show');
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('navStep').textContent = '¡Listo!';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }, 800);
+}
+</script>
+</body>
+</html>

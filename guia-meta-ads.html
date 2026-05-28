@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Meta Ads — No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f4f2ed;--v:#84b4c9;--green:#6fbdaa;--yellow:#c8a96e;--line:rgba(255,255,255,0.07);--off:#0d0d0d}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
+
+.top{padding:1.4rem 2rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:0.8rem;background:rgba(10,10,10,0.98);position:sticky;top:0;z-index:50}
+.brand-word{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em}
+.brand-tag{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.7rem}
+
+.content{max-width:960px;margin:0 auto;padding:3rem 2rem}
+
+/* SECTION */
+.section{margin-bottom:4rem}
+.s-label{display:flex;align-items:center;gap:1rem;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--v);margin-bottom:0.8rem}
+.s-label::before{content:'';width:2rem;height:1px;background:var(--v)}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:0.03em;line-height:0.95;margin-bottom:1.5rem}
+.s-desc{font-size:0.84rem;color:rgba(255,255,255,0.45);line-height:1.85;max-width:680px;margin-bottom:2rem}
+
+/* BUDGET TABLE */
+.budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:2rem}
+.budget-col{background:var(--off);padding:2rem 1.6rem}
+.budget-col.rec{background:#0d1519;border-top:2px solid var(--v)}
+.budget-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem}
+.budget-label.v{color:var(--v)}
+.budget-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);line-height:1;margin-bottom:0.3rem}
+.budget-sub{font-size:0.72rem;color:rgba(255,255,255,0.3);line-height:1.6;margin-bottom:1.2rem}
+.budget-items{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.budget-items li{font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;gap:0.6rem;line-height:1.4}
+.budget-items li::before{content:'·';color:var(--v);flex-shrink:0}
+
+/* CAMPAIGN STRUCTURE */
+.camp-grid{display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid var(--line)}
+.camp-level{background:var(--off);padding:1.2rem 1.5rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:1rem}
+.camp-level:last-child{border-bottom:none}
+.camp-level-tag{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid;white-space:nowrap}
+.tag-camp{color:var(--yellow);border-color:rgba(200,169,110,0.3)}
+.tag-cjunto{color:var(--v);border-color:rgba(132,180,201,0.3)}
+.tag-anuncio{color:var(--green);border-color:rgba(111,189,170,0.3)}
+.camp-level-content{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.6}
+.camp-level-title{font-weight:400;color:var(--white);margin-bottom:0.2rem}
+
+/* AD CARDS */
+.ad-card{border:1px solid var(--line);margin-bottom:1.5rem;overflow:hidden}
+.ad-header{padding:1.2rem 1.5rem;background:var(--off);border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ad-num{font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:0.1em;color:var(--v)}
+.ad-name{font-weight:400;font-size:0.92rem;margin-top:0.15rem}
+.ad-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tag{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.2rem 0.5rem;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.35)}
+.ad-body{padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.ad-body{grid-template-columns:1fr}}
+
+.ad-section-title{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.6rem}
+.ad-copy{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);padding:1rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;line-height:1.8;color:rgba(255,255,255,0.7);white-space:pre-wrap}
+.ad-specs{display:flex;flex-direction:column;gap:0.8rem}
+.spec-row{display:flex;gap:0.6rem;align-items:flex-start}
+.spec-key{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);min-width:90px;flex-shrink:0;padding-top:0.1rem}
+.spec-val{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.5}
+.spec-val.highlight{color:var(--v);font-family:'JetBrains Mono',monospace;font-size:0.72rem}
+
+.copy-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 0.9rem;background:rgba(132,180,201,0.1);border:1px solid rgba(132,180,201,0.2);color:var(--v);font-family:'DM Sans',sans-serif;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-top:0.8rem}
+.copy-btn:hover{background:rgba(132,180,201,0.18)}
+.copy-btn.copied{background:rgba(111,189,170,0.1);border-color:rgba(111,189,170,0.2);color:var(--green)}
+
+/* SEGMENTATION */
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.seg-col{background:var(--off);padding:1.8rem 1.5rem}
+.seg-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);margin-bottom:0.8rem}
+.seg-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;margin-bottom:1rem}
+.seg-items{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.seg-items li{font-size:0.76rem;color:rgba(255,255,255,0.5);display:flex;gap:0.6rem;line-height:1.4}
+.seg-items li::before{content:'◆';font-size:0.4rem;color:var(--v);flex-shrink:0;margin-top:0.42rem}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;border:1px solid var(--line)}
+.tl-item{display:grid;grid-template-columns:100px 1fr;gap:0;border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-week{background:var(--off);padding:1.2rem 1.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}
+.tl-week-n{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--v);line-height:1}
+.tl-week-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:0.2rem}
+.tl-content{padding:1.2rem 1.5rem}
+.tl-title{font-weight:400;font-size:0.86rem;margin-bottom:0.4rem}
+.tl-desc{font-size:0.76rem;color:rgba(255,255,255,0.4);line-height:1.7}
+
+/* KPI TABLE */
+.kpi-table{width:100%;border-collapse:collapse;font-size:0.8rem}
+.kpi-table th{text-align:left;padding:0.6rem 1rem;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);background:var(--off);border-bottom:1px solid var(--line)}
+.kpi-table td{padding:0.85rem 1rem;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+.kpi-table tr:last-child td{border-bottom:none}
+.kpi-val{color:var(--v);font-family:'JetBrains Mono',monospace;font-size:0.78rem}
+.kpi-good{color:var(--green)}
+.kpi-warn{color:var(--yellow)}
+
+/* INFO BOX */
+.info-box{border:1px solid rgba(132,180,201,0.2);background:rgba(132,180,201,0.05);padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+.info-box-title{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);margin-bottom:0.6rem}
+.info-box p{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8}
+
+.warn-box{border:1px solid rgba(200,169,110,0.2);background:rgba(200,169,110,0.05);padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+.warn-box-title{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.6rem}
+.warn-box p{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.8}
+
+@media(max-width:640px){
+  .budget-grid,.seg-grid{grid-template-columns:1fr}
+  .content{padding:2rem 1.2rem}
+  .tl-item{grid-template-columns:70px 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <svg width="28" height="28" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+  <span class="brand-word">NO'J</span><span class="brand-tag">Guía Meta Ads · Vertical Web</span>
+</div>
+
+<div class="content">
+
+  <!-- ESTRATEGIA -->
+  <div class="section">
+    <div class="s-label">Estrategia general</div>
+    <h2 class="s-title">Meta Ads primero.<br>Google después.</h2>
+    <p class="s-desc">Instagram y Facebook son el canal de arranque correcto para No'j Web. El producto es visual, el cliente ideal navega ahí, y el costo por lead en México es 3–5x menor que en Google Ads. Google entra en el mes 3 cuando ya hay presupuesto recurrente para competir en keywords de alta intención.</p>
+
+    <div class="info-box">
+      <div class="info-box-title">Por qué Meta antes que Google</div>
+      <p>En Google, el cliente ya está buscando "agencia web CDMX" — compites con presupuestos de $30–50K MXN/mes. En Meta, tú interrumpes al dueño de negocio que aún no sabe que necesita un sitio mejor, pero reacciona cuando ve los mockups. Es más barato y genera demanda que no existía.</p>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="section">
+    <div class="s-label">Presupuesto recomendado</div>
+    <h2 class="s-title">¿Cuánto invertir?</h2>
+    <div class="budget-grid">
+      <div class="budget-col">
+        <div class="budget-label">Mínimo viable</div>
+        <div class="budget-n">$3,000</div>
+        <div class="budget-sub">MXN/mes · Para aprender y probar</div>
+        <ul class="budget-items">
+          <li>~100 MXN/día de pauta</li>
+          <li>Pocos leads, datos limitados</li>
+          <li>Sirve para validar creativos</li>
+          <li>Puede que no cubra la inversión</li>
+        </ul>
+      </div>
+      <div class="budget-col rec">
+        <div class="budget-label v">Recomendado · Mes 1</div>
+        <div class="budget-n">$5,000</div>
+        <div class="budget-sub">MXN/mes · ROI positivo desde el arranque</div>
+        <ul class="budget-items">
+          <li>~165 MXN/día de pauta</li>
+          <li>1 cliente Starter = inversión recuperada</li>
+          <li>Suficiente para aprender rápido</li>
+          <li>3 conjuntos de anuncios en paralelo</li>
+        </ul>
+      </div>
+      <div class="budget-col">
+        <div class="budget-label">Escalado · Mes 2+</div>
+        <div class="budget-n">$10,000</div>
+        <div class="budget-sub">MXN/mes · Cuando ya sabes qué funciona</div>
+        <ul class="budget-items">
+          <li>~330 MXN/día de pauta</li>
+          <li>Doblas lo que ya demostró funcionar</li>
+          <li>Agregar Google Ads en paralelo</li>
+          <li>Meta como canal principal consolidado</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:0.72rem;color:rgba(255,255,255,0.25);margin-top:0.8rem">* Estos presupuestos son de pauta (lo que le pagas a Meta). La gestión de No'j Studio se cotiza por separado si aplica.</p>
+  </div>
+
+  <!-- ESTRUCTURA -->
+  <div class="section">
+    <div class="s-label">Estructura de campaña</div>
+    <h2 class="s-title">Cómo organizar<br>la campaña.</h2>
+    <div class="camp-grid">
+      <div class="camp-level">
+        <span class="camp-level-tag tag-camp">Campaña</span>
+        <div class="camp-level-content">
+          <div class="camp-level-title">No'j Web — Leads México · Mayo 2025</div>
+          Objetivo: Mensajes (WhatsApp) · Conversiones · Presupuesto total: $5,000 MXN/mes
+        </div>
+      </div>
+      <div class="camp-level">
+        <span class="camp-level-tag tag-cjunto">Conj. A</span>
+        <div class="camp-level-content">
+          <div class="camp-level-title">PyME General · Todo México</div>
+          Dueños de negocio 28–50 · Emprendimiento, pequeños negocios · $1,700 MXN/mes
+        </div>
+      </div>
+      <div class="camp-level">
+        <span class="camp-level-tag tag-cjunto">Conj. B</span>
+        <div class="camp-level-content">
+          <div class="camp-level-title">Restaurantes y Gastronomía</div>
+          Administradores de páginas de restaurante · Gastronomía, hospitalidad · $1,700 MXN/mes
+        </div>
+      </div>
+      <div class="camp-level">
+        <span class="camp-level-tag tag-cjunto">Conj. C</span>
+        <div class="camp-level-content">
+          <div class="camp-level-title">Moda / Belleza / Retail</div>
+          Mujeres 25–45 · Moda, belleza, tienda online, e-commerce · $1,600 MXN/mes
+        </div>
+      </div>
+      <div class="camp-level">
+        <span class="camp-level-tag tag-anuncio">Anuncios</span>
+        <div class="camp-level-content">
+          <div class="camp-level-title">3 anuncios por conjunto = 9 anuncios en total</div>
+          Creativo 1: Scroll de mockups · Creativo 2: Antes/después · Creativo 3: Precio visible
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANUNCIOS -->
+  <div class="section">
+    <div class="s-label">Los creativos</div>
+    <h2 class="s-title">3 anuncios.<br>3 ángulos distintos.</h2>
+    <p class="s-desc">Estos tres formatos cubren los tres tipos de cliente: el que reacciona a lo visual, el que compara con lo que tiene, y el que necesita ver el precio para tomar acción. Prueba los tres el primer mes y dobla el que más convierte.</p>
+
+    <!-- AD 1 -->
+    <div class="ad-card">
+      <div class="ad-header">
+        <div>
+          <div class="ad-num">Anuncio 01 · El más visual</div>
+          <div class="ad-name">Scroll de mockups — "¿Tu negocio ya se ve así?"</div>
+        </div>
+        <div class="ad-tags"><span class="tag">Video 15s</span><span class="tag">Reels</span><span class="tag">Stories</span></div>
+      </div>
+      <div class="ad-body">
+        <div>
+          <div class="ad-section-title">Copy del anuncio</div>
+          <div class="ad-copy">¿Tu negocio ya se ve así?
+
+Diseñamos sitios web que no se parecen a nada más. Sin plantillas, sin atajos.
+
+Desde $5,000 MXN · Entrega en 5 días.
+
+👇 Escríbenos y cotiza gratis.</div>
+          <button class="copy-btn" onclick="copyText(this)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar copy
+          </button>
+        </div>
+        <div class="ad-specs">
+          <div class="ad-section-title">Especificaciones</div>
+          <div class="spec-row"><div class="spec-key">Formato</div><div class="spec-val">Video vertical 9:16 · 15 segundos</div></div>
+          <div class="spec-row"><div class="spec-key">Placements</div><div class="spec-val">Instagram Reels, Stories y Feed · Facebook Reels</div></div>
+          <div class="spec-row"><div class="spec-key">Contenido</div><div class="spec-val">Scroll rápido de los mockups del web.html (Casa Mole, Sur Coffee, Vertex Padel, Tlali...) con música instrumental elegante. Sin narración, solo texto overlay.</div></div>
+          <div class="spec-row"><div class="spec-key">CTA</div><div class="spec-val highlight">Enviar mensaje</div></div>
+          <div class="spec-row"><div class="spec-key">Titular</div><div class="spec-val">Sitios web que se ven distintos</div></div>
+          <div class="spec-row"><div class="spec-key">Herramienta</div><div class="spec-val">CapCut o Canva Pro — exportar sin marca de agua</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD 2 -->
+    <div class="ad-card">
+      <div class="ad-header">
+        <div>
+          <div class="ad-num">Anuncio 02 · El comparativo</div>
+          <div class="ad-name">Antes / Después — "La diferencia se nota"</div>
+        </div>
+        <div class="ad-tags"><span class="tag">Imagen estática</span><span class="tag">Carrusel</span><span class="tag">Feed</span></div>
+      </div>
+      <div class="ad-body">
+        <div>
+          <div class="ad-section-title">Copy del anuncio</div>
+          <div class="ad-copy">La diferencia entre un sitio que se olvida y uno que vende.
+
+Izquierda: plantilla de Wix con tu logo encima.
+Derecha: lo que hacemos en No'j Studio.
+
+Diseño a medida desde $5,000 MXN.
+Sin WordPress. Sin plantillas. Sin atajos.
+
+¿Listo para el cambio? 👇</div>
+          <button class="copy-btn" onclick="copyText(this)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar copy
+          </button>
+        </div>
+        <div class="ad-specs">
+          <div class="ad-section-title">Especificaciones</div>
+          <div class="spec-row"><div class="spec-key">Formato</div><div class="spec-val">Imagen 1:1 o carrusel · 2 slides (antes / después)</div></div>
+          <div class="spec-row"><div class="spec-key">Placements</div><div class="spec-val">Instagram Feed y Explore · Facebook Feed</div></div>
+          <div class="spec-row"><div class="spec-key">Visual</div><div class="spec-val">Slide 1: captura de sitio genérico de Wix (fondo blanco, lorem ipsum). Slide 2: captura del mockup de Casa Mole o Sur Coffee del web.html.</div></div>
+          <div class="spec-row"><div class="spec-key">CTA</div><div class="spec-val highlight">Más información</div></div>
+          <div class="spec-row"><div class="spec-key">Titular</div><div class="spec-val">Tu negocio merece más que una plantilla</div></div>
+          <div class="spec-row"><div class="spec-key">Destino</div><div class="spec-val">web.html — sección #portafolio</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD 3 -->
+    <div class="ad-card">
+      <div class="ad-header">
+        <div>
+          <div class="ad-num">Anuncio 03 · El directo</div>
+          <div class="ad-name">Precio visible — "Sitio profesional desde $5,000"</div>
+        </div>
+        <div class="ad-tags"><span class="tag">Imagen</span><span class="tag">Feed</span><span class="tag">Alta intención</span></div>
+      </div>
+      <div class="ad-body">
+        <div>
+          <div class="ad-section-title">Copy del anuncio</div>
+          <div class="ad-copy">Sitio web profesional desde $5,000 MXN.
+
+✅ Diseño a medida (no plantillas)
+✅ Adaptado a móvil
+✅ SSL + dominio configurado
+✅ Entrega en 5 días hábiles
+✅ Sin mensualidades forzadas
+
+Somos No'j Studio, estudio creativo en CDMX.
+
+Escríbenos y te cotizamos gratis hoy. 👇</div>
+          <button class="copy-btn" onclick="copyText(this)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar copy
+          </button>
+        </div>
+        <div class="ad-specs">
+          <div class="ad-section-title">Especificaciones</div>
+          <div class="spec-row"><div class="spec-key">Formato</div><div class="spec-val">Imagen 4:5 o 1:1 · Diseño tipográfico</div></div>
+          <div class="spec-row"><div class="spec-key">Placements</div><div class="spec-val">Instagram Feed · Facebook Feed · Audience Network</div></div>
+          <div class="spec-row"><div class="spec-key">Visual</div><div class="spec-val">Fondo negro (#0a0a0a). Título en Bebas Neue grande. Lista de beneficios con checks. Logo de No'j abajo. Estilo editorial idéntico al web.html.</div></div>
+          <div class="spec-row"><div class="spec-key">CTA</div><div class="spec-val highlight">Enviar mensaje</div></div>
+          <div class="spec-row"><div class="spec-key">Titular</div><div class="spec-val">Cotiza tu sitio web gratis</div></div>
+          <div class="spec-row"><div class="spec-key">Nota</div><div class="spec-val">Este anuncio atrae leads más calificados porque ya saben el precio. El cierre es más rápido.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGMENTACIÓN -->
+  <div class="section">
+    <div class="s-label">Segmentación detallada</div>
+    <h2 class="s-title">A quién le mostramos<br>los anuncios.</h2>
+    <div class="seg-grid">
+      <div class="seg-col">
+        <div class="seg-label">Conjunto A · PyME General</div>
+        <div class="seg-title">Dueños de negocio</div>
+        <ul class="seg-items">
+          <li>Todo México</li>
+          <li>28–55 años, cualquier género</li>
+          <li>Intereses: pequeños negocios, emprendimiento, marketing digital</li>
+          <li>Comportamiento: administradores de páginas de Facebook</li>
+          <li>Excluir: empleados de empresas grandes, estudiantes</li>
+        </ul>
+      </div>
+      <div class="seg-col">
+        <div class="seg-label">Conjunto B · Gastronomía</div>
+        <div class="seg-title">Restauranteros</div>
+        <ul class="seg-items">
+          <li>CDMX, GDL, MTY, Cancún, Puebla</li>
+          <li>30–55 años</li>
+          <li>Intereses: restaurantes, gastronomía, cocina, hospitalidad</li>
+          <li>Comportamiento: admin de página de negocio en restaurantes</li>
+          <li>Lookalike: clientes del sector gastronómico si aplica</li>
+        </ul>
+      </div>
+      <div class="seg-col">
+        <div class="seg-label">Conjunto C · Moda / Retail</div>
+        <div class="seg-title">Moda y Beauty</div>
+        <ul class="seg-items">
+          <li>Todo México</li>
+          <li>25–45 años, mayoría mujeres</li>
+          <li>Intereses: moda, belleza, skincare, tienda online, e-commerce</li>
+          <li>Comportamiento: compradoras online frecuentes, admin de tienda</li>
+          <li>Excluir: compradores de otras marcas (no vendedores)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="section">
+    <div class="s-label">Plan de 4 semanas</div>
+    <h2 class="s-title">Qué hacer cada semana.</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-week"><div class="tl-week-n">S1</div><div class="tl-week-label">Setup</div></div>
+        <div class="tl-content">
+          <div class="tl-title">Configuración y lanzamiento</div>
+          <div class="tl-desc">Crear Business Manager · Configurar Píxel de Meta en web.html · Crear los 3 conjuntos de anuncios · Subir los 3 creativos por conjunto (9 anuncios) · Conectar WhatsApp Business · Activar campaña con presupuesto mínimo ($100/día)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week"><div class="tl-week-n">S2</div><div class="tl-week-label">Aprender</div></div>
+        <div class="tl-content">
+          <div class="tl-title">Revisión de primeros datos</div>
+          <div class="tl-desc">Revisar CTR de cada anuncio (objetivo: +1.5%) · Revisar costo por mensaje (objetivo: menos de $150 MXN) · Pausar los anuncios con CTR menor a 0.8% · Identificar qué conjunto genera más mensajes · NO cambiar nada todavía — la semana 2 es para observar</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week"><div class="tl-week-n">S3</div><div class="tl-week-label">Optimizar</div></div>
+        <div class="tl-content">
+          <div class="tl-title">Primera optimización</div>
+          <div class="tl-desc">Pausar el conjunto de peor desempeño · Reasignar su presupuesto al de mejor CTR · Si el anuncio de precio visible funciona mejor: crear variantes (cambiar el precio de $5,000 a $11,500 para atraer clientes Pro) · Ajustar la segmentación del conjunto C si no está convirtiendo</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week"><div class="tl-week-n">S4</div><div class="tl-week-label">Escalar</div></div>
+        <div class="tl-content">
+          <div class="tl-title">Escalar lo que funciona</div>
+          <div class="tl-desc">Aumentar presupuesto del conjunto ganador en 20% · Crear audiencia Lookalike basada en personas que enviaron mensaje · Preparar creativos nuevos para el mes 2 · Revisar el reporte completo: leads generados, leads calificados, propuestas enviadas, proyectos cerrados · Calcular CAC (costo por cliente adquirido)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section">
+    <div class="s-label">Métricas clave</div>
+    <h2 class="s-title">Qué medir<br>y qué esperar.</h2>
+    <table class="kpi-table">
+      <thead><tr><th>Métrica</th><th>Objetivo Mes 1</th><th>Bueno</th><th>Preocupante</th></tr></thead>
+      <tbody>
+        <tr><td>CTR (Click-through rate)</td><td class="kpi-val">+1.5%</td><td class="kpi-good">+2.5%</td><td style="color:#e07070">&lt;0.8%</td></tr>
+        <tr><td>Costo por mensaje (CPM)</td><td class="kpi-val">&lt;$150 MXN</td><td class="kpi-good">&lt;$80 MXN</td><td style="color:#e07070">&gt;$250 MXN</td></tr>
+        <tr><td>Mensajes recibidos / mes</td><td class="kpi-val">30–50</td><td class="kpi-good">+60</td><td style="color:#e07070">&lt;15</td></tr>
+        <tr><td>Leads calificados (llenaron brief)</td><td class="kpi-val">8–15</td><td class="kpi-good">+20</td><td style="color:#e07070">&lt;5</td></tr>
+        <tr><td>Propuestas enviadas</td><td class="kpi-val">5–10</td><td class="kpi-good">+12</td><td style="color:#e07070">&lt;3</td></tr>
+        <tr><td>Proyectos cerrados</td><td class="kpi-val">1–2</td><td class="kpi-good">3+</td><td style="color:#e07070">0</td></tr>
+        <tr><td>CAC (costo adquirir 1 cliente)</td><td class="kpi-val">&lt;$3,000 MXN</td><td class="kpi-good">&lt;$1,500 MXN</td><td style="color:#e07070">&gt;$5,000 MXN</td></tr>
+        <tr><td>ROAS (retorno sobre inversión en ads)</td><td class="kpi-val">2x</td><td class="kpi-good">4x+</td><td style="color:#e07070">&lt;1x</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.7rem;color:rgba(255,255,255,0.25);margin-top:1rem">* Con $5,000 MXN de pauta y 1 cliente Pro cerrado ($11,500 MXN), el ROAS es 2.3x. Con 2 clientes ya es 4.6x.</p>
+  </div>
+
+  <!-- PIXEL -->
+  <div class="section">
+    <div class="s-label">Setup técnico</div>
+    <h2 class="s-title">Instalar el Píxel<br>en 2 minutos.</h2>
+    <div class="warn-box">
+      <div class="warn-box-title">⚠️ Hacer antes de lanzar cualquier anuncio</div>
+      <p>Sin el Píxel instalado, Meta no puede optimizar a quién le muestra los anuncios. Es la diferencia entre gastar a ciegas y que el algoritmo aprenda quién convierte.</p>
+    </div>
+    <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:1.2rem">Agrega este código en el <code style="font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,0.05);padding:0.1rem 0.4rem;font-size:0.8rem">&lt;head&gt;</code> de <strong>web.html</strong>, <strong>marketing.html</strong> y <strong>brief.html</strong>. Reemplaza <code style="font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,0.05);padding:0.1rem 0.4rem;font-size:0.8rem">TU_PIXEL_ID</code> con el ID real de tu Píxel (lo encuentras en Meta Business → Orígenes de datos):</p>
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:1.2rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;line-height:1.9;color:rgba(255,255,255,0.6);overflow-x:auto;white-space:pre">
+&lt;!-- Meta Pixel · No'j Studio --&gt;
+&lt;script&gt;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','TU_PIXEL_ID');
+fbq('track','PageView');
+&lt;/script&gt;
+&lt;noscript&gt;
+&lt;img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=TU_PIXEL_ID&ev=PageView&noscript=1"/&gt;
+&lt;/noscript&gt;
+&lt;!-- / Meta Pixel --&gt;</div>
+    <button class="copy-btn" style="margin-top:0.8rem" onclick="copyPixel(this)">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copiar código del Píxel
+    </button>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="section">
+    <div class="s-label">Antes de lanzar</div>
+    <h2 class="s-title">Checklist de arranque.</h2>
+    <div style="border:1px solid var(--line);overflow:hidden">
+      <div id="checklist"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function copyText(btn){
+  var text = btn.closest('div').querySelector('.ad-copy').textContent.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    var orig=btn.innerHTML; btn.classList.add('copied');
+    btn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado';
+    setTimeout(function(){btn.classList.remove('copied');btn.innerHTML=orig;},2000);
+  });
+}
+
+function copyPixel(btn){
+  var code=document.querySelector('div[style*="JetBrains Mono"]').textContent.trim();
+  navigator.clipboard.writeText(code).then(function(){
+    var orig=btn.innerHTML; btn.classList.add('copied');
+    btn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado';
+    setTimeout(function(){btn.classList.remove('copied');btn.innerHTML=orig;},2000);
+  });
+}
+
+var checks=[
+  {cat:'Cuentas',items:['Crear cuenta en Meta Business Manager (business.facebook.com)','Conectar página de Facebook de No\'j Studio','Conectar cuenta de Instagram @nojstudiomx','Configurar cuenta de anuncios con método de pago']},
+  {cat:'Píxel',items:['Crear Píxel en Meta Business → Orígenes de datos','Instalar código del Píxel en web.html','Instalar código del Píxel en marketing.html','Instalar código del Píxel en brief.html','Verificar con Meta Pixel Helper (extensión de Chrome)']},
+  {cat:'WhatsApp Business',items:['Descargar WhatsApp Business en el número +52 55 7458 2059','Configurar perfil de empresa (nombre, descripción, horario)','Activar mensaje de bienvenida automático','Activar mensaje de ausencia fuera de horario','Crear respuestas rápidas para las frases más comunes']},
+  {cat:'Creativos',items:['Crear video de scroll de mockups (15 seg, vertical 9:16)','Crear imagen antes/después (1:1 o 4:5)','Crear imagen de precio visible (fondo negro, Bebas Neue)','Exportar todos los creativos sin marca de agua']},
+  {cat:'Campaña',items:['Crear campaña con objetivo "Mensajes"','Crear 3 conjuntos de anuncios (PyME, Gastronomía, Moda)','Subir los 3 creativos a cada conjunto','Configurar segmentación por conjunto','Establecer presupuesto ($5,000 MXN / mes total)','Revisión final antes de activar','¡Activar! 🚀']},
+];
+
+var html='';
+checks.forEach(function(cat,ci){
+  cat.items.forEach(function(item,ii){
+    var id='c'+ci+'_'+ii;
+    html+=`<label style="display:flex;align-items:flex-start;gap:1rem;padding:0.9rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+      <input type="checkbox" id="${id}" style="width:15px;height:15px;accent-color:#84b4c9;flex-shrink:0;margin-top:2px" onchange="updateCheck('${id}',this.checked)">
+      <div>
+        ${ii===0?`<div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#84b4c9;margin-bottom:0.25rem">${cat.cat}</div>`:''}
+        <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.4">${item}</div>
+      </div>
+    </label>`;
+  });
+});
+document.getElementById('checklist').innerHTML=html;
+
+// Restore from localStorage
+function updateCheck(id,val){localStorage.setItem('nojads_'+id,val?'1':'0');}
+document.querySelectorAll('#checklist input[type=checkbox]').forEach(function(cb){
+  if(localStorage.getItem('nojads_'+cb.id)==='1'){cb.checked=true;}
+});
+</script>
+</body>
+</html>

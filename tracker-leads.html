@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tracker de Leads — No'j Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--off:#0d0d0d;--white:#f4f2ed;--gray:#555;
+  --v:#84b4c9;--green:#6fbdaa;--yellow:#c8a96e;--red:#e07070;
+  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.04);
+}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
+
+/* ── TOP ── */
+.top{
+  padding:1.4rem 2rem;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  background:rgba(10,10,10,0.98);position:sticky;top:0;z-index:50;
+}
+.brand{display:flex;align-items:center;gap:0.7rem}
+.brand-word{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em}
+.brand-tag{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--v);border-left:1px solid var(--line);padding-left:0.7rem}
+.top-actions{display:flex;gap:0.6rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.55rem 1.1rem;font-family:'DM Sans',sans-serif;
+  font-size:0.65rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;border:none;transition:all 0.2s;
+}
+.btn-primary{background:var(--v);color:var(--black)}.btn-primary:hover{background:#a3c8d8}
+.btn-ghost{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border:1px solid var(--line)}.btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,0.2)}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.stat{background:var(--off);padding:1.2rem 1.5rem;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:0.2rem}
+.stat-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.stat-n.c-v{color:var(--v)}.stat-n.c-g{color:var(--green)}.stat-n.c-y{color:var(--yellow)}.stat-n.c-r{color:var(--red)}.stat-n.c-w{color:var(--white)}
+
+/* ── FILTERS ── */
+.filters{
+  padding:1rem 2rem;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+}
+.filter-tabs{display:flex;gap:1px;background:var(--line)}
+.ftab{
+  padding:0.5rem 1rem;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  cursor:pointer;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);
+  border:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;
+}
+.ftab.active{background:var(--v);color:var(--black)}
+.ftab:hover:not(.active){color:var(--white)}
+.search-input{
+  background:rgba(255,255,255,0.04);border:1px solid var(--line);
+  color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:300;
+  padding:0.5rem 0.9rem;outline:none;transition:border-color 0.2s;
+  min-width:200px;
+}
+.search-input:focus{border-color:var(--v)}
+.search-input::placeholder{color:rgba(255,255,255,0.2)}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto;min-height:300px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+thead th{
+  text-align:left;padding:0.7rem 1rem;
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);background:var(--off);
+  border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;
+  user-select:none;transition:color 0.2s;
+}
+thead th:hover{color:var(--white)}
+thead th.sorted{color:var(--v)}
+tbody tr{border-bottom:1px solid var(--line2);transition:background 0.15s;cursor:pointer}
+tbody tr:hover{background:rgba(255,255,255,0.02)}
+tbody td{padding:0.85rem 1rem;font-size:0.8rem;vertical-align:middle}
+
+/* BADGES */
+.badge{
+  display:inline-flex;align-items:center;gap:0.35rem;
+  font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  padding:0.22rem 0.6rem;border:1px solid;white-space:nowrap;
+}
+.badge-nuevo{color:var(--v);border-color:rgba(132,180,201,0.3);background:rgba(132,180,201,0.08)}
+.badge-contactado{color:var(--yellow);border-color:rgba(200,169,110,0.3);background:rgba(200,169,110,0.08)}
+.badge-brief{color:#c8a0ff;border-color:rgba(200,160,255,0.3);background:rgba(200,160,255,0.08)}
+.badge-propuesta{color:#ff9f6a;border-color:rgba(255,159,106,0.3);background:rgba(255,159,106,0.08)}
+.badge-negociacion{color:var(--yellow);border-color:rgba(200,169,110,0.3);background:rgba(200,169,110,0.08)}
+.badge-cerrado{color:var(--green);border-color:rgba(111,189,170,0.3);background:rgba(111,189,170,0.08)}
+.badge-perdido{color:var(--red);border-color:rgba(224,112,112,0.3);background:rgba(224,112,112,0.08)}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+
+.pkg-tag{
+  font-size:0.6rem;letter-spacing:0.1em;padding:0.18rem 0.5rem;
+  border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.35);
+}
+.td-name{font-weight:400;color:var(--white)}
+.td-empresa{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:0.1rem}
+.td-wa{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.4)}
+.td-actions{display:flex;gap:0.4rem}
+.act-btn{
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.04);border:1px solid var(--line);
+  cursor:pointer;transition:all 0.15s;color:rgba(255,255,255,0.4);font-size:0.7rem;
+}
+.act-btn:hover{background:rgba(255,255,255,0.08);color:var(--white)}
+.act-btn.danger:hover{background:rgba(224,112,112,0.1);border-color:rgba(224,112,112,0.3);color:var(--red)}
+
+/* EMPTY */
+.empty-row td{text-align:center;padding:4rem;color:rgba(255,255,255,0.2);font-size:0.8rem}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;
+  display:none;align-items:center;justify-content:center;padding:1.5rem;
+}
+.modal-overlay.show{display:flex}
+.modal{
+  background:#111;border:1px solid var(--line);
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  animation:slideUp 0.25s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{
+  padding:1.4rem 1.6rem;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em}
+.modal-close{
+  width:32px;height:32px;background:rgba(255,255,255,0.05);border:1px solid var(--line);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.5);font-size:1rem;transition:all 0.2s;
+}
+.modal-close:hover{background:rgba(255,255,255,0.1);color:var(--white)}
+.modal-body{padding:1.6rem}
+.mfield{margin-bottom:1.2rem}
+.mfield label{display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.4rem}
+.mfield input,.mfield select,.mfield textarea{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:300;
+  padding:0.75rem 0.9rem;outline:none;transition:border-color 0.2s;border-radius:0;-webkit-appearance:none;
+}
+.mfield input:focus,.mfield select:focus,.mfield textarea:focus{border-color:var(--v)}
+.mfield select option{background:#1a1a1a}
+.mfield textarea{resize:vertical;min-height:80px;line-height:1.6}
+.mfield-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.modal-footer{padding:1rem 1.6rem;border-top:1px solid var(--line);display:flex;gap:0.7rem;justify-content:flex-end}
+.btn-sm{padding:0.65rem 1.3rem;font-size:0.68rem}
+
+/* NOTA RAPIDA */
+.nota-row{
+  display:flex;gap:0.8rem;padding:0.7rem 0;
+  border-bottom:1px solid var(--line2);align-items:flex-start;
+}
+.nota-row:last-child{border-bottom:none}
+.nota-date{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.25);white-space:nowrap;padding-top:0.1rem}
+.nota-text{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.5}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .mfield-row{grid-template-columns:1fr}
+  .top{padding:1rem 1.2rem}
+  .filters{padding:0.8rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP -->
+<div class="top">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
+    <span class="brand-word">NO'J</span><span class="brand-tag">Tracker de leads</span>
+  </div>
+  <div class="top-actions">
+    <button class="btn btn-ghost" onclick="exportCSV()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Exportar CSV
+    </button>
+    <button class="btn btn-primary" onclick="openModal()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nuevo lead
+    </button>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats" id="statsBar"></div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-tabs" id="filterTabs">
+    <button class="ftab active" data-filter="todos" onclick="setFilter('todos',this)">Todos</button>
+    <button class="ftab" data-filter="nuevo" onclick="setFilter('nuevo',this)">Nuevos</button>
+    <button class="ftab" data-filter="contactado" onclick="setFilter('contactado',this)">Contactados</button>
+    <button class="ftab" data-filter="propuesta" onclick="setFilter('propuesta',this)">Propuesta</button>
+    <button class="ftab" data-filter="cerrado" onclick="setFilter('cerrado',this)">Cerrados</button>
+    <button class="ftab" data-filter="perdido" onclick="setFilter('perdido',this)">Perdidos</button>
+  </div>
+  <input class="search-input" type="text" id="searchInput" placeholder="Buscar por nombre, empresa..." oninput="renderTable()">
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortBy('nombre')">Cliente</th>
+        <th onclick="sortBy('fecha')">Fecha</th>
+        <th onclick="sortBy('paquete')">Paquete</th>
+        <th onclick="sortBy('monto')">Valor</th>
+        <th onclick="sortBy('estatus')">Estatus</th>
+        <th>Último contacto</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="leadsBody"></tbody>
+  </table>
+</div>
+
+<!-- MODAL: NUEVO/EDITAR LEAD -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Nuevo lead</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="leadId">
+      <div class="mfield-row">
+        <div class="mfield"><label>Nombre *</label><input type="text" id="f_nombre" placeholder="Nombre del contacto"></div>
+        <div class="mfield"><label>Empresa</label><input type="text" id="f_empresa" placeholder="Nombre de la empresa"></div>
+      </div>
+      <div class="mfield-row">
+        <div class="mfield"><label>WhatsApp</label><input type="tel" id="f_wa" placeholder="+52 55 0000 0000"></div>
+        <div class="mfield"><label>Email</label><input type="email" id="f_email" placeholder="email@cliente.com"></div>
+      </div>
+      <div class="mfield-row">
+        <div class="mfield"><label>Sector</label><input type="text" id="f_sector" placeholder="Restaurante, moda, tech..."></div>
+        <div class="mfield"><label>Origen del lead</label>
+          <select id="f_origen">
+            <option value="Instagram/Facebook Ads">Instagram / Facebook Ads</option>
+            <option value="Referido">Referido</option>
+            <option value="Instagram orgánico">Instagram orgánico</option>
+            <option value="Google">Google</option>
+            <option value="WhatsApp directo">WhatsApp directo</option>
+            <option value="Cliente anterior">Cliente anterior</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="mfield-row">
+        <div class="mfield"><label>Paquete de interés</label>
+          <select id="f_paquete">
+            <option value="Sin definir">Sin definir</option>
+            <option value="Starter $5,000">Starter — $5,000 MXN</option>
+            <option value="Pro $11,500">Pro — $11,500 MXN</option>
+            <option value="Business $16,500">Business — $16,500 MXN</option>
+            <option value="E-Commerce $24,500">E-Commerce — $24,500 MXN</option>
+            <option value="Marketing Presencia $5,500/mes">Marketing Presencia — $5,500/mes</option>
+            <option value="Marketing Crecimiento $9,500/mes">Marketing Crecimiento — $9,500/mes</option>
+            <option value="Branding Esencial $4,900">Branding Esencial — $4,900</option>
+            <option value="Branding Completo $9,800">Branding Completo — $9,800</option>
+          </select>
+        </div>
+        <div class="mfield"><label>Estatus</label>
+          <select id="f_estatus">
+            <option value="nuevo">Nuevo</option>
+            <option value="contactado">Contactado</option>
+            <option value="brief">Brief enviado</option>
+            <option value="propuesta">Propuesta enviada</option>
+            <option value="negociacion">En negociación</option>
+            <option value="cerrado">Cerrado ✓</option>
+            <option value="perdido">Perdido</option>
+          </select>
+        </div>
+      </div>
+      <div class="mfield"><label>Notas / Siguiente paso</label><textarea id="f_notas" placeholder="Qué necesita, qué acordaron, cuándo hacer seguimiento..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveLead()">Guardar lead</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+var STORAGE_KEY = 'nojstudio_leads_v2';
+var leads = [];
+var currentFilter = 'todos';
+var currentSort = {field:'fecha', dir:-1};
+var editingId = null;
+
+var PAQUETE_MONTOS = {
+  'Starter $5,000': 5000,
+  'Pro $11,500': 11500,
+  'Business $16,500': 16500,
+  'E-Commerce $24,500': 24500,
+  'Marketing Presencia $5,500/mes': 5500,
+  'Marketing Crecimiento $9,500/mes': 9500,
+  'Branding Esencial $4,900': 4900,
+  'Branding Completo $9,800': 9800,
+  'Sin definir': 0
+};
+
+var ESTATUS_CONFIG = {
+  nuevo:       {label:'Nuevo',          cls:'badge-nuevo'},
+  contactado:  {label:'Contactado',     cls:'badge-contactado'},
+  brief:       {label:'Brief enviado',  cls:'badge-brief'},
+  propuesta:   {label:'Propuesta',      cls:'badge-propuesta'},
+  negociacion: {label:'Negociando',     cls:'badge-negociacion'},
+  cerrado:     {label:'Cerrado ✓',      cls:'badge-cerrado'},
+  perdido:     {label:'Perdido',        cls:'badge-perdido'},
+};
+
+function loadLeads(){
+  try { leads = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e){ leads = []; }
+  if(leads.length === 0) leads = getSampleLeads();
+}
+
+function saveLeads(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+}
+
+function getSampleLeads(){
+  return [
+    {id:'1',nombre:'Luis García',empresa:'Estudio Audiovisual',wa:'5554142743',email:'lscsrzss@gmail.com',sector:'Audiovisual',origen:'Cliente anterior',paquete:'Pro $11,500',estatus:'propuesta',notas:'Envié propuesta y mockup. Espero respuesta esta semana.',fecha:'2025-05-14',updated:'2025-05-16'},
+    {id:'2',nombre:'Ana Reyes',empresa:'Casa Mole Restaurante',wa:'5551234567',email:'ana@casamole.mx',sector:'Gastronomía',origen:'Instagram/Facebook Ads',paquete:'Business $16,500',estatus:'brief',notas:'Llenó el brief. Pendiente generar propuesta.',fecha:'2025-05-13',updated:'2025-05-15'},
+    {id:'3',nombre:'Carlos Mendoza',empresa:'Tlali Skincare',wa:'5559876543',email:'carlos@tlali.shop',sector:'Belleza/Skincare',origen:'Instagram orgánico',paquete:'E-Commerce $24,500',estatus:'cerrado',notas:'Proyecto confirmado. Anticipo recibido el 10/05.',fecha:'2025-05-05',updated:'2025-05-10'},
+    {id:'4',nombre:'María López',empresa:'Yoga Mantra',wa:'5554445555',email:'maria@mantra.mx',sector:'Wellness',origen:'Referido',paquete:'Starter $5,000',estatus:'nuevo',notas:'Escribió por WhatsApp. Pendiente responder.',fecha:'2025-05-16',updated:'2025-05-16'},
+  ];
+}
+
+// ── RENDER ──
+function renderStats(){
+  var counts = {total:leads.length, cerrado:0, propuesta:0, mxnTotal:0, nuevos:0};
+  leads.forEach(function(l){
+    if(l.estatus==='cerrado'){counts.cerrado++;counts.mxnTotal+=PAQUETE_MONTOS[l.paquete]||0;}
+    if(l.estatus==='propuesta'||l.estatus==='negociacion') counts.propuesta++;
+    if(l.estatus==='nuevo') counts.nuevos++;
+  });
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat"><div class="stat-n c-w">${counts.total}</div><div class="stat-label">Total leads</div></div>
+    <div class="stat"><div class="stat-n c-v">${counts.nuevos}</div><div class="stat-label">Nuevos hoy</div></div>
+    <div class="stat"><div class="stat-n c-y">${counts.propuesta}</div><div class="stat-label">En propuesta</div></div>
+    <div class="stat"><div class="stat-n c-g">${counts.cerrado}</div><div class="stat-label">Cerrados</div></div>
+    <div class="stat"><div class="stat-n c-g" style="font-size:1.4rem">$${(counts.mxnTotal/1000).toFixed(0)}K</div><div class="stat-label">MXN cerrado</div></div>
+  `;
+}
+
+function renderTable(){
+  var search = document.getElementById('searchInput').value.toLowerCase();
+  var filtered = leads.filter(function(l){
+    if(currentFilter !== 'todos' && l.estatus !== currentFilter) return false;
+    if(search && !((l.nombre||'').toLowerCase().includes(search)||(l.empresa||'').toLowerCase().includes(search)||(l.sector||'').toLowerCase().includes(search))) return false;
+    return true;
+  });
+
+  filtered.sort(function(a,b){
+    var av = a[currentSort.field]||'', bv = b[currentSort.field]||'';
+    if(currentSort.field==='monto'){av=PAQUETE_MONTOS[a.paquete]||0;bv=PAQUETE_MONTOS[b.paquete]||0;}
+    return av<bv ? -currentSort.dir : av>bv ? currentSort.dir : 0;
+  });
+
+  var body = document.getElementById('leadsBody');
+  if(filtered.length===0){
+    body.innerHTML='<tr class="empty-row"><td colspan="7">No hay leads con ese filtro</td></tr>';
+    return;
+  }
+  body.innerHTML = filtered.map(function(l){
+    var ec = ESTATUS_CONFIG[l.estatus]||ESTATUS_CONFIG.nuevo;
+    var monto = PAQUETE_MONTOS[l.paquete];
+    var montoStr = monto ? '$'+monto.toLocaleString()+' MXN' : '—';
+    return `<tr onclick="openEditModal('${l.id}')">
+      <td><div class="td-name">${l.nombre||'—'}</div><div class="td-empresa">${l.empresa||''}</div></td>
+      <td style="font-size:0.72rem;color:rgba(255,255,255,0.35)">${formatDate(l.fecha)}</td>
+      <td><span class="pkg-tag">${l.paquete||'Sin definir'}</span></td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:${monto?'var(--green)':'rgba(255,255,255,0.2)'}">${montoStr}</td>
+      <td><span class="badge ${ec.cls}"><span class="badge-dot"></span>${ec.label}</span></td>
+      <td style="font-size:0.72rem;color:rgba(255,255,255,0.35)">${l.updated?formatDate(l.updated):'—'}</td>
+      <td onclick="event.stopPropagation()">
+        <div class="td-actions">
+          <button class="act-btn" title="WhatsApp" onclick="openWA('${l.wa}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </button>
+          <button class="act-btn" title="Editar" onclick="openEditModal('${l.id}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="act-btn danger" title="Eliminar" onclick="deleteLead('${l.id}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function render(){ renderStats(); renderTable(); }
+
+// ── ACTIONS ──
+function setFilter(f,el){
+  currentFilter=f;
+  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active')});
+  el.classList.add('active');
+  renderTable();
+}
+
+function sortBy(field){
+  if(currentSort.field===field) currentSort.dir*=-1;
+  else{ currentSort.field=field; currentSort.dir=-1; }
+  renderTable();
+}
+
+function openWA(wa){ if(wa) window.open('https://wa.me/52'+wa.replace(/\D/g,'').replace(/^52/,''),'_blank'); }
+
+function openModal(){
+  editingId=null;
+  document.getElementById('modalTitle').textContent='Nuevo lead';
+  document.getElementById('leadId').value='';
+  ['nombre','empresa','wa','email','sector'].forEach(function(f){ document.getElementById('f_'+f).value=''; });
+  document.getElementById('f_origen').value='Instagram/Facebook Ads';
+  document.getElementById('f_paquete').value='Sin definir';
+  document.getElementById('f_estatus').value='nuevo';
+  document.getElementById('f_notas').value='';
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function openEditModal(id){
+  var l = leads.find(function(x){ return x.id===id; });
+  if(!l) return;
+  editingId=id;
+  document.getElementById('modalTitle').textContent='Editar lead';
+  document.getElementById('leadId').value=id;
+  document.getElementById('f_nombre').value=l.nombre||'';
+  document.getElementById('f_empresa').value=l.empresa||'';
+  document.getElementById('f_wa').value=l.wa||'';
+  document.getElementById('f_email').value=l.email||'';
+  document.getElementById('f_sector').value=l.sector||'';
+  document.getElementById('f_origen').value=l.origen||'Otro';
+  document.getElementById('f_paquete').value=l.paquete||'Sin definir';
+  document.getElementById('f_estatus').value=l.estatus||'nuevo';
+  document.getElementById('f_notas').value=l.notas||'';
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
+function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+
+function saveLead(){
+  var nombre = document.getElementById('f_nombre').value.trim();
+  if(!nombre){ document.getElementById('f_nombre').focus(); return; }
+  var today = new Date().toISOString().split('T')[0];
+  if(editingId){
+    var idx = leads.findIndex(function(l){ return l.id===editingId; });
+    if(idx>-1){
+      leads[idx].nombre=nombre;
+      leads[idx].empresa=document.getElementById('f_empresa').value.trim();
+      leads[idx].wa=document.getElementById('f_wa').value.trim();
+      leads[idx].email=document.getElementById('f_email').value.trim();
+      leads[idx].sector=document.getElementById('f_sector').value.trim();
+      leads[idx].origen=document.getElementById('f_origen').value;
+      leads[idx].paquete=document.getElementById('f_paquete').value;
+      leads[idx].estatus=document.getElementById('f_estatus').value;
+      leads[idx].notas=document.getElementById('f_notas').value.trim();
+      leads[idx].updated=today;
+    }
+  } else {
+    leads.unshift({
+      id: Date.now().toString(),
+      nombre: nombre,
+      empresa: document.getElementById('f_empresa').value.trim(),
+      wa: document.getElementById('f_wa').value.trim(),
+      email: document.getElementById('f_email').value.trim(),
+      sector: document.getElementById('f_sector').value.trim(),
+      origen: document.getElementById('f_origen').value,
+      paquete: document.getElementById('f_paquete').value,
+      estatus: document.getElementById('f_estatus').value,
+      notas: document.getElementById('f_notas').value.trim(),
+      fecha: today,
+      updated: today,
+    });
+  }
+  saveLeads();
+  closeModal();
+  render();
+}
+
+function deleteLead(id){
+  if(!confirm('¿Eliminar este lead?')) return;
+  leads = leads.filter(function(l){ return l.id!==id; });
+  saveLeads();
+  render();
+}
+
+function exportCSV(){
+  var headers = ['Nombre','Empresa','WhatsApp','Email','Sector','Origen','Paquete','Valor MXN','Estatus','Fecha','Actualizado','Notas'];
+  var rows = leads.map(function(l){
+    return [
+      l.nombre,l.empresa,l.wa,l.email,l.sector,l.origen,l.paquete,
+      PAQUETE_MONTOS[l.paquete]||0,
+      ESTATUS_CONFIG[l.estatus]?ESTATUS_CONFIG[l.estatus].label:l.estatus,
+      l.fecha,l.updated,
+      '"'+(l.notas||'').replace(/"/g,"''")+'"'
+    ].join(',');
+  });
+  var csv = [headers.join(',')].concat(rows).join('\n');
+  var blob = new Blob([csv],{type:'text/csv'});
+  var a = document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='nojstudio-leads-'+new Date().toISOString().split('T')[0]+'.csv';
+  a.click();
+}
+
+function formatDate(d){
+  if(!d) return '—';
+  var parts = d.split('-');
+  return parts[2]+'/'+parts[1]+'/'+parts[0];
+}
+
+// ── INIT ──
+loadLeads();
+render();
+</script>
+</body>
+</html>
