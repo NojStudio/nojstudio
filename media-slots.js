@@ -33,7 +33,7 @@
       '.port-ph-icon{font-size:1.8rem;opacity:0.3}'+
       '.port-ph code{display:block;margin-top:0.25rem;font-family:monospace;font-size:0.58rem;color:#7aaccc;opacity:0.9;letter-spacing:0.02em}'+
       '.port-ph .ph-type{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3)}'+
-      '.port-overlay{z-index:2}'+
+      '.port-overlay{display:none!important}'+
       '.port-expand{position:absolute;top:0.9rem;right:0.9rem;z-index:3;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,0.7);border:1px solid rgba(255,255,255,0.18);color:#f4f2ed;font-size:0.95rem;opacity:0;transform:scale(0.9);transition:opacity .25s,transform .25s;pointer-events:none}'+
       '.port-item.has-media:hover .port-expand{opacity:1;transform:scale(1)}'+
       /* lightbox */
