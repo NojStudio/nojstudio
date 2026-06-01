@@ -28,14 +28,14 @@
     css.textContent =
       '.port-item{position:relative;overflow:hidden}'+
       '.port-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;z-index:1}'+
-      '.port-item.has-media{cursor:zoom-in}'+
+      '.has-media{cursor:zoom-in}'+
       '.port-item .port-ph{position:absolute;inset:0;z-index:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.22);font-size:0.62rem;letter-spacing:0.08em;text-transform:none;text-align:center;padding:1rem;background:repeating-linear-gradient(135deg,#141414,#141414 10px,#171717 10px,#171717 20px)}'+
       '.port-ph-icon{font-size:1.8rem;opacity:0.3}'+
       '.port-ph code{display:block;margin-top:0.25rem;font-family:monospace;font-size:0.58rem;color:#7aaccc;opacity:0.9;letter-spacing:0.02em}'+
       '.port-ph .ph-type{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3)}'+
       '.port-overlay{display:none!important}'+
       '.port-expand{position:absolute;top:0.9rem;right:0.9rem;z-index:3;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,0.7);border:1px solid rgba(255,255,255,0.18);color:#f4f2ed;font-size:0.95rem;opacity:0;transform:scale(0.9);transition:opacity .25s,transform .25s;pointer-events:none}'+
-      '.port-item.has-media:hover .port-expand{opacity:1;transform:scale(1)}'+
+      '.has-media:hover .port-expand{opacity:1;transform:scale(1)}'+
       /* lightbox */
       '#ms-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(6,6,6,0.96);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:5vh 4vw;cursor:zoom-out}'+
       '#ms-lightbox.open{display:flex}'+
@@ -95,6 +95,35 @@
     item.addEventListener('click', function(){ openLightbox(src, type, cap); });
   }
 
+  // Encuadre inteligente: detecta el centro de "peso visual" (detalle/contraste)
+  // y ajusta object-position para que el recorte no corte al sujeto.
+  function smartFrame(img){
+    // Respeta un encuadre manual si el slot lo define (data-pos="50% 30%" o "top"/"center"…)
+    var manual = img.closest('[data-slot]') && img.closest('[data-slot]').getAttribute('data-pos');
+    if(manual){ img.style.objectPosition = manual; return; }
+    try{
+      var W = 48, ar = img.naturalHeight / img.naturalWidth;
+      var H = Math.max(8, Math.round(W * (isFinite(ar) && ar > 0 ? ar : 1)));
+      var c = document.createElement('canvas'); c.width = W; c.height = H;
+      var ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0, W, H);
+      var d = ctx.getImageData(0, 0, W, H).data;
+      function lum(i){ return 0.299*d[i] + 0.587*d[i+1] + 0.114*d[i+2]; }
+      var sx = 0, sy = 0, sw = 0;
+      for(var y = 1; y < H-1; y++){
+        for(var x = 1; x < W-1; x++){
+          var i = (y*W + x) * 4;
+          var g = Math.abs(lum(i-4) - lum(i+4)) + Math.abs(lum(i-W*4) - lum(i+W*4));
+          sx += g*x; sy += g*y; sw += g;
+        }
+      }
+      if(sw <= 0) return;
+      var fx = (sx/sw) / (W-1), fy = (sy/sw) / (H-1);
+      fx = Math.min(0.82, Math.max(0.18, fx));
+      fy = Math.min(0.82, Math.max(0.18, fy));
+      img.style.objectPosition = (fx*100).toFixed(1) + '% ' + (fy*100).toFixed(1) + '%';
+    }catch(e){ /* imagen cross-origin u otro: queda centrada por defecto */ }
+  }
+
   function candidates(base, priority){
     var vids = VIDEO_EXT.map(function(e){ return {url: base + '.' + e, type: 'video'}; });
     var imgs = IMG_EXT.map(function(e){ return {url: base + '.' + e, type: 'image'}; });
@@ -124,6 +153,7 @@
       img.onload = function(){
         img.className = 'port-media';
         img.alt = item.getAttribute('data-tag') || '';
+        smartFrame(img);
         item.insertBefore(img, item.firstChild);
         attach(item, cand.url, 'image');
       };
@@ -133,7 +163,7 @@
   }
 
   function init(){
-    document.querySelectorAll('.port-item[data-slot]').forEach(function(item){
+    document.querySelectorAll('[data-slot]').forEach(function(item){
       tryNext(item, candidates('images/' + item.getAttribute('data-slot'), item.getAttribute('data-priority')), 0);
     });
   }
