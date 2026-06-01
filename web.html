@@ -282,6 +282,13 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 @media(max-width:1100px){.pricing-grid{grid-template-columns:repeat(2,1fr)}.contact-inner{grid-template-columns:1fr;gap:3rem}}
 @media(max-width:980px){.port-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:130px}.mock.wide{grid-column:span 4;grid-row:span 4}.mock.tall{grid-column:span 2;grid-row:span 3}.mock.med{grid-column:span 2;grid-row:span 3}.mock.sml{grid-column:span 2;grid-row:span 2}.meta-inner{grid-template-columns:1fr;gap:1.5rem}.meta-mark{font-size:3.5rem}.maint-grid{grid-template-columns:1fr}}
 @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.hero{padding:5rem 1.5rem 4rem}.hero-h1{font-size:clamp(3.5rem,14vw,6rem);max-width:100%}.hero-foot{flex-direction:column;gap:2rem;align-items:flex-start}.spec-grid{grid-template-columns:1fr}.proceso-steps{grid-template-columns:1fr 1fr}.port-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px}.mock.wide,.mock.tall,.mock.med,.mock.sml{grid-column:span 2;grid-row:span 3}.meta{padding:4rem 1.5rem}.footer-nav{display:none}.pricing-grid{grid-template-columns:1fr}.pricing-section{padding:5rem 1.5rem}.form-2col{grid-template-columns:1fr}.contact-section{padding:5rem 1.5rem}}
+
+footer{display:block}
+.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:0.75rem}
+.footer-legal{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
+.footer-legal a{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);text-decoration:none;transition:color 0.2s}
+.footer-legal a:hover{color:#6fbdaa}
 </style>
 <script>
 (function(){
@@ -564,14 +571,28 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
 </section>
 
 <footer>
-  <a href="index.html" class="footer-brand">
-    <svg width="24" height="24" viewBox="0 0 100 100"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg>
-    <span class="footer-wordmark">NO'J STUDIO</span>
-  </a>
-  <nav class="footer-nav">
-    <a href="photography.html">Photography</a><a href="films.html">Films</a><a href="outdoor.html">Outdoor</a><a href="product.html">Product</a><a href="eventos.html">Eventos</a><a href="sports.html">Sports</a><a href="marketing.html">Marketing</a><a href="btl.html">BTL</a>
-  </nav>
-  <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+  <div class="footer-top">
+    <a href="index.html" class="footer-brand"><svg width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"/><polyline points="72,8 92,8 92,28"/><polyline points="92,72 92,92 72,92"/><polyline points="28,92 8,92 8,72"/></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="6.5" fill="#0a0a0a"/><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"/></svg><span class="footer-wordmark">NO'J STUDIO</span></a>
+    <nav class="footer-nav">
+      <a href="photography.html">Photography</a>
+      <a href="films.html">Films</a>
+      <a href="outdoor.html">Outdoor</a>
+      <a href="product.html">Product</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="sports.html">Sports</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="btl.html">BTL</a>
+    </nav>
+    <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
+  </div>
+  <div class="footer-bottom">
+    <nav class="footer-legal">
+      <a href="avisodeprivacidad.html">Aviso de Privacidad</a>
+      <a href="terminosycondiciones.html">Términos y Condiciones</a>
+      <a href="politicadeimagenes.html">Política de Imágenes</a>
+    </nav>
+    <span class="footer-copy">Ciudad de México · <a href="mailto:nojstudiomx@gmail.com" style="color:rgba(255,255,255,0.18);text-decoration:none;">nojstudiomx@gmail.com</a></span>
+  </div>
 </footer>
 
 <script>
