@@ -27,6 +27,9 @@
     css.id = 'media-slots-css';
     css.textContent =
       '.port-item{position:relative;overflow:hidden}'+
+      /* fallback de altura: si el contenedor no tiene altura propia (p.ej. grilla con filas auto en móvil), evita que el slot colapse a 0 */
+      '.port-item[data-slot]{min-height:160px}'+
+      '@media(max-width:768px){.port-grid .port-item{min-height:46vw}}'+
       '.port-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;z-index:1}'+
       '.has-media{cursor:zoom-in}'+
       '.port-item .port-ph{position:absolute;inset:0;z-index:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.22);font-size:0.62rem;letter-spacing:0.08em;text-transform:none;text-align:center;padding:1rem;background:repeating-linear-gradient(135deg,#141414,#141414 10px,#171717 10px,#171717 20px)}'+
@@ -135,18 +138,30 @@
     var cand = cands[i];
     if(cand.type === 'video'){
       var v = document.createElement('video');
-      v.muted = true; v.autoplay = true; v.loop = true; v.playsInline = true;
-      v.setAttribute('playsinline',''); v.setAttribute('muted',''); v.setAttribute('preload','metadata');
+      // Atributos requeridos por iOS/Android para autoplay silencioso
+      v.muted = true; v.defaultMuted = true; v.autoplay = true; v.loop = true; v.playsInline = true;
+      v.setAttribute('muted',''); v.setAttribute('autoplay',''); v.setAttribute('loop','');
+      v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+      v.setAttribute('preload','metadata');
       v.className = 'port-media';
       var settled = false;
-      v.addEventListener('loadeddata', function(){
+      function videoOK(){
         if(settled) return; settled = true;
-        item.insertBefore(v, item.firstChild); v.play().catch(function(){});
+        v.play().catch(function(){});
         attach(item, cand.url, 'video');
-      });
+      }
+      // Móvil dispara distintos eventos según el navegador/modo de datos
+      v.addEventListener('loadeddata', videoOK);
+      v.addEventListener('loadedmetadata', videoOK);
+      v.addEventListener('canplay', videoOK);
       v.addEventListener('error', function(){
-        if(settled) return; settled = true; tryNext(item, cands, i + 1);
+        if(settled) return; settled = true;
+        if(v.parentNode) v.parentNode.removeChild(v);
+        tryNext(item, cands, i + 1);
       });
+      // CLAVE: insertar en el DOM ANTES de cargar — los navegadores móviles
+      // no cargan metadata de un <video> que aún no está en el documento.
+      item.insertBefore(v, item.firstChild);
       v.src = cand.url; v.load();
     } else {
       var img = new Image();

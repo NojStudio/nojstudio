@@ -243,7 +243,9 @@ footer{display:block}
 .footer-legal a:hover{color:#6fbdaa}
 </style>
 
-<!-- js-placeholder --> {
+<script>
+(function(){
+  function setOffset(){
     var nav = document.querySelector('nav');
     if (!nav) return;
     var h = nav.getBoundingClientRect().height;
