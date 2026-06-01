@@ -172,24 +172,24 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <div class="s-label">Nuestro trabajo</div>
   <h2 class="s-title">Portafolio</h2>
   <div class="port-grid">
-    <div class="port-item">
-      <video src="images/video_outdoor_1.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+    <div class="port-item" data-slot="video_outdoor_1" data-priority="video" data-tag="Alta montaña">
+      <div class="port-ph"><span class="port-ph-icon">▶</span><span class="ph-type">Sube tu video</span><code>images/video_outdoor_1.{mp4·webm}</code></div>
       <div class="port-overlay"><span class="port-tag">Alta montaña</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_outdoor_2.jpg" alt="Drone outdoor" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_outdoor_2" data-priority="image" data-tag="Drone Outdoor">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_outdoor_2.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Drone Outdoor</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_outdoor_3.jpg" alt="Flora y fauna" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_outdoor_3" data-priority="image" data-tag="Flora & Fauna">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_outdoor_3.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Flora & Fauna</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_outdoor_4.jpg" alt="Acuático" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_outdoor_4" data-priority="image" data-tag="Acuático">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_outdoor_4.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Acuático</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_outdoor_5.jpg" alt="Time-lapse" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_outdoor_5" data-priority="image" data-tag="Time-lapse">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_outdoor_5.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Time-lapse</span></div>
     </div>
   </div>
@@ -223,5 +223,6 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
 
+<script src="media-slots.js"></script>
 </body>
 </html>

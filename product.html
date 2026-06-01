@@ -172,24 +172,24 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <div class="s-label">Nuestro trabajo</div>
   <h2 class="s-title">Portafolio</h2>
   <div class="port-grid">
-    <div class="port-item">
-      <img src="images/foto_product_1.jpg" alt="Packshot e-commerce" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_product_1" data-priority="image" data-tag="E-commerce">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_product_1.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">E-commerce</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_product_2.jpg" alt="Still life creativo" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_product_2" data-priority="image" data-tag="Still Life">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_product_2.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Still Life</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_product_3.jpg" alt="Lifestyle producto" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_product_3" data-priority="image" data-tag="Lifestyle">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_product_3.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Lifestyle</span></div>
     </div>
-    <div class="port-item">
-      <video src="images/video_product_1.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+    <div class="port-item" data-slot="video_product_1" data-priority="video" data-tag="Video Producto">
+      <div class="port-ph"><span class="port-ph-icon">▶</span><span class="ph-type">Sube tu video</span><code>images/video_product_1.{mp4·webm}</code></div>
       <div class="port-overlay"><span class="port-tag">Video Producto</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_product_4.jpg" alt="Joyería premium" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_product_4" data-priority="image" data-tag="Premium & Lujo">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_product_4.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Premium & Lujo</span></div>
     </div>
   </div>
@@ -223,5 +223,6 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <span class="footer-copy">© 2025 No'j Studio — CDMX</span>
 </footer>
 
+<script src="media-slots.js"></script>
 </body>
 </html>

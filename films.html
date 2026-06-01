@@ -57,9 +57,12 @@ section{padding:7rem 3rem}
 .step-desc{font-size:0.78rem;color:var(--gray);line-height:1.8}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:3px;margin-top:3rem}
 .port-item{background:#181818;position:relative;overflow:hidden;cursor:pointer}.port-item:first-child{grid-row:span 2}
-.port-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:rgba(255,255,255,0.1);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase}
-.port-ph-icon{font-size:1.8rem;opacity:0.25}
-.port-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.72);display:flex;align-items:flex-end;padding:1.4rem;opacity:0;transition:opacity 0.3s}.port-item:hover .port-overlay{opacity:1}
+.port-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;z-index:1}
+.port-ph{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.7rem;color:rgba(255,255,255,0.22);font-size:0.62rem;letter-spacing:0.1em;text-transform:none;text-align:center;padding:1rem;background:repeating-linear-gradient(135deg,#141414,#141414 10px,#171717 10px,#171717 20px)}
+.port-ph-icon{font-size:1.8rem;opacity:0.3}
+.port-ph code{display:block;margin-top:0.25rem;font-family:monospace;font-size:0.6rem;color:var(--v);letter-spacing:0.02em;opacity:0.7}
+.port-ph .ph-type{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.port-overlay{position:absolute;inset:0;z-index:2;background:rgba(10,10,10,0.72);display:flex;align-items:flex-end;padding:1.4rem;opacity:0;transition:opacity 0.3s}.port-item:hover .port-overlay{opacity:1}
 .port-tag{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--v);border:1px solid rgba(122,172,204,0.3);padding:0.28rem 0.7rem}
 .contact-section{background:var(--white);color:var(--black);text-align:center;padding:8rem 3rem}
 .contact-section .s-label{color:rgba(0,0,0,0.4);justify-content:center}.contact-section .s-label::before{background:rgba(0,0,0,0.25)}.contact-section .s-title{color:var(--black)}
@@ -197,28 +200,32 @@ footer{background:var(--black);padding:2rem 3rem;display:flex;align-items:center
   <div class="s-label">Nuestro trabajo</div>
   <h2 class="s-title">Portafolio</h2>
   <div class="port-grid">
-    <div class="port-item">
-      <video src="images/video_films_1.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>
+    <div class="port-item" data-slot="video_films_1" data-priority="video" data-tag="Reel 2025">
+      <div class="port-ph"><span class="port-ph-icon">▶</span><span class="ph-type">Sube tu video</span><code>images/video_films_1.{mp4·webm}</code></div>
       <div class="port-overlay"><span class="port-tag">Reel 2025</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_films_1.jpg" alt="FPV Racing" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_films_1" data-priority="video" data-tag="FPV Racing">
+      <div class="port-ph"><span class="port-ph-icon">▶</span><span class="ph-type">Sube tu video</span><code>images/foto_films_1.{mp4·webm}</code></div>
       <div class="port-overlay"><span class="port-tag">FPV Racing</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_films_2.mp4" alt="Drone cinematic" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_films_2" data-priority="video" data-tag="Drone Cinematic">
+      <div class="port-ph"><span class="port-ph-icon">▶</span><span class="ph-type">Sube tu video</span><code>images/foto_films_2.{mp4·webm}</code></div>
       <div class="port-overlay"><span class="port-tag">Drone Cinematic</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_films_3.jpg" alt="Video musical" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_films_3" data-priority="image" data-tag="Music Video">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_films_3.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Music Video</span></div>
     </div>
-    <div class="port-item">
-      <img src="images/foto_films_4.jpg" alt="Branded content" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="port-item" data-slot="foto_films_4" data-priority="image" data-tag="Branded Content">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_films_4.{jpg·png}</code></div>
       <div class="port-overlay"><span class="port-tag">Branded Content</span></div>
     </div>
   </div>
+  <p style="margin-top:2rem;font-size:0.72rem;color:rgba(255,255,255,0.25);letter-spacing:0.04em;line-height:1.7;max-width:620px">
+    Auto-detección activa — sube a <code style="color:var(--v);font-family:monospace">images/</code> un archivo con el nombre del slot (ej. <code style="color:var(--v);font-family:monospace">foto_films_1.mp4</code> o <code style="color:var(--v);font-family:monospace">.jpg</code>) y aparece solo. Los 3 primeros slots son <strong style="color:rgba(255,255,255,0.4);font-weight:500">video</strong>, los 2 últimos <strong style="color:rgba(255,255,255,0.4);font-weight:500">foto</strong> — pero cada uno acepta cualquier formato (mp4·webm·mov · jpg·png·webp).
+  </p>
 </section>
+<script src="media-slots.js"></script>
 <section id="contacto" class="contact-section">
   <div class="s-label">Trabajemos juntos</div>
   <h2 class="s-title" style="font-size:clamp(2.8rem,7vw,5.5rem)">¿Qué historia<br>quieres contar?</h2>
