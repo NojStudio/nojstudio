@@ -83,7 +83,7 @@
     }
     el.className = 'ms-lb-media';
     lbStage.appendChild(el);
-    lbCap.textContent = caption || '';
+    lbCap.textContent = '';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }

@@ -245,6 +245,11 @@ footer { background:var(--black); padding:2rem 3rem; border-top:1px solid var(--
   .about-visual { aspect-ratio:3/2; }
   .footer-verticals { display:none; }
 }
+
+/* ▸ Portafolio — cuadros 1:1 (encuadres) */
+.port-grid{grid-template-rows:unset !important;}
+.port-grid .port-item{aspect-ratio:1/1;}
+.port-grid .port-item:first-child{aspect-ratio:auto;}
 </style>
 
 <script>
@@ -423,21 +428,21 @@ footer { background:var(--black); padding:2rem 3rem; border-top:1px solid var(--
       <div style="position:absolute;top:1rem;right:1rem;background:rgba(10,10,10,0.7);border:1px solid rgba(255,255,255,0.15);color:#f4f2ed;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;backdrop-filter:blur(6px);z-index:10;">⛶</div>
       <div class="port-overlay"><span class="port-tag">Master Reel</span></div>
     </div>
-    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/10072021-Aranxa ph 2-5.png','Aranxa')">
-      <img src="images/10072021-Aranxa ph 2-5.png" alt="Aranxa — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span><span style="font-size:1rem;opacity:0.7;">⛶</span></div>
+    <div class="port-item" data-slot="10072021-Aranxa-ph-2-5" data-priority="image" data-tag="Aranxa">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto o video</span><code>images/10072021-Aranxa-ph-2-5.{jpg·mp4}</code></div>
+      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span></div>
     </div>
-    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/0427.png','Aéreo')">
-      <img src="images/0427.png" alt="No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span><span style="font-size:1rem;opacity:0.7;">⛶</span></div>
+    <div class="port-item" data-slot="0427" data-priority="image" data-tag="Aéreo">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto o video</span><code>images/0427.{jpg·mp4}</code></div>
+      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span></div>
     </div>
-    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/May (1 de 1).jpg','May')">
-      <img src="images/May (1 de 1).jpg" alt="May — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span><span style="font-size:1rem;opacity:0.7;">⛶</span></div>
+    <div class="port-item" data-slot="may_1_de_1" data-priority="image" data-tag="May">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto o video</span><code>images/may_1_de_1.{jpg·mp4}</code></div>
+      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span></div>
     </div>
-    <div class="port-item" style="cursor:pointer;" onclick="openImage('images/hd modelos 3-1.jpg','HD Modelos')">
-      <img src="images/hd modelos 3-1.jpg" alt="HD Modelos — No'j Studio" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span><span style="font-size:1rem;opacity:0.7;">⛶</span></div>
+    <div class="port-item" data-slot="hd_modelos_3-1" data-priority="image" data-tag="HD Modelos">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto o video</span><code>images/hd_modelos_3-1.{jpg·mp4}</code></div>
+      <div class="port-overlay" style="justify-content:space-between;align-items:flex-end;"><span class="port-tag">Fotografía</span></div>
     </div>
   </div>
 </section>
@@ -555,5 +560,6 @@ function toggleSound() {
   label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
 }
 </script>
+<script src="media-slots.js"></script>
 </body>
 </html>
