@@ -127,7 +127,7 @@ section { padding:7rem 3rem; }
 /* EVENTOS */
 .eventos-section { background:#0d0d0d; position:relative; overflow:hidden; }
 .eventos-glow { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 50% 60% at 80% 50%, rgba(184,164,200,0.05) 0%, transparent 65%); }
-.eventos-inner { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.eventos-inner { display:grid; grid-template-columns:1.7fr 1fr; gap:4rem; align-items:start; }
 .eventos-body p { font-size:0.92rem; color:var(--dim); line-height:1.9; margin-bottom:1.2rem; }
 .eventos-types { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); margin-top:2.5rem; }
 .ev-type { background:#0a0a0a; padding:1.8rem 1.6rem; transition:background 0.3s; }
@@ -136,7 +136,7 @@ section { padding:7rem 3rem; }
 .ev-type:hover .ev-bar { width:56px; }
 .ev-name { font-family:'Bebas Neue',sans-serif; font-size:1.15rem; letter-spacing:0.05em; margin-bottom:0.5rem; }
 .ev-desc { font-size:0.76rem; color:var(--gray); line-height:1.75; }
-.eventos-visual { position:sticky; top:7rem; background:#141414; aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.eventos-visual { position:sticky; top:7rem; background:#141414; aspect-ratio:4/5; max-width:300px; justify-self:end; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .eventos-ph { display:flex; flex-direction:column; align-items:center; gap:1rem; color:rgba(255,255,255,0.1); font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; text-align:center; }
 .eventos-ph-icon { font-size:2.5rem; opacity:0.3; }
 .eventos-corner { position:absolute; bottom:1.2rem; left:1.2rem; font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.2); }
@@ -357,6 +357,62 @@ footer{display:block}
 
 <div class="divider"></div>
 
+<!-- PORTAFOLIO -->
+<section id="portafolio" class="portfolio-section">
+  <div class="s-label">Nuestro trabajo</div>
+  <h2 class="s-title">Portafolio</h2>
+  <div class="port-grid">
+    <div class="port-item" data-slot="foto_photography_1" data-priority="image" data-tag="Editorial">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_1.{jpg·png}</code></div>
+      <div class="port-overlay"><span class="port-tag">Editorial</span></div>
+    </div>
+    <div class="port-item" data-slot="foto_photography_2" data-priority="image" data-tag="Retrato & Branding">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_2.{jpg·png}</code></div>
+      <div class="port-overlay"><span class="port-tag">Retrato & Branding</span></div>
+    </div>
+    <div class="port-item" data-slot="foto_photography_3" data-priority="image" data-tag="Evento Corporativo">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_3.{jpg·png}</code></div>
+      <div class="port-overlay"><span class="port-tag">Evento Corporativo</span></div>
+    </div>
+    <div class="port-item" data-slot="foto_photography_4" data-priority="image" data-tag="Food & Lifestyle">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_4.{jpg·png}</code></div>
+      <div class="port-overlay"><span class="port-tag">Food & Lifestyle</span></div>
+    </div>
+    <div class="port-item" data-slot="foto_photography_5" data-priority="image" data-tag="Studio">
+      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_5.{jpg·png}</code></div>
+      <div class="port-overlay"><span class="port-tag">Studio</span></div>
+    </div>
+  </div>
+  </section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTO STRIP -->
+<div class="producto-strip">
+  <div class="producto-left">
+    <div class="producto-eyebrow">También hacemos</div>
+    <h3 class="producto-title">Fotografía<br>de <span>Producto</span></h3>
+    <p class="producto-desc">
+      Además de fotografía editorial y de eventos, nos especializamos en producto: desde e-commerce limpio sobre fondo blanco hasta composiciones creativas con iluminación dramática para catálogos, lookbooks y campañas de marca. Cada producto merece ser presentado en su mejor versión.
+    </p>
+    <div class="producto-tags">
+      <span class="tag">E-commerce</span>
+      <span class="tag">Catálogo</span>
+      <span class="tag">Still Life</span>
+      <span class="tag">Packshot</span>
+      <span class="tag">Lifestyle de producto</span>
+    </div>
+  </div>
+  <div class="producto-right">
+    <a href="product.html" class="btn btn-producto">
+      Ver No'j Product
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
 <!-- EVENTOS -->
 <section id="eventos" class="eventos-section">
   <div class="eventos-glow"></div>
@@ -402,62 +458,6 @@ footer{display:block}
 
 <div class="divider"></div>
 
-<!-- PRODUCTO STRIP -->
-<div class="producto-strip">
-  <div class="producto-left">
-    <div class="producto-eyebrow">También hacemos</div>
-    <h3 class="producto-title">Fotografía<br>de <span>Producto</span></h3>
-    <p class="producto-desc">
-      Además de fotografía editorial y de eventos, nos especializamos en producto: desde e-commerce limpio sobre fondo blanco hasta composiciones creativas con iluminación dramática para catálogos, lookbooks y campañas de marca. Cada producto merece ser presentado en su mejor versión.
-    </p>
-    <div class="producto-tags">
-      <span class="tag">E-commerce</span>
-      <span class="tag">Catálogo</span>
-      <span class="tag">Still Life</span>
-      <span class="tag">Packshot</span>
-      <span class="tag">Lifestyle de producto</span>
-    </div>
-  </div>
-  <div class="producto-right">
-    <a href="product.html" class="btn btn-producto">
-      Ver No'j Product
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
-    </a>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- PORTAFOLIO -->
-<section id="portafolio" class="portfolio-section">
-  <div class="s-label">Nuestro trabajo</div>
-  <h2 class="s-title">Portafolio</h2>
-  <div class="port-grid">
-    <div class="port-item" data-slot="foto_photography_1" data-priority="image" data-tag="Editorial">
-      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_1.{jpg·png}</code></div>
-      <div class="port-overlay"><span class="port-tag">Editorial</span></div>
-    </div>
-    <div class="port-item" data-slot="foto_photography_2" data-priority="image" data-tag="Retrato & Branding">
-      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_2.{jpg·png}</code></div>
-      <div class="port-overlay"><span class="port-tag">Retrato & Branding</span></div>
-    </div>
-    <div class="port-item" data-slot="foto_photography_3" data-priority="image" data-tag="Evento Corporativo">
-      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_3.{jpg·png}</code></div>
-      <div class="port-overlay"><span class="port-tag">Evento Corporativo</span></div>
-    </div>
-    <div class="port-item" data-slot="foto_photography_4" data-priority="image" data-tag="Food & Lifestyle">
-      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_4.{jpg·png}</code></div>
-      <div class="port-overlay"><span class="port-tag">Food & Lifestyle</span></div>
-    </div>
-    <div class="port-item" data-slot="foto_photography_5" data-priority="image" data-tag="Studio">
-      <div class="port-ph"><span class="port-ph-icon">▦</span><span class="ph-type">Sube tu foto</span><code>images/foto_photography_5.{jpg·png}</code></div>
-      <div class="port-overlay"><span class="port-tag">Studio</span></div>
-    </div>
-  </div>
-  </section>
-
-<div class="divider"></div>
-
 <!-- PROCESO -->
 <section id="proceso" class="proceso-section">
   <div class="s-label">Cómo trabajamos</div>
@@ -496,7 +496,7 @@ footer{display:block}
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       WhatsApp
     </a>
-    <a href="mailto:nojstudiomx@gmail.com?subject=Cotización%20fotografía" class="btn btn-border-dark">
+    <a href="/cdn-cgi/l/email-protection#c0aeafaab3b4b5a4a9afadb880a7ada1a9aceea3afadffb3b5a2aaa5a3b4fd83afb4a9baa1a3a90373aee5f2f0a6afb4afa7b2a1a6036da1" class="btn btn-border-dark">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Enviar Email
     </a>
@@ -529,12 +529,12 @@ footer{display:block}
       <a href="terminosycondiciones.html">Términos y Condiciones</a>
       <a href="politicadeimagenes.html">Política de Imágenes</a>
     </nav>
-    <span class="footer-copy">Ciudad de México · <a href="mailto:nojstudiomx@gmail.com" style="color:rgba(255,255,255,0.18);text-decoration:none;">nojstudiomx@gmail.com</a></span>
+    <span class="footer-copy">Ciudad de México · <a href="/cdn-cgi/l/email-protection#adc3c2c7ded9d8c9c4c2c0d5edcac0ccc4c183cec2c0" style="color:rgba(255,255,255,0.18);text-decoration:none;"><span class="__cf_email__" data-cfemail="c6a8a9acb5b2b3a2afa9abbe86a1aba7afaae8a5a9ab">[email&#160;protected]</span></a></span>
   </div>
 </footer>
 
 
 
-<script src="media-slots.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="media-slots.js"></script>
 </body>
 </html>
