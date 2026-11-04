@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garda Gastrobar × No'j Studio — Muestra</title>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(30 30) scale(.4)"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"></polyline><polyline points="72,8 92,8 92,28"></polyline><polyline points="92,72 92,92 72,92"></polyline><polyline points="28,92 8,92 8,72"></polyline></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6"></line><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6"></line><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"></circle></g></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0a0a0a;color:#f4f2ed;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.5}
+a{color:#6fbdaa;text-decoration:none}a:hover{color:#f4f2ed}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.bb{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.02em;line-height:.95}
+.eye{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6fbdaa}
+.mu{color:#9a9890}
+.bar{position:sticky;top:0;z-index:5;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid #1e1e1e;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(18px,4vw,48px);flex-wrap:wrap}
+.bar img{height:24px}
+.tabs{display:flex;gap:4px;flex-wrap:nowrap;flex:none}
+.tabs button{white-space:nowrap}
+.tabs button{padding:8px 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9a9890;border:1px solid transparent}
+.tabs button:hover{color:#f4f2ed}
+.tabs button.on{color:#0a0a0a;background:#6fbdaa}
+.sec{display:none;padding:clamp(28px,5vw,64px) clamp(18px,4vw,48px) 80px;max-width:1240px;margin:0 auto}
+.sec.on{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:start}
+.intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:96px}
+.intro h2{font-size:clamp(44px,6vw,76px)}
+.intro p{font-size:17px;max-width:30em;text-wrap:pretty}
+.legend{display:flex;flex-direction:column;border-top:1px solid #232323}
+.legend div{display:grid;grid-template-columns:14px minmax(0,1fr);gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:14px}
+.legend i{width:10px;height:10px;display:block}
+.phone{width:min(400px,100%);margin:0 auto;background:#fff;color:#111;border-radius:34px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid #2a2a2a}
+.screen{border-radius:24px;overflow:hidden;background:#fff}
+.ig-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 6px;font-weight:500;font-size:15px}
+.ig-head{display:grid;grid-template-columns:78px minmax(0,1fr);gap:18px;align-items:center;padding:8px 16px}
+.ig-av{width:78px;height:78px;border-radius:50%;overflow:hidden;border:1px solid #ddd}
+.ig-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;font-size:12px;color:#444}
+.ig-stats b{display:block;font-size:16px;color:#111;font-weight:500}
+.ig-bio{padding:4px 16px 10px;font-size:13px;line-height:1.35;color:#222}
+.ig-bio b{font-weight:500}
+.ig-bio a{color:#00376b}
+.ig-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px 12px}
+.ig-btns span{background:#efefef;border-radius:8px;text-align:center;font-size:12px;font-weight:500;padding:7px 0}
+.ig-hl{display:flex;gap:14px;padding:4px 16px 14px;overflow:hidden}
+.ig-hl div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#333;flex-shrink:0}
+.ig-hl span{width:56px;height:56px;border-radius:50%;border:1px solid #ccc;padding:3px;display:block}
+.ig-hl span i{display:block;width:100%;height:100%;border-radius:50%;background:#e9e4dc}
+.ig-tabs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #e5e5e5;font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:#888}
+.ig-tabs span{padding:10px 0}.ig-tabs span:first-child{color:#111;border-top:1px solid #111;margin-top:-1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.cell{position:relative;aspect-ratio:4/5;background:#eee}
+.cell .pill{position:absolute;left:6px;bottom:6px;z-index:2;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;color:#fff;pointer-events:none}
+.cell .fmt{position:absolute;right:6px;top:6px;z-index:2;font-size:10px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);pointer-events:none}
+.tile{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:8px;text-align:center;color:#f4f2ed}
+.tile b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:17px;letter-spacing:.04em;line-height:1}
+.tile small{font-size:8px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.t-plato{background:#5c3c28}.t-barra{background:#1f3e3a}.t-lugar{background:#3a3a3a}.t-gente{background:#67512a}.t-agenda{background:#521f22}
+.p-plato{background:#8a5a3b}.p-barra{background:#2f5d57}.p-lugar{background:#555}.p-gente{background:#9b7a3c}.p-agenda{background:#7a3b3b}
+.web{border:1px solid #2a2a2a;background:#111;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.web-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #222;font-size:11px;color:#777}
+.web-chrome i{width:9px;height:9px;border-radius:50%;background:#333;display:block}
+.web-chrome span{margin-left:10px;background:#1b1b1b;padding:4px 12px;flex:1;max-width:280px}
+.site{background:#fdf3ea;color:#8a1f2d;font-family:'Libre Baskerville',serif}
+.site-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;gap:12px;flex-wrap:wrap}
+.site-nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.site-nav .lang{display:flex;gap:6px}.site-nav .lang b{color:#8a1f2d;font-weight:500;border-bottom:1px solid #8a1f2d}
+.site-hero{position:relative;aspect-ratio:16/9}
+.site-hero .over{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:26px;background:linear-gradient(transparent 35%,rgba(42,13,18,.85));color:#fdf3ea;pointer-events:none}
+.site-hero h3{font-family:'Didact Gothic',sans-serif;font-weight:400;font-size:clamp(30px,4vw,48px);letter-spacing:.32em;line-height:1}
+.site-hero p{font-style:italic;font-size:18px}
+.site-cta{display:flex;gap:8px;pointer-events:auto;flex-wrap:wrap}
+.site-cta span{font-family:'Didact Gothic',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;border:1px solid #fdf3ea}
+.site-cta span:first-child{background:#fdf3ea;color:#8a1f2d}
+.site-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(138,31,45,.25)}
+.site-row div{padding:18px 20px;border-right:1px solid rgba(138,31,45,.25);display:flex;flex-direction:column;gap:4px}.site-row div:last-child{border-right:0}
+.site-row b{font-size:20px;font-weight:500}
+.site-row span{font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.06em;color:#6b4a4e}
+.appr{width:min(420px,100%);margin:0 auto;background:#111;border:1px solid #2a2a2a;box-shadow:0 30px 80px rgba(0,0,0,.6);display:flex;flex-direction:column}
+.appr-h{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #222}
+.appr-h img{height:20px}
+.appr-b{padding:18px;display:flex;flex-direction:column;gap:14px}
+.appr-img{aspect-ratio:4/5}
+.appr-meta{display:flex;gap:8px;flex-wrap:wrap}
+.appr-meta span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;border:1px solid #2a2a2a;color:#9a9890;white-space:nowrap;line-height:1.4}
+.appr-copy{font-size:15px;line-height:1.5}
+.appr-act{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.appr-act button{padding:13px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border:1px solid #2a2a2a}
+.appr-act button.ok{background:#6fbdaa;border-color:#6fbdaa;color:#0a0a0a;font-weight:500}
+.appr-act button:hover{border-color:#f4f2ed}
+.appr-done{display:none;text-align:center;padding:12px;color:#6fbdaa;font-size:13px;letter-spacing:.08em}
+.appr.is-done .appr-act{display:none}.appr.is-done .appr-done{display:block}
+.steps{display:flex;flex-direction:column;border-top:1px solid #232323}
+.steps div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid #1a1a1a}
+.steps b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:22px;color:#6fbdaa;line-height:1}
+.rep{background:#111;border:1px solid #2a2a2a;padding:26px;display:flex;flex-direction:column;gap:18px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.rep-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#222;border:1px solid #222}
+.rep-k div{background:#111;padding:14px;display:flex;flex-direction:column;gap:4px}
+.rep-k b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:30px;line-height:1;color:#3a3a3a}
+.rep-k span{font-size:11px;color:#9a9890}
+.rep-l{display:flex;flex-direction:column;border-top:1px solid #222}
+.rep-l div{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:14px}
+.rep-l b{font-family:'Bebas Neue',sans-serif;font-weight:400;color:#6fbdaa;font-size:18px}
+@media(max-width:900px){.sec.on{grid-template-columns:minmax(0,1fr)}.intro{position:static}.rep-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sec.full.on{display:flex;flex-direction:column;align-items:stretch;gap:28px;max-width:1320px}
+.full-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.full-intro h2{font-size:clamp(40px,5vw,64px)}
+.full-intro p{max-width:34em;font-size:16px;text-wrap:pretty}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chips span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border:1px solid #2a2a2a;color:#9a9890}
+.browser{border:1px solid #2a2a2a;background:#111;box-shadow:0 40px 100px rgba(0,0,0,.7);overflow:hidden}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid #222;font-size:11px;color:#777}
+.browser-bar i{width:10px;height:10px;border-radius:50%;background:#2e2e2e;display:block}
+.browser-bar span{margin-left:10px;background:#1b1b1b;padding:5px 14px;flex:1;max-width:340px}
+.browser-view{height:min(78vh,820px);overflow:auto;scroll-behavior:smooth}
+.rep-frame{width:100%;height:min(80vh,1400px);border:1px solid #2a2a2a;background:#0a0a0a;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+</style>
+</head>
+<body>
+<header class="bar">
+<div style="display:flex;align-items:center;gap:14px"><svg viewBox="0 0 100 100" width="24" height="24" style="display:block;height:24px;width:24px" role="img" aria-label="No'j Studio"><g stroke="#f4f2ed" stroke-width="6" stroke-linecap="square" fill="none"><polyline points="8,28 8,8 28,8"></polyline><polyline points="72,8 92,8 92,28"></polyline><polyline points="92,72 92,92 72,92"></polyline><polyline points="28,92 8,92 8,72"></polyline></g><line x1="20" y1="20" x2="80" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"></line><line x1="80" y1="20" x2="20" y2="80" stroke="#f4f2ed" stroke-width="6" stroke-linecap="square"></line><circle cx="50" cy="50" r="6" fill="#0a0a0a"></circle><circle cx="50" cy="50" r="3.5" fill="#6fbdaa"></circle></svg><span class="eye" style="color:#9a9890">× Garda Gastrobar</span></div>
+<nav class="tabs" id="tabs">
+<button data-s="perfil" class="on">01 Perfil</button>
+<button data-s="sitio">02 Sitio</button>
+</nav>
+</header>
+
+<section class="sec on" id="perfil" data-screen-label="01 Perfil">
+<div class="intro">
+<span class="eye">Instagram · noviembre</span>
+<h2 class="bb">Así se vería tu perfil</h2>
+<p class="mu">15 publicaciones al mes, armadas por pilares para que el grid se vea ordenado y nunca repita. Cada mes recibes esta vista antes de que se publique nada.</p>
+<div class="legend">
+<div><i class="p-plato"></i><span><b style="font-weight:500">Platillo</b> · el plato como protagonista</span></div>
+<div><i class="p-barra"></i><span><b style="font-weight:500">Barra</b> · coctelería y preparación</span></div>
+<div><i class="p-lugar"></i><span><b style="font-weight:500">Lugar</b> · el espacio, la luz, la mesa</span></div>
+<div><i class="p-gente"></i><span><b style="font-weight:500">Gente</b> · equipo y experiencia</span></div>
+<div><i class="p-agenda"></i><span><b style="font-weight:500">Agenda</b> · temporada, eventos, reservas</span></div>
+</div>
+<p class="mu" style="font-size:13px">Cada cuadro es una publicación ya planeada. Las fotos y videos se producen en el levantamiento (12 nov) y entran aquí antes de publicar.</p>
+</div>
+<div class="phone"><div class="screen">
+<div class="ig-top"><span>gardagastrobar</span><span>≡</span></div>
+<div class="ig-head"><div class="ig-av" style="background:#fdf3ea;display:grid;place-items:center;font-family:'Didact Gothic',sans-serif;color:#8a1f2d;font-size:13px;letter-spacing:.18em;padding-left:.18em">GΛRDΛ</div>
+<div class="ig-stats"><div><b>15</b>posts</div><div><b>—</b>seguidores</div><div><b>—</b>seguidos</div></div></div>
+<div class="ig-bio"><b>Garda Gastrobar</b><br>Cocina y barra · Roma Norte, CDMX<br>Reserva tu mesa ↓<br><a href="#">gardagastrobar.com</a></div>
+<div class="ig-btns"><span>Reservar</span><span>Menú</span><span>Cómo llegar</span></div>
+<div class="ig-hl"><div><span><i style="background:#8a5a3b"></i></span>Menú</div><div><span><i style="background:#2f5d57"></i></span>Barra</div><div><span><i style="background:#7a3b3b"></i></span>Eventos</div><div><span><i style="background:#8a1f2d"></i></span>Reservas</div><div><span><i style="background:#9b7a3c"></i></span>Equipo</div></div>
+<div class="ig-tabs"><span>Posts</span><span>Reels</span><span>Etiquetas</span></div>
+<div class="grid" id="grid"></div>
+</div></div>
+</section>
+
+<section class="sec full" id="sitio" data-screen-label="02 Sitio">
+<div class="full-intro">
+<div style="display:flex;flex-direction:column;gap:12px"><span class="eye">Sitio web · ES / EN</span><h2 class="bb">Tu casa en Google</h2></div>
+<div style="display:flex;flex-direction:column;gap:14px"><p class="mu">Navega el sitio aquí abajo: reserva, menú por categorías, eventos y galería; el botón ES / EN cambia el idioma. </p><div class="chips"><span>Dirección preliminar</span><span>Menú y precios de ejemplo</span><span>Fotos del levantamiento</span></div></div>
+</div>
+<div class="browser">
+<div class="browser-bar"><i></i><i></i><i></i><span>gardagastrobar.com</span></div>
+<iframe class="browser-view" srcdoc="<!DOCTYPE html>
+<html lang=&quot;es&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>Garda Gastrobar · Medellín 176, Roma Norte</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Didact+Gothic&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+:root{--cr:#fdf3ea;--cr2:#f6e8dc;--v:#8a1f2d;--vd:#5e121d;--la:#b08d57;--ink:#3a1a1e;--mu:#7a5a5e;--ln:rgba(138,31,45,.22)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cr);color:var(--v);font-family:'Libre Baskerville',serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:var(--la)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.geo{font-family:'Didact Gothic',sans-serif}
+.cap{font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase}
+.it{font-style:italic}
+.wrap{padding-left:clamp(20px,5vw,80px);padding-right:clamp(20px,5vw,80px)}
+.wm{font-family:'Didact Gothic',sans-serif;letter-spacing:.34em;margin-right:-.34em;line-height:1;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:16px 26px;border:1px solid currentColor;font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;transition:background .35s,color .35s,border-color .35s}
+.btn:hover{background:var(--v);border-color:var(--v);color:var(--cr)}
+.btn.f{background:var(--v);border-color:var(--v);color:var(--cr)}.btn.f:hover{background:var(--vd);border-color:var(--vd)}
+.btn .ar{transition:transform .35s}.btn:hover .ar{transform:translateX(5px)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-top:22px;padding-bottom:22px;transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(253,243,234,.94);backdrop-filter:blur(10px);padding-top:14px;padding-bottom:14px;border-bottom-color:var(--ln)}
+.nav nav{display:flex;gap:30px}
+.nav .logo{display:flex;flex-direction:column;align-items:center;gap:6px}
+.nav .logo .wm{font-size:24px}.nav .logo small{font-family:'Didact Gothic',sans-serif;font-size:8px;letter-spacing:.5em;margin-right:-.5em}
+.nav .r{display:flex;justify-content:flex-end;align-items:center;gap:20px}
+.lang{display:flex;gap:2px;font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.2em}.lang button{padding:4px 6px;opacity:.5}.lang button.on{opacity:1;border-bottom:1px solid currentColor}
+.nav .btn{padding:11px 18px}
+.hero{position:relative;height:240vh}
+.hero-in{position:sticky;top:0;height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:110px;padding-bottom:36px;overflow:hidden}
+.peek{position:absolute;inset:0;clip-path:inset(0)}
+.peek .shot{position:absolute;inset:0}
+.peek .sh{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(58,18,24,0) 45%,rgba(58,18,24,.55) 100%);opacity:0}
+.hero-txt{position:relative;align-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;pointer-events:none}
+.hero-txt .big{font-size:clamp(64px,13vw,210px)}
+.hero-txt .big span{display:inline-block}
+.hero-txt .sub{font-family:'Didact Gothic',sans-serif;font-size:clamp(10px,1.1vw,14px);letter-spacing:.6em;margin-right:-.6em}
+.hero-txt p{font-style:italic;font-size:clamp(20px,2.2vw,30px)}
+.hero-foot{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.hero-foot .act{display:flex;gap:10px;flex-wrap:wrap}
+.scroll{display:flex;align-items:center;gap:12px}.scroll i{width:60px;height:1px;background:currentColor;display:block}
+.def{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-top:clamp(100px,14vw,200px);padding-bottom:clamp(100px,14vw,200px)}
+.def .l{grid-column:2/7}
+.def .l .wm{font-size:clamp(56px,8vw,128px)}
+.def .l .et{font-size:16px;margin-top:22px;color:var(--ink)}
+.def .l .rule{height:2px;background:var(--v);width:100%;margin:44px 0 40px;transform-origin:left}
+.def .l h2{font-weight:400;font-style:italic;font-size:clamp(34px,4.2vw,64px);line-height:1.3}
+.def .r{grid-column:8/12;align-self:end;display:flex;flex-direction:column;gap:26px;font-size:17px;color:var(--ink)}
+.info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.info>div{padding:30px clamp(20px,5vw,80px);border-right:1px solid var(--ln);display:flex;flex-direction:column;gap:8px}.info>div:last-child{border-right:0}
+.info .cap{color:var(--la)}
+.info b{font-weight:400;font-size:19px}
+.casa{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-top:clamp(100px,13vw,190px);padding-bottom:clamp(100px,13vw,190px);align-items:start}
+.casa .a{grid-column:1/6;aspect-ratio:3/4;position:relative;overflow:hidden}
+.casa .t{grid-column:7/12;display:flex;flex-direction:column;gap:30px;padding-top:8vw}
+.casa .t h2{font-weight:400;font-size:clamp(38px,4.6vw,72px);line-height:1.18}
+.casa .t p{font-size:17px;color:var(--ink);max-width:30em}
+.casa .b{grid-column:8/12;aspect-ratio:4/5;position:relative;overflow:hidden;margin-top:24px}
+.casa .shot,.ev-img .shot,.res-img .shot,.menu-img .shot{position:absolute;inset:-8% 0;height:116%}
+.shot{width:100%;height:100%;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;background:var(--cr2);background-image:repeating-linear-gradient(135deg,rgba(138,31,45,.045) 0 1px,transparent 1px 14px);box-shadow:inset 0 0 0 1px var(--ln)}
+.shot span{font-family:'Didact Gothic',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--la)}
+.shot em{font-style:italic;font-size:15px;line-height:1.5;color:var(--mu);max-width:22em;text-wrap:pretty}
+.peek .shot{justify-content:flex-end;padding-bottom:18vh}
+.menu{background:var(--v);color:var(--cr);padding-top:clamp(90px,12vw,170px);padding-bottom:clamp(90px,12vw,170px)}
+.menu a:hover{color:var(--la)}
+.menu-h{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:64px}
+.menu-h h2{font-weight:400;font-style:italic;font-size:clamp(64px,10vw,160px);line-height:1}
+.cats{display:flex;gap:4px;flex-wrap:wrap}
+.cats button{padding:11px 18px;font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;border:1px solid rgba(253,243,234,.35);opacity:.8;transition:all .3s}
+.cats button:hover{opacity:1}.cats button.on{opacity:1;background:var(--cr);color:var(--v);border-color:var(--cr)}
+.menu-b{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(30px,6vw,100px);align-items:start}
+.dish{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 20px;padding:26px 0;border-bottom:1px solid rgba(253,243,234,.22)}
+.dish .n{font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.24em;color:var(--la);padding-top:12px}
+.dish b{font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.3}
+.dish .d{grid-column:2;font-size:14px;font-style:italic;opacity:.75}
+.menu-img{position:sticky;top:120px;aspect-ratio:4/5;overflow:hidden}
+.menu-f{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:44px;font-size:13px;font-style:italic;opacity:.85;flex-wrap:wrap}
+.menu-f .btn:hover{background:var(--cr);color:var(--v);border-color:var(--cr)}
+.res{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:92vh}
+.res-img{position:relative;overflow:hidden}
+.res-f{padding:clamp(56px,8vw,130px) clamp(24px,6vw,100px);display:flex;flex-direction:column;justify-content:center;gap:34px;background:var(--cr2)}
+.res-f h2{font-weight:400;font-size:clamp(44px,5.4vw,88px);line-height:1.12}
+.res-f h2 em{font-style:italic}
+.res-f dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 28px;border-top:1px solid var(--v);padding-top:24px;font-size:16px;color:var(--ink)}
+.res-f dt{font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--la);padding-top:5px}
+.res-f small{font-size:13px;font-style:italic;color:var(--mu)}
+.ev{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:center;padding-top:clamp(100px,13vw,190px);padding-bottom:clamp(100px,13vw,190px)}
+.ev-t{grid-column:2/7;display:flex;flex-direction:column;gap:30px}
+.ev-t h2{font-weight:400;font-size:clamp(40px,5vw,80px);line-height:1.15}
+.ev-t h2 em{font-style:italic}
+.ev-t ul{list-style:none;border-top:1px solid var(--v)}
+.ev-t li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:18px 0;border-bottom:1px solid var(--ln)}
+.ev-t li b{font-weight:400;font-style:italic;font-size:24px}
+.ev-t li span{font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.ev-img{grid-column:8/13;aspect-ratio:4/5;position:relative;overflow:hidden}
+.gal{background:var(--cr2);overflow:hidden}
+.gal-in{display:flex;flex-direction:column;justify-content:center;gap:40px;min-height:100vh;padding-top:90px;padding-bottom:60px}
+.gal-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.gal-h h2{font-weight:400;font-style:italic;font-size:clamp(48px,7vw,110px);line-height:1}
+.track{display:flex;gap:22px;width:max-content;padding-left:clamp(20px,5vw,80px);padding-right:clamp(20px,5vw,80px)}
+.track>div{position:relative;height:min(62vh,600px);flex-shrink:0}
+.track .p{aspect-ratio:3/4}.track .l{aspect-ratio:4/3}.track .s{aspect-ratio:1}
+.foot{background:var(--v);color:var(--cr);padding-top:clamp(90px,12vw,160px);padding-bottom:30px;display:flex;flex-direction:column;gap:70px}
+.foot a:hover{color:var(--la)}
+.foot-q{font-style:italic;font-size:clamp(34px,4.8vw,76px);line-height:1.25;max-width:16em}
+.foot-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;border-top:1px solid rgba(253,243,234,.25);padding-top:30px;font-size:15px}
+.foot-g .cap{display:block;color:var(--la);margin-bottom:12px}
+.foot-g a,.foot-g span{display:block}
+.foot-wm{display:flex;flex-direction:column;align-items:center;gap:14px}
+.foot-wm .wm{font-size:clamp(60px,17vw,300px)}
+.foot-wm small{font-family:'Didact Gothic',sans-serif;font-size:clamp(10px,1.3vw,18px);letter-spacing:.7em;margin-right:-.7em}
+.foot-c{display:flex;justify-content:space-between;gap:16px;font-family:'Didact Gothic',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.65;flex-wrap:wrap}
+.pill{position:fixed;left:50%;bottom:22px;transform:translate(-50%,160%);z-index:31;display:flex;align-items:center;gap:16px;background:var(--v);color:var(--cr);padding:8px 8px 8px 24px;font-style:italic;font-size:14px;white-space:nowrap;transition:transform .5s cubic-bezier(.2,.7,.1,1);box-shadow:0 18px 40px rgba(94,18,29,.25)}
+.pill.show{transform:translate(-50%,0)}
+.pill .btn{padding:11px 18px;background:var(--cr);color:var(--v);border-color:var(--cr)}.pill .btn:hover{background:var(--la);border-color:var(--la);color:var(--cr)}
+@media(max-width:900px){.nav{grid-template-columns:auto 1fr}.nav nav{display:none}.nav .logo{align-items:flex-start}
+.hero{height:auto}.hero-in{position:relative;min-height:100svh}
+.def .l,.def .r,.casa .a,.casa .t,.casa .b,.ev-t,.ev-img{grid-column:1/-1}.casa .t{padding-top:0}
+.info{grid-template-columns:minmax(0,1fr)}.info>div{border-right:0;border-bottom:1px solid var(--ln)}
+.menu-b,.res{grid-template-columns:minmax(0,1fr)}.menu-img{position:relative;top:0;aspect-ratio:16/11}.res-img{min-height:56vh}
+.track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory}.track>div{height:52vh;scroll-snap-align:start}.foot-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class=&quot;nav wrap&quot; id=&quot;nav&quot;>
+<nav class=&quot;cap&quot;><a href=&quot;#menu&quot; data-i=&quot;nMenu&quot;>Menú</a><a href=&quot;#reservas&quot; data-i=&quot;nRes&quot;>Reservas</a><a href=&quot;#eventos&quot; data-i=&quot;nEv&quot;>Eventos</a></nav>
+<a href=&quot;#top&quot; class=&quot;logo&quot; aria-label=&quot;Garda Gastrobar&quot;><span class=&quot;wm&quot;>GΛRDΛ</span><small>GASTROBAR</small></a>
+<div class=&quot;r&quot;><div class=&quot;lang&quot; id=&quot;lang&quot;><button type=&quot;button&quot; class=&quot;on&quot; data-l=&quot;es&quot;>ES</button><button type=&quot;button&quot; data-l=&quot;en&quot;>EN</button></div><a class=&quot;btn f&quot; href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; data-i=&quot;book&quot;>Reservar</a></div>
+</header>
+
+<section class=&quot;hero&quot; id=&quot;top&quot; data-screen-label=&quot;Hero&quot;>
+<div class=&quot;hero-in wrap&quot;>
+<div class=&quot;peek&quot; id=&quot;peek&quot;><div class=&quot;shot&quot; id=&quot;sitio-hero&quot;><span>Foto del levantamiento</span><em>el salón visto desde la barra</em></div><div class=&quot;sh&quot; id=&quot;peeksh&quot;></div></div>
+<div class=&quot;hero-txt&quot; id=&quot;htxt&quot;>
+<div class=&quot;wm big&quot; id=&quot;big&quot;><span>G</span><span>Λ</span><span>R</span><span>D</span><span>Λ</span></div>
+<span class=&quot;sub&quot;>GASTROBAR</span>
+<p data-i=&quot;heroP&quot;>Desde aquí, miramos.</p>
+</div>
+<div class=&quot;hero-foot&quot; id=&quot;hfoot&quot;>
+<span class=&quot;cap scroll&quot;><i></i><span data-i=&quot;scroll&quot;>Medellín 176 · Roma Norte</span></span>
+<div class=&quot;act&quot;><a class=&quot;btn f&quot; href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;><span data-i=&quot;book2&quot;>Reservar mesa</span><span class=&quot;ar&quot;>→</span></a><a class=&quot;btn&quot; href=&quot;#menu&quot; data-i=&quot;seeMenu&quot;>Ver menú</a></div>
+</div>
+</div>
+</section>
+
+<section class=&quot;wrap def&quot; data-screen-label=&quot;Definición&quot;>
+<div class=&quot;l&quot;>
+<div class=&quot;wm rv&quot;>GΛRDΛ</div>
+<div class=&quot;et rv&quot;>[de “warda”] • <span class=&quot;it&quot; data-i=&quot;origin&quot;>origen germánico</span></div>
+<div class=&quot;rule&quot; id=&quot;rule&quot;></div>
+<h2 class=&quot;rv&quot; data-i=&quot;defH&quot;>Lugar de guardia y observación.</h2>
+</div>
+<div class=&quot;r&quot;>
+<p class=&quot;rv&quot; data-i=&quot;m1&quot;>Desde aquí, miramos. Seleccionamos lo esencial.</p>
+<p class=&quot;rv&quot; data-i=&quot;m2&quot;>Cuidamos cada detalle, porque la vida está llena de ellos y son los pequeños los que marcan la diferencia.</p>
+<p class=&quot;rv it&quot; data-i=&quot;m3&quot;>Para que cada momento valga la pena quedarse.</p>
+</div>
+</section>
+
+<div class=&quot;info&quot;>
+<div><span class=&quot;cap&quot; data-i=&quot;iHours&quot;>Horario</span><b data-i=&quot;iHoursV&quot;>All day · martes a domingo</b></div>
+<div><span class=&quot;cap&quot; data-i=&quot;iWhere&quot;>Dónde</span><b>Medellín 176, Roma Norte</b></div>
+<div><span class=&quot;cap&quot; data-i=&quot;iRes&quot;>Reservas</span><b><a href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;border-bottom:1px solid var(--la)&quot;>OpenTable</a></b></div>
+</div>
+
+<section class=&quot;wrap casa&quot; data-screen-label=&quot;La casa&quot;>
+<div class=&quot;a&quot;><div class=&quot;shot&quot; id=&quot;sitio-ab1&quot;><span>Foto del levantamiento</span><em>Detalle · mármol rojo, café o barra</em></div></div>
+<div class=&quot;t&quot;>
+<span class=&quot;cap rv&quot; style=&quot;color:var(--la)&quot; data-i=&quot;abEye&quot;>La casa</span>
+<h2 class=&quot;rv&quot; data-i=&quot;abH&quot;>Del primer café a la última copa, <span class=&quot;it&quot;>sin prisa.</span></h2>
+<p class=&quot;rv&quot; data-i=&quot;abP&quot;>Garda abre todo el día para quien quiere mirar la ciudad pasar desde una mesa bien puesta. Lo esencial, cuidado al detalle.</p>
+</div>
+<div class=&quot;b&quot;><div class=&quot;shot&quot; id=&quot;sitio-ab2&quot;><span>Foto del levantamiento</span><em>Platillo o cóctel del levantamiento</em></div></div>
+</section>
+
+<section class=&quot;menu wrap&quot; id=&quot;menu&quot; data-screen-label=&quot;Menú&quot;>
+<div class=&quot;menu-h&quot;><h2 class=&quot;rv&quot; data-i=&quot;mH&quot;>La carta</h2><div style=&quot;display:flex;flex-direction:column;gap:16px;align-items:flex-end&quot;><span class=&quot;cap&quot; style=&quot;opacity:.8&quot; data-i=&quot;mEye&quot;>Mañana, tarde y noche</span><div class=&quot;cats&quot; id=&quot;cats&quot;></div></div></div>
+<div class=&quot;menu-b&quot;><div id=&quot;dishes&quot;></div><div class=&quot;menu-img&quot;><div class=&quot;shot&quot; id=&quot;sitio-menu&quot;><span>Foto del levantamiento</span><em>Platillo de la categoría</em></div></div></div>
+<div class=&quot;menu-f&quot;><span data-i=&quot;mNote&quot;>Carta de ejemplo · se reemplaza por la carta vigente de Garda.</span><a class=&quot;btn&quot; href=&quot;#&quot; data-i=&quot;mPdf&quot;>Descargar carta</a></div>
+</section>
+
+<section class=&quot;res&quot; id=&quot;reservas&quot; data-screen-label=&quot;Reservas&quot;>
+<div class=&quot;res-img&quot;><div class=&quot;shot&quot; id=&quot;sitio-res&quot;><span>Foto del levantamiento</span><em>Mesa puesta · luz de tarde</em></div></div>
+<div class=&quot;res-f&quot;>
+<span class=&quot;cap&quot; style=&quot;color:var(--la)&quot; data-i=&quot;rEye&quot;>Reservas</span>
+<h2 data-i=&quot;rH&quot;>Te guardamos <em>la mesa.</em></h2>
+<dl><dt data-i=&quot;iHours&quot;>Horario</dt><dd data-i=&quot;iHoursV&quot;>All day · martes a domingo</dd><dt data-i=&quot;iWhere&quot;>Dónde</dt><dd>Medellín 176, Roma Norte, CDMX</dd></dl>
+<a class=&quot;btn f&quot; href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;align-self:flex-start&quot;><span data-i=&quot;rBtn&quot;>Reservar en OpenTable</span><span class=&quot;ar&quot;>→</span></a>
+<small data-i=&quot;rNote&quot;>Para grupos grandes y eventos, escríbenos por WhatsApp.</small>
+</div>
+</section>
+
+<section class=&quot;wrap ev&quot; id=&quot;eventos&quot; data-screen-label=&quot;Eventos&quot;>
+<div class=&quot;ev-t&quot;>
+<span class=&quot;cap rv&quot; style=&quot;color:var(--la)&quot; data-i=&quot;eEye&quot;>Eventos y privados</span>
+<h2 class=&quot;rv&quot; data-i=&quot;eH&quot;>Celebraciones que <em>se cuidan</em> al detalle.</h2>
+<ul class=&quot;rv&quot;><li><b data-i=&quot;e1&quot;>Cena privada</b><span data-i=&quot;e1v&quot;>A la medida</span></li><li><b data-i=&quot;e2&quot;>Brindis y grupos</b><span data-i=&quot;e2v&quot;>Barra y mesa</span></li><li><b data-i=&quot;e3&quot;>Fin de año</b><span data-i=&quot;e3v&quot;>Fechas limitadas</span></li></ul>
+<a class=&quot;btn rv&quot; href=&quot;#&quot; style=&quot;align-self:flex-start&quot;><span data-i=&quot;eBtn&quot;>Cotizar por WhatsApp</span><span class=&quot;ar&quot;>→</span></a>
+</div>
+<div class=&quot;ev-img&quot;><div class=&quot;shot&quot; id=&quot;sitio-ev&quot;><span>Foto del levantamiento</span><em>Mesa larga · evento</em></div></div>
+</section>
+
+<section class=&quot;gal&quot; id=&quot;galeria&quot; data-screen-label=&quot;Galería&quot;>
+<div class=&quot;gal-in&quot;>
+<div class=&quot;gal-h wrap&quot;><h2 data-i=&quot;gH&quot;>Lo que vemos</h2><a href=&quot;https://instagram.com/gardagastrobar&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; class=&quot;cap&quot;>@gardagastrobar →</a></div>
+<div class=&quot;track&quot; id=&quot;track&quot;><div class=&quot;p&quot;><div class=&quot;shot&quot; id=&quot;sitio-gal-1&quot;><span>Foto del levantamiento</span><em>Vertical</em></div></div><div class=&quot;l&quot;><div class=&quot;shot&quot; id=&quot;sitio-gal-2&quot;><span>Foto del levantamiento</span><em>Salón</em></div></div><div class=&quot;s&quot;><div class=&quot;shot&quot; id=&quot;sitio-gal-3&quot;><span>Foto del levantamiento</span><em>Cóctel</em></div></div><div class=&quot;p&quot;><div class=&quot;shot&quot; id=&quot;sitio-gal-4&quot;><span>Foto del levantamiento</span><em>Platillo</em></div></div><div class=&quot;l&quot;><div class=&quot;shot&quot; id=&quot;sitio-gal-5&quot;><span>Foto del levantamiento</span><em>Detalle · letrero de latón</em></div></div></div>
+</div>
+</section>
+
+<footer class=&quot;foot wrap&quot; data-screen-label=&quot;Footer&quot;>
+<p class=&quot;foot-q rv&quot; data-i=&quot;fQ&quot;>Para que cada momento valga la pena quedarse.</p>
+<div class=&quot;foot-g&quot;>
+<div><span class=&quot;cap&quot; data-i=&quot;iHours&quot;>Horario</span><span data-i=&quot;iHoursV&quot;>All day · martes a domingo</span></div>
+<div><span class=&quot;cap&quot; data-i=&quot;iWhere&quot;>Dónde</span><span>Medellín 176, Roma Norte</span></div>
+<div><span class=&quot;cap&quot; data-i=&quot;fFollow&quot;>Síguenos</span><a href=&quot;https://instagram.com/gardagastrobar&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Instagram</a><a href=&quot;#&quot;>TikTok</a><a href=&quot;#&quot;>Google</a></div>
+<div><span class=&quot;cap&quot; data-i=&quot;iRes&quot;>Reservas</span><a href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>OpenTable</a><a href=&quot;#&quot;>WhatsApp</a></div>
+</div>
+<div class=&quot;foot-wm&quot; aria-hidden=&quot;true&quot;><span class=&quot;wm&quot;>GΛRDΛ</span><small>GASTROBAR</small></div>
+<div class=&quot;foot-c&quot;><span>© 2026 Garda Gastrobar</span><span>Sitio por No'j Studio</span></div>
+</footer>
+
+<div class=&quot;pill&quot; id=&quot;pill&quot;><span data-i=&quot;pill&quot;>¿Mesa para hoy?</span><a class=&quot;btn&quot; href=&quot;https://www.opentable.com.mx/r/garda-ciudad-de-mexico&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; data-i=&quot;book&quot;>Reservar</a></div>
+
+<script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js&quot;></script>
+<script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js&quot;></script>
+<script>
+(() => {
+const M={es:{'Mañana':[['Café de especialidad','Espresso, filtrado, con leche'],['Pan de la casa','Mantequilla, mermelada'],['Huevos al gusto','Pan tostado, ensalada']],'Mediodía':[['Entrada de temporada','Según mercado'],['Plato fuerte del día','Pregunta a tu mesero'],['Postre de la casa','Para compartir']],'Noche':[['Para compartir','Selección del chef'],['Fuerte de la noche','Cocción lenta'],['Cierre dulce','Café o digestivo']],'Barra':[['Coctelería de autor','Carta de temporada'],['Vino por copa','Selección de la semana'],['Clásicos','A la manera de Garda']]},
+en:{'Morning':[['Specialty coffee','Espresso, filter, with milk'],['House bread','Butter, jam'],['Eggs your way','Toast, salad']],'Midday':[['Seasonal starter','Market driven'],['Main of the day','Ask your server'],['House dessert','To share']],'Evening':[['To share','Chef’s selection'],['Evening main','Slow cooked'],['Sweet finish','Coffee or digestif']],'Bar':[['Signature cocktails','Seasonal list'],['Wine by the glass','Weekly selection'],['Classics','The Garda way']]}};
+const T={en:{nMenu:'Menu',nRes:'Reservations',nEv:'Events',book:'Book',book2:'Book a table',seeMenu:'See menu',heroP:'From here, we look.',scroll:'Medellín 176 · Roma Norte',origin:'Germanic origin',defH:'A place of watch and observation.',m1:'From here, we look. We select the essential.',m2:'We care for every detail, because life is full of them and the small ones make the difference.',m3:'So every moment is worth staying for.',iHours:'Hours',iHoursV:'All day · Tuesday to Sunday',iWhere:'Where',iRes:'Reservations',abEye:'The house',abH:'From the first coffee to the last glass, <span class=&quot;it&quot;>unhurried.</span>',abP:'Garda is open all day for those who like to watch the city go by from a well-set table. The essential, cared for in detail.',mH:'The menu',mEye:'Morning, afternoon and night',mNote:'Sample menu · replaced with Garda’s current menu.',mPdf:'Download menu',rEye:'Reservations',rH:'We’ll keep <em>your table.</em>',rBtn:'Book on OpenTable',rNote:'For large groups and events, message us on WhatsApp.',eEye:'Events &amp; private dining',eH:'Celebrations <em>cared for</em> in detail.',e1:'Private dinner',e1v:'Tailored',e2:'Toasts &amp; groups',e2v:'Bar and table',e3:'Year-end',e3v:'Limited dates',eBtn:'Get a quote on WhatsApp',gH:'What we see',fQ:'So every moment is worth staying for.',fFollow:'Follow us',pill:'A table for today?'},es:{}};
+document.querySelectorAll('[data-i]').forEach(el=>{T.es[el.dataset.i]=T.es[el.dataset.i]||el.innerHTML});
+let L='es',cat=0;
+const drawMenu=()=>{const cats=Object.keys(M[L]);document.getElementById('cats').innerHTML=cats.map((c,i)=>`<button type=&quot;button&quot; class=&quot;${i===cat?'on':''}&quot; data-c=&quot;${i}&quot;>${c}</button>`).join('');const d=document.getElementById('dishes');d.innerHTML=M[L][cats[cat]].map((x,i)=>`<div class=&quot;dish&quot;><span class=&quot;n&quot;>${String(i+1).padStart(2,'0')}</span><b>${x[0]}</b><span class=&quot;d&quot;>${x[1]}</span></div>`).join('');if(window.gsap)gsap.from('#dishes .dish',{y:24,opacity:0,duration:.6,stagger:.08,ease:'power3.out'})};
+document.getElementById('cats').onclick=e=>{const b=e.target.closest('button');if(b){cat=+b.dataset.c;drawMenu()}};
+document.getElementById('lang').onclick=e=>{const b=e.target.closest('button');if(!b)return;L=b.dataset.l;document.documentElement.lang=L;document.querySelectorAll('#lang button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('[data-i]').forEach(el=>{const v=T[L][el.dataset.i];if(v)el.innerHTML=v});drawMenu()};
+const nav=document.getElementById('nav'),pill=document.getElementById('pill'),res=document.getElementById('reservas');
+const onS=()=>{const y=scrollY,h=innerHeight;nav.classList.toggle('solid',y>h*.5);const r=res.getBoundingClientRect();pill.classList.toggle('show',y>h*2.2&amp;&amp;!(r.top<h&amp;&amp;r.bottom>0))};
+addEventListener('scroll',onS,{passive:true});onS();drawMenu();
+
+if(!window.gsap||!window.ScrollTrigger)return;
+gsap.registerPlugin(ScrollTrigger);
+const ease='power3.out';
+gsap.from('#big span',{yPercent:110,opacity:0,duration:1.3,stagger:.09,ease:'expo.out',delay:.15});
+gsap.from('#htxt .sub,#htxt p,#hfoot',{y:20,opacity:0,duration:1,stagger:.12,ease,delay:.7});
+const mm=gsap.matchMedia();
+mm.add('(min-width: 901px)',()=>{
+ gsap.set('#peek',{clipPath:'inset(34% 43% 34% 43%)'});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom bottom',scrub:.8}});
+ tl.to('#peek',{clipPath:'inset(0% 0% 0% 0%)',ease:'none'},0)
+   .to('#htxt',{color:'#fdf3ea',ease:'none',duration:.3},.55)
+   .to('#hfoot',{color:'#fdf3ea',ease:'none',duration:.3},.55)
+   .to('#peeksh',{opacity:1,ease:'none',duration:.4},.5)
+   .to('#big',{letterSpacing:'.5em',ease:'none'},0);
+ const track=document.getElementById('track');
+ const dist=()=>Math.max(0,track.scrollWidth-innerWidth);
+ gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#galeria',start:'top top',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true}});
+ document.querySelectorAll('.casa .a,.casa .b,.ev-img,.res-img,.menu-img').forEach(w=>{const s=w.querySelector('.shot');gsap.fromTo(s,{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:w,start:'top bottom',end:'bottom top',scrub:true}})});
+});
+gsap.from('#rule',{scaleX:0,duration:1.4,ease:'expo.out',scrollTrigger:{trigger:'#rule',start:'top 85%'}});
+gsap.set('.rv',{y:36,opacity:0});
+ScrollTrigger.batch('.rv',{start:'top 90%',onEnter:els=>gsap.to(els,{y:0,opacity:1,duration:1.1,stagger:.12,ease,overwrite:true}),once:true});
+document.querySelectorAll('.casa .a,.casa .b,.ev-img,.res-img').forEach(w=>gsap.from(w,{clipPath:'inset(100% 0 0 0)',duration:1.4,ease:'expo.out',scrollTrigger:{trigger:w,start:'top 85%'}}));
+})();
+</script>
+</body>
+</html>
+" title="Sitio Garda" style="width:100%;border:0;display:block"></iframe>
+</div>
+</section>
+
+
+
+<script>
+(() => {
+const P = [['agenda','Lo mejor de nov','▣'],['barra','Coctelería','▣'],['plato','Plato semana','▶'],['lugar','Una noche','▶'],['plato','Plato semana',''],['agenda','Eventos privados',''],['barra','Coctelería','▣'],['agenda','Puente','▶'],['plato','Del amasado','▶'],['gente','El equipo',''],['plato','Plato semana',''],['agenda','Menú otoño','▣'],['barra','Detrás de barra','▶'],['lugar','Así es Garda',''],['plato','Plato hero','']];
+const names={plato:'Platillo',barra:'Barra',lugar:'Lugar',gente:'Gente',agenda:'Agenda'};
+document.getElementById('grid').innerHTML = P.map((p,i)=>`<div class="cell"><div class="tile t-${p[0]}"><b>${p[1]}</b><small>${p[2]==='▶'?'Reel':p[2]==='▣'?'Carrusel':'Foto'}</small></div><span class="pill p-${p[0]}">${names[p[0]]}</span>${p[2]?`<span class="fmt">${p[2]}</span>`:''}</div>`).join('');
+const tabs=document.getElementById('tabs');
+const show=s=>{document.querySelectorAll('.sec').forEach(x=>x.classList.toggle('on',x.id===s));tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));localStorage.setItem('garda-muestra',s);window.scrollTo(0,0)};
+tabs.onclick=e=>{const b=e.target.closest('button');if(b)show(b.dataset.s)};
+const saved=localStorage.getItem('garda-muestra');if(saved&&document.getElementById(saved))show(saved);
+
+})();
+</script>
+</body>
+</html>
