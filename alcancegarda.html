@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No'j Studio — Alcance Garda Gastrobar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+html,body{background:#050505}
+body{padding:24px 0}
+.page{max-width:8.5in;min-height:11in;margin:0 auto 24px}
+@media (max-width:700px){body{padding:0}.page{min-height:auto;padding:36px 20px;margin:0 0 2px}.grid2{grid-template-columns:1fr;gap:22px}h1.bb{font-size:68pt!important}.h2{font-size:32pt}}
+@media print{body{padding:0}.page{margin:0;max-width:none;min-height:auto;page-break-after:always}}
+@media print{html,body{background:#0a0a0a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+*{margin:0;padding:0;box-sizing:border-box}
+a{color:#6fbdaa;text-decoration:none}a:hover{color:#f4f2ed}
+.page{background:#0a0a0a;color:#f4f2ed;font-family:'DM Sans',sans-serif;font-weight:300;padding:0.7in 0.75in;display:flex;flex-direction:column;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:11.5pt;line-height:1.5}
+.bb{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:0.02em;line-height:0.95}
+.eye{font-size:9pt;letter-spacing:0.24em;text-transform:uppercase;color:#6fbdaa}
+.mut{color:#9a9890}
+.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #2a2a2a;margin-bottom:36px;font-size:9pt;letter-spacing:0.18em;text-transform:uppercase;color:#777}
+.top img{height:22px}
+.foot{margin-top:auto;display:flex;justify-content:space-between;padding-top:16px;border-top:1px solid #1e1e1e;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#666}
+.h1{font-size:64pt}.h2{font-size:40pt}.h3{font-size:20pt}
+.num{font-family:'Bebas Neue',sans-serif;color:#6fbdaa;font-size:15pt;letter-spacing:0.1em}
+.list{list-style:none;display:flex;flex-direction:column}
+.list li{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #1e1e1e}
+.list li::before{content:"—";color:#6fbdaa;flex-shrink:0}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px}
+.card{border:1px solid #2a2a2a;padding:22px;display:flex;flex-direction:column;gap:10px}
+.card.on{border-color:#6fbdaa;background:#0d1519}
+.note{border-left:2px solid #6fbdaa;padding:4px 0 4px 16px;margin-top:28px;display:flex;flex-direction:column;gap:6px}
+p{text-wrap:pretty}
+[data-screen-label="04 Redes"] .list li{padding:6px 0;font-size:10.5pt}
+</style>
+</head>
+<body>
+
+<section class="page" data-screen-label="01 Portada">
+<div style="display:flex;justify-content:space-between;align-items:center"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgCiAgPGcgc3Ryb2tlPSIjZjRmMmVkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPgogICAgPHBvbHlsaW5lIHBvaW50cz0iOCwyOCA4LDggMjgsOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjcyLDggOTIsOCA5MiwyOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjkyLDcyIDkyLDkyIDcyLDkyIj48L3BvbHlsaW5lPgogICAgPHBvbHlsaW5lIHBvaW50cz0iMjgsOTIgOCw5MiA4LDcyIj48L3BvbHlsaW5lPgogIDwvZz4KICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIHN0cm9rZT0iI2Y0ZjJlZCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48L2xpbmU+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMjAiIHgyPSIyMCIgeTI9IjgwIiBzdHJva2U9IiNmNGYyZWQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PC9saW5lPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMwYTBhMGEiPjwvY2lyY2xlPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iIzZmYmRhYSI+PC9jaXJjbGU+Cjwvc3ZnPg==" alt="No'j Studio" style="height:40px"><span class="eye" style="color:#777">Alcance del proyecto · Noviembre 2026</span></div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:22px">
+<span class="eye">Producción · Redes · Sitio web</span>
+<h1 class="bb" style="font-size:104pt">Garda<br>Gastrobar</h1>
+<p style="font-size:15pt;max-width:30em" class="mut">Contenido, comunidad y presencia digital a la altura de la cocina italiana y la coctelería de Garda en la Roma Norte.</p>
+</div>
+<div class="foot" style="margin-top:64px"><span>No'j Studio</span><span>Alcance de servicios · Garda Gastrobar · CDMX</span></div>
+</section>
+
+<section class="page" data-screen-label="02 Punto de partida">
+<div class="top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgCiAgPGcgc3Ryb2tlPSIjZjRmMmVkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPgogICAgPHBvbHlsaW5lIHBvaW50cz0iOCwyOCA4LDggMjgsOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjcyLDggOTIsOCA5MiwyOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjkyLDcyIDkyLDkyIDcyLDkyIj48L3BvbHlsaW5lPgogICAgPHBvbHlsaW5lIHBvaW50cz0iMjgsOTIgOCw5MiA4LDcyIj48L3BvbHlsaW5lPgogIDwvZz4KICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIHN0cm9rZT0iI2Y0ZjJlZCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48L2xpbmU+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMjAiIHgyPSIyMCIgeTI9IjgwIiBzdHJva2U9IiNmNGYyZWQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PC9saW5lPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMwYTBhMGEiPjwvY2lyY2xlPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iIzZmYmRhYSI+PC9jaXJjbGU+Cjwvc3ZnPg==" alt=""><span>Garda Gastrobar</span></div>
+<span class="eye">Punto de partida</span>
+<h2 class="bb h2" style="margin:12px 0 22px">Lo que escuchamos</h2>
+<div class="grid2" style="margin-bottom:40px">
+<div class="card"><span class="num">01</span><h3 class="bb h3">Contenido</h3><p class="mut">La necesidad principal: fotos y video con el nivel de la cocina y la barra, de forma constante.</p></div>
+<div class="card"><span class="num">02</span><h3 class="bb h3">Redes</h3><p class="mut">Hoy solo Instagram, sin una estrategia ni nadie que conteste de forma fija.</p></div>
+<div class="card"><span class="num">03</span><h3 class="bb h3">Sitio web</h3><p class="mut">No existe. Sin un menú, reservas ni eventos que se puedan encontrar en Google.</p></div>
+<div class="card on"><span class="num">→</span><h3 class="bb h3">El proyecto</h3><p>Tres servicios que se alimentan entre sí: lo que producimos llena las redes y el sitio.</p></div>
+</div>
+<span class="eye">Cómo trabajamos</span>
+<ul class="list" style="margin-top:10px">
+<li><span><b style="font-weight:500">Semana 1 ·</b> Kickoff, estrategia y guion del levantamiento.</span></li>
+<li><span><b style="font-weight:500">Semana 2 ·</b> Levantamiento de foto y video en Garda.</span></li>
+<li><span><b style="font-weight:500">Semanas 3–5 ·</b> Diseño y desarrollo del sitio; arranque de redes con el material nuevo.</span></li>
+<li><span><b style="font-weight:500">Cada mes ·</b> Calendario aprobado antes del día 25, sesión de contenido y reporte del día 1 al 5.</span></li>
+</ul>
+<div class="foot"><span>No'j Studio</span><span>02</span></div>
+</section>
+
+<section class="page" data-screen-label="03 Producción">
+<div class="top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgCiAgPGcgc3Ryb2tlPSIjZjRmMmVkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPgogICAgPHBvbHlsaW5lIHBvaW50cz0iOCwyOCA4LDggMjgsOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjcyLDggOTIsOCA5MiwyOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjkyLDcyIDkyLDkyIDcyLDkyIj48L3BvbHlsaW5lPgogICAgPHBvbHlsaW5lIHBvaW50cz0iMjgsOTIgOCw5MiA4LDcyIj48L3BvbHlsaW5lPgogIDwvZz4KICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIHN0cm9rZT0iI2Y0ZjJlZCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48L2xpbmU+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMjAiIHgyPSIyMCIgeTI9IjgwIiBzdHJva2U9IiNmNGYyZWQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PC9saW5lPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMwYTBhMGEiPjwvY2lyY2xlPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iIzZmYmRhYSI+PC9jaXJjbGU+Cjwvc3ZnPg==" alt=""><span>Garda Gastrobar</span></div>
+<span class="num">01</span>
+<h2 class="bb h2" style="margin:6px 0 10px">Producción de contenido</h2>
+<p class="mut" style="max-width:34em;margin-bottom:26px">Foto y video con equipo e iluminación profesional. Un levantamiento de arranque y una sesión al mes para que el contenido nunca se repita.</p>
+<div class="grid2">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Levantamiento inicial</span>
+<ul class="list">
+<li>Jornada de 6 h en Garda</li>
+<li>Hasta 10 platillos y la coctelería de autor</li>
+<li>Ambiente, barra, equipo y fachada</li>
+<li>50 fotos editadas</li>
+<li>6 reels editados</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Sesión mensual</span>
+<ul class="list">
+<li>3–4 h en Garda</li>
+<li>Platillos de temporada, promociones y eventos</li>
+<li>20 fotos nuevas</li>
+<li>3 reels editados</li>
+</ul>
+</div>
+</div>
+<div class="note">
+<p>El servicio arranca con un <b style="font-weight:500">levantamiento inicial</b> y continúa con una <b style="font-weight:500">sesión mensual de contenido</b>.</p>
+<p class="mut">Se pueden incluir fotos y reels de platillo adicionales.</p>
+</div>
+<p class="mut" style="font-size:9.5pt;margin-top:14px">Derechos de uso del material para todos los canales de Garda.</p>
+<div class="foot"><span>No'j Studio</span><span>03</span></div>
+</section>
+
+<section class="page" data-screen-label="04 Redes">
+<div class="top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgCiAgPGcgc3Ryb2tlPSIjZjRmMmVkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPgogICAgPHBvbHlsaW5lIHBvaW50cz0iOCwyOCA4LDggMjgsOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjcyLDggOTIsOCA5MiwyOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjkyLDcyIDkyLDkyIDcyLDkyIj48L3BvbHlsaW5lPgogICAgPHBvbHlsaW5lIHBvaW50cz0iMjgsOTIgOCw5MiA4LDcyIj48L3BvbHlsaW5lPgogIDwvZz4KICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIHN0cm9rZT0iI2Y0ZjJlZCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48L2xpbmU+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMjAiIHgyPSIyMCIgeTI9IjgwIiBzdHJva2U9IiNmNGYyZWQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PC9saW5lPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMwYTBhMGEiPjwvY2lyY2xlPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iIzZmYmRhYSI+PC9jaXJjbGU+Cjwvc3ZnPg==" alt=""><span>Garda Gastrobar</span></div>
+<span class="num">02</span>
+<h2 class="bb h2" style="margin:6px 0 10px">Manejo de redes</h2>
+<p class="mut" style="max-width:34em;margin-bottom:26px">Instagram como canal principal, TikTok como parte del servicio y Google Business para las reseñas y la ficha de Maps que el comensal revisa antes de elegir.</p>
+<div class="grid2">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Instagram</span>
+<ul class="list">
+<li>Estrategia y calendario mensual</li>
+<li>15 publicaciones (feed y stories)</li>
+<li>Publicación de los reels de la sesión mensual</li>
+<li>Copies en el tono de Garda</li>
+<li>Gestión de Meta Ads</li>
+<li>Comentarios y DMs de lunes a viernes, 10–18 h</li>
+<li>Reservas y quejas se pasan a Garda por WhatsApp</li>
+<li>Reporte mensual, llamada de 30 min y check-in semanal</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">TikTok</span>
+<ul class="list">
+<li>Reels de la sesión adaptados al formato de TikTok</li>
+<li>Clips cortos con el material de producción</li>
+<li>Resultados incluidos en el reporte mensual</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Google Business</span>
+<ul class="list">
+<li>Ficha al día: horario, menú, fotos y eventos</li>
+<li>Respuesta a todas las reseñas</li>
+<li>Publicaciones semanales en el perfil</li>
+<li>Búsquedas, llamadas y rutas en el reporte mensual</li>
+</ul>
+</div>
+</div>
+</div>
+<p class="mut" style="font-size:9.5pt;margin-top:22px">Incluye la configuración de respuestas automáticas. Las publicaciones usan el material de Producción. La inversión en pauta la paga Garda directo a Meta.</p>
+<div class="foot"><span>No'j Studio</span><span>04</span></div>
+</section>
+
+<section class="page" data-screen-label="05 Sitio web">
+<div class="top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgCiAgPGcgc3Ryb2tlPSIjZjRmMmVkIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPgogICAgPHBvbHlsaW5lIHBvaW50cz0iOCwyOCA4LDggMjgsOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjcyLDggOTIsOCA5MiwyOCI+PC9wb2x5bGluZT4KICAgIDxwb2x5bGluZSBwb2ludHM9IjkyLDcyIDkyLDkyIDcyLDkyIj48L3BvbHlsaW5lPgogICAgPHBvbHlsaW5lIHBvaW50cz0iMjgsOTIgOCw5MiA4LDcyIj48L3BvbHlsaW5lPgogIDwvZz4KICA8bGluZSB4MT0iMjAiIHkxPSIyMCIgeDI9IjgwIiB5Mj0iODAiIHN0cm9rZT0iI2Y0ZjJlZCIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48L2xpbmU+CiAgPGxpbmUgeDE9IjgwIiB5MT0iMjAiIHgyPSIyMCIgeTI9IjgwIiBzdHJva2U9IiNmNGYyZWQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PC9saW5lPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMwYTBhMGEiPjwvY2lyY2xlPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMuNSIgZmlsbD0iIzZmYmRhYSI+PC9jaXJjbGU+Cjwvc3ZnPg==" alt=""><span>Garda Gastrobar</span></div>
+<span class="num">03</span>
+<h2 class="bb h2" style="margin:6px 0 10px">Sitio web</h2>
+<p class="mut" style="max-width:34em;margin-bottom:26px">Un sitio editorial, rápido y en dos idiomas, pensado para el comensal local y el visitante extranjero de la Roma.</p>
+<div class="grid2">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Incluye</span>
+<ul class="list">
+<li>Diseño a medida con el material del levantamiento</li>
+<li>Bilingüe español / inglés</li>
+<li>Menú digital con QR para mesa, editable</li>
+<li>Reservas integradas con OpenTable</li>
+<li>Eventos y privados con formulario</li>
+<li>Galería</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="eye">Técnico</span>
+<ul class="list">
+<li>Conectado con Instagram, Google Maps y WhatsApp</li>
+<li>SEO local</li>
+<li>Analytics conectado al reporte mensual</li>
+<li>Adaptado a celular</li>
+<li>Entrega en 3–4 semanas</li>
+<li>Dos rondas de cambios</li>
+</ul>
+</div>
+</div>
+<div class="note">
+<p>Después de la entrega, <b style="font-weight:500">mantenimiento mensual</b>: cambios de menú, eventos y soporte.</p>
+</div>
+<p class="mut" style="font-size:9.5pt;margin-top:14px">Las reservas usan la cuenta de OpenTable de Garda. Dominio y hosting a nombre de Garda.</p>
+<div class="foot"><span>No'j Studio · <a href="https://nojstudio.github.io/nojstudio/">nojstudio.github.io/nojstudio</a></span><span>05</span></div>
+</section>
+
+</body>
+</html>
