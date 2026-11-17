@@ -102,7 +102,7 @@ button{background:none;border:0;color:inherit;font:inherit;cursor:pointer}
  <div class="prof"><div class="av"><img data-m="h_avatar.jpg" alt=""></div>
  <div class="stats"><div><b>6</b><span>publicaciones</span></div><div><b>—</b><span>seguidores</span></div><div><b>—</b><span>seguidos</span></div></div></div>
  <div class="bio"><b>Garda Gastrobar</b><br>Gastronomía – café – coctelería.<br>Del desayuno a la última copa.<br>Mar–Sáb 8 am–11 pm · Dom 8 am–8 pm<br>Medellín 176, Roma Norte, CDMX<br><a>opentable.com.mx/r/garda-ciudad-de-mexico</a></div>
- <div class="btns"><span class="f">Seguir</span><span>Mensaje</span><span>Reservar</span></div>
+ <div class="btns"><span>Siguiendo ⌄</span><span>Mensaje</span><span>Reservar</span></div>
  <div class="hl"><div><img data-m="h_03-menu.jpg" alt="">Menú</div><div><img data-m="h_12-terraza-tarde.jpg" alt="">Terraza</div><div><img data-m="h_10-cafe.jpg" alt="">Café</div><div><img data-m="h_04-cocteles.jpg" alt="">Cócteles</div><div><img data-m="h_09-mesa.jpg" alt="">Reservas</div></div>
  <div class="tabs"><span class="on"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 8h18M10 12.5l5 3-5 3z"/></svg></span><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg></span></div>
  <div class="grid" id="grid"></div>
@@ -190,7 +190,7 @@ function openReel(p){
   <div class="top"><button id="rback">${IC.back}</button><span>Reels</span><span style="width:24px"></span></div>
   <div class="mute">${SND_OFF}</div>
   <div class="side"><button class="like">${IC.heart}</button>${IC.com}${IC.send}${IC.dots}</div>
-  <div class="bot"><div class="who"><img src="${m('h_avatar.jpg')}" alt="">gardagastrobar <span class="fl">Seguir</span></div>${capHTML(p)}</div>
+  <div class="bot"><div class="who"><img src="${m('h_avatar.jpg')}" alt="">gardagastrobar</div>${capHTML(p)}</div>
   <div class="prog"><i></i></div>`;
   wireCap(reel);
   const v=reel.querySelector('video'), mu=reel.querySelector('.mute'), pr=reel.querySelector('.prog i'), lk=reel.querySelector('.like');
